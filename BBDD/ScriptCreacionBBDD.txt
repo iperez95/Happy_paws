@@ -14,6 +14,28 @@ IDROL INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 NOMBRE VARCHAR(30) NOT NULL
 );
 
+-- -----------------------------------------------------
+-- Table 'hpawsbbdd'.'PROVINCIAS'
+-- -----------------------------------------------------
+CREATE TABLE PROVINCIAS
+(
+IDPROVINCIA INT NOT NULL PRIMARY KEY,
+	PROVINCIA VARCHAR (30) NOT NULL
+);
+
+-- -----------------------------------------------------
+-- Table 'hpawsbbdd'.'MUNICIPIOS'
+-- -----------------------------------------------------
+CREATE TABLE MUNICIPIOS
+(
+IDMUNICIPIO INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+IDPROVINCIA INT NOT NULL,
+CODMUNICIPIO INT NOT NULL,
+DC INT NOT NULL,
+	MUNICIPIO VARCHAR (100) NOT NULL,
+	
+FOREIGN KEY(IDPROVINCIA) REFERENCES PROVINCIAS(IDPROVINCIA)
+);
 
 -- -----------------------------------------------------
 -- Table 'hpawsbbdd'.'USUARIOS'
@@ -27,13 +49,17 @@ IDROL INT NOT NULL,
 	APELLIDOS VARCHAR(150) NOT NULL,
 	DNI VARCHAR(10) NOT NULL,
 	DIRECCION VARCHAR (200),
+    IDMUNICIPIO INT,
+    IDPROVINCIA INT,
 	TELEFONO INT,
 	EMAIL VARCHAR(150) NOT NULL UNIQUE,
 	EMAIL_NORMALIZADO VARCHAR(150) NOT NULL UNIQUE,
 	PASSWORD VARCHAR(60) NOT NULL,
 	FECHA_ALTA DATE,
 
-FOREIGN KEY(IDROL) REFERENCES ROLES(IDROL)
+FOREIGN KEY(IDROL) REFERENCES ROLES(IDROL),
+FOREIGN KEY(IDMUNICIPIO) REFERENCES MUNICIPIOS(IDMUNICIPIO),
+FOREIGN KEY(IDPROVINCIA) REFERENCES PROVINCIAS(IDPROVINCIA)
 );
 
 -- -----------------------------------------------------
@@ -69,30 +95,13 @@ IDUSUARIO INT NULL,
 	ESTADO VARCHAR(20) NOT NULL,
 	NOMBRE VARCHAR (150) NOT NULL,
 	DIRECCION VARCHAR (250),
+    IDMUNICIPIO INT,
+    IDPROVINCIA INT,
 	URL_LOGO VARCHAR (2000),
 	DESCRIPCION VARCHAR (1000),
 
-FOREIGN KEY(IDUSUARIO) REFERENCES USUARIOS(IDUSUARIO)
-);
-
--- -----------------------------------------------------
--- Table 'hpawsbbdd'.'PROVINCIAS'
--- -----------------------------------------------------
-CREATE TABLE PROVINCIAS
-(
-IDPROVINCIA INT NOT NULL PRIMARY KEY,
-	PROVINCIA VARCHAR (30) NOT NULL
-);
-
--- -----------------------------------------------------
--- Table 'hpawsbbdd'.'MUNICIPIOS'
--- -----------------------------------------------------
-CREATE TABLE MUNICIPIOS
-(
-IDMUNICIPIO INT NOT NULL PRIMARY KEY,
-IDPROVINCIA INT NOT NULL,
-	MUNICIPIO VARCHAR (100) NOT NULL,
-	
+FOREIGN KEY(IDUSUARIO) REFERENCES USUARIOS(IDUSUARIO),
+FOREIGN KEY(IDMUNICIPIO) REFERENCES MUNICIPIOS(IDMUNICIPIO),
 FOREIGN KEY(IDPROVINCIA) REFERENCES PROVINCIAS(IDPROVINCIA)
 );
 
@@ -104,6 +113,7 @@ CREATE TABLE ANIMALES
 IDANIMAL INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 IDPROTECTORA INT NOT NULL,
 IDMUNICIPIO INT,
+IDPROVINCIA INT,
 	ESTADO VARCHAR(20) NOT NULL,
 	NOMBRE VARCHAR (20) NOT NULL,
 	FECHA_NACIMIENTO DATE, 
@@ -112,7 +122,8 @@ IDMUNICIPIO INT,
 
 	
 FOREIGN KEY(IDPROTECTORA) REFERENCES PROTECTORAS(IDPROTECTORA),
-FOREIGN KEY(IDMUNICIPIO) REFERENCES MUNICIPIOS(IDMUNICIPIO)
+FOREIGN KEY(IDMUNICIPIO) REFERENCES MUNICIPIOS(IDMUNICIPIO),
+FOREIGN KEY(IDPROVINCIA) REFERENCES PROVINCIAS(IDPROVINCIA)
 );
 
 -- -----------------------------------------------------
@@ -132,7 +143,6 @@ FOREIGN KEY (IDPROTECTORA) REFERENCES PROTECTORAS (IDPROTECTORA),
 FOREIGN KEY (IDANIMAL)REFERENCES ANIMALES(IDANIMAL)
 );
 
-
 -- -----------------------------------------------------
 -- Table 'hpawsbbdd'.'MULTIMEDIAS'
 -- -----------------------------------------------------
@@ -151,8 +161,7 @@ FOREIGN KEY(IDANIMAL) REFERENCES ANIMALES(IDANIMAL)
 CREATE TABLE TIPOS_ATRIBUTOS
 (
 IDTIPO INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	NOMBRE VARCHAR (20) NOT NULL,
-	ESPECIE VARCHAR(20) NOT NULL
+	NOMBRE VARCHAR (20) NOT NULL
 );
 
 -- -----------------------------------------------------
@@ -193,12 +202,10 @@ FOREIGN KEY (IDVALOR) REFERENCES VALORES_ATRIBUTOS (IDVALOR)
 -- -----------------------------------------------------
 
  CREATE USER uhappypaws IDENTIFIED BY 'p9RYGQMETi%u{6c';
- grant all privileges on hpawsbbdd.* to  uhappypaws; 
+ grant all privileges on hpawsbbdd.* to uhappypaws; 
  FLUSH PRIVILEGES;
-
-
-
--- -----------------------------------------------------
+ 
+ -- -----------------------------------------------------
 -- -----------------------------------------------------
 -- -----------------------------------------------------
 -- -----------------------------------------------------
@@ -208,11 +215,9 @@ FOREIGN KEY (IDVALOR) REFERENCES VALORES_ATRIBUTOS (IDVALOR)
 -- -----------------------------------------------------
 -- -----------------------------------------------------
 
-
 -- -----------------------------------------------------
 -- INSERT de atributos
 -- -----------------------------------------------------
-
 INSERT INTO `TIPOS_ATRIBUTOS` (`NOMBRE`)
 VALUES
 	("ESPECIE"),
@@ -220,8 +225,7 @@ VALUES
     ("RAZA"),
     ("TAMAÑO"),
     ("ENVIO");
-
-
+    
 -- -----------------------------------------------------
 -- INSERT de valores de esos atributos
 -- -----------------------------------------------------
@@ -230,35 +234,22 @@ INSERT INTO `VALORES_ATRIBUTOS` (`IDTIPO`, `VALOR`)
 VALUES
 	("1", "PERRO"),("1", "GATO"),("1", "HURON"),
     ("2", "MACHO"),("2", "HEMBRA"),
-    ("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),
-    ("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),
-    ("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),("3", "HEMBRA"),
-    ("4", "PEQUEÑO"),("4", "MEDIANO"),("4", "GRANDE"),
+    ("3", "PITBULL"),("3", "PASTOR ALEMAN"),("3", "CANICHE"),("3", "D"),("3", "F"),("3", "G"),("3", "H"),("3", "I"),("3", "J"),("3", "K"),("3", "L"),("3", "M"),("3", "N"),
+    ("3", "A"),("3", "O"),("3", "P"),("3", "Q"),("3", "R"),("3", "S"),("3", "T"),("3", "V"),("3", "W"),("3", "X"),("3", "Y"),("3", "Z"),("3", "ZA"),
+    ("3", "B"),("3", "RE"),("3", "DE"),("3", "SE"),("3", "EW"),("3", "QW"),("3", "AS"),("3", "XC"),("3", "DF"),("3", "ED"),("3", "RF"),("3", "TF"),("3", "TG"),
+    ("4", "C"),("4", "MEDIANO"),("4", "GRANDE"),
     ("5", "SI"),("5", "NO");
-    
-
+ 
 -- -----------------------------------------------------
 -- INSERT de roles
--- -----------------------------------------------------    
-
+-- -----------------------------------------------------
+    
 INSERT INTO `ROLES` (`NOMBRE`)
 VALUES
 	("Administrador"),
 	("Protectora"),
     ("Adoptante");
     
-
--- -----------------------------------------------------
--- INSERT de usuarios
--- -----------------------------------------------------
-
-INSERT INTO `USUARIOS` (`IDROL`, `ESTADO`, `NOMBRE`, `APELLIDOS`, `DNI`, `DIRECCION`, `TELEFONO`, `EMAIL`, `EMAIL_NORMALIZADO`, `PASSWORD`, `FECHA_ALTA`)
-VALUES 
-	(1, 'Activo', 'David', 'Menéndez', '12345678A', 'C\ Pez, 1', 123456789, 'menendez.david@gmail.com', 'menendez.david@gmail.com', 'DavidMe', '2023-10-09'),
-    (1, 'Activo', 'Irene', 'Pérez', '98765432B', 'C/ Mayor, 2', 987654321, 'ireneperezcano95@gmail.com', 'ireneperezcano95@gmail.com', 'IrenePe', '2023-10-09'),
-	(1, 'Activo', 'Raúl', 'Moreno', '98712345B', 'C/ Galileo, 3', 987123456, 'raulmro@hotmail.es', 'raulmro@hotmail.es', 'RaulMo', '2023-10-09');
-
-
 -- -----------------------------------------------------
 -- INSERT de provincias
 -- -----------------------------------------------------
@@ -270,7 +261,6 @@ VALUES
 	(16,'Cuenca'),(20,'Gipuzkoa'),(17,'Girona'),(18,'Granada'),(19,'Guadalajara'),(21,'Huelva'),(22,'Huesca'),(23,'Jaén'),(24,'León'),(27,'Lugo'),(25,'Lleida'),(28,'Madrid'),
 	(29,'Málaga'),(52,'Melilla'),(30,'Murcia'),(31,'Navarra'),(32,'Ourense'),(34,'Palencia'),(35,'Palmas, Las'),(36,'Pontevedra'),(26,'Rioja, La'),(37,'Salamanca'),(38,'Santa Cruz de Tenerife'),
 	(40,'Segovia'),(41,'Sevilla'),	(42,'Soria'),(43,'Tarragona'),(44,'Teruel'),(45,'Toledo'),(46,'Valencia/València'),(47,'Valladolid'), (49,'Zamora'),(50,'Zaragoza');
-
 
 -- -----------------------------------------------------
 -- INSERT de municipios
@@ -1254,3 +1244,14 @@ VALUES
     (22,908,0,'Hoz y Costean'),(25,908,4,'Fígols i Alinyà'),(31,908,3,'Lekunberri'),(48,908,5,'Murueta'),(16,909,2,'Sotorribas'),(18,909,4,'Morelábor'),(22,909,3,'Vencillón'),(25,909,7,'Vansa i Fórnols, La'),
     (48,909,8,'Nabarniz'),(16,910,6,'Villar y Velasco'),(18,910,8,'Pinar, El'),(25,910,1,'Josa i Tuixén'),(48,910,2,'Iurreta'),(18,911,5,'Vegas del Genil'),(25,911,8,'Plans de Sió, Els'),(48,911,9,'Ajangiz'),
     (18,912,0,'Cuevas del Campo'),	(25,912,3,'Gimenells i el Pla de la Font'),(48,912,4,'Alonsotegi'),(18,913,6,'Zagra'),(25,913,9,'Riu de Cerdanya'),(48,913,0,'Zierbena'),(48,914,5,'Arratzu'),(48,915,8,'Ziortza-Bolibar');
+
+-- -----------------------------------------------------
+-- INSERT de usuarios
+-- -----------------------------------------------------
+
+INSERT INTO `USUARIOS` (`IDROL`, `ESTADO`, `NOMBRE`, `APELLIDOS`, `DNI`, `DIRECCION`, `IDMUNICIPIO`, `IDPROVINCIA`, `TELEFONO`, `EMAIL`, `EMAIL_NORMALIZADO`, `PASSWORD`, `FECHA_ALTA`)
+VALUES 
+	(1, 'Activo', 'David', 'Menéndez', '12345678A', 'C\ Pez, 1', 5441, 28, 123456789, 'menendez.david@gmail.com', 'menendez.david@gmail.com', 'DavidMe', '2023-10-09'),
+    (1, 'Activo', 'Irene', 'Pérez', '98765432B', 'C/ Mayor, 2', 1536, 7, 987654321, 'ireneperezcano95@gmail.com', 'ireneperezcano95@gmail.com', 'IrenePe', '2023-10-09'),
+	(1, 'Activo', 'Raúl', 'Moreno', '98712345B', 'C/ Galileo, 3', 5080, 16, 987123456, 'raulmro@hotmail.es', 'raulmro@hotmail.es', 'RaulMo', '2023-10-09');
+    
