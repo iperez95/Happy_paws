@@ -1,10 +1,13 @@
+-- -----------------------------------------------------
+-- INSERT de roles
+-- -----------------------------------------------------
 INSERT INTO ROLES (NOMBRE)
 VALUES
 	("Administrador"),
 	("Protectora"),
     ("Adoptante");
     
-    -- -----------------------------------------------------
+-- -----------------------------------------------------
 -- INSERT de atributos
 -- -----------------------------------------------------
 INSERT INTO TIPOS_ATRIBUTOS (ESPECIE,TIPO)
@@ -13,8 +16,8 @@ VALUES
     ("Gato","Sexo"),
     ("Perro","Raza"),
     ("Gato","Raza"),
-    ("Perro","Tamañao"),
-    ("Gato","Tamañao"),
+    ("Perro","Tamaño"),
+    ("Gato","Tamaño"),
     ("Perro","Envío"),
     ("Gato","Envío");
     
@@ -1026,6 +1029,11 @@ VALUES
     (48,909,8,'Nabarniz'),(16,910,6,'Villar y Velasco'),(18,910,8,'Pinar, El'),(25,910,1,'Josa i Tuixén'),(48,910,2,'Iurreta'),(18,911,5,'Vegas del Genil'),(25,911,8,'Plans de Sió, Els'),(48,911,9,'Ajangiz'),
     (18,912,0,'Cuevas del Campo'),	(25,912,3,'Gimenells i el Pla de la Font'),(48,912,4,'Alonsotegi'),(18,913,6,'Zagra'),(25,913,9,'Riu de Cerdanya'),(48,913,0,'Zierbena'),(48,914,5,'Arratzu'),(48,915,8,'Ziortza-Bolibar');
     
+-- -----------------------------------------------------
+-- Quitamos las columnas de codmunicipio y dc ya que no son necesarios para nuestra app.
+-- -----------------------------------------------------
+ALTER TABLE MUNICIPIOS 	DROP COLUMN CODMUNICIPIO,
+						DROP COLUMN DC;
     
 -- -----------------------------------------------------
 -- INSERT de usuarios
