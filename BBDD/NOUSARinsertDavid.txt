@@ -28,7 +28,7 @@ VALUES
     ("2", "Macho"),("2", "Hembra"),
     ("3", "Mestizo"),("3", "Pitbull"),("3", "Pastor Alemán"),("3", "Caniche"),
     ("4", "Común Europeo"),("4", "Persa"),("4", "Angora"),("4", "Bengalí"),
-    ("5", "Pequeño"),("4", "Mediano"),("4", "Grande"),
+    ("5", "Pequeño"),("5", "Mediano"),("5", "Grande"),
     ("6", "Pequeño"),("6", "Mediano"),("6", "Grande"),
     ("7", "Si"),("7", "No"),
     ("8", "Si"),("8", "No");
