@@ -1,7 +1,9 @@
-package entities;
+package com.tfgunir.happypaws.modelo.entities;
+
 
 import java.io.Serializable;
-import javax.persistence.*;
+import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 

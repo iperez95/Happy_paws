@@ -2,7 +2,10 @@ package com.tfgunir.happypaws.modelo.entities;
 
 
 import java.io.Serializable;
+
 import jakarta.persistence.*;
+
+
 
 
 
@@ -110,5 +113,46 @@ public class Protectora implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	public Protectora(int idprotectora, String descripcion, String direccion, String nombre, String urlLogo,
+			Estadosprotectora estadosprotectora, Municipio municipio, Usuario usuario) {
+		this.idprotectora = idprotectora;
+		this.descripcion = descripcion;
+		this.direccion = direccion;
+		this.nombre = nombre;
+		this.urlLogo = urlLogo;
+		this.estadosprotectora = estadosprotectora;
+		this.municipio = municipio;
+		this.usuario = usuario;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idprotectora;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Protectora other = (Protectora) obj;
+		if (idprotectora != other.idprotectora)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Protectora [idprotectora=" + idprotectora + ", descripcion=" + descripcion + ", direccion=" + direccion
+				+ ", nombre=" + nombre + ", urlLogo=" + urlLogo + ", estadosprotectora=" + estadosprotectora
+				+ ", municipio=" + municipio + ", usuario=" + usuario + "]";
+	}	
 
 }

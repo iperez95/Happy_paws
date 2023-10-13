@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 
 
+
 /**
  * The persistent class for the municipios database table.
  * 
@@ -19,10 +20,6 @@ public class Municipio implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idmunicipio;
-
-	private int codmunicipio;
-
-	private int dc;
 
 	private String municipio;
 
@@ -42,21 +39,6 @@ public class Municipio implements Serializable {
 		this.idmunicipio = idmunicipio;
 	}
 
-	public int getCodmunicipio() {
-		return this.codmunicipio;
-	}
-
-	public void setCodmunicipio(int codmunicipio) {
-		this.codmunicipio = codmunicipio;
-	}
-
-	public int getDc() {
-		return this.dc;
-	}
-
-	public void setDc(int dc) {
-		this.dc = dc;
-	}
 
 	public String getMunicipio() {
 		return this.municipio;

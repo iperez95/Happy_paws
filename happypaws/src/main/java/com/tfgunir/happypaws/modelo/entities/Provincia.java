@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 
 
+
 /**
  * The persistent class for the provincias database table.
  * 

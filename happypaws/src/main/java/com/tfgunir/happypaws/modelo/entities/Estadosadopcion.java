@@ -5,6 +5,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 
 
+
 /**
  * The persistent class for the estadosadopciones database table.
  * 
