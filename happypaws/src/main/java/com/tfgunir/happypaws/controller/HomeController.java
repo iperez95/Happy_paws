@@ -14,9 +14,14 @@ public class HomeController {
 
   
 
-    @GetMapping("/")
-    public String index(Model model){
+    @GetMapping("/index")
+    public String mostrarIndex(){
         return "index";
+    }
+
+    @GetMapping("/menu")
+    public String mostrarMenu(){
+        return "menu";
     }
     
 }

@@ -2,7 +2,7 @@ package com.tfgunir.happypaws.modelo.entities;
 
 
 import java.io.Serializable;
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 
 import java.util.List;
