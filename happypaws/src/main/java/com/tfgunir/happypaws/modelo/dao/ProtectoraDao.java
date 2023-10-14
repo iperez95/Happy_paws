@@ -27,9 +27,9 @@ public class ProtectoraDao implements IProtectoraDao{
     }
 
     @Override
-    public int bajaProtectora(Protectora protectora) {
+    public int enabledProtectora(Protectora protectora) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'bajaProtectora'");
+        throw new UnsupportedOperationException("Unimplemented method 'enabledProtectora'");
     }
 
     @Override

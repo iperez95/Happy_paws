@@ -24,7 +24,7 @@ public class Usuario implements Serializable {
 
 	private String apellidos;
 
-	private byte baja;
+	private byte enabled;
 
 	private String direccion;
 
@@ -40,8 +40,8 @@ public class Usuario implements Serializable {
 	private Date fechaAlta;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="FECHA_BAJA")
-	private Date fechaBaja;
+	@Column(name="FECHA_enabled")
+	private Date fechaenabled;
 
 	private String nombre;
 
@@ -78,12 +78,12 @@ public class Usuario implements Serializable {
 		this.apellidos = apellidos;
 	}
 
-	public byte getBaja() {
-		return this.baja;
+	public byte getenabled() {
+		return this.enabled;
 	}
 
-	public void setBaja(byte baja) {
-		this.baja = baja;
+	public void setenabled(byte enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getDireccion() {
@@ -126,12 +126,12 @@ public class Usuario implements Serializable {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Date getFechaBaja() {
-		return this.fechaBaja;
+	public Date getFechaenabled() {
+		return this.fechaenabled;
 	}
 
-	public void setFechaBaja(Date fechaBaja) {
-		this.fechaBaja = fechaBaja;
+	public void setFechaenabled(Date fechaenabled) {
+		this.fechaenabled = fechaenabled;
 	}
 
 	public String getNombre() {

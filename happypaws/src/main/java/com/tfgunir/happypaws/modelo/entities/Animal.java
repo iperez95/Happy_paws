@@ -22,7 +22,7 @@ public class Animal implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idanimal;
 
-	private byte baja;
+	private byte enabled;
 
 	private String descripcion;
 
@@ -31,8 +31,8 @@ public class Animal implements Serializable {
 	private Date fechaAlta;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="FECHA_BAJA")
-	private Date fechaBaja;
+	@Column(name="FECHA_enabled")
+	private Date fechaenabled;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA_NACIMIENTO")
@@ -65,12 +65,12 @@ public class Animal implements Serializable {
 		this.idanimal = idanimal;
 	}
 
-	public byte getBaja() {
-		return this.baja;
+	public byte getenabled() {
+		return this.enabled;
 	}
 
-	public void setBaja(byte baja) {
-		this.baja = baja;
+	public void setenabled(byte enabled) {
+		this.enabled = enabled;
 	}
 
 	public String getDescripcion() {
@@ -89,12 +89,12 @@ public class Animal implements Serializable {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Date getFechaBaja() {
-		return this.fechaBaja;
+	public Date getFechaenabled() {
+		return this.fechaenabled;
 	}
 
-	public void setFechaBaja(Date fechaBaja) {
-		this.fechaBaja = fechaBaja;
+	public void setFechaenabled(Date fechaenabled) {
+		this.fechaenabled = fechaenabled;
 	}
 
 	public Date getFechaNacimiento() {

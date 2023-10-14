@@ -10,7 +10,7 @@ public interface IProtectoraDao {
     
     int altaProtectora (Protectora protectora);
     int modificarProtectora (Protectora protectora);
-    int bajaProtectora (Protectora protectora);
+    int enabledProtectora (Protectora protectora);
     int borrarProtectora (int protectora);
     Protectora buscarUnaProtectora (int id);
     List<Protectora> buscarTodas();

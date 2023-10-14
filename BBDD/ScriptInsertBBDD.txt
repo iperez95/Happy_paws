@@ -52,7 +52,7 @@ VALUES
 -- -----------------------------------------------------
 INSERT INTO MUNICIPIOS (IDPROVINCIA, CODMUNICIPIO, DC, MUNICIPIO)
 VALUES
-	(1,1,4,'Alegría-Dulantzi'),(2,1,9,'Abengibre'),(3,1,5,'Adsubia'),(4,1,0,'Abla'),(5,1,3,'Adanero'),(6,1,6,'Acedera'),(7,1,2,'Alaró'),(8,1,8,'Abrera'),(9,1,1,'Abajas'),(10,1,5,'Abadía'),
+	(1,1,4,'Alegría-Dulantzi'),(2,1,9,'Abengibre'),(3,1,5,'Adsubia'),(4,1,0,'Abla'),(5,1,3,'Adanero'),(6,1,6,'Acedera'),(7,1,2,'Alaró'),(8,1,8,'Abrera'),(9,1,1,'AENABLEDs'),(10,1,5,'Abadía'),
     (11,1,2,'Alcalá de los Gazules'),(12,1,7,'Atzeneta del Maestrat'),(13,1,3,'Abenójar'),(14,1,8,'Adamuz'),(15,1,1,'Abegondo'),(16,1,4,'Abia de la Obispalía'),(17,1,0,'Agullana'),(18,1,6,'Agrón'),
     (19,1,9,'Abánades'),(20,1,3,'Abaltzisketa'),(21,1,0,'Alájar'),(22,1,5,'Abiego'),(23,1,1,'Albanchez de Mágina'),(24,1,6,'Acebedo'),(25,1,9,'Abella de la Conca'),(26,1,2,'Ábalos'),(27,1,8,'Abadín'),
 	(28,1,4,'Acebeda, La'),(29,1,7,'Alameda'),(30,1,1,'Abanilla'),(31,1,8,'Abáigar'),(32,1,3,'Allariz'),(33,1,9,'Allande'),(34,1,4,'Abarca de Campos'),(35,1,7,'Agaete'),(36,1,0,'Arbo'),(37,1,6,'Abusejo'),
@@ -70,7 +70,7 @@ VALUES
 	(47,3,5,'Aguilar de Campos'),(48,3,1,'Amorebieta-Etxano'),(49,3,4,'Alcañices'),(50,3,7,'Agón'),(1,4,0,'Artziniega'),(2,4,5,'Albatana'),(3,4,1,'Aigües'),(4,4,6,'Albánchez'),(6,4,2,'Alange'),(7,4,8,'Algaida'),
 	(8,4,4,'Alpens'),(10,4,1,'Acehúche'),(11,4,8,'Algeciras'),(12,4,3,'Alcalà de Xivert'),(13,4,9,'Albaladejo'),(14,4,4,'Almedinilla'),(15,4,7,'Ares'),(16,4,0,'Albaladejo del Cuende'),(17,4,6,'Albons'),(18,4,2,'Albondón'),
 	(19,4,5,'Alaminos'),(20,4,9,'Albiztur'),(21,4,6,'Almonaster la Real'),(22,4,1,'Agüero'),(23,4,7,'Aldeaquemada'),(24,4,2,'Almanza'),(25,4,5,'Alamús, Els'),(26,4,8,'Ajamil de Cameros'),(27,4,4,'Baleira'),
-	(28,4,0,'Álamo, El'),(29,4,3,'Alfarnatejo'),(30,4,7,'Albudeite'),(31,4,4,'Abaurrepea/Abaurrea Baja'),(32,4,9,'Avión'),(33,4,5,'Avilés'),(34,4,0,'Aguilar de Campoo'),(35,4,3,'Arrecife'),(36,4,6,'Bueu'),
+	(28,4,0,'Álamo, El'),(29,4,3,'Alfarnatejo'),(30,4,7,'Albudeite'),(31,4,4,'Abaurrepea/Abaurrea ENABLED'),(32,4,9,'Avión'),(33,4,5,'Avilés'),(34,4,0,'Aguilar de Campoo'),(35,4,3,'Arrecife'),(36,4,6,'Bueu'),
 	(37,4,2,'Ahigal de Villarino'),(38,4,8,'Arafo'),(39,4,1,'Arenas de Iguña'),(40,4,5,'Aguilafuente'),(41,4,2,'Alcalá de Guadaíra'),(42,4,7,'Ágreda'),(43,4,3,'Alcanar'),(44,4,8,'Aguaviva'),(45,4,1,'Alcabón'),
 	(46,4,4,'Agullent'),(47,4,0,'Alaejos'),(48,4,6,'Amoroto'),(49,4,9,'Alcubilla de Nogales'),(50,4,2,'Aguarón'),(2,5,8,'Alborea'),(3,5,4,'Albatera'),(4,5,9,'Alboloduy'),(5,5,2,'Albornos'),(6,5,5,'Albuera, La'),
 	(7,5,1,'Andratx'),(8,5,7,'Ametlla del Vallès, L\''),(10,5,4,'Aceituna'),(11,5,1,'Algodonales'),(12,5,6,'Alcora, l\''),(13,5,2,'Alcázar de San Juan'),(14,5,7,'Almodóvar del Río'),(15,5,0,'Arteixo'),
@@ -97,7 +97,7 @@ VALUES
 	(4,9,7,'Alcudia de Monteagud'),(6,9,3,'Aljucén'),(7,9,9,'Búger'),(8,9,5,'Argentona'),(9,9,8,'Albillos'),(10,9,2,'Alcollarín'),(11,9,9,'Benaocaz'),(12,9,4,'Almazora/Almassora'),(13,9,0,'Aldea del Rey'),
 	(14,9,5,'Belmez'),(15,9,8,'Betanzos'),(16,9,1,'Alcantud'),(17,9,7,'Arbúcies'),(19,9,6,'Alcocer'),(20,9,0,'Andoain'),(21,9,7,'Arroyomolinos de León'),(22,9,2,'Albelda'),(23,9,8,'Baeza'),(24,9,3,'Balboa'),
 	(25,9,6,'Albi, L\''),(26,9,9,'Alesanco'),(27,9,5,'Carballedo'),(28,9,1,'Algete'),(29,9,4,'Almáchar'),(30,9,8,'Archena'),(31,9,5,'Aibar/Oibar'),(32,9,0,'Barco de Valdeorras, O'),(33,9,6,'Cabranes'),
-	(34,9,1,'Amayuelas de Arriba'),(35,9,4,'Gáldar'),(36,9,7,'Cañiza, A'),(37,9,3,'Alba de Yeltes'),(38,9,9,'Breña Baja'),(39,9,2,'Bárcena de Cicero'),(40,9,6,'Aldeanueva de la Serrezuela'),(41,9,3,'Almadén de la Plata'),
+	(34,9,1,'Amayuelas de Arriba'),(35,9,4,'Gáldar'),(36,9,7,'Cañiza, A'),(37,9,3,'Alba de Yeltes'),(38,9,9,'Breña ENABLED'),(39,9,2,'Bárcena de Cicero'),(40,9,6,'Aldeanueva de la Serrezuela'),(41,9,3,'Almadén de la Plata'),
 	(42,9,8,'Aldealafuente'),(43,9,4,'Alforja'),(44,9,9,'Albarracín'),(45,9,2,'Aldeanueva de Barbarroya'),(46,9,5,'Albalat dels Sorells'),(47,9,1,'Amusquillo'),(48,9,7,'Arrankudiaga'),(49,9,0,'Andavías'),
 	(50,9,3,'Alarba'),(1,10,5,'Ayala/Aiara'),(2,10,0,'Alpera'),(3,10,6,'Alfafara'),(4,10,1,'Alhabia'),(5,10,4,'Aldehuela, La'),(6,10,7,'Almendral'),(7,10,3,'Bunyola'),(8,10,9,'Artés'),(9,10,2,'Alcocero de Mola'),
 	(10,10,6,'Alcuéscar'),(11,10,3,'Bornos'),(12,10,8,'Almedíjar'),(13,10,4,'Alhambra'),(14,10,9,'Benamejí'),(15,10,2,'Boimorto'),(16,10,5,'Alcázar del Rey'),(17,10,1,'Argelaguer'),(18,10,7,'Aldeire'),
@@ -118,7 +118,7 @@ VALUES
 	(45,12,8,'Almonacid de Toledo'),(46,12,1,'Alborache'),(47,12,7,'Bahabón'),(48,12,3,'Bakio'),(49,12,6,'Argañín'),(50,12,9,'Alborge'),(1,13,3,'Barrundia'),(2,13,8,'Balsa de Ves'),(3,13,4,'Algueña'),(4,13,9,'Almería'),
 	(5,13,2,'Arenal, El'),(6,13,5,'Atalaya'),(7,13,1,'Campos'),(8,13,7,'Avinyonet del Penedès'),(9,13,0,'Altable'),(10,13,4,'Aldea del Obispo, La'),(11,13,1,'Castellar de la Frontera'),(12,13,6,'Arañuel'),(13,13,2,'Almagro'),
 	(14,13,7,'Cabra'),(15,13,0,'Brión'),(16,13,3,'Algarra'),(17,13,9,'Begur'),(18,13,5,'Alhama de Granada'),(19,13,8,'Alcoroches'),(20,13,2,'Aretxabaleta'),(21,13,9,'Bollullos Par del Condado'),(22,13,4,'Alberuela de Tubo'),
-	(25,13,8,'Alfarràs'),(26,13,1,'Anguciana'),(27,13,7,'Cervo'),(28,13,3,'Aranjuez'),(29,13,6,'Alozaina'),(30,13,0,'Calasparra'),(31,13,7,'Améscoa Baja'),(32,13,2,'Boborás'),(33,13,8,'Caravia'),(35,13,6,'Moya'),
+	(25,13,8,'Alfarràs'),(26,13,1,'Anguciana'),(27,13,7,'Cervo'),(28,13,3,'Aranjuez'),(29,13,6,'Alozaina'),(30,13,0,'Calasparra'),(31,13,7,'Améscoa ENABLED'),(32,13,2,'Boborás'),(33,13,8,'Caravia'),(35,13,6,'Moya'),
 	(36,13,9,'Covelo'),(37,13,5,'Aldeacipreste'),(38,13,1,'Frontera'),(39,13,4,'Cabezón de Liébana'),(40,13,8,'Aldeasoña'),(41,13,5,'Aznalcóllar'),(42,13,0,'Aldehuela de Periáñez'),(43,13,6,'Ametlla de Mar, L\''),
 	(44,13,1,'Alcañiz'),(45,13,4,'Almorox'),(46,13,7,'Alboraya'),(47,13,3,'Barcial de la Loma'),(48,13,9,'Barakaldo'),(49,13,2,'Argujillo'),(50,13,5,'Alcalá de Ebro'),(1,14,8,'Berantevilla'),(2,14,3,'Ballestero, El'),
 	(3,14,9,'Alicante/Alacant'),(4,14,4,'Almócita'),(5,14,7,'Arenas de San Pedro'),(6,14,0,'Azuaga'),(7,14,6,'Capdepera'),(8,14,2,'Aiguafreda'),(9,14,5,'Altos, Los'),(10,14,9,'Aldeanueva de la Vera'),(11,14,6,'Conil de la Frontera'),
@@ -196,7 +196,7 @@ VALUES
 	(11,27,6,'Puerto de Santa María, El'),(12,27,1,'Benicarló'),(13,27,7,'Calzada de Calatrava'),(14,27,2,'Fernán-Núñez'),(15,27,5,'Coirós'),(16,27,8,'Barajas de Melo'),(17,27,4,'Breda'),(18,27,0,'Benalúa'),(19,27,3,'Alustante'),
 	(20,27,7,'Zestoa'),(21,27,4,'Cumbres de Enmedio'),(22,27,9,'Angüés'),(23,27,5,'Cazalilla'),(24,27,0,'Cabañas Raras'),(25,27,3,'Anglesola'),(26,27,6,'Berceo'),(27,27,2,'Lourenzá'),(28,27,8,'Buitrago del Lozoya'),
 	(29,27,1,'Benamocarra'),(30,27,5,'Molina de Segura'),(31,27,2,'Arbizu'),(32,27,7,'Cortegada'),(33,27,3,'Grandas de Salime'),(34,27,8,'Barruelo de Santullán'),(35,27,1,'Teror'),(36,27,4,'Meaño'),(37,27,0,'Almenara de Tormes'),
-	(38,27,6,'Paso, El'),(39,27,9,'Campoo de Enmedio'),(41,27,0,'Castilblanco de los Arroyos'),(42,27,5,'Arévalo de la Sierra'),(43,27,1,'Bisbal de Falset, La'),(44,27,6,'Arens de Lledó'),(45,27,9,'Cabezamesada'),
+	(38,27,6,'Paso, El'),(39,27,9,'Campoo de Enmedio'),(41,27,0,'Castilblanco de los Arroyos'),(42,27,5,'Arévalo de la Sierra'),(43,27,1,'Bisbal de truet, La'),(44,27,6,'Arens de Lledó'),(45,27,9,'Cabezamesada'),
 	(46,27,2,'Alfarrasí'),(47,27,8,'Cabezón de Pisuerga'),(48,27,4,'Durango'),(49,27,7,'Brime de Sog'),(50,27,0,'Ambel'),(1,28,4,'Labastida/Bastida'),(2,28,9,'Cotillas'),(3,28,5,'Beniarrés'),(4,28,0,'Bentarique'),
 	(6,28,6,'Campanario'),(7,28,2,'Lloret de Vistalegre'),(8,28,8,'Cabrera d\'Anoia'),(10,28,5,'Berrocalejo'),(11,28,2,'Puerto Real'),(12,28,7,'Benicasim/Benicàssim'),(13,28,3,'Campo de Criptana'),(14,28,8,'Fuente la Lancha'),
 	(15,28,1,'Corcubión'),(17,28,0,'Brunyola'),(18,28,6,'Benalúa de las Villas'),(20,28,3,'Zizurkil'),(21,28,0,'Cumbres de San Bartolomé'),(22,28,5,'Ansó'),(23,28,1,'Cazorla'),(24,28,6,'Cabreros del Río'),(26,28,2,'Bergasa'),
@@ -245,7 +245,7 @@ VALUES
 	(14,36,4,'Hornachuelos'),(15,36,7,'Ferrol'),(16,36,0,'Boniches'),(17,36,6,'Campdevànol'),(18,36,2,'Cájar'),(19,36,5,'Aranzueque'),(20,36,9,'Hondarribia'),(21,36,6,'Granada de Río-Tinto, La'),(22,36,1,'Argavieso'),
 	(24,36,2,'Candín'),(25,36,5,'Aspa'),(26,36,8,'Calahorra'),(28,36,0,'Casarrubuelos'),(29,36,3,'Carratraca'),(30,36,7,'San Pedro del Pinatar'),(31,36,4,'Arróniz'),(32,36,9,'Xunqueira de Ambía'),(33,36,5,'Llanes'),
 	(34,36,0,'Brañosera'),(36,36,6,'Oia'),(37,36,2,'San Miguel del Robledo'),(38,36,8,'San Sebastián de la Gomera'),(39,36,1,'Liendo'),(40,36,5,'Cabezuela'),(41,36,2,'Coronil, El'),(42,36,7,'Blacos'),(43,36,3,'Cabra del Camp'),
-	(44,36,8,'Bea'),(45,36,1,'Carmena'),(46,36,4,'Alpuente'),(47,36,0,'Casasola de Arión'),(48,36,6,'Galdakao'),(49,36,9,'Carbajales de Alba'),(50,36,2,'Asín'),(1,37,6,'Arraia-Maeztu'),(2,37,1,'Hellín'),(3,37,7,'Benimantell'),
+	(44,36,8,'Bea'),(45,36,1,'Carmena'),(46,36,4,'Alpuente'),(47,36,0,'Casasola de Arión'),(48,36,6,'Galdakao'),(49,36,9,'CarENABLEDles de Alba'),(50,36,2,'Asín'),(1,37,6,'Arraia-Maeztu'),(2,37,1,'Hellín'),(3,37,7,'Benimantell'),
 	(4,37,2,'Chirivel'),(5,37,5,'Bohoyo'),(6,37,8,'Codosera, La'),(7,37,4,'Mercadal, Es'),(8,37,0,'Calldetenes'),(9,37,3,'Barbadillo de Herreros'),(10,37,7,'Cáceres'),(11,37,4,'Trebujena'),(12,37,9,'Castell de Cabres'),
 	(13,37,5,'Cózar'),(14,37,0,'Iznájar'),(15,37,3,'Fisterra'),(17,37,2,'Campelles'),(18,37,8,'Calicasas'),(19,37,1,'Arbancón'),(20,37,5,'Gaintza'),(21,37,2,'Granado, El'),(22,37,7,'Arguis'),(23,37,3,'Génave'),
 	(24,37,8,'Cármenes'),(25,37,1,'Avellanes i Santa Linya, Les'),(26,37,4,'Camprovín'),(27,37,0,'Nogais, As'),(28,37,6,'Cenicientos'),(29,37,9,'Cartajima'),(30,37,3,'Torre-Pacheco'),(31,37,0,'Arruazu'),
@@ -296,10 +296,10 @@ VALUES
 	(17,46,4,'Castellfollit de la Roca'),(18,46,0,'Castril'),(19,46,3,'Azuqueca de Henares'),(20,46,7,'Irura'),(21,46,4,'Lucena del Puerto'),(22,46,9,'Ballobar'),(23,46,5,'Ibros'),(24,46,0,'Castrocalbón'),(25,46,3,'Belianes'),
 	(26,46,6,'Cenicero'),(27,46,2,'Pol'),(28,46,8,'Collado Mediano'),(29,46,1,'Cortes de la Frontera'),(31,46,2,'Barbarin'),(32,46,7,'Melón'),(33,46,3,'Peñamellera Alta'),(34,46,8,'Cardeñosa de Volpejera'),(36,46,4,'Ribadumia'),
 	(37,46,0,'Béjar'),(38,46,6,'Tegueste'),(39,46,9,'Molledo'),(40,46,3,'Castillejo de Mesleón'),(41,46,0,'Gilena'),(42,46,5,'Calatañazor'),(43,46,1,'Conesa'),(44,46,6,'Bueña'),(45,46,9,'Cebolla'),(46,46,2,'Barx'),
-	(47,46,8,'Castroponce'),(48,46,4,'Gernika-Lumo'),(49,46,7,'Cerecinos de Campos'),(50,46,0,'Belmonte de Gracián'),(1,47,4,'Ribera Baja/Erribera Beitia'),(2,47,9,'Masegoso'),(3,47,5,'Calp'),(4,47,0,'Gádor'),
+	(47,46,8,'Castroponce'),(48,46,4,'Gernika-Lumo'),(49,46,7,'Cerecinos de Campos'),(50,46,0,'Belmonte de Gracián'),(1,47,4,'Ribera ENABLED/Erribera Beitia'),(2,47,9,'Masegoso'),(3,47,5,'Calp'),(4,47,0,'Gádor'),
 	(5,47,3,'Candeleda'),(6,47,6,'Esparragosa de la Serena'),(7,47,2,'Sencelles'),(8,47,8,'Cardona'),(9,47,1,'Belbimbre'),(10,47,5,'Carcaboso'),(13,47,3,'Herencia'),(14,47,8,'Obejo'),(15,47,1,'Mesía'),(16,47,4,'Cañada Juncosa'),
 	(17,47,0,'Castelló d\'Empúries'),(18,47,6,'Cenes de la Vega'),(19,47,9,'Baides'),(20,47,3,'Itsasondo'),(21,47,0,'Manzanilla'),(22,47,5,'Banastás'),(23,47,1,'Iruela, La'),(24,47,6,'Castrocontrigo'),(25,47,9,'Bellcaire d\'Urgell'),
-	(26,47,2,'Cervera del Río Alhama'),(27,47,8,'Pobra do Brollón, A'),(28,47,4,'Collado Villalba'),(29,47,7,'Cuevas Bajas'),(31,47,8,'Bargota'),(32,47,3,'Merca, A'),(33,47,9,'Peñamellera Baja'),(34,47,4,'Carrión de los Condes'),
+	(26,47,2,'Cervera del Río Alhama'),(27,47,8,'Pobra do Brollón, A'),(28,47,4,'Collado Villalba'),(29,47,7,'Cuevas ENABLEDs'),(31,47,8,'Bargota'),(32,47,3,'Merca, A'),(33,47,9,'Peñamellera ENABLED'),(34,47,4,'Carrión de los Condes'),
 	(36,47,0,'Rodeiro'),(37,47,6,'Beleña'),(38,47,2,'Tijarafe'),(39,47,5,'Noja'),(40,47,9,'Castro de Fuentidueña'),(41,47,6,'Gines'),(43,47,7,'Constantí'),(44,47,2,'Burbáguena'),(45,47,5,'Cedillo del Condado'),
 	(46,47,8,'Bèlgida'),(47,47,4,'Castroverde de Cerrato'),(48,47,0,'Gizaburuaga'),(49,47,3,'Cerecinos del Carrizal'),(50,47,6,'Berdejo'),(2,48,5,'Minaya'),(3,48,1,'Callosa d\'En Sarrià'),(4,48,6,'Gallardos, Los'),
 	(5,48,9,'Cantiveros'),(6,48,2,'Esparragosa de Lares'),(7,48,8,'Sant Josep de sa Talaia'),(8,48,4,'Carme'),(9,48,7,'Belorado'),(10,48,1,'Carrascalejo'),(12,48,3,'Cortes de Arenoso'),(13,48,9,'Hinojosas de Calatrava'),
@@ -340,7 +340,7 @@ VALUES
 	(4,55,8,'Instinción'),(5,55,1,'Casillas'),(6,55,4,'Fuentes de León'),(7,55,0,'Santa Margalida'),(8,55,6,'Castellcir'),(9,55,9,'Brazacorta'),(10,55,3,'Casas del Monte'),(12,55,5,'Chodos/Xodos'),(13,55,1,'Mestanza'),
 	(14,55,6,'Priego de Córdoba'),(15,55,9,'Neda'),(16,55,2,'Carboneras de Guadazaón'),(17,55,8,'Colomers'),(19,55,7,'Bujalaro'),(20,55,1,'Arrasate/Mondragón'),(21,55,8,'Palos de la Frontera'),(22,55,3,'Berbegal'),
 	(23,55,9,'Linares'),(24,55,4,'Cimanes del Tejar'),(25,55,7,'Biosca'),(26,55,0,'Corporales'),(27,55,6,'Samos'),(28,55,2,'Estremera'),(29,55,5,'Fuente de Piedra'),(31,55,6,'Betelu'),(32,55,1,'Paderne de Allariz'),
-	(33,55,7,'Ribadedeva'),(34,55,2,'Cervatos de la Cueza'),(36,55,8,'Tui'),(37,55,4,'Bogajo'),(39,55,3,'Potes'),(40,55,7,'Cilleruelo de San Mamés'),(41,55,4,'Lora del Río'),(42,55,9,'Casarejos'),(43,55,5,'Falset'),
+	(33,55,7,'Ribadedeva'),(34,55,2,'Cervatos de la Cueza'),(36,55,8,'Tui'),(37,55,4,'Bogajo'),(39,55,3,'Potes'),(40,55,7,'Cilleruelo de San Mamés'),(41,55,4,'Lora del Río'),(42,55,9,'Casarejos'),(43,55,5,'truet'),
 	(44,55,0,'Camarillas'),(45,55,3,'Cuerva'),(46,55,6,'Beniarjó'),(47,55,2,'Corcos'),(48,55,8,'Lemoa'),(49,55,1,'Cotanes del Monte'),(50,55,4,'Borja'),(1,56,5,'Harana/Valle de Arana'),(2,56,0,'Ontur'),(3,56,6,'Cocentaina'),
 	(4,56,1,'Laroya'),(5,56,4,'Castellanos de Zapardiel'),(6,56,7,'Garbayuela'),(7,56,3,'Santa María del Camí'),(8,56,9,'Castelldefels'),(9,56,2,'Briviesca'),(10,56,6,'Casas de Millán'),(12,56,8,'Chóvar'),(13,56,4,'Miguelturra'),
 	(14,56,9,'Puente Genil'),(15,56,2,'Negreira'),(16,56,5,'Cardenete'),(17,56,1,'Cornellà del Terri'),(18,56,7,'Cúllar'),(20,56,4,'Mutriku'),(21,56,1,'Paterna del Campo'),(23,56,2,'Lopera'),(24,56,7,'Cistierna'),
@@ -428,7 +428,7 @@ VALUES
 	(32,73,9,'Rubiá'),(33,73,5,'Tineo'),(34,73,0,'Fresno del Río'),(37,73,2,'Calzada de Valdunciel'),(39,73,1,'Santa Cruz de Bezana'),(40,73,5,'Escalona del Prado'),(41,73,2,'Pedroso, El'),(42,73,7,'Cueva de Ágreda'),
 	(43,73,3,'Llorac'),(45,73,1,'Herreruela de Oropesa'),(46,73,4,'Bolbaite'),(47,73,0,'Herrín de Campos'),(48,73,6,'Ondarroa'),(50,73,2,'Cariñena'),(2,74,0,'Tobarra'),(3,74,6,'Granja de Rocamora'),(4,74,1,'Pechina'),
 	(5,74,4,'Fontiveros'),(6,74,7,'Llerena'),(8,74,9,'Cubelles'),(9,74,2,'Cardeñajimeno'),(12,74,8,'Llosa, la'),(13,74,4,'San Carlos del Valle'),(14,74,9,'Viso, El'),(15,74,2,'Rois'),(16,74,5,'Cierva, La'),(17,74,1,'Fortià'),
-	(18,74,7,'Ferreira'),(19,74,0,'Caspueñas'),(20,74,4,'Bergara'),(21,74,1,'Villalba del Alcor'),(22,74,6,'Campo'),(23,74,2,'Rus'),(24,74,7,'Fuentes de Carbajal'),(25,74,0,'Ciutadilla'),(26,74,3,'Hervías'),(28,74,5,'Leganés'),
+	(18,74,7,'Ferreira'),(19,74,0,'Caspueñas'),(20,74,4,'Bergara'),(21,74,1,'Villalba del Alcor'),(22,74,6,'Campo'),(23,74,2,'Rus'),(24,74,7,'Fuentes de CarENABLEDl'),(25,74,0,'Ciutadilla'),(26,74,3,'Hervías'),(28,74,5,'Leganés'),
 	(29,74,8,'Montejaque'),(31,74,9,'Cirauqui/Zirauki'),(32,74,4,'San Amaro'),(33,74,0,'Vegadeo'),(34,74,5,'Frómista'),(37,74,7,'Campillo de Azaba'),(39,74,6,'Santa María de Cayón'),(40,74,0,'Escarabajosa de Cabezas'),
 	(41,74,7,'Peñaflor'),(43,74,8,'Llorenç del Penedès'),(44,74,3,'Cedrillas'),(45,74,6,'Hinojosa de San Vicente'),(46,74,9,'Bonrepòs i Mirambell'),(47,74,5,'Hornillos de Eresma'),(48,74,1,'Urduña/Orduña'),(50,74,7,'Caspe'),
 	(2,75,3,'Valdeganga'),(3,75,9,'Castell de Guadalest, el'),(4,75,4,'Pulpí'),(5,75,7,'Fresnedilla'),(6,75,0,'Magacela'),(8,75,2,'Dosrius'),(9,75,5,'Cardeñuela Riopico'),(10,75,9,'Fresnedoso de Ibor'),(12,75,1,'Mata de Morella, la'),
@@ -488,7 +488,7 @@ VALUES
 	(10,88,2,'Guijo de Coria'),(12,88,4,'Pavías'),(13,88,0,'Valenzuela de Calatrava'),(15,88,8,'Val do Dubra'),(16,88,1,'Fuentelespino de Moya'),(17,88,7,'Lladó'),(18,88,3,'Guadahortuna'),(19,88,6,'Ciruelas'),
 	(22,88,2,'Castillazuelo'),(23,88,8,'Torreperogil'),(24,88,3,'Laguna de Negrillos'),(25,88,6,'Estamariu'),(26,88,9,'Leza de Río Leza'),(28,88,1,'Montejo de la Sierra'),(29,88,4,'Sierra de Yeguas'),(31,88,5,'Noáin (Valle de Elorz)/Noain (Elortzibar)'),
 	(32,88,0,'Vilamartín de Valdeorras'),(34,88,1,'Husillos'),(37,88,3,'Carrascal del Obispo'),(39,88,2,'Tresviso'),(40,88,6,'Fuenterrebollo'),(41,88,3,'San Nicolás del Puerto'),(42,88,8,'Fuentelmonge'),
-	(43,88,4,'Montbrió del Camp'),(44,88,9,'Cuba, La'),(45,88,2,'Magán'),(46,88,5,'Casas Bajas'),(47,88,1,'Melgar de Abajo'),(48,88,7,'Ubide'),(49,88,0,'Gamones'),(50,88,3,'Cosuenda'),(3,89,5,'Monóvar/Monòver'),
+	(43,88,4,'Montbrió del Camp'),(44,88,9,'Cuba, La'),(45,88,2,'Magán'),(46,88,5,'Casas ENABLEDs'),(47,88,1,'Melgar de Abajo'),(48,88,7,'Ubide'),(49,88,0,'Gamones'),(50,88,3,'Cosuenda'),(3,89,5,'Monóvar/Monòver'),
 	(4,89,0,'Taberno'),(5,89,3,'Guisando'),(6,89,6,'Morera, La'),(8,89,8,'Gavà'),(10,89,5,'Guijo de Galisteo'),(12,89,7,'Peníscola/Peñíscola'),(13,89,3,'Villahermosa'),(15,89,1,'Vedra'),(16,89,4,'Fuentes'),
 	(17,89,0,'Llagostera'),(18,89,6,'Guadix'),(19,89,9,'Ciruelos del Pinar'),(22,89,5,'Castillonroy'),(24,89,6,'León'),(25,89,9,'Farrera'),(26,89,2,'Logroño'),(28,89,4,'Moraleja de Enmedio'),(29,89,7,'Teba'),
 	(31,89,8,'Enériz/Eneritz'),(32,89,3,'Vilar de Barrio'),(34,89,4,'Itero de la Vega'),(37,89,6,'Casafranca'),(39,89,5,'Tudanca'),(40,89,9,'Fuentesaúco de Fuentidueña'),(41,89,6,'Santiponce'),(42,89,1,'Fuentelsaz de Soria'),
@@ -829,7 +829,7 @@ VALUES
 	(8,201,6,'Sant Boi de Lluçanès'),(9,201,9,'Mamolar'),(10,201,3,'Valdemorales'),(17,201,8,'Toses'),(19,201,7,'Olmeda de Cobeta'),(22,201,3,'Salas Altas'),(24,201,4,'Vegas del Condado'),(25,201,7,'Sarroca de Bellera'),
     (31,201,6,'Pamplona/Iruña'),(34,201,2,'Vertavillo'),(37,201,4,'Montemayor del Río'),(40,201,7,'Tolocirio'),(42,201,9,'Velilla de la Sierra'),(44,201,0,'Rubielos de Mora'),(45,201,3,'Yeles'),(46,201,6,'Puebla de San Miguel'),	
     (49,201,1,'Santa Croya de Tera'),(50,201,4,'Paracuellos de Jiloca'),(8,202,1,'Sant Celoni'),(9,202,4,'Manciles'),(10,202,8,'Valdeobispo'),(16,202,7,'Talayuelas'),(17,202,3,'Tossa de Mar'),(19,202,2,'Olmeda de Jadraque, La'),
-	(22,202,8,'Salas Bajas'),(24,202,9,'Villablino'),(25,202,2,'Senterada'),(31,202,1,'Peralta/Azkoien'),(34,202,7,'Villabasta de Valdavia'),(37,202,9,'Monterrubio de Armuña'),(40,202,2,'Torreadrada'),
+	(22,202,8,'Salas ENABLEDs'),(24,202,9,'Villablino'),(25,202,2,'Senterada'),(31,202,1,'Peralta/Azkoien'),(34,202,7,'Villabasta de Valdavia'),(37,202,9,'Monterrubio de Armuña'),(40,202,2,'Torreadrada'),
     (42,202,4,'Velilla de los Ajos'),(45,202,8,'Yepes'),(46,202,1,'Pobla de Vallbona, la'),(49,202,6,'Santa Eufemia del Barco'),(50,202,9,'Paracuellos de la Ribera'),(8,203,7,'Sant Cebrià de Vallalta'),
 	(10,203,4,'Valencia de Alcántara'),(16,203,3,'Tarancón'),(17,203,9,'Ultramort'),(19,203,8,'Ordial, El'),(22,203,4,'Salillas'),(24,203,5,'Villabraz'),(25,203,8,'Seu d\'Urgell, La'),(31,203,7,'Petilla de Aragón'),
 	(37,203,5,'Monterrubio de la Sierra'),(40,203,8,'Torrecaballeros'),(44,203,1,'Salcedillo'),(45,203,4,'Yuncler'),(46,203,7,'Pobla Llarga, la'),(47,203,3,'Villafrades de Campos'),(49,203,2,'Santa María de la Vega'),
@@ -913,7 +913,7 @@ VALUES
 	(8,240,1,'Sant Sadurní d\'Anoia'),(16,240,7,'Vellisca'),(19,240,2,'Robledo de Corpes'),(25,240,2,'Vallfogona de Balaguer'),(31,240,1,'Urdiain'),(34,240,7,'Villerías de Campos'),(37,240,9,'Pelabravo'),(44,240,5,'Valbona'),
 	(46,240,1,'Terrateig'),(49,240,6,'Villadepera'),(50,240,9,'Sástago'),(5,241,3,'Tiemblo, El'),(8,241,8,'Sant Sadurní d\'Osormort'),(9,241,1,'Orbaneja Riopico'),(19,241,9,'Romanillos de Atienza'),(31,241,8,'Urraul Alto'),
     (34,241,4,'Villodre'),(37,241,6,'Pelarrodríguez'),(44,241,2,'Valdealgorfa'),(46,241,8,'Titaguas'),(49,241,3,'Villaescusa'),(50,241,6,'Sabiñán'),(5,242,8,'Tiñosillos'),(8,242,3,'Marganell'),(9,242,6,'Padilla de Abajo'),
-	(16,242,9,'Villaconejos de Trabaque'),(19,242,4,'Romanones'),(22,242,0,'Valfarta'),(25,242,4,'Verdú'),(31,242,3,'Urraul Bajo'),(34,242,9,'Villodrigo'),(37,242,1,'Pelayos'),(46,242,3,'Torrebaja'),(49,242,8,'Villafáfila'),
+	(16,242,9,'Villaconejos de Trabaque'),(19,242,4,'Romanones'),(22,242,0,'Valfarta'),(25,242,4,'Verdú'),(31,242,3,'Urraul Bajo'),(34,242,9,'Villodrigo'),(37,242,1,'Pelayos'),(46,242,3,'TorreENABLED'),(49,242,8,'Villafáfila'),
 	(50,242,1,'Sediles'),(5,243,4,'Tolbaños'),(8,243,9,'Santa Cecília de Voltregà'),(9,243,2,'Padilla de Arriba'),(16,243,5,'Villaescusa de Haro'),(19,243,0,'Rueda de la Sierra'),(22,243,6,'Valle de Bardají'),
 	(25,243,0,'Vielha e Mijaran'),(31,243,9,'Urroz-Villa'),(34,243,5,'Villoldo'),(37,243,7,'Peña, La'),(44,243,3,'Valdecuenca'),(46,243,9,'Torrella'),(49,243,4,'Villaferrueña'),(50,243,7,'Sestrica'),(5,244,9,'Tormellas'),
     (8,244,4,'Santa Coloma de Cervelló'),(9,244,7,'Padrones de Bureba'),(16,244,0,'Villagarcía del Llano'),(19,244,5,'Sacecorbo'),(22,244,1,'Valle de Lierp'),(25,244,5,'Vilagrassa'),(31,244,4,'Urrotz'),(37,244,2,'Peñacaballera'),
@@ -1039,11 +1039,11 @@ ALTER TABLE MUNICIPIOS 	DROP COLUMN CODMUNICIPIO,
 -- INSERT de usuarios
 -- -----------------------------------------------------
 
-INSERT INTO USUARIOS (IDROL, BAJA, NOMBRE, APELLIDOS, DNI, DIRECCION, IDMUNICIPIO, TELEFONO, EMAIL, EMAIL_NORMALIZADO, PASSWORD, FECHA_ALTA)
+INSERT INTO USUARIOS (IDROL, ENABLED, NOMBRE, APELLIDOS, DNI, DIRECCION, IDMUNICIPIO, TELEFONO, EMAIL, EMAIL_NORMALIZADO, PASSWORD, FECHA_ALTA)
 VALUES 
-	(1, false, 'David', 'Menéndez', '12345678A', 'C\ Pez, 1', 5441,  123456789, 'menendez.david@gmail.com', 'menendez.david@gmail.com', 'DavidMe', '2023-10-09'),
-    (1, false, 'Irene', 'Pérez', '98765432B', 'C/ Mayor, 2', 1536,  987654321, 'ireneperezcano95@gmail.com', 'ireneperezcano95@gmail.com', 'IrenePe', '2023-10-09'),
-	(1, false, 'Raúl', 'Moreno', '98712345B', 'C/ Galileo, 3', 5080,  987123456, 'raulmro@hotmail.es', 'raulmro@hotmail.es', 'RaulMo', '2023-10-09');
+	(1, true, 'David', 'Menéndez', '12345678A', 'C\ Pez, 1', 5441,  123456789, 'menendez.david@gmail.com', 'menendez.david@gmail.com', 'DavidMe', '2023-10-09'),
+    (1, true, 'Irene', 'Pérez', '98765432B', 'C/ Mayor, 2', 1536,  987654321, 'ireneperezcano95@gmail.com', 'ireneperezcano95@gmail.com', 'IrenePe', '2023-10-09'),
+	(1, true, 'Raúl', 'Moreno', '98712345B', 'C/ Galileo, 3', 5080,  987123456, 'raulmro@hotmail.es', 'raulmro@hotmail.es', 'RaulMo', '2023-10-09');
     
 -- -----------------------------------------------------
 -- INSERT de ESTADOSPROTECTORAS
@@ -1077,9 +1077,9 @@ VALUES
 -- -----------------------------------------------------
 -- INSERT de ANIMALES
 -- -----------------------------------------------------
-INSERT INTO ANIMALES (IDPROTECTORA,IDMUNICIPIO,BAJA,NOMBRE,DESCRIPCION,FECHA_NACIMIENTO,FECHA_ALTA)
+INSERT INTO ANIMALES (IDPROTECTORA,IDMUNICIPIO,ENABLED,NOMBRE,DESCRIPCION,FECHA_NACIMIENTO,FECHA_ALTA)
 VALUES
-		(1,105,false,"Norbert",
+		(1,105,true,"Norbert",
         "Buenas tardes amigos,
 		Os presento a NORBERT observar que bellezón 😍 esta preciosidad es un jovenzuelo, cruce de Pastor & Border Collie medianito de un año y medio de edad, que dio con sus huesos en la perrera hace unas semanas, a últimos de Septiembre.
 		NORBERT es el típico buenazo, super cariñoso y obediente y podría vivir con otros perros/as sin problemas. El pobre peludo ya ha tenido bastante perrera y necesitamos que salga de ahí rápido.

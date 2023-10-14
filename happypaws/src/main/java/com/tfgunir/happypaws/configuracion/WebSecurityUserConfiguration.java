@@ -24,7 +24,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
        
             auth
                 .jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select email, password,'true' as baja from usuarios where email=?")
+                .usersByUsernameQuery("select email, password, enabled from usuarios where email=?")
                 .authoritiesByUsernameQuery("select u.email, r.nombre from usuarios u " + 
                                             "inner join roles r on r.IDROL = u.IDROL " +
                                               "where u.email = ?");
