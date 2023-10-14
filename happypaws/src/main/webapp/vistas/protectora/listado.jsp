@@ -25,20 +25,30 @@
 <br>
 
 <br>
-	<div class="catalogo">
-		<table class="tabla">
-			<th>col 1</th>
-			<th>col 2</th>
-			<th></th>
-			<th></th>
-			<c:forEach var="prot" items="${listaTodasProtectoras}" >
-		        <tr>
-                    <td>${prot.IdProtectora}</td>
-                    <td>${prot.Nombre}</td>
-		        </tr>
-            </c:forEach>
-		</table>
-	</div>
+<table class="table">
+	<thead>
+	  <tr>
+		<th scope="col">Id</th>
+		<th scope="col">Nombre</th>
+		<th scope="col">Dirección</th>
+		<th scope="col">Contacto</th>
+		<th scope="col">Acciones</th>
+	  </tr>
+	</thead>
+	<tbody>
+		<c:forEach var="prot" items="${protectora}" >
+		<tr>		
+			<th scope="row">${prot.idprotectora}</th>
+			<td>${prot.nombre}</td>
+			<td>${prot.direccion}</td>
+			<td>${prot.usuario}</td>
+			<td><button type="button" class="btn btn-outline-success">Ver</button>
+				<button type="button" class="btn btn-outline-primary">Modificar</button>			
+				<button type="button" class="btn btn-outline-danger">Borrar</button> </td>
+		</tr>
+		</c:forEach>
+	</tbody>
+  </table>
 	
 	
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 import java.util.Date;
 
-import javax.persistence.*;
+
 
 
 /**

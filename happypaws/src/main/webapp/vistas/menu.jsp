@@ -14,7 +14,7 @@
 </head>
 <body>
 <sec:authentication property="name"/>
-    <sec:authorize access="hasAuthority('Adoptante')">Eres un ADOPTANTE</sec:authorize>
+    <sec:authorize access="hasAuthority('Adoptante')">Hola @name Eres un ADOPTANTE</sec:authorize>
 	<sec:authorize access="hasAuthority('Administrador')">Eres un ADMON</sec:authorize>
 	<sec:authorize access="hasAuthority('Protectora')">Eres una PROTECTORA</sec:authorize>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -32,9 +32,9 @@
         <li class="nav-item">
             <a class="nav-link" href="/">Editar Protectora</a>
         </li>
-        <sec:authorize access="hasAnyAuthority('Protectora','Administrador')">
+        <sec:authorize access="hasAnyAuthority('Administrador')">
         <li class="nav-item">
-            <a class="nav-link" href="/protectora/editar">Editar Protectora2</a>
+            <a class="nav-link" href="/protectora/todas">Listado Protectoras</a>
         </li>
         </sec:authorize>   
         <sec:authorize access="hasAuthority('Administrador')">

@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="menu.jsp"></jsp:include>
 <h1>Bienvenido</h1>
 
 
