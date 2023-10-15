@@ -16,8 +16,14 @@ public class ProtectoraDao implements IProtectoraDao{
 
     @Override
     public int altaProtectora(Protectora protectora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'altaProtectora'");
+        int filas=0;
+        try{
+            protrepo.save(protectora);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return filas;
     }
 
     @Override
