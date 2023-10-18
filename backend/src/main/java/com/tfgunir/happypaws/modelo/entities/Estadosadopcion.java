@@ -41,4 +41,36 @@ public class Estadosadopcion implements Serializable {
 		this.estado = estado;
 	}
 
+	public Estadosadopcion(int idestadoadopcion, String estado) {
+		this.idestadoadopcion = idestadoadopcion;
+		this.estado = estado;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idestadoadopcion;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Estadosadopcion other = (Estadosadopcion) obj;
+		if (idestadoadopcion != other.idestadoadopcion)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Estadosadopcion [idestadoadopcion=" + idestadoadopcion + ", estado=" + estado + "]";
+	}
+
 }

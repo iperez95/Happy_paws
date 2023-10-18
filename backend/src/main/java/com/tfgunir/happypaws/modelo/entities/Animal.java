@@ -137,4 +137,49 @@ public class Animal implements Serializable {
 		this.valoresAtributo = valoresAtributo;
 	}
 
+	public Animal(int idanimal, byte enabled, String descripcion, Date fechaAlta, Date fechaenabled,
+			Date fechaNacimiento, String nombre, Municipio municipio, Protectora protectora,
+			List<ValoresAtributo> valoresAtributo) {
+		this.idanimal = idanimal;
+		this.enabled = enabled;
+		this.descripcion = descripcion;
+		this.fechaAlta = fechaAlta;
+		this.fechaenabled = fechaenabled;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nombre = nombre;
+		this.municipio = municipio;
+		this.protectora = protectora;
+		this.valoresAtributo = valoresAtributo;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idanimal;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Animal other = (Animal) obj;
+		if (idanimal != other.idanimal)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Animal [idanimal=" + idanimal + ", enabled=" + enabled + ", descripcion=" + descripcion + ", fechaAlta="
+				+ fechaAlta + ", fechaenabled=" + fechaenabled + ", fechaNacimiento=" + fechaNacimiento + ", nombre="
+				+ nombre + ", municipio=" + municipio + ", protectora=" + protectora + ", valoresAtributo="
+				+ valoresAtributo + "]";
+	}
+
 }

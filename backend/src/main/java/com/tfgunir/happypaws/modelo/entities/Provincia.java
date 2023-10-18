@@ -41,4 +41,36 @@ public class Provincia implements Serializable {
 		this.provincia = provincia;
 	}
 
+	public Provincia(int idprovincia, String provincia) {
+		this.idprovincia = idprovincia;
+		this.provincia = provincia;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idprovincia;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Provincia other = (Provincia) obj;
+		if (idprovincia != other.idprovincia)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Provincia [idprovincia=" + idprovincia + ", provincia=" + provincia + "]";
+	}
+
 }

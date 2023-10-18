@@ -56,4 +56,37 @@ public class Municipio implements Serializable {
 		this.provincia = provincia;
 	}
 
+	public Municipio(int idmunicipio, String municipio, Provincia provincia) {
+		this.idmunicipio = idmunicipio;
+		this.municipio = municipio;
+		this.provincia = provincia;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idmunicipio;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Municipio other = (Municipio) obj;
+		if (idmunicipio != other.idmunicipio)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Municipio [idmunicipio=" + idmunicipio + ", municipio=" + municipio + ", provincia=" + provincia + "]";
+	}
+
 }

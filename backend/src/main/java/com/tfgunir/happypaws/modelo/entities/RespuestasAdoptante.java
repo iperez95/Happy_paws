@@ -79,4 +79,41 @@ public class RespuestasAdoptante implements Serializable {
 		this.usuario = usuario;
 	}
 
+	public RespuestasAdoptante(int idrespuesta, String respuesta, PreguntasAdoptante preguntasAdoptante,
+			Protectora protectora, Usuario usuario) {
+		this.idrespuesta = idrespuesta;
+		this.respuesta = respuesta;
+		this.preguntasAdoptante = preguntasAdoptante;
+		this.protectora = protectora;
+		this.usuario = usuario;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idrespuesta;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RespuestasAdoptante other = (RespuestasAdoptante) obj;
+		if (idrespuesta != other.idrespuesta)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "RespuestasAdoptante [idrespuesta=" + idrespuesta + ", respuesta=" + respuesta + ", preguntasAdoptante="
+				+ preguntasAdoptante + ", protectora=" + protectora + ", usuario=" + usuario + "]";
+	}
+
 }

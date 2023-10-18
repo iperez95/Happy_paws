@@ -42,4 +42,36 @@ public class Estadosprotectora implements Serializable {
 		this.estado = estado;
 	}
 
+	public Estadosprotectora(int idestadoprotectora, String estado) {
+		this.idestadoprotectora = idestadoprotectora;
+		this.estado = estado;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idestadoprotectora;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Estadosprotectora other = (Estadosprotectora) obj;
+		if (idestadoprotectora != other.idestadoprotectora)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Estadosprotectora [idestadoprotectora=" + idestadoprotectora + ", estado=" + estado + "]";
+	}
+
 }

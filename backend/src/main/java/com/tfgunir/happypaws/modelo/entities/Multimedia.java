@@ -56,4 +56,37 @@ public class Multimedia implements Serializable {
 		this.animal = animal;
 	}
 
+	public Multimedia(int idmultimedia, String enlace, Animal animal) {
+		this.idmultimedia = idmultimedia;
+		this.enlace = enlace;
+		this.animal = animal;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idmultimedia;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Multimedia other = (Multimedia) obj;
+		if (idmultimedia != other.idmultimedia)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Multimedia [idmultimedia=" + idmultimedia + ", enlace=" + enlace + ", animal=" + animal + "]";
+	}
+
 }

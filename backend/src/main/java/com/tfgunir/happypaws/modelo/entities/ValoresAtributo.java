@@ -77,4 +77,39 @@ public class ValoresAtributo implements Serializable {
 		this.tiposAtributo = tiposAtributo;
 	}
 
+	public ValoresAtributo(int idvalor, String valor, List<Animal> animal, TiposAtributo tiposAtributo) {
+		this.idvalor = idvalor;
+		this.valor = valor;
+		this.animal = animal;
+		this.tiposAtributo = tiposAtributo;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idvalor;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ValoresAtributo other = (ValoresAtributo) obj;
+		if (idvalor != other.idvalor)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ValoresAtributo [idvalor=" + idvalor + ", valor=" + valor + ", animal=" + animal + ", tiposAtributo="
+				+ tiposAtributo + "]";
+	}
+
 }

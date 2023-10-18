@@ -98,4 +98,42 @@ public class Adopcion implements Serializable {
 		this.usuario = usuario;
 	}
 
+	public Adopcion(int idadopcion, Date fechaAdopcion, Animal animal, Estadosadopcion estadosadopcion,
+			Protectora protectora, Usuario usuario) {
+		this.idadopcion = idadopcion;
+		this.fechaAdopcion = fechaAdopcion;
+		this.animal = animal;
+		this.estadosadopcion = estadosadopcion;
+		this.protectora = protectora;
+		this.usuario = usuario;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idadopcion;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Adopcion other = (Adopcion) obj;
+		if (idadopcion != other.idadopcion)
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Adopcion [idadopcion=" + idadopcion + ", fechaAdopcion=" + fechaAdopcion + ", animal=" + animal
+				+ ", estadosadopcion=" + estadosadopcion + ", protectora=" + protectora + ", usuario=" + usuario + "]";
+	}
+
 }
