@@ -20,6 +20,7 @@
 		<h1>Listado de Protectoras</h1>
 		<h1>${mensaje }</h1>
 	</div>
+	<a href="../protectora/alta"><button type="button" class="btn btn-outline-primary">Alta protectora </button></a>
 <br>
 <br> 
 <br>
@@ -32,6 +33,7 @@
 		<th scope="col">Nombre</th>
 		<th scope="col">Dirección</th>
 		<th scope="col">Contacto</th>
+		<th scope="col">Estado</th>
 		<th scope="col">Acciones</th>
 	  </tr>
 	</thead>
@@ -42,8 +44,9 @@
 			<td>${prot.nombre}</td>
 			<td>${prot.direccion}</td>
 			<td>${prot.usuario}</td>
-			<td><button type="button" class="btn btn-outline-success">Ver</button>
-				<button type="button" class="btn btn-outline-primary">Modificar</button>			
+			<td></td>
+			<td><button type="button" class="btn btn-outline-primary">Ver</button>
+				<button type="button" class="btn btn-outline-secondary">Modificar</button>			
 				<button type="button" class="btn btn-outline-danger">Borrar</button> </td>
 		</tr>
 		</c:forEach>

@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="/css/catalogo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>CATALOGO</title>
+    <title>Alta protectora</title>
 </head>
 <body>
 
 	<div class="titulo">
-		<h1>Listado de Protectoras</h1>
+		<h1>Alta de Protectoras</h1>
 		<h1>${mensaje }</h1>
 	</div>
 <br>
@@ -25,55 +25,15 @@
 <br>
 
 <br>
-<table class="table table-sm table-striped table-hover">
-	<thead>
-	  <tr>
-		<th scope="col">Id</th>
-		<th scope="col">Nombre</th>
-		<th scope="col">Dirección</th>
-		<th scope="col">Contacto</th>
-		<th scope="col">Acciones</th>
-	  </tr>
-	</thead>
-	<tbody>
-		<c:forEach var="prot" items="${protectora}" >
-		<tr>		
-			<th scope="row">${prot.idprotectora}</th>
-			<td>${prot.nombre}</td>
-			<td>${prot.direccion}</td>
-			<td>${prot.usuario}</td>
-			<td><button type="button" class="btn btn-outline-success">Ver</button>
-				<button type="button" class="btn btn-outline-primary">Modificar</button>			
-				<button type="button" class="btn btn-outline-danger">Borrar</button> </td>
-		</tr>
-		</c:forEach>
-	</tbody>
-  </table>
-	
-	
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
 
-	<script type="text/javascript">
-		function limpiarCampos() {
-			window.location = '/producto/busqueda';
-		}
-	</script>
-	<script type="text/javascript">
-	function ocultarDiv() {
-	  var div = document.getElementsByClassName("Elementos");
-	  div.style.display = "none"
-}
-	</script>
+<form action="/protectora/alta" method="post">
+	<p><input type="text" name="nombre" >Nombre</p>
+	<p><input type="text" name="direccion" >Dirección</p>
+	<p><input type="text" name="descripcion">Descripcion</p>
+	<p><input type="text" name="url_logo">Url Logo</p>
+	<p><input type="submit" value="Enviar"></p>
+</form>
+	
 
 </body>
 

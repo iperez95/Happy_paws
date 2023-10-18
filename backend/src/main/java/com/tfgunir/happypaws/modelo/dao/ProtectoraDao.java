@@ -9,21 +9,20 @@ import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.repository.ProtectoraRepository;
 
 @Service
-public class ProtectoraDao implements IProtectoraDao{
+public class ProtectoraDao implements IProtectoraDao {
 
     @Autowired
     ProtectoraRepository protrepo;
 
     @Override
     public int altaProtectora(Protectora protectora) {
-        int filas=0;
-        try{
+        try {
             protrepo.save(protectora);
-        }
-        catch (Exception e){
+            return 1;
+        } catch (Exception e) {
             e.printStackTrace();
+            return 0;
         }
-        return filas;
     }
 
     @Override
@@ -66,5 +65,5 @@ public class ProtectoraDao implements IProtectoraDao{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'buscarPorMunicipio'");
     }
-    
+
 }
