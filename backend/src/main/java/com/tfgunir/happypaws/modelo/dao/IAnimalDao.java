@@ -5,12 +5,12 @@ import com.tfgunir.happypaws.modelo.entities.Animal;
 
 public interface IAnimalDao {
     
-    int altaAnimal (Animal animal);
-    int modificarAnimal (Animal animal);
+    boolean altaAnimal (Animal animal);
+    boolean modificarAnimal (Animal animal);
     int enabledAnimal (Animal animal);
-    int borrarAnimal (Animal animal);
+    boolean borrarAnimal (int idanimal);
     Animal buscarUnAnimal (int id);
-    List<Animal> buscarTodas();
+    List<Animal> buscarTodos();
     List<Animal> buscarPorProvincia(int IdProvincia);
     List<Animal> buscarPorMunicipio (int IdMunicipio);
     List<Animal> buscarPorProtectora (int IdProtectora);

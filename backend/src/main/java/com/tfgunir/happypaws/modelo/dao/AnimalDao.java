@@ -2,6 +2,8 @@ package com.tfgunir.happypaws.modelo.dao;
 
 import java.util.List;
 
+import javax.persistence.Id;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +14,28 @@ import com.tfgunir.happypaws.modelo.repository.AnimalRepository;
 public class AnimalDao implements IAnimalDao{
 
     @Autowired
-    AnimalRepository Anirepo;
+    AnimalRepository aniRepo;
 
     @Override
-    public int altaAnimal(Animal animal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'altaAnimal'");
+    public boolean altaAnimal(Animal animal) {
+       try{
+        aniRepo.save(animal);
+        return true;
+       } catch (Exception e){
+        e.printStackTrace();
+        return false;
+       }
     }
 
     @Override
-    public int modificarAnimal(Animal animal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modificarAnimal'");
+    public boolean modificarAnimal(Animal animal) {
+        try {
+            aniRepo.save(animal);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
@@ -33,21 +45,24 @@ public class AnimalDao implements IAnimalDao{
     }
 
     @Override
-    public int borrarAnimal(Animal animal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'borrarAnimal'");
+    public boolean borrarAnimal(int idanimal) {
+        try {
+            aniRepo.deleteById(idanimal);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public Animal buscarUnAnimal(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarUnAnimal'");
+        return aniRepo.findById(id).orElse(null);
     }
 
     @Override
-    public List<Animal> buscarTodas() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarTodas'");
+    public List<Animal> buscarTodos() {
+        return aniRepo.findAll();
     }
 
     @Override
