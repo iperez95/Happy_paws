@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-HappypawsApplication<happypaws>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tfgunir.happypaws.HappypawsApplication",
+            "projectName": "happypaws",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
