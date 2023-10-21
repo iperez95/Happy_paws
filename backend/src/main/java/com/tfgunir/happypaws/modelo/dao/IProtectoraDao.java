@@ -9,10 +9,12 @@ import com.tfgunir.happypaws.modelo.entities.Protectora;
 public interface IProtectoraDao {
     
     int altaProtectora (Protectora protectora);
-    int modificarProtectora (Protectora protectora);
+    Protectora modificarProtectora (Protectora protectora);
+    int bajaProtectora (Protectora protectora);
     int enabledProtectora (Protectora protectora);
-    int borrarProtectora (int protectora);
-    Protectora buscarUnaProtectora (int id);
+    int borrarProtectora (Protectora protectora);
+    
+    Protectora buscarProtectoraId (int id);
     List<Protectora> buscarTodas();
     List<Protectora> buscarPorProvincia(int IdProvincia);
     List<Protectora> buscarPorMunicipio (int IdMunicipio);

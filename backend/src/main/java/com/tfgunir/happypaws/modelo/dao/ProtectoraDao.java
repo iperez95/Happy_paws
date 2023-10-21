@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.repository.ProtectoraRepository;
 
@@ -25,28 +26,42 @@ public class ProtectoraDao implements IProtectoraDao {
         }
     }
 
-    @Override
-    public int modificarProtectora(Protectora protectora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modificarProtectora'");
+     @Override
+    public int bajaProtectora(Protectora protectora) {
+        if (buscarProtectoraId(protectora.getIdprotectora())!=null){
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(2);
+            return 1;
+        }
+        else 
+            return 0;
     }
 
-    @Override
+     @Override
     public int enabledProtectora(Protectora protectora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enabledProtectora'");
+        if (buscarProtectoraId(protectora.getIdprotectora())!=null){
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(1);
+            return 1;
+        }
+        else 
+            return 0;
     }
 
+
+    //TODO dav añadir al return mensaje protectora no encontrada
     @Override
-    public int borrarProtectora(int protectora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'borrarProtectora'");
-    }
+    public Protectora modificarProtectora(Protectora protectora) {
+        if (buscarProtectoraId(protectora.getIdprotectora())!=null)
+            return protrepo.save(protectora);
+        else
+            return null;
+        }
+
 
     @Override
-    public Protectora buscarUnaProtectora(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarUnaProtectora'");
+    public Protectora buscarProtectoraId(int id) {
+        return protrepo.findById(id).orElse(null);
     }
 
     @Override
@@ -65,5 +80,19 @@ public class ProtectoraDao implements IProtectoraDao {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'buscarPorMunicipio'");
     }
+
+
+
+   
+
+
+
+    @Override
+    public int borrarProtectora(Protectora protectora) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'borrarProtectora'");
+    }
+
+
 
 }
