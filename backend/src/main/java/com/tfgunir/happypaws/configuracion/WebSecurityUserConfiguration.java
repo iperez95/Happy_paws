@@ -35,22 +35,21 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 		http
 			.csrf().disable()
 			.authorizeRequests()
-			// Directorios de aplicación que no necesitan autenticación
+
+			// Directorios y vistas NO REQUIEREN AUTORIZACIÓN
 			.antMatchers("/bootstrap/**",  "/images/**", "/css/**", "js/**").permitAll()
 			.antMatchers("/rest/demo-bcrypt/**").permitAll()
-			
-			// Vistas que no requieren autorización
-			.antMatchers("/", "/login", "/logout", "/registro","/search", "/app/producto/verUno/**").permitAll()
+			.antMatchers("/", "/login", "/logout", "/registro","/search").permitAll()
 
-			// Autorizaciones según roles
+			// REQUIEREN AUTORIZACIÓN SEGÚN ROLES
                 //PROTECTORAS
-                .antMatchers("/protectora/todas").hasAnyAuthority("Administrador")
+                .antMatchers("/protectora/gestion/**").hasAnyAuthority("Protectora")
                 //ADMINISTRADOR
                 .antMatchers("/gestion/**").hasAnyAuthority("Administrador")
 
-			.antMatchers("/app/usuarios/**").hasAnyAuthority("ROLE_GESTOR","ROLE_ADMINISTRADOR")
-			.antMatchers("/app/perfiles/**").hasAnyAuthority("ROLE_ADMINISTRADOR")
-			.antMatchers("/app/tipos/**").hasAnyAuthority("ROLE_GESTOR")
+			// .antMatchers("/app/usuarios/**").hasAnyAuthority("ROLE_GESTOR","ROLE_ADMINISTRADOR")
+			// .antMatchers("/app/perfiles/**").hasAnyAuthority("ROLE_ADMINISTRADOR")
+			// .antMatchers("/app/tipos/**").hasAnyAuthority("ROLE_GESTOR")
 			
 			// Todas las demás URLs de la Aplicación requieren autenticación
 			.anyRequest().authenticated()
