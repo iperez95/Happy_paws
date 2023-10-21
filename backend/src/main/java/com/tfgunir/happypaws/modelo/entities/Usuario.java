@@ -4,6 +4,7 @@ package com.tfgunir.happypaws.modelo.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="usuarios")
+@Table(name="USUARIOS")
 @NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +25,7 @@ public class Usuario implements Serializable {
 
 	private String apellidos;
 
+	@JsonIgnore
 	private byte enabled;
 
 	private String direccion;
@@ -33,14 +35,17 @@ public class Usuario implements Serializable {
 	private String email;
 
 	@Column(name="EMAIL_NORMALIZADO")
+	@JsonIgnore
 	private String emailNormalizado;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA_ALTA")
+	@JsonIgnore
 	private Date fechaAlta;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA_enabled")
+	@JsonIgnore
 	private Date fechaenabled;
 
 	private String nombre;
@@ -52,11 +57,13 @@ public class Usuario implements Serializable {
 	//uni-directional many-to-one association to Municipio
 	@ManyToOne
 	@JoinColumn(name="IDMUNICIPIO")
+	@JsonIgnore
 	private Municipio municipio;
 
 	//uni-directional many-to-one association to Rol
 	@ManyToOne
 	@JoinColumn(name="IDROL")
+	@JsonIgnore
 	private Rol rol;
 
 	public Usuario() {

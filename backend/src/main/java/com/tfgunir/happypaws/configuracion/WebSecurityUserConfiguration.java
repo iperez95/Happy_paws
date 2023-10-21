@@ -40,7 +40,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/bootstrap/**",  "/images/**", "/css/**", "js/**").permitAll()
 			.antMatchers("/rest/demo-bcrypt/**").permitAll()
 			.antMatchers("/", "/login", "/logout", "/registro","/search").permitAll()
-
+			.antMatchers("/api/**").permitAll()
 			// REQUIEREN AUTORIZACIÓN SEGÚN ROLES
                 //PROTECTORAS
                 .antMatchers("/protectora/gestion/**").hasAnyAuthority("Protectora")
