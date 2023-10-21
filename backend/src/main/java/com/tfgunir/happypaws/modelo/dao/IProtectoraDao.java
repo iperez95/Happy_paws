@@ -17,6 +17,5 @@ public interface IProtectoraDao {
     Protectora buscarProtectoraId (int id);
     List<Protectora> buscarTodas();
     List<Protectora> buscarPorProvincia(int IdProvincia);
-    List<Protectora> buscarPorMunicipio (int IdMunicipio);
-
+    
 }

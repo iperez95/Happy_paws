@@ -22,22 +22,18 @@ public class ProtectoraController {
     @Autowired
     ProtectoraDao protdao;
 
-    //TODO Este listado solo debe ser accesible por administradores.
-    @GetMapping("/listado")
-    public String listadoProtectoras (Model model){
-        List<Protectora> protectora = protdao.buscarTodas();
-        model.addAttribute("protectora", protectora);
-        return "protectora/listado";
-    }
-
+    
     
 
-    @GetMapping("/alta")
+    
+    //TODOdav Security - Solo accesible por usuarios tipo protetora
+    @GetMapping("/gestion/alta")
     public String darAltaProtectora (){
         return "protectora/alta";
     }
 
-    @PostMapping ("/alta")
+    //TODOdav comprobar que solo los usuarios tipo protectora pueden dar el alta.
+    @PostMapping ("/gestion/alta")
     public String altaProtectora (Model model, Protectora protectora, HttpSession sesion){
         
         Usuario usuarioSesion =(Usuario)sesion.getAttribute("idusuario");

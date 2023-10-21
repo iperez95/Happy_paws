@@ -58,8 +58,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 			.and().formLogin().permitAll()
 			// El formulario de logout no requiere autenticacion
 	        //.and().logout().permitAll()
-			;
-			
+			;	
 	}    
 
     @Bean

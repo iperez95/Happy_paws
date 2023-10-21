@@ -48,7 +48,6 @@ public class ProtectoraDao implements IProtectoraDao {
             return 0;
     }
 
-
     //TODO dav añadir al return mensaje protectora no encontrada
     @Override
     public Protectora modificarProtectora(Protectora protectora) {
@@ -57,7 +56,6 @@ public class ProtectoraDao implements IProtectoraDao {
         else
             return null;
         }
-
 
     @Override
     public Protectora buscarProtectoraId(int id) {
@@ -76,23 +74,11 @@ public class ProtectoraDao implements IProtectoraDao {
     }
 
     @Override
-    public List<Protectora> buscarPorMunicipio(int IdMunicipio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorMunicipio'");
-    }
-
-
-
-   
-
-
-
-    @Override
     public int borrarProtectora(Protectora protectora) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'borrarProtectora'");
     }
 
-
+    
 
 }

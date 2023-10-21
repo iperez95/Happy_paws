@@ -1098,6 +1098,81 @@ VALUES
 INSERT INTO ATRIBUTOS_ANIMALES (IDANIMAL,IDVALOR)
 VALUES
 		(1,1),(1,7),(1,15),(1,20);
+		
+-- -----------------------------------------------------
+-- INSERT de PREGUNTAS_ADOPTANTES
+-- -----------------------------------------------------
+INSERT INTO PREGUNTAS_ADOPTANTES (PREGUNTA)
+VALUES
+		("¿Has tenido animales antes? ¿De qué raza, tamaño…? ¿Qué ocurrió con ellos? ¿De qué
+		murieron y a qué edad? ¿Qué relación tuviste con ellos: compañía, guardián…? ¿Los
+		compraste o los adoptaste? ¿Dónde los adoptaste?"),
+		("¿En qué tipo de vivienda resides: planta baja, piso, casa de campo…?"),
+		("¿Vivienda propia o de alquiler?. En caso de que vivas de alquiler, ¿tiene conocimiento el dueñ@ de la vivienda de que
+		vas a adoptar a un animal? ¿Está de acuerdo con ello?"),
+		("¿Existe alguna posibilidad de tener problemas con tus vecin@s a la hora de adoptar
+		un animal?"),
+		("¿Existe la posibilidad de una mudanza a medio-largo plazo?"),
+		("¿Qué lugar de la casa estaría destinado para el animal?"),
+		("¿Quién más convive contigo en tu casa? ¿Tienen experiencia en convivir con
+		animales? ¿Qué les parece la idea?"),
+		("Si tienes hijos y/o hijas, ¿qué edades tienen? ¿Cómo te planteas la convivencia con el
+		animal: normas, juegos, responsabilidades, etc.?"),
+		("¿Trabajas actualmente? ¿Estabilidad laboral? ¿Horario de trabajo? ¿Qué tiempo
+		podrás dedicarle a tu animal? ¿Cuánto tiempo pasaría sólo el animal en casa?"),
+		("Cuando te tomes unas vacaciones o un viaje, ¿con quién dejarás a tu animal?"),
+		(" ¿Qué tienes en cuenta a la hora de elegir un animal: su físico, carácter, edad,
+		tamaño…?"),
+		("¿Qué necesidades crees que tiene un animal?"),
+		("¿Y qué gastos crees que conlleva? ¿Cuánto piensas que vale una visita veterinaria?"),
+		("¿Qué alimentación consideras adecuada para darle a un animal: sobras, pan, pienso,
+		comida precocinada…?"),
+		(".¿Estás de acuerdo en la necesidad de castrar a tu animal, una vez llegue a la edad
+		adecuada? ¿Por qué?"),
+		("¿Has tenido alguna mala experiencia con animales anteriormente?"),
+		("¿Qué aspecto negativo de los animales te molesta más: el gasto que suponen, que
+		ladren, que salten, que suelten pelo, tener que sacarle a hacer sus necesidades, el
+		compromiso de por vida, el qué hacer con él en vacaciones…?"),
+		("¿Y cuál te parece la ventaja o ventajas de tener animal?"),
+		("El animal que adoptes, ¿será para ti o para un regalo? ¿Será para un niñ@, un adulto,
+		una persona con diversidad funcional…?"),
+		("¿Quién ha tomado la decisión de adoptar el animal: un adulto, un niño…?"),
+		("Tienes otros animales en casa? ¿Cuántos y de qué especie? En caso de que sean
+		perros, ¿de qué sexo, edad y tamaño? ¿Qué carácter tienen: dominantes, celosos,
+		sumisos, sociables…? ¿Los compraste o los adoptaste (si es así, dónde los adoptaste)?"),
+		("¿Qué tipo de animal buscas: raza, tamaño, edad, sexo, tipo de pelo…? ¿Qué carácter
+		deseas que tenga el animal: tranquilo, activo, cariñoso, independiente…?"),
+		("Si es tu caso, ¿por qué te decides por un cachorro? ¿Qué cuidados crees que
+		necesita un cachorro? Por favor, cita alguna de las ventajas y alguno de los
+		inconvenientes que creas que pueda tener adoptar un cachorro"),
+		(" Si es tu caso, ¿qué piensas acerca de adoptar un animal adulto (mayor de 1 año)? Por
+		favor, cita alguna de las ventajas y alguno de los inconvenientes que creas que pueda
+		tener adoptar un animal adulto."),
+		("¿Por qué te has decidido a adoptar un animal? ¿Con qué finalidad lo adoptas: para
+		compañía, para cría, para caza, como guardián, como terapia…?"),
+		("¿Has visitado un refugio de animales abandonados alguna vez? ¿Es soci@ de
+		alguno? ¿Cuál?"),
+		(" En Sonrisa Animal Mallorca, hacemos seguimiento de todos los animales dados en
+		adopción, para asegurarnos que la convivencia en el nuevo hogar sea satisfactoria para
+		la familia y el animal, ¿tienes algún inconveniente con respecto a ello? ¿Por qué?"),
+		("¿Estarías dispuest@ a participar en los gastos de castración, vacunas, chip, etc.
+		como cuota de adopción?
+		*Si se trata de un cachorro rescatado de perrera, se realiza el test del parvo. Si se tiene
+		sospecha de alguna otra enfermedad, se realizará el test que deberá ser abonado por el
+		adoptante"),
+		("¿Qué harías si ves que el animal no se adapta a tu familia: devolverlo, dejarlo en un
+		refugio, pasarlo a otra gente…?"),
+		("En caso de adoptar un cachorro que todavía está en periodo de crecimiento, ¿qué
+		harías si finalmente crece más de lo que esperabas?"),
+		("¿Eres extranjer@? ¿Cuánto tiempo llevas en España? ¿Tienes pensado volver a tu
+		país? En caso afirmativo, ¿qué harías con el animal?"),
+		("La adopción de un animal es una decisión para toda la vida de éste, por ello nos
+		gustaría que tuvieseis una primera toma de contacto y te tomes un tiempo para
+		reflexionar, por lo menos 24 horas antes de llevarte al gato a su nuevo hogar. ¿Esto te
+		supondría un problema? ¿Por qué?"),
+		("La última pregunta, para ayudarnos a mejorar, ¿qué te ha parecido este
+		cuestionario?");
+	
         
  
  
