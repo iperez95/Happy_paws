@@ -26,7 +26,7 @@
 
 <br>
 
-<form action="/protectora/alta" method="post">
+<form action="/protectora/gestion/alta" method="post">
 	<p><input type="text" name="nombre" >Nombre</p>
 	<p><input type="text" name="direccion" >Dirección</p>
 	<p><input type="text" name="descripcion">Descripcion</p>

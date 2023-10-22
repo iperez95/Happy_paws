@@ -22,7 +22,7 @@ public class GestionController {
     @GetMapping("/protectora/listado")
     public String listadoProtectoras (Model model){
         List<Protectora> protectora = protdao.buscarTodas();
-        model.addAttribute("protectora", protectora);
+        model.addAttribute("protectoras", protectora);
         return "/gestion/protectora/listado";
     }
     

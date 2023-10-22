@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/catalogo.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>CATALOGO</title>
+    <title>Protectoras</title>
 </head>
 <body>
 
@@ -20,7 +20,7 @@
 		<h1>Listado de Protectoras</h1>
 		<h1>${mensaje }</h1>
 	</div>
-	<a href="../protectora/alta"><button type="button" class="btn btn-outline-primary">Alta protectora </button></a>
+	<a href="/protectora/gestion/alta"><button type="button" class="btn btn-outline-primary">Alta protectora </button></a>
 <br>
 <br> 
 <br>
@@ -38,7 +38,7 @@
 	  </tr>
 	</thead>
 	<tbody>
-		<c:forEach var="prot" items="${protectora}" >
+		<c:forEach var="prot" items="${protectoras}" >
 		<tr>		
 			<th scope="row">${prot.idprotectora}</th>
 			<td>${prot.nombre}</td>

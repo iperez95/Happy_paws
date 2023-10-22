@@ -42,14 +42,14 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/", "/login", "/logout", "/registro","/search").permitAll()
 
 			// REQUIEREN AUTORIZACIÓN SEGÚN ROLES
-                //PROTECTORAS
-                .antMatchers("/protectora/gestion/**").hasAnyAuthority("Protectora")
-                //ADMINISTRADOR
+                                //ADMINISTRADOR
                 .antMatchers("/gestion/**").hasAnyAuthority("Administrador")
 
-			// .antMatchers("/app/usuarios/**").hasAnyAuthority("ROLE_GESTOR","ROLE_ADMINISTRADOR")
-			// .antMatchers("/app/perfiles/**").hasAnyAuthority("ROLE_ADMINISTRADOR")
-			// .antMatchers("/app/tipos/**").hasAnyAuthority("ROLE_GESTOR")
+				//PROTECTORAS
+                .antMatchers("/protectora/gestion/**").hasAnyAuthority("Protectora","Administrador")
+
+				//ADOPTANTES
+                .antMatchers("/cuestionario/**").hasAnyAuthority("Adoptante","Administrador")
 			
 			// Todas las demás URLs de la Aplicación requieren autenticación
 			.anyRequest().authenticated()

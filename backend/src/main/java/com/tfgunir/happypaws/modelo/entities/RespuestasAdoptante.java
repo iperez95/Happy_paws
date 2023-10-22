@@ -26,11 +26,6 @@ public class RespuestasAdoptante implements Serializable {
 	@JoinColumn(name="IDPREGUNTA")
 	private PreguntasAdoptante preguntasAdoptante;
 
-	//uni-directional many-to-one association to Protectora
-	@ManyToOne
-	@JoinColumn(name="IDPROTECTORA")
-	private Protectora protectora;
-
 	//uni-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="IDUSUARIO")
@@ -63,14 +58,6 @@ public class RespuestasAdoptante implements Serializable {
 		this.preguntasAdoptante = preguntasAdoptante;
 	}
 
-	public Protectora getProtectora() {
-		return this.protectora;
-	}
-
-	public void setProtectora(Protectora protectora) {
-		this.protectora = protectora;
-	}
-
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
@@ -80,11 +67,10 @@ public class RespuestasAdoptante implements Serializable {
 	}
 
 	public RespuestasAdoptante(int idrespuesta, String respuesta, PreguntasAdoptante preguntasAdoptante,
-			Protectora protectora, Usuario usuario) {
+			 Usuario usuario) {
 		this.idrespuesta = idrespuesta;
 		this.respuesta = respuesta;
 		this.preguntasAdoptante = preguntasAdoptante;
-		this.protectora = protectora;
 		this.usuario = usuario;
 	}
 
@@ -113,7 +99,7 @@ public class RespuestasAdoptante implements Serializable {
 	@Override
 	public String toString() {
 		return "RespuestasAdoptante [idrespuesta=" + idrespuesta + ", respuesta=" + respuesta + ", preguntasAdoptante="
-				+ preguntasAdoptante + ", protectora=" + protectora + ", usuario=" + usuario + "]";
+				+ preguntasAdoptante +  ", usuario=" + usuario + "]";
 	}
 
 }
