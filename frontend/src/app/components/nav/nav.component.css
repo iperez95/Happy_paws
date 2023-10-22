@@ -1,0 +1,17 @@
+/* Estilo para el logo en la barra de navegación */
+.navbar-brand img {
+    width: auto; /* Ancho deseado del logo */
+    height: auto; /* Esto mantendrá la proporción original */
+    margin: 0; /* Puedes ajustar el margen si es necesario */
+    padding: 0; /* Puedes ajustar el relleno si es necesario */
+}
+
+.nav-link{
+    color: #000;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+

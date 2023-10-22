@@ -1,0 +1,66 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <!-- Container wrapper -->
+      <!-- Navbar brand -->
+      <a class="ms-5 navbar-brand me-5" href="/home">
+        <img
+          src="assets/images/navbar/LogoHappyPaws-removebg-preview.png"
+          alt=""
+          loading="lazy"
+          style="margin-top: -1px;"
+        />
+      </a>
+  
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div
+        class="collapse navbar-collapse"
+        id="navbarButtonsExample"
+      >
+        <div class="d-flex align-items-center me-auto mb-2 mb-lg-0 justify-content-center">
+            <ul class="navbar-nav">
+                <li class="nav-item m-4">
+                    <a class="nav-link" href="/animales">Listado Animales</a>
+                </li>
+                <li class="nav-item m-4">
+                    <a class="nav-link" href="/protectoras">Listado Protectoras</a>
+                </li>
+                <li class="nav-item m-4">
+                    <a class="nav-link" href="#">Sobre Nosotros</a>
+                </li>
+            </ul>
+        </div>
+  
+        <div class="d-flex align-items-center me-5">
+            <div class="ml-auto">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/login" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="78" height="73" viewBox="0 0 78 73" fill="none">
+                                <path d="M65.4447 58.5902C66.047 58.4715 66.4027 57.8424 66.1541 57.2811C64.3461 53.2001 60.8976 49.6067 56.2469 46.9832C51.1889 44.1299 44.9915 42.5834 38.616 42.5834C32.2405 42.5834 26.0431 44.1299 20.9851 46.9832C16.3343 49.6067 12.8858 53.2001 11.0779 57.2811C10.8292 57.8424 11.185 58.4715 11.7872 58.5902L30.8851 62.3522C35.99 63.3578 41.242 63.3578 46.3468 62.3522L65.4447 58.5902Z" fill="#8E0B0B"/>
+                                <ellipse cx="38.6159" cy="24.3333" rx="16.09" ry="15.2083" fill="#8E0B0B"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Ver Perfil</a>
+                            <a class="dropdown-item" href="#">Log out</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+      </div>
+      <!-- Collapsible wrapper -->
+  </nav>
+  <router-outlet></router-outlet>

@@ -1,0 +1,45 @@
+.container-fluid {
+    height: 335px;
+    background-color: #F5F2F2;
+    padding-bottom: 200px;
+}
+
+.container-fluid h1 {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #000000;
+}
+
+.container-fluid img {
+    width: 100%; /* Configura el ancho al 100% para que ocupe todo el ancho del contenedor */
+    height: auto; /* Esto mantiene la relación de aspecto original */
+}
+.custom-btn {
+    background-color: #A6252C;
+    color: #fff;
+    border-color: #A6252C;
+}
+
+.custom-btn:hover {
+    background-color: #d3a8aa;
+    border-color: #A6252C;
+}
+
+.custom-height-container {
+    height: 300px;
+}
+
+.container-homepage {
+    background-image: url("/assets/images/home/perros-transformed.png");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+    min-height: 650px;
+}
+
+
+
