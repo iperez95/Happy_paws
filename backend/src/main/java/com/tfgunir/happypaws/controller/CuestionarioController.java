@@ -32,62 +32,36 @@ public class CuestionarioController {
         return "/cuestionario/cuestionario";
     }
 
-//       @PostMapping("/nuevo")
-//     public String nuevoCuestionario(Model model, @RequestParam int idpregunta, @RequestParam String[] respuesta) 
-//    {
-//         //TODO AQUI TIENE QUE COGER EL USUARIO DE
-//         Usuario usuario = new Usuario();
-//         usuario.setIdusuario(1);
-
-
-       
-
-//         List<PreguntasAdoptante> preguntas = cuestDao.buscarTodas();
-        
-       
-
-//         for ( PreguntasAdoptante pregunta : preguntas) {
-
-//             //Construir pregunta y asignar la pregunta
-//             PreguntasAdoptante preguntaTemporal = new PreguntasAdoptante();
-//             preguntaTemporal.setIdpregunta(pregunta.getIdpregunta());
-             
-//             RespuestasAdoptante respuestaTemporal = new RespuestasAdoptante();
-//             // respuestasAdoptante.setPreguntasAdoptante(preguntaTemporal);
-//             // respuestasAdoptante.setUsuario(usuario);
-//             // cuestDao.respuestasAdoptante(respuestasAdoptante);
-//         }
-
-//         return "redirect:/index";
-//     }
-
     @PostMapping("/nuevo")
     public String nuevoCuestionario(Model model, RespuestasAdoptante respuestasAdoptante) 
     {
-        //TODO AQUI TIENE QUE COGER EL USUARIO DE SESION
-        Usuario usuario = new Usuario();
-        usuario.setIdusuario(1);
-        respuestasAdoptante.setUsuario(usuario);
 
-        List<PreguntasAdoptante> preguntasList = cuestDao.buscarTodas();
-        String[] respuestaList = respuestasAdoptante.getRespuesta().split(",");      
-                       
-            for (int i = 0; i < respuestaList.length; i++) {
-                
-                PreguntasAdoptante preguntaTemporal = new PreguntasAdoptante();
-                preguntaTemporal.setIdpregunta(preguntasList.get(i).getIdpregunta());
-
-                RespuestasAdoptante respuestaTemporal = new RespuestasAdoptante();
-                respuestaTemporal.setRespuesta(respuestaList[i]);
-
-                respuestaTemporal.setUsuario(usuario);
-                respuestaTemporal.setPreguntasAdoptante(preguntaTemporal);
-                cuestDao.respuestasAdoptante(respuestaTemporal);
-            }   
         
-   
-        return "redirect:/index";
-    }
+            //TODO AQUI TIENE QUE COGER EL USUARIO DE SESION
+            Usuario usuario = new Usuario();
+            usuario.setIdusuario(1);
+            respuestasAdoptante.setUsuario(usuario);
+
+            List<PreguntasAdoptante> preguntasList = cuestDao.buscarTodas();
+            String[] respuestaList = respuestasAdoptante.getRespuesta().split(",");      
+                        
+                for (int i = 0; i < respuestaList.length; i++) {
+                    
+                    PreguntasAdoptante preguntaTemporal = new PreguntasAdoptante();
+                    preguntaTemporal.setIdpregunta(preguntasList.get(i).getIdpregunta());
+
+                    RespuestasAdoptante respuestaTemporal = new RespuestasAdoptante();
+                    respuestaTemporal.setRespuesta(respuestaList[i]);
+
+                    respuestaTemporal.setUsuario(usuario);
+                    respuestaTemporal.setPreguntasAdoptante(preguntaTemporal);
+                    cuestDao.respuestasAdoptante(respuestaTemporal);
+                }   
+            
+    
+            return "redirect:/index";
+        
+}
     
     
 }
