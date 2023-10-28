@@ -69,14 +69,18 @@ public class ProtectoraDao implements IProtectoraDao {
 
     @Override
     public List<Protectora> buscarPorProvincia(int IdProvincia) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorProvincia'");
+        return protrepo.protetorasPorIdProvincia(IdProvincia);
     }
 
     @Override
     public int borrarProtectora(Protectora protectora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'borrarProtectora'");
+        try{
+            protrepo.delete(protectora);
+            return 1;}
+         catch (Exception e) {
+             e.printStackTrace();
+             return 0;
+         }
     }
 
     
