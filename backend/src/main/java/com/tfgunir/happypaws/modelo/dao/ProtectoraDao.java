@@ -63,7 +63,7 @@ public class ProtectoraDao implements IProtectoraDao {
     }
 
     @Override
-    public List<Protectora> buscarTodas() {
+    public List<Protectora> listadoProtectoras() {
         return protrepo.findAll();
     }
 
@@ -82,7 +82,6 @@ public class ProtectoraDao implements IProtectoraDao {
              return 0;
          }
     }
-
-    
+ 
 
 }

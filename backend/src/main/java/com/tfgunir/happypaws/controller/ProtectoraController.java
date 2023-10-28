@@ -1,72 +1,135 @@
 package com.tfgunir.happypaws.controller;
 
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RestController;
 
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
-import com.tfgunir.happypaws.modelo.entities.Usuario;
 
-@Controller
-@RequestMapping ("/protectora")
+@RestController
+// TODO DAV comprobar si realmente es necesario el CrossOrigin
+@CrossOrigin(origins ="*")
+@RequestMapping("/protectora")
 public class ProtectoraController {
 
     @Autowired
-    ProtectoraDao protdao;
+    ProtectoraDao protdao;    
 
-   
-
-    
-
-    
-    //TODOdav Security - Solo accesible por usuarios tipo protetora
-    @GetMapping("/gestion/alta")
-    public String darAltaProtectora (HttpSession sesion, ModelMap modelMap){
-       
-        return "/protectora/gestion/alta" ;
+    // DETALLE PROTECTORA 
+    @GetMapping(path="/{id}", produces = "application/json")
+    public ResponseEntity<Protectora> buscarProtectoraId (@PathVariable("id")int id){
+        System.out.println("Buscando protectora con id: "+id);
+        Protectora p = protdao.buscarProtectoraId(id);
+        if (p!=null)
+            return ResponseEntity.ok(p);
+        else
+            return ResponseEntity.notFound().build();
+      
     }
 
-    
-    //TODOdav comprobar que solo los usuarios tipo protectora pueden dar el alta.
-    @PostMapping ("/gestion/alta")
-    public String altaProtectora (Model model, Protectora protectora, HttpSession session){
-        
-        Usuario usuarioSesion = (Usuario) session.getAttribute("email");
+    // LISTADO PROTECTORAS
+    @GetMapping(path="/gestion/listado", produces = "application/json")
+    public ResponseEntity<Iterable<Protectora>> listadoProtectoras (){
        
-        protectora.setUsuario(usuarioSesion);
-        Estadosprotectora estadoprotectoratemporal = new Estadosprotectora();
-        estadoprotectoratemporal.setIdestadoprotectora(3);
-        protectora.setEstadosprotectora(estadoprotectoratemporal);
-        protdao.altaProtectora(protectora);
-        model.addAttribute("message", "Protectora saved successfully!");
-
-        
-        
-        // Estadosprotectora estadoprotectoratemporal = new Estadosprotectora();
-        // estadoprotectoratemporal.setIdestadoprotectora(3);
-        // protectora.setEstadosprotectora(estadoprotectoratemporal);
-         
-        // protdao.altaProtectora(protectora);
-        return "redirect:/index";
-
-        // if (protdao.buscarUnaProtectora(protectora.getIdprotectora())==null){
-        //     // if (protdao.altaProtectora(protectora)==1) {
-
-        //     // }
-                        
-        //     return (protdao.altaProtectora(protectora)==1)?"Alta de protectora realizada":"Alta de protectora NO REALIZADA";
-        // } 
+        Iterable<Protectora> listado = protdao.listadoProtectoras();
+        if (listado!=null)
+            return ResponseEntity.ok(listado);
+        else
+            return ResponseEntity.notFound().build();
     }
+
+    //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
+    // ALTA PROTECTORA
+    @PostMapping(path="/gestion/alta", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<Protectora> altaProtectora (@RequestBody Protectora p){
+        protdao.altaProtectora(p);
+        if (p!=null)
+            return ResponseEntity.created(null).body(p);    
+        else
+            return ResponseEntity.badRequest().build();
+    }
+
+    //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
+    // MODIFICAR PROTECTORA
+    @PutMapping(path="/gestion/modificar", consumes = "application/json")
+    public ResponseEntity<Protectora> modificarProtectora (@PathVariable("id") int id, @RequestBody Protectora p){
+        Protectora protUpdate= protdao.buscarProtectoraId(id);
+        if (protUpdate!=null) {
+            p = protdao.modificarProtectora(p);
+            return ResponseEntity.ok(p);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+    //BORRAR UNA PROTECTORA
+    @DeleteMapping(path="/gestion/borrar/{id}")
+    public ResponseEntity<Protectora> borrarProtectora (@PathVariable("id") int id){
+        Protectora p = protdao.buscarProtectoraId(id);
+        if (p!=null) {
+            protdao.borrarProtectora(p);
+            return ResponseEntity.ok(p);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+    //CAMBIAR ESTADO PROTECTORA >> ACTIVO
+    @PutMapping(path="/gestion/activar/{id}")
+    public ResponseEntity<Protectora> activarProtectora (@PathVariable("id") int id){
+        Protectora p = protdao.buscarProtectoraId(id);
+        if (p!=null) {
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(1);
+            p.setEstadosprotectora(estadoProtectoraTemporal);
+            protdao.modificarProtectora(p);
+            return ResponseEntity.ok(p);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+    //CAMBIAR ESTADO PROTECTORA >> PENDIENTE
+    @PutMapping(path="/gestion/pendiente/{id}")
+    public ResponseEntity<Protectora> pendienteProtectora (@PathVariable("id") int id){
+        Protectora p = protdao.buscarProtectoraId(id);
+        if (p!=null) {
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(3);
+            p.setEstadosprotectora(estadoProtectoraTemporal);
+            protdao.modificarProtectora(p);
+            return ResponseEntity.ok(p);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+    //CAMBIAR ESTADO PROTECTORA >> INACTIVO
+    @PutMapping(path="/gestion/inactivar/{id}")
+    public ResponseEntity<Protectora> inactivarProtectora (@PathVariable("id") int id){
+        Protectora p = protdao.buscarProtectoraId(id);
+        if (p!=null) {
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(2);
+            p.setEstadosprotectora(estadoProtectoraTemporal);
+            protdao.modificarProtectora(p);
+            return ResponseEntity.ok(p);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+    
     
     
 }

@@ -40,6 +40,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/bootstrap/**",  "/images/**", "/css/**", "js/**").permitAll()
 			.antMatchers("/rest/demo-bcrypt/**").permitAll()
 			.antMatchers("/", "/login", "/logout", "/registro","/search").permitAll()
+			.antMatchers("/multimedia/**","/protectora/**").permitAll()
 			.antMatchers("/api/**").permitAll()
 			// REQUIEREN AUTORIZACIÓN SEGÚN ROLES
                                 //ADMINISTRADOR
@@ -49,7 +50,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/protectora/gestion/**").hasAnyAuthority("Protectora","Administrador")
 
 				//ADOPTANTES
-                .antMatchers("/cuestionario/**").hasAnyAuthority("Adoptante","Administrador")
+                .antMatchers("/cuestionario/**").hasAnyAuthority("Adoptante","Protectora","Administrador")
 			
 			// Todas las demás URLs de la Aplicación requieren autenticación
 			.anyRequest().authenticated()

@@ -21,7 +21,7 @@ public class GestionController {
      //TODOdav Security - Este listado solo debe ser accesible por administradores.
     @GetMapping("/protectora/listado")
     public String listadoProtectoras (Model model){
-        List<Protectora> protectora = protdao.buscarTodas();
+        List<Protectora> protectora = protdao.listadoProtectoras();
         model.addAttribute("protectoras", protectora);
         return "/gestion/protectora/listado";
     }

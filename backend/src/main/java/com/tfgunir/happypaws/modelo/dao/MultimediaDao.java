@@ -3,10 +3,12 @@ package com.tfgunir.happypaws.modelo.dao;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
 import com.tfgunir.happypaws.modelo.repository.MultimediaRepository;
 
+@Service
 public class MultimediaDao implements IMultimediaDao {
 
     @Autowired
@@ -25,8 +27,10 @@ public class MultimediaDao implements IMultimediaDao {
 
     @Override
     public Multimedia modificarMultimedia(Multimedia multimedia) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modificarMultimedia'");
+        if(multimediaPorId(multimedia.getIdmultimedia())!=null)
+            return multirepo.save(multimedia);
+        else
+            return null;
     }
 
     @Override
@@ -54,7 +58,5 @@ public class MultimediaDao implements IMultimediaDao {
     public Multimedia multimediaPorId(int idMultimedia) {
         return multirepo.findById(idMultimedia).get();
     }
-   
-
-        
+           
 }
