@@ -25,5 +25,7 @@ public class GestionController {
         model.addAttribute("protectoras", protectora);
         return "/gestion/protectora/listado";
     }
+
+    
     
 }

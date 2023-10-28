@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { AnimalesComponent } from './components/animales/animales.component';
 import { ProtectorasComponent } from './components/protectoras/protectoras.component';
+import { ProtectoraComponent } from './components/protectora/protectora.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProtectorasComponent } from './components/protectoras/protectoras.compo
     HomeComponent,
     LoginComponent,
     AnimalesComponent,
-    ProtectorasComponent
+    ProtectorasComponent,
+    ProtectoraComponent
   ],
   imports: [
     BrowserModule,
