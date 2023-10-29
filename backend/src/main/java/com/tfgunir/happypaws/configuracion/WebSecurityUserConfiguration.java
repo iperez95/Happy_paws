@@ -43,7 +43,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/multimedia/**","/protectora/**").permitAll()
 			.antMatchers("/api/**").permitAll()
 			// REQUIEREN AUTORIZACIÓN SEGÚN ROLES
-                                //ADMINISTRADOR
+                //ADMINISTRADOR
                 .antMatchers("/gestion/**").hasAnyAuthority("Administrador")
 
 				//PROTECTORAS

@@ -22,16 +22,11 @@
 
     guardarProtectra(){
       this._protectoraService.altaProtectora(this.protectora)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.IrListadoProtectoras();
-        },
-        error => {
-          console.log(error);
-          // Do something with the error, such as showing an error message
-        }
-      );
+      .subscribe({
+        next: response => console.log(response),
+        error: error => console.log(error),
+        complete: () => console.log('Alta Realizada')
+      })  
     }
     
     onSubmit(){
