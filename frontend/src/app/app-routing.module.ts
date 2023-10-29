@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'animales', component: AnimalesComponent },
   //Protectoras
   { path: 'protectora', component: ProtectoraComponent },
-  { path: 'protectoras/listado', component: ListaProtectorasComponent },
+  { path: 'protectoras', component: ListaProtectorasComponent },
   { path: 'protectora/alta', component: AltaProtectoraComponent },
   
   //Login
