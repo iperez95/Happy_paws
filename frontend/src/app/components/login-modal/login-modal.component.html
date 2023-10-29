@@ -6,15 +6,16 @@
         <h3 class="second mb-0 m-3">Te estábamos esperando</h3>
       </div>
       <div class="row">
-        <form>
+        <form (ngSubmit)="onSubmitLogin()" #loginForm="ngForm">
           <div class="input-group col-md-8 ms-auto me-auto mb-4 w-50">
-            <input type="text" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="basic-addon1">
+            <input type="login" id="loginName" name="email" [(ngModel)]="email" class="form-control" placeholder="Usuario" aria-label="Usuario" aria-describedby="basic-addon1">
           </div>
           <div class="input-group col-md-8 ms-auto me-auto mb-4 w-50">
-            <input type="text" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
+            <input type="password" id="passwordName" name="password" [(ngModel)]="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1">
           </div>
           <div class="col-md-8 ms-auto me-auto text-center m-3">
-            <input type="submit" class="btn custom-btn" value="Iniciar sesion" >
+            <button type="submit" class="btn custom-btn">Iniciar sesion</button>
+            <div *ngIf="errorMessage" class="error-message"><p>{{ errorMessage }}</p></div>
           </div>
         </form>
       </div>

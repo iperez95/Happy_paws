@@ -85,11 +85,11 @@ public class Usuario implements Serializable {
 		this.apellidos = apellidos;
 	}
 
-	public byte getenabled() {
+	public byte getEnabled() {
 		return this.enabled;
 	}
 
-	public void setenabled(byte enabled) {
+	public void setEnabled(byte enabled) {
 		this.enabled = enabled;
 	}
 
