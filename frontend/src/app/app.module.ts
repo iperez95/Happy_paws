@@ -7,14 +7,18 @@ import { NavComponent } from './components/nav/nav.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { AnimalesComponent } from './components/animales/animales.component';
-import { ProtectorasComponent } from './components/Protectoras/protectoras.component';
 import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -23,26 +27,28 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     ContentComponent,
     HomeComponent,
-    LoginComponent,
     AnimalesComponent,
-    ProtectorasComponent,
+    LoginModalComponent,
     ProtectoraComponent,
     ListaProtectorasComponent,
     AltaProtectoraComponent
   ],
   imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatDialogModule,
     RouterModule.forRoot([
       { path: 'animales', component: AnimalesComponent },
-      { path: 'protectoras', component: ProtectorasComponent },
-      { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

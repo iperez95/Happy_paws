@@ -18,16 +18,6 @@
     width: 100%; /* Configura el ancho al 100% para que ocupe todo el ancho del contenedor */
     height: auto; /* Esto mantiene la relación de aspecto original */
 }
-.custom-btn {
-    background-color: #A6252C;
-    color: #fff;
-    border-color: #A6252C;
-}
-
-.custom-btn:hover {
-    background-color: #d3a8aa;
-    border-color: #A6252C;
-}
 
 .custom-height-container {
     height: 300px;

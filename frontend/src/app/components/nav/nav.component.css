@@ -15,3 +15,13 @@
     line-height: normal;
 }
 
+.custom-btn {
+    background-color: #A6252C;
+    color: #fff;
+    border-color: #A6252C;
+}
+
+.btn-alternative {
+    border-color: #A6252C !important;
+}
+
