@@ -15,6 +15,8 @@ export class AxiosService {
       method: method,
       url: url,
       data: data
-    });
+    }).then(response => {
+      return response;
+    })
   }
 }

@@ -15,6 +15,7 @@
           </div>
           <div class="col-md-8 ms-auto me-auto text-center m-3">
             <button type="submit" class="btn custom-btn">Iniciar sesion</button>
+            <div *ngIf="errorMessage" class="error-message"><p>{{ errorMessage }}</p></div>
           </div>
         </form>
       </div>
