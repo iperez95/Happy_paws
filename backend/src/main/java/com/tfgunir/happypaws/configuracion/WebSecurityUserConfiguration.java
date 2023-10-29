@@ -11,8 +11,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -28,15 +33,29 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private DataSource dataSource;
 
+    private UsuarioAuthProvider usuarioAuthProvider;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth
             .jdbcAuthentication().dataSource(dataSource)
             .usersByUsernameQuery("select email, password, enabled from usuarios where email=?")
             .authoritiesByUsernameQuery("select u.email, r.nombre from usuarios u " + 
                                         "inner join roles r on r.IDROL = u.IDROL " +
                                         "where u.email = ?");
+    }
+
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf(AbstractHttpConfigurer::disable)
+            .addFilterBefore(new JwtAuthFilter(usuarioAuthProvider), BasicAuthenticationFilter.class)
+            .sessionManagement(customizer -> 
+                customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authorizeRequests((requests) -> 
+                requests.antMatchers(HttpMethod.OPTIONS).permitAll()
+                        .anyRequest().authenticated()
+            );
+
+            return http.build();
     }
 
     @Override
