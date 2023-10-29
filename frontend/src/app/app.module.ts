@@ -9,8 +9,10 @@ import { ContentComponent } from './components/content/content.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { AnimalesComponent } from './components/animales/animales.component';
-import { ProtectorasComponent } from './components/protectoras/protectoras.component';
-import { ProtectoraComponent } from './components/protectora/protectora.component';
+import { ProtectorasComponent } from './components/Protectoras/protectoras.component';
+import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
+import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { ProtectoraComponent } from './components/protectora/protectora.componen
     LoginComponent,
     AnimalesComponent,
     ProtectorasComponent,
-    ProtectoraComponent
+    ProtectoraComponent,
+    ListaProtectorasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: 'animales', component: AnimalesComponent },
       { path: 'protectoras', component: ProtectorasComponent },

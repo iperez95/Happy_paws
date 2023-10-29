@@ -8,6 +8,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 })
 export class ProtectoraService {
 
+  //URL del servicio Rest
   readonly endpoint = 'http://localhost:8087';
 
   /**
@@ -18,12 +19,17 @@ export class ProtectoraService {
   }
 
   /**
-   * Método que accede a todas las protectoras del servicio Rest
+   * Método que lista todas las protectoras del servicio Rest
    * @returns un objeto de tipo Observable<any> con la llámada formada al servicio
    * Rest.
    */
   public listar(): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/protectora/gestion/listado`)
+      .pipe(catchError(this.manejarError));
+  }
+
+  public obtenerUna(): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/protectora/{id}`)
       .pipe(catchError(this.manejarError));
   }
 

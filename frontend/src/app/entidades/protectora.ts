@@ -6,15 +6,16 @@ export class Protectora {
     direccion: string;
     urlLogo: string;
     email: string;
+    municipio: number;
     
-    constructor(){
-        this.idProtectora = 0
-        this.idEstadoProtectora = 0
-        this.nombre = ""
-        this.direccion = ""
-        this.urlLogo = ""
-        this.email = ""
-    }
+    // constructor(){
+    //     this.idProtectora 
+    //     this.idEstadoProtectora 
+    //     this.nombre 
+    //     this.direccion 
+    //     this.urlLogo
+    //     this.email
+    // }
 
     public toString() : string {
         return JSON.stringify(this)

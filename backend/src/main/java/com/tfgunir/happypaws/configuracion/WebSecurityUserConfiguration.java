@@ -47,7 +47,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/gestion/**").hasAnyAuthority("Administrador")
 
 				//PROTECTORAS
-                .antMatchers("/protectora/gestion/**").hasAnyAuthority("Protectora","Administrador")
+                // .antMatchers("/protectora/gestion/**").hasAnyAuthority("Protectora","Administrador")
 
 				//ADOPTANTES
                 .antMatchers("/cuestionario/**").hasAnyAuthority("Adoptante","Protectora","Administrador")

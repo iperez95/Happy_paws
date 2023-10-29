@@ -16,6 +16,10 @@ export class ProtectoraComponent implements OnInit {
 
   ngOnInit() {
     
+    
   }
 
-}
+
+  }
+
+
