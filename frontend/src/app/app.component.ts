@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AxiosService } from './service/axios/axios.service';
+import { AuthService } from './service/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +8,17 @@ import { AxiosService } from './service/axios/axios.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private axiosService: AxiosService) {}
-    title = 'frontend';
-    changeTitle(){
-      this.title="Happy Paws";
-    }
+  constructor(private axiosService: AxiosService, private authService: AuthService) {}
+  title = 'frontend';
+  changeTitle(){
+    this.title="Happy Paws";
+  }
 
-    onLogin(input: any): void {
-      this.axiosService.request(
-        'POST',
-        '/login',
-        {
-          email: input.email,
-          password: input.password,
-        });
+  ngOnInit(): void {
+    const token = this.axiosService.getAuthToken();
+
+    if (token) {
+      this.authService.setLoggedIn(true);
     }
+  }
 }

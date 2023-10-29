@@ -25,12 +25,12 @@ export class LoginModalComponent implements OnInit {
   }
 
   onSubmitLogin(): void {
-    const url = '/api/login';
     const data = { email: this.email, password: this.password };
     
-    this.axiosService.request("POST", url, data)
+    this.axiosService.request("POST", '/api/login', data)
     .then(response => {
       this.authService.setLoggedIn(true); // Update the loggedIn property
+      this.axiosService.setAuthToken(response.data.token); // Save the token in the local storage
       this.dialogRef.close();
       this.errorMessage = ''; // Reset the error message
     })
