@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import { Protectora } from '../entidades/protectora';
 
 
 @Injectable({
@@ -23,12 +24,17 @@ export class ProtectoraService {
    * @returns un objeto de tipo Observable<any> con la llámada formada al servicio
    * Rest.
    */
-  public listar(): Observable<any> {
+  public listarProtectora(): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/protectora/gestion/listado`)
       .pipe(catchError(this.manejarError));
   }
 
-  public obtenerUna(): Observable<any> {
+  public altaProtectora(protectora: Protectora): Observable<Object> {
+    return this._httpClient.post(`${this.endpoint}/protectora/gestion/alta`, protectora)
+      .pipe(catchError(this.manejarError));
+  }
+
+  public obtenerProtectoraPorId(): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/protectora/{id}`)
       .pipe(catchError(this.manejarError));
   }

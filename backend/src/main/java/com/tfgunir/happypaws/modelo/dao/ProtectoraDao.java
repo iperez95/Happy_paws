@@ -18,6 +18,10 @@ public class ProtectoraDao implements IProtectoraDao {
     @Override
     public int altaProtectora(Protectora protectora) {
         try {
+            //Se asigna estado 3 pendiente de validacion, en el alta de la protectora.
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(3);
+            protectora.setEstadosprotectora(estadoProtectoraTemporal);
             protrepo.save(protectora);
             return 1;
         } catch (Exception e) {

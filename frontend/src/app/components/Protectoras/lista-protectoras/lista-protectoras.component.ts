@@ -21,7 +21,7 @@ export class ListaProtectorasComponent {
    }
 
    private listar(){
-      this._protectoraService.listar().subscribe(dato => {
+      this._protectoraService.listarProtectora().subscribe(dato => {
         this.listaProtectoras = dato;
         console.log(this.listaProtectoras);
       });

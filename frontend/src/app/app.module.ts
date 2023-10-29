@@ -13,6 +13,8 @@ import { ProtectorasComponent } from './components/Protectoras/protectoras.compo
 import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,14 @@ import { HttpClientModule } from '@angular/common/http';
     AnimalesComponent,
     ProtectorasComponent,
     ProtectoraComponent,
-    ListaProtectorasComponent
+    ListaProtectorasComponent,
+    AltaProtectoraComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       { path: 'animales', component: AnimalesComponent },
       { path: 'protectoras', component: ProtectorasComponent },
