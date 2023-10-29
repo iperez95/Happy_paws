@@ -13,6 +13,5 @@ export class LoginService {
       height: '500px',
       width: '1200px',
     });
-  
   }
 }

@@ -1,7 +1,5 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <!-- Container wrapper -->
-      <!-- Navbar brand -->
       <a class="ms-5 navbar-brand me-5" href="/">
         <img
           src="assets/images/navbar/LogoHappyPaws-removebg-preview.png"
@@ -10,8 +8,7 @@
           style="margin-top: -1px;"
         />
       </a>
-  
-      <!-- Toggle button -->
+
       <button
         class="navbar-toggler"
         type="button"
@@ -41,7 +38,7 @@
         </div>
   
         <div class="d-flex align-items-center me-5">
-            <div *ngIf="false" class="ml-auto">
+            <div *ngIf="loggedIn" class="ml-auto">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
                     <li class="nav-item">
                       <div>
@@ -56,7 +53,7 @@
                     </li>
                 </ul>
             </div>
-            <button mat-stroked-button class="btn btn-alternative" (click)="openDialog()">Iniciar sesion</button>
+            <button *ngIf="!loggedIn" mat-stroked-button class="btn btn-alternative" (click)="openDialog()">Iniciar sesion</button>
         </div>
       </div>
       <!-- Collapsible wrapper -->
