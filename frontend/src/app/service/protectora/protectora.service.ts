@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Protectora } from '../entidades/protectora';
+import { Protectora } from 'src/app/entidades/protectora';
 
 
 @Injectable({

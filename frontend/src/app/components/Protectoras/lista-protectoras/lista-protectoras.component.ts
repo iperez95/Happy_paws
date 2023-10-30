@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Protectora } from 'src/app/entidades/protectora';
-import { ProtectoraService } from 'src/app/servicios/protectora.service';
+import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
 
 @Component({
   selector: 'app-lista-protectoras',

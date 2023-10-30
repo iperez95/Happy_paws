@@ -1,31 +1,22 @@
 <h1>Lista de protectoras</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Direccion</th>
-            
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let protectora of listaProtectoras">
-            <td>{{protectora.nombre}}</td>
-            <td>{{protectora.direccion}}</td>
-            
-        </tr>
-    </tbody>
-</table>
 
-<div class="card-deck" >
-    <div class="col-sm-4" *ngFor="let protectora of listaProtectoras">
-        <div class="card" style="width: 18rem;" >
-            <img class="card-img-top" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
-            <div class="card-body">
-            <h5 class="card-title">{{protectora.nombre}}</h5>
-            <p class="card-text">{{protectora.descripcion}}</p>
-            <a href="/protectora/{{protectora.idProtectora}}" class="btn btn-primary">Ver Protectora</a>
-            </div>
+<div class="row g-5">
+    <div class="col" *ngFor="let protectora of listaProtectoras">
+      <div class="card h-100" >
+        <img src="{{protectora.urlLogo}}" class="card-img-top" alt="{{protectora.nombre}}">
+        <div class="card-body">
+          <h5 class="card-title">{{protectora.nombre}}</h5>
+          <p class="card-text" style="display: inline-block;
+          max-width: 100%;
+          white-space: nowrap;
+          overflow: hidden !important;
+          text-overflow: ellipsis;">{{protectora.descripcion}}</p>
+          <a href="/protectora/{{protectora.idprotectora}}" class="btn btn-primary">Ver Protectora</a>
         </div>
+      </div>
     </div>
 </div>
+
+
+
 
