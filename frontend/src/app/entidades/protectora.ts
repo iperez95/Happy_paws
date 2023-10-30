@@ -1,5 +1,6 @@
 export class Protectora {
 
+    idprotectora: number;
     nombre: string;
     direccion: string;
     urlLogo: string;
