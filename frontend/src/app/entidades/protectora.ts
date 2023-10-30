@@ -6,7 +6,10 @@ export class Protectora {
     urlLogo: string;
     email: string;
     descripcion: string;
-    municipio: number;
+    idmunicipio: number;
+    municipio: string;
+    idprovincia: number;
+    provincia: string;
     
     
 

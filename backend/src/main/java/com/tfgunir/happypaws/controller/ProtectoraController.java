@@ -49,6 +49,18 @@ public class ProtectoraController {
             return ResponseEntity.notFound().build();
     }
 
+
+     // LISTADO PROTECTORAS CON MUNICIPIO Y PROVINCIA
+    @GetMapping(path="/listadofront", produces = "application/json")
+    public ResponseEntity<Iterable<Protectora>> listadoProtectorasMunicProv (){
+       
+        Iterable<Protectora> listado = protdao.listadoProtectorasMunicProv();
+        if (listado!=null)
+            return ResponseEntity.ok(listado);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
     //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
     // ALTA PROTECTORA
     @PostMapping(path="/gestion/alta", produces = "application/json", consumes = "application/json")

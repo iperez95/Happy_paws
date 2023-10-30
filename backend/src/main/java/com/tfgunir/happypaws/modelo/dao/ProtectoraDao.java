@@ -72,6 +72,11 @@ public class ProtectoraDao implements IProtectoraDao {
     }
 
     @Override
+    public List<Protectora> listadoProtectorasMunicProv() {
+        return protrepo.listadoProtectorasMuniProv();
+    }
+
+    @Override
     public List<Protectora> buscarPorProvincia(int IdProvincia) {
         return protrepo.protetorasPorIdProvincia(IdProvincia);
     }

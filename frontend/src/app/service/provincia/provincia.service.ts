@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Protectora } from 'src/app/entidades/protectora';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProtectoraService {
+export class ProvinciaService {
 
   //URL del servicio Rest
   readonly endpoint = 'http://localhost:8087';
@@ -19,30 +19,15 @@ export class ProtectoraService {
   constructor(private _httpClient : HttpClient) { 
   }
 
-  /**
+  /**estasestas e
    * Método que lista todas las protectoras del servicio Rest
    * @returns un objeto de tipo Observable<any> con la llámada formada al servicio
    * Rest.
    */
-  public listarProtectora(): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/protectora/listadofront`)
+  public listarProvincias(): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/provincia/listado`)
       .pipe(catchError(this.manejarError));
   }
-
-  public altaProtectora(protectora: Protectora): Observable<Object> {
-    return this._httpClient.post(`${this.endpoint}/protectora/gestion/alta`, protectora)
-      .pipe(catchError(this.manejarError));
-  }
-
-  public obtenerProtectoraPorId(): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/protectora/{id}`)
-      .pipe(catchError(this.manejarError));
-  }
-
-
-
-
-
 
   /**
    * Método que maneja los posibles errores de las llamadas al servicio rest

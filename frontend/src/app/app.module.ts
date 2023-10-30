@@ -19,6 +19,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MunicipiosComponent } from './components/municipios/municipios.component';
+import { ProvinciasComponent } from './components/provincias/provincias.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { MatButtonModule } from '@angular/material/button';
     LoginModalComponent,
     ProtectoraComponent,
     ListaProtectorasComponent,
-    AltaProtectoraComponent
+    AltaProtectoraComponent,
+    MunicipiosComponent,
+    ProvinciasComponent
   ],
   imports: [
     MatFormFieldModule,

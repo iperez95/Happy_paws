@@ -20,6 +20,12 @@ List<Protectora> protetorasPorNombreProvincia(String nombre);
 
 @Query(value = "SELECT prote.*, muni.MUNICIPIO, prov.PROVINCIA FROM protectoras prote\r\n"
             + "inner join municipios muni on muni.IDMUNICIPIO = prote.IDMUNICIPIO \r\n"
+            + "inner join provincias prov on prov.IDPROVINCIA = muni.IDPROVINCIA \r\n",
+			nativeQuery = true)    
+List<Protectora> listadoProtectorasMuniProv();
+
+@Query(value = "SELECT prote.*, muni.MUNICIPIO, prov.PROVINCIA FROM protectoras prote\r\n"
+            + "inner join municipios muni on muni.IDMUNICIPIO = prote.IDMUNICIPIO \r\n"
             + "inner join provincias prov on prov.IDPROVINCIA = muni.IDPROVINCIA \r\n"
             + "where prov.IDPROVINCIA = ?1",
 			nativeQuery = true)    

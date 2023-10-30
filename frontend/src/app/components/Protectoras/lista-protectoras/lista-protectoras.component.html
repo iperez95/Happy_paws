@@ -1,6 +1,6 @@
 <h1>Lista de protectoras</h1>
 
-<div class="row g-5">
+<div class="row g-5 gx-1">
     <div class="col" *ngFor="let protectora of listaProtectoras">
       <div class="card h-100" >
         <img src="{{protectora.urlLogo}}" class="card-img-top" alt="{{protectora.nombre}}">
@@ -10,7 +10,8 @@
           max-width: 100%;
           white-space: nowrap;
           overflow: hidden !important;
-          text-overflow: ellipsis;">{{protectora.descripcion}}</p>
+          text-overflow: ellipsis;">{{protectora.municipio}}</p>
+          
           <a href="/protectora/{{protectora.idprotectora}}" class="btn btn-primary">Ver Protectora</a>
         </div>
       </div>
