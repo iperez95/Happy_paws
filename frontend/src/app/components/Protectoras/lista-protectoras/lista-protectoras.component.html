@@ -15,6 +15,8 @@
   </div>
 </section>
 
+
+
 <!-- <//esto funciona pero no es lo que quiero
 <div>
   <p>
@@ -39,13 +41,13 @@
 <section class="tarjetas">
   <div class="container.md">
     <div class="row row-cols-auto gy-5">
-      <div class="col" *ngFor="let protectora of listaProtectoras">
+      <div class="col-md-4" *ngFor="let protectora of listaProtectoras">
         <div class="card h-100"  >
-          <a href="/protectora/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top embed-responsive-item" alt="{{protectora.nombre}}"></a>
+          <a href="/protectora/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top" alt="{{protectora.nombre}}"></a>
           <div class="card-body">
             <h5 class="card-title">{{protectora.nombre}}</h5>
-              <div class="row">
-                <div class="col"><p class="card-text">{{protectora.municipio.provincia.provincia}}</p></div>
+              <div class="row ">
+                <div class="col-md-auto "><p class="card-text">{{protectora.municipio.provincia.provincia}}</p></div>
                 <div class="col"><img class ="icono" src="assets/images/protectora/find.png" alt="icono find protectora"></div>
               </div>
           </div>

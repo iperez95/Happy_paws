@@ -4,11 +4,22 @@ import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
 
+import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatInputModule} from '@angular/material/input';
+import {NgFor, NgIf} from '@angular/common';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 @Component({
   selector: 'app-lista-protectoras',
   templateUrl: './lista-protectoras.component.html',
   styleUrls: ['./lista-protectoras.component.css']
+  
+  
 })
+
+
+
 export class ListaProtectorasComponent {
 
   // //Listado de protectoras
