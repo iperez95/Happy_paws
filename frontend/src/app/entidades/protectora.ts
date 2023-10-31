@@ -6,10 +6,20 @@ export class Protectora {
     urlLogo: string;
     email: string;
     descripcion: string;
-    idmunicipio: number;
-    municipio: string;
-    idprovincia: number;
-    provincia: string;
+  
+
+    municipio: {
+        idmunicipio: number;
+        municipio: string;
+        provincia: {
+          idprovincia: number;
+          provincia: string;
+        };
+      };
+      provincia: {
+        idprovincia: number;
+        provincia: string;
+      };
     
     
 
@@ -18,3 +28,4 @@ export class Protectora {
     }
 
 }
+

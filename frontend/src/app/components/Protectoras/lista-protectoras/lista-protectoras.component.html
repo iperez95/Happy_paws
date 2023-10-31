@@ -1,23 +1,60 @@
-<h1>Lista de protectoras</h1>
 
-<div class="row g-5 gx-1">
-    <div class="col" *ngFor="let protectora of listaProtectoras">
-      <div class="card h-100" >
-        <img src="{{protectora.urlLogo}}" class="card-img-top" alt="{{protectora.nombre}}">
-        <div class="card-body">
-          <h5 class="card-title">{{protectora.nombre}}</h5>
-          <p class="card-text" style="display: inline-block;
-          max-width: 100%;
-          white-space: nowrap;
-          overflow: hidden !important;
-          text-overflow: ellipsis;">{{protectora.municipio}}</p>
-          
-          <a href="/protectora/{{protectora.idprotectora}}" class="btn btn-primary">Ver Protectora</a>
+<section>
+  <h1>Lista de protectoras</h1>
+  <div>
+    <p>
+      <select name="miselect" [(ngModel)]="provinciasSeleccionadas" multiple="multiple">
+      <option [value]="protectora.municipio.provincia.provincia" *ngFor="let protectora of listaProtectoras">{{protectora.municipio.provincia.provincia}}</option>
+      </select>
+    </p>
+    <ul>
+      <li *ngFor="let item of provinciasSeleccionadas">
+        {{item}}
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- <//esto funciona pero no es lo que quiero
+<div>
+  <p>
+    <select name="miselect" [(ngModel)]="provinciasSeleccionadas" multiple="multiple">
+    <option [value]="protectora.municipio.provincia.provincia" *ngFor="let protectora of listaProtectoras">{{protectora.municipio.provincia.provincia}}</option>
+    </select>
+  </p>
+  <ul>
+    <li *ngFor="let item of provinciasSeleccionadas">
+      {{item}}
+    </li>
+  </ul>
+</div> -->
+
+
+
+<!-- <div class="form-group">
+  <label for="provincia">Provincia:</label>
+  <input type="text" class="form-control" id="provincia" [(ngModel)]="provincia">
+</div>
+<button class="btn btn-primary" (click)="buscarProtectorasPorProvincia()">Buscar</button> -->
+<section class="tarjetas">
+  <div class="container.md">
+    <div class="row row-cols-auto gy-5">
+      <div class="col" *ngFor="let protectora of listaProtectoras">
+        <div class="card h-100"  >
+          <a href="/protectora/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top embed-responsive-item" alt="{{protectora.nombre}}"></a>
+          <div class="card-body">
+            <h5 class="card-title">{{protectora.nombre}}</h5>
+              <div class="row">
+                <div class="col"><p class="card-text">{{protectora.municipio.provincia.provincia}}</p></div>
+                <div class="col"><img class ="icono" src="assets/images/protectora/find.png" alt="icono find protectora"></div>
+              </div>
+          </div>
         </div>
       </div>
     </div>
-</div>
-
+  </div>
+</section>
+```
 
 
 

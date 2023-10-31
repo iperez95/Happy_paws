@@ -29,6 +29,16 @@ export class ProtectoraService {
       .pipe(catchError(this.manejarError));
   }
 
+  public listarProvincias(): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/provincia/todas`)
+      .pipe(catchError(this.manejarError));
+  }
+  
+  public listarProtectoraPorProvincia(provincia: string): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/protectora/listadofront/provincia/${provincia}`)
+      .pipe(catchError(this.manejarError));
+  }
+
   public altaProtectora(protectora: Protectora): Observable<Object> {
     return this._httpClient.post(`${this.endpoint}/protectora/gestion/alta`, protectora)
       .pipe(catchError(this.manejarError));
@@ -38,6 +48,10 @@ export class ProtectoraService {
     return this._httpClient.get(`${this.endpoint}/protectora/{id}`)
       .pipe(catchError(this.manejarError));
   }
+
+  
+
+ 
 
 
 
@@ -63,6 +77,8 @@ export class ProtectoraService {
     console.error(mensajeError)
     return throwError(() => new Error(mensajeError));
   }
+
+
 
   ngOnInit() {
 

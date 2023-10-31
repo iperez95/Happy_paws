@@ -61,6 +61,28 @@ public class ProtectoraController {
             return ResponseEntity.notFound().build();
     }
 
+    // LISTADO PROTECTORAS POR ID PROVINCIA
+    @GetMapping(path="/listadofront/{id}", produces = "application/json")
+    public ResponseEntity<Iterable<Protectora>> buscarPorProvincia (@PathVariable("id") int id){
+       
+        Iterable<Protectora> listado = protdao.buscarPorIdProvincia(id);
+        if (listado!=null)
+            return ResponseEntity.ok(listado);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
+    // LISTADO PROTECTORAS POR NOMBRE PROVINCIA
+    @GetMapping(path="/listadofront/provincia/{nombre}", produces = "application/json")
+    public ResponseEntity<Iterable<Protectora>> porNombreProvincia (@PathVariable("nombre") String nombre){
+       
+        Iterable<Protectora> listado = protdao.buscarPorNombreProvincia(nombre);
+        if (listado!=null)
+            return ResponseEntity.ok(listado);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
     //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
     // ALTA PROTECTORA
     @PostMapping(path="/gestion/alta", produces = "application/json", consumes = "application/json")
