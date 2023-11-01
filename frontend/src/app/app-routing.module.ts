@@ -6,12 +6,14 @@ import { HomeComponent } from './components/home/home.component';
 import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
+import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
 
 const routes: Routes = [
   //animales
   { path: 'animales', component: AnimalesComponent },
   //Protectoras
-  { path: 'protectora/:id', component: ProtectoraComponent },
+  { path: 'protectora/gestion/:id', component: ProtectoraComponent },
+  { path: 'protectora/detalle/:id', component: DetalleProtectoraComponent },
   { path: 'protectoras', component: ListaProtectorasComponent },
   { path: 'protectora/alta', component: AltaProtectoraComponent },
   

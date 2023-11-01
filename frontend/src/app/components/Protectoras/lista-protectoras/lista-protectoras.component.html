@@ -15,10 +15,10 @@
         </select>
       </div>
       <div class="col-sm-auto">
-        <button class="custom-btn" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
+        <button class="custom-btn-red-dark" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
       </div>
       <div class="col-sm-auto">
-        <button class="custom-btn" (click)="listar()">Ver todas</button>
+        <button class="custom-btn-red-dark" (click)="listar()">Ver todas</button>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@
     <div class="row row-cols-auto gy-5">
       <div class="col-md-4" *ngFor="let protectora of listaProtectoras">
         <div class="card h-100"  >
-          <a href="/protectora/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top" alt="{{protectora.nombre}}"></a>
+          <a href="/protectora/detalle/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top" alt="{{protectora.nombre}}"></a>
           <div class="card-body">
             <h5 class="card-title">{{protectora.nombre}}</h5>
               <div class="row ">
