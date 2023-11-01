@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; width: 95%; margin-right:auto; margin-left:auto;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .custom-btn {
@@ -14,5 +14,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-color: #A6252C;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.card{
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    transition: all 0.3s ease-in-out;
+    background-color: #F5F2F2;
+}
+

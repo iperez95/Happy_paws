@@ -32,3 +32,10 @@ $frontend-theme: mat.define-light-theme((
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include mat.all-component-themes($frontend-theme);
+
+button{
+  border-radius: 8px;
+  background: var(--main-primary, #A6252C);
+  /* Button */
+  box-shadow: 0px 2px 10px 0px rgba(101, 192, 237, 0.50);
+  }

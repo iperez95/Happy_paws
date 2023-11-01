@@ -37,7 +37,7 @@ export class ListaProtectorasComponent {
     this.listadoProvincias();
    }
 
-   private listar(){
+   listar(){
       this._protectoraService.listarProtectora().subscribe(dato => {
         this.listaProtectoras = dato;
         console.log(this.listaProtectoras);

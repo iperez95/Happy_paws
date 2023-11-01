@@ -1,69 +1,38 @@
-<select name="miselect" [(ngModel)]="provinciaSeleccionadaId" >
-  <option *ngFor="let provincia of listaProvincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
-  </select>
-<button class="btn btn-primary" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
-
-<!-- //Primer select medio funciona
-<select name="miselect" [(ngModel)]="provinciaSeleccionada">
-  <option [value]="protectora.municipio.provincia.provincia" *ngFor="let protectora of listaProtectoras">{{protectora.municipio.provincia.provincia}}</option>
-  </select>
-<button class="btn btn-primary" (click)="buscarProtectorasPorProvincia(provinciaSeleccionada)">Buscar</button> -->
-
-
-<!-- <section>
-  <h1>Lista de protectoras</h1>
-  <div>
-    <p>
-      <select name="miselect" [(ngModel)]="provinciaSeleccionada" multiple="multiple">
-      <option [value]="protectora.municipio.provincia.provincia" *ngFor="let protectora of listaProtectoras">{{protectora.municipio.provincia.provincia}}</option>
-      </select>
-    </p>
-    <ul>
-      <li *ngFor="let item of provinciaSeleccionada">
-        {{item}}
-      </li>
-    </ul>
+<section>
+  <div class="container.md">
+    <div class="row row-cols-auto gx-3 gy-5">
+      <div class="col-md-auto">
+        <select id="selectprovincias" [(ngModel)]="provinciaSeleccionadaId" >
+          <option ng-init="provinciaSeleccionadaId = option[0]" *ngFor="let provincia of listaProvincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
+          </select>
+      </div>
+      <div class="col-sm-auto">
+        <button class="custom-btn" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
+      </div>
+      <div class="col-sm-auto">
+        <button class="custom-btn" (click)="listar()">Ver todas</button>
+      </div>
+    </div>
   </div>
+</section>
+
+<!-- Buscador de protectoras por provincia -->
+<!-- <section>
+<div class="container.md">
+  <div class="row row-cols-auto gx-3 gy-5">
+    <div class="col-md-auto">
+      <select name="miselect" [(ngModel)]="provinciaSeleccionadaId" >
+        <option *ngFor="let provincia of listaProvincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
+        </select>
+    </div>
+    <div class="col-sm-auto">
+      <button class="btn btn-primary" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
+    </div>
+  </div>
+</div>
 </section> -->
 
-<!-- //mat-option da error porque no detecta angular
-<form>
-  <h4>mat-select</h4>
-  <mat-form-field>
-    <mat-label>Favorite food</mat-label>
-    <mat-select [(ngModel)]="provinciaSeleccionada" name="food">
-      <mat-option *ngFor="let provincia of listaProvincias" [value]="provincia.provincia">
-        {{provincia.provincia}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <p> Selected food: {{provinciaSeleccionada}} </p>
-  <h4>native html select</h4>
-</form> -->
-
-<!-- <//esto funciona pero no es lo que quiero
-<div>
-  <p>
-    <select name="miselect" [(ngModel)]="provinciasSeleccionadas" multiple="multiple">
-    <option [value]="protectora.municipio.provincia.provincia" *ngFor="let protectora of listaProtectoras">{{protectora.municipio.provincia.provincia}}</option>
-    </select>
-  </p>
-  <ul>
-    <li *ngFor="let item of provinciasSeleccionadas">
-      {{item}}
-    </li>
-  </ul>
-</div> -->
-
-
-
-<!-- <div class="form-group">
-  <label for="provincia">Provincia:</label>
-  <input type="text" class="form-control" id="provincia" [(ngModel)]="provincia">
-</div>
-<button class="btn btn-primary" (click)="buscarProtectorasPorProvincia()">Buscar</button> -->
-
-
+<!-- Listado de protectoras -->
 <section class="tarjetas">
   <div class="container.md">
     <div class="row row-cols-auto gy-5">
@@ -82,7 +51,7 @@
     </div>
   </div>
 </section>
-```
+
 
 
 
