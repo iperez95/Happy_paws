@@ -1,4 +1,4 @@
-import { Component, NgModule, Pipe } from '@angular/core';
+import { Component, HostListener, NgModule, Pipe } from '@angular/core';
 
 import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
@@ -23,12 +23,7 @@ export class ListaProtectorasComponent {
   listaProtectoras: Protectora[]=[];
   listaProvincias: Provincia[]=[];
   provinciaSeleccionada: string;
-  provinciaSeleccionadaId: number;
-  
-
-
-
-   
+  provinciaSeleccionadaId: number;   
 
    constructor (private _protectoraService:ProtectoraService, _provinciaService:ProvinciaService ) { } 
   
@@ -37,28 +32,13 @@ export class ListaProtectorasComponent {
     this.listadoProvincias();
    }
 
-   listar(){
+   public listar(){
       this._protectoraService.listarProtectora().subscribe(dato => {
         this.listaProtectoras = dato;
         console.log(this.listaProtectoras);
       });
    }
 
-   buscarProtectorasPorProvincia(provinciaSeleccionada: string) {
-    this._protectoraService.listarProtectoraPorProvincia(this.provinciaSeleccionada)
-      .subscribe(data => {
-        Object.assign(this.listaProtectoras, data);
-        this.listaProtectoras = this.listaProtectoras.filter(protectora => protectora.municipio.provincia.provincia === this.provinciaSeleccionada);
-      });
-  }
-
-  // buscarProtectorasPorIdProvincia() {
-  //   this._protectoraService.listarProtectoraPorIdProvincia(this.provinciaSeleccionadaId)
-  //     .subscribe(data => {
-  //       Object.assign(this.listaProtectoras, data);
-  //       this.listaProtectoras = this.listaProtectoras.filter(protectora => protectora.municipio.provincia.provincia === this.provinciaSeleccionada);
-  //     });
-  // }
 
   public listarProtectorasPorIdProvincia(idProvincia: number) {
     this._protectoraService.listarProtectoraPorIdProvincia(idProvincia)
@@ -68,13 +48,16 @@ export class ListaProtectorasComponent {
       });
   }
 
-   public listadoProvincias() {
+   private listadoProvincias() {
     this._protectoraService.listarProvincias()
       .subscribe(data => {
         this.listaProvincias = data;
         console.log(this.listaProvincias);
       });
   }
+
+
+
 
 
    

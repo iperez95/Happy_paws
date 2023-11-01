@@ -11,7 +11,7 @@ const routes: Routes = [
   //animales
   { path: 'animales', component: AnimalesComponent },
   //Protectoras
-  { path: 'protectora', component: ProtectoraComponent },
+  { path: 'protectora/:id', component: ProtectoraComponent },
   { path: 'protectoras', component: ListaProtectorasComponent },
   { path: 'protectora/alta', component: AltaProtectoraComponent },
   

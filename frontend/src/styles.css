@@ -3,16 +3,38 @@
 html, body { height: 100%; width: 95%; margin-right:auto; margin-left:auto;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+select {border-radius: 15px; 
+    background: var(--grey-base-f-5-f-5-f-5, #F5F5F5);
+    width: auto;
+    height:3vh;
+    flex-shrink: 0;}
+
 .custom-btn {
-    background-color: #A6252C;
+    background-color: var(--red-base, #A6252C);
     color: #fff;
-    border-color: #A6252C;
+    border-color: var(--red-base);
 }
 
 .custom-btn:hover {
     background-color: #d3a8aa;
-    border-color: #A6252C;
+    border-color: var(--red-base);
 }
+
+/* .preloader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .4s ease;
+}
+
+.spinner{width: 3rem; height: 3rem} */
+
+
 
 .card{
     margin: 10px;
@@ -21,4 +43,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     transition: all 0.3s ease-in-out;
     background-color: #F5F2F2;
 }
+
+
+
 

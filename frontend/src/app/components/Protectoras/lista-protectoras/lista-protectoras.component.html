@@ -1,10 +1,18 @@
+<!-- Spinner loading -->
+<!-- <div class="preloader-wrapper">
+  <div class="spinner spinner-border text-secondary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+</div> -->
+
+<!-- Buscador de protectoras por provincia -->
 <section>
-  <div class="container.md">
-    <div class="row row-cols-auto gx-3 gy-5">
+  <div class="container.md overflow-hidden">
+    <div class="row row-cols-auto">
       <div class="col-md-auto">
         <select id="selectprovincias" [(ngModel)]="provinciaSeleccionadaId" >
           <option ng-init="provinciaSeleccionadaId = option[0]" *ngFor="let provincia of listaProvincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
-          </select>
+        </select>
       </div>
       <div class="col-sm-auto">
         <button class="custom-btn" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
@@ -16,24 +24,10 @@
   </div>
 </section>
 
-<!-- Buscador de protectoras por provincia -->
-<!-- <section>
-<div class="container.md">
-  <div class="row row-cols-auto gx-3 gy-5">
-    <div class="col-md-auto">
-      <select name="miselect" [(ngModel)]="provinciaSeleccionadaId" >
-        <option *ngFor="let provincia of listaProvincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
-        </select>
-    </div>
-    <div class="col-sm-auto">
-      <button class="btn btn-primary" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
-    </div>
-  </div>
-</div>
-</section> -->
+
 
 <!-- Listado de protectoras -->
-<section class="tarjetas">
+<section class="tarjetas">  
   <div class="container.md">
     <div class="row row-cols-auto gy-5">
       <div class="col-md-4" *ngFor="let protectora of listaProtectoras">

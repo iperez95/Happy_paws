@@ -50,11 +50,12 @@ export class ProtectoraService {
       .pipe(catchError(this.manejarError));
   }
 
-  public obtenerProtectoraPorId(): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/protectora/{id}`)
+  public obtenerProtectoraPorId(idprotectora : number): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/protectora/${idprotectora}`)
       .pipe(catchError(this.manejarError));
   }
 
+  
   
 
  
@@ -73,7 +74,7 @@ export class ProtectoraService {
     let mensajeError = ''
     //Diferenciamos si el error es del servidor o más genérico
     if (e.error instanceof ErrorEvent) {
-      mensajeError = 'A ocurrido un error:' + e.error
+      mensajeError = 'Ha ocurrido un error:' + e.error
     } else {
       mensajeError = `El servicio Rest retorno: Status: ${e.status}, ` +
             `Body: ${e.error}`
