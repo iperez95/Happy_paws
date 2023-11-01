@@ -1,41 +1,40 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, NgModule, Pipe } from '@angular/core';
+
 import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
+import { ProvinciaService } from 'src/app/service/provincia/provincia.service';
 
-import {FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {NgFor, NgIf} from '@angular/common';
-import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
+
+
+
 
 @Component({
   selector: 'app-lista-protectoras',
   templateUrl: './lista-protectoras.component.html',
-  styleUrls: ['./lista-protectoras.component.css']
-  
-  
+  styleUrls: ['./lista-protectoras.component.css'],
+ 
 })
-
 
 
 export class ListaProtectorasComponent {
 
   // //Listado de protectoras
   listaProtectoras: Protectora[]=[];
-  provinciasSeleccionadas: Provincia[] = [];
-  provinciaId: string;
+  listaProvincias: Provincia[]=[];
+  provinciaSeleccionada: string;
+  provinciaSeleccionadaId: number;
   
 
 
 
    
 
-   constructor (private _protectoraService:ProtectoraService ) { } 
+   constructor (private _protectoraService:ProtectoraService, _provinciaService:ProvinciaService ) { } 
   
    ngOnInit():void {
     this.listar();
+    this.listadoProvincias();
    }
 
    private listar(){
@@ -45,29 +44,38 @@ export class ListaProtectorasComponent {
       });
    }
 
-   buscarProtectorasPorProvincia() {
-    this._protectoraService.listarProtectoraPorProvincia(this.provinciaId)
+   buscarProtectorasPorProvincia(provinciaSeleccionada: string) {
+    this._protectoraService.listarProtectoraPorProvincia(this.provinciaSeleccionada)
       .subscribe(data => {
         Object.assign(this.listaProtectoras, data);
-        this.listaProtectoras = this.listaProtectoras.filter(protectora => protectora.municipio.provincia.provincia === this.provinciaId);
+        this.listaProtectoras = this.listaProtectoras.filter(protectora => protectora.municipio.provincia.provincia === this.provinciaSeleccionada);
       });
   }
 
-  //  public listadoProvincias() {
-  //   this._protectoraService.listarProvincias()
+  // buscarProtectorasPorIdProvincia() {
+  //   this._protectoraService.listarProtectoraPorIdProvincia(this.provinciaSeleccionadaId)
   //     .subscribe(data => {
-  //       this.listaProvincias = data;
-  //       console.log(this.listaProvincias);
+  //       Object.assign(this.listaProtectoras, data);
+  //       this.listaProtectoras = this.listaProtectoras.filter(protectora => protectora.municipio.provincia.provincia === this.provinciaSeleccionada);
   //     });
   // }
 
- 
+  public listarProtectorasPorIdProvincia(idProvincia: number) {
+    this._protectoraService.listarProtectoraPorIdProvincia(idProvincia)
+      .subscribe(data => {
+        this.listaProtectoras = data;
+        console.log(this.listaProtectoras);
+      });
+  }
 
-  // provinciaSeleccionada(provincia) {
-  //   this.provinciaId = provincia;
-  //   this.buscarProtectorasPorProvincia(provincia);
-  // } 
+   public listadoProvincias() {
+    this._protectoraService.listarProvincias()
+      .subscribe(data => {
+        this.listaProvincias = data;
+        console.log(this.listaProvincias);
+      });
+  }
 
- 
+
    
 }

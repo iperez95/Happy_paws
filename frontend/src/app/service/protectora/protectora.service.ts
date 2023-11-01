@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Protectora } from 'src/app/entidades/protectora';
+import { Provincia } from 'src/app/entidades/provincia';
 
 
 @Injectable({
@@ -36,6 +37,11 @@ export class ProtectoraService {
   
   public listarProtectoraPorProvincia(provincia: string): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/protectora/listadofront/provincia/${provincia}`)
+      .pipe(catchError(this.manejarError));
+  }
+
+  public listarProtectoraPorIdProvincia(provinciaId: number): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/protectora/porprovincia/${provinciaId}`)
       .pipe(catchError(this.manejarError));
   }
 

@@ -62,7 +62,7 @@ public class ProtectoraController {
     }
 
     // LISTADO PROTECTORAS POR ID PROVINCIA
-    @GetMapping(path="/listadofront/{id}", produces = "application/json")
+    @GetMapping(path="/porprovincia/{id}", produces = "application/json")
     public ResponseEntity<Iterable<Protectora>> buscarPorProvincia (@PathVariable("id") int id){
        
         Iterable<Protectora> listado = protdao.buscarPorIdProvincia(id);
