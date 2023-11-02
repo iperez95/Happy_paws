@@ -9,39 +9,70 @@ import com.tfgunir.happypaws.modelo.entities.Animal;
 
 public interface AnimalRepository extends JpaRepository<Animal, Integer>{
 
-    // Query para buscar por el nombre del municipio
-    @Query("select a from Animal a where a.municipio.municipio= ?1")
-    List<Animal> buscarPorMunicipio(String municipio);
+        // Query para buscar por el nombre del municipio
+        @Query(value = "Select a.* from animales a" +
+                        "inner join municipios m on a.IDMUNICIPIO = m.IDMUNICIPIO" + 
+                        "where m.municipio = ?1", 
+                        nativeQuery = true)
+                List<Animal> buscarPorMunicipio(String municipio);
 
-    //Query para buscar por el nombre de la provincia
-    @Query("select a from Animal a where a.municipio.provincia.provincia= ?1")
-    List<Animal> buscarPorProvincia(String provincia);
+        //Query para buscar por el nombre de la provincia
+        @Query(value = "Select a.* from animales a" +
+                        "inner join municipios m on a.IDMUNICIPIO = m.IDMUNICIPIO" + 
+                        "inner join provincias p on m.IDPROVINCIA = p.IDPROVINCIA" + 
+                        "where p.provincia = ?1", 
+                        nativeQuery = true)
+                List<Animal> buscarPorProvincia(String provincia);
 
-    // Qyuery para buscar todos los animales de una protectora
-    @Query("select a from Animal a where a.protectora.nombre= ?1")
-    List<Animal> buscarPorProtectora(String nombre);    
+        // Query para buscar todos los animales de una protectora
+        @Query(value = "Select a.* from animales a" +
+                        "inner join protectoras p on a.IDPROTECTORA = p.IDPROTECTORA" + 
+                        "where p.nombre = ?1", 
+                        nativeQuery = true)
+                List<Animal> buscarPorProtectora(String nombre);
+        
+        // Query para buscar animales por especie
+        @Query(value = "Select a.* from animales a" +
+                        "inner join atributos_animales aa on a.IDANIMAL = aa.IDANIMAL" + 
+                        "inner join valores_atributos va on aa.IDVALOR = va.IDVALOR" + 
+                        "inner join tipos_atributos ta on va.IDTIPO = ta.IDTIPO" +
+                        "where ta.especie = ?1", 
+                        nativeQuery = true)
+                List<Animal> buscarPorEspecie(String especie);
 
-    // Query para buscar animales por especie
-    @Query("select a from Animal a join a.valoresAtributo v where v.idtipo.especie = ?1")
-    List<Animal> buscarPorEspecie(String especie);
+        // Query para buscar animales por sexo
+        @Query(value = "Select a.* from animales a" +
+                        "inner join atributos_animales aa on a.IDANIMAL = aa.IDANIMAL" + 
+                        "inner join valores_atributos va on aa.IDVALOR = va.IDVALOR" + 
+                        "inner join tipos_atributos ta on va.IDTIPO = ta.IDTIPO" +
+                        "where ta.tipo = 'sexo' and va.valor = ?1", 
+                        nativeQuery = true)
+        List<Animal> buscarPorSexo(String sexo);
 
-    // Query para buscar animales por sexo
-    @Query("select a from Animal a join a.valoresAtributo v"
-            + "where v.idtipo.tipo = 'sexo' and v.valor = ?1")
-    List<Animal> buscarPorSexo(String sexo);
+        //Query para buscar animales por raza
+        @Query(value = "Select a.* from animales a" +
+                        "inner join atributos_animales aa on a.IDANIMAL = aa.IDANIMAL" + 
+                        "inner join valores_atributos va on aa.IDVALOR = va.IDVALOR" + 
+                        "inner join tipos_atributos ta on va.IDTIPO = ta.IDTIPO" +
+                        "where ta.tipo = 'raza' and va.valor = ?1", 
+                        nativeQuery = true)    
+        List<Animal> buscarPorRaza(String raza);
 
-    // Query para buscar animales por raza
-    @Query("select a from Animal a join a.valoresAtributo v"
-            + "where v.idtipo.tipo = 'raza' and v.valor = ?1")
-    List<Animal> buscarPorRaza(String raza);
+        // Query para buscar animales por tamaño
+        @Query(value = "Select a.* from animales a" +
+                        "inner join atributos_animales aa on a.IDANIMAL = aa.IDANIMAL" + 
+                        "inner join valores_atributos va on aa.IDVALOR = va.IDVALOR" + 
+                        "inner join tipos_atributos ta on va.IDTIPO = ta.IDTIPO" +
+                        "where ta.tipo = 'tamaño' and va.valor = ?1", 
+                        nativeQuery = true)
+        List<Animal> buscarPorTamaño(String tamaño);
 
-    // Query para buscar animales por tamaño
-    @Query("select a from Animal a join a.valoresAtributo v" 
-            + "where v.idtipo.tipo = 'tamaño' and v.valor = ?1")
-    List<Animal> buscarPorTamaño(String tamaño);
-
-    // Query para buscar animales por envío
-    @Query("select a from Animal a join a.valoresAtributo v"
-            + "where v.idtipo.tipo = 'envío' and v.valor = ?1")
-    List<Animal> buscarPorEnvío(String envío);
+        // Query para buscar animales por envío
+        @Query(value = "Select a.* from animales a" +
+                        "inner join atributos_animales aa on a.IDANIMAL = aa.IDANIMAL" + 
+                        "inner join valores_atributos va on aa.IDVALOR = va.IDVALOR" + 
+                        "inner join tipos_atributos ta on va.IDTIPO = ta.IDTIPO" +
+                        "where ta.tipo = 'envío' and va.valor = ?1", 
+                        nativeQuery = true)
+                List<Animal> buscarPorEnvío(String envío);
 }
