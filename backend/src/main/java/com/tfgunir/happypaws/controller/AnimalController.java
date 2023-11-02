@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import com.tfgunir.happypaws.modelo.dao.AnimalDao;
 import com.tfgunir.happypaws.modelo.entities.Animal;
@@ -26,12 +25,6 @@ public class AnimalController {
      @Autowired
      private AnimalDao aniDao;
 
-    //      @GetMapping("/listado")
-    // public String listadoAnimales(Model model) {
-    //     model.addAttribute("animal", aniDao.buscarTodos());
-    //     return "animal/listado";
-    // }
-    
     // Controlador para el listado de animales
     @GetMapping(path="/listado", produces = "application/json")
     public ResponseEntity<List<Animal>> listadoAnimales() {
@@ -43,12 +36,6 @@ public class AnimalController {
         return ResponseEntity.notFound().build();
     }
 }
-
-    // @GetMapping("/verUno/{id}")
-    // public String verPorId(Model model, @PathVariable("idanimal") int idanimal) {
-    //     model.addAttribute("animal", aniDao.buscarAnimalId(idanimal));
-    //     return "animal/verUno";
-    // }
 
     // Controlador para ver un animal
     @GetMapping(path="/verUno/{id}", produces = "application/json")
@@ -62,23 +49,6 @@ public class AnimalController {
     }
 }
 
-    // @GetMapping("/alta")
-    // public String altaAnimal() {
-    //     return "animal/alta";
-    // }
-
-    // @PostMapping("/alta")
-    // public String altaAnimal(Animal animal, RedirectAttributes flash) {
-
-    //     if (aniDao.altaAnimal(animal)) {
-    //         flash.addFlashAttribute("mensajeOk", "Animal creado correctamente");
-    //         return "redirect:/animal/listado";
-    //     } else {
-    //         flash.addFlashAttribute("mensajeError", "Error al crear el animal");
-    //         return "redirect:/animal/listado";
-    //     }
-    // }
-
     // Controlador para dar de alta un animal
     @PostMapping(path="/alta", produces = "application/json", consumes = "application/json")
     public ResponseEntity<?> altaAnimal(@RequestBody Animal animal) {
@@ -88,18 +58,6 @@ public class AnimalController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el animal");
     }
 }
-
-    // @PostMapping("/eliminar/{idanimal}")
-    // public String eliminarAnimal(@PathVariable("idanimal") int idanimal, RedirectAttributes flash) {
-
-    //     if (aniDao.borrarAnimal(idanimal)) {
-    //         flash.addFlashAttribute("mensajeOk", "Animal eliminado correctamente");
-    //         return "redirect:/animal/listado/";
-    //     } else {
-    //         flash.addFlashAttribute("mensajeError", "Error al eliminar el animal");
-    //         return "redirect:/animal/listado/";
-    //     }
-    // }
 
     // Controlador para eliminar un animal
     @DeleteMapping(path="/eliminar/{id}", consumes = "application/json")
@@ -111,25 +69,6 @@ public class AnimalController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar el animal");
     }
 }
-
-    // @GetMapping("/modificar/{idanimal}")
-    // public String modificarAnimal(Model model, @PathVariable("idanimal") int idanimal) {
-    //     model.addAttribute("animal", aniDao.buscarAnimalId(idanimal));
-    //     return "/animal/modificar/";
-    // }
-
-    // @PostMapping("/modificar/{idanimal}")
-    // public String modificarAnimal(@PathVariable("idanimal") int idanimal, Animal animal, RedirectAttributes flash) {
-    //     animal.setIdanimal(idanimal);
-    //     if (aniDao.modificarAnimal(animal)) {
-    //         flash.addFlashAttribute("mensajeOk", "Animal editado correctamente");
-    //         return "redirect:/animal/listado/";
-    //     } else {
-    //         flash.addFlashAttribute("mensajeError", "Error al editar el animal");
-    //         return "redirect:/animal/listado/" + idanimal;
-    //     }
-    // }
-
     // Controlador para modificar un animal
     @GetMapping(path="/modificar/{id}", produces = "application/json")
     public ResponseEntity<Animal> obtenerAnimal(@PathVariable("id") int id) {
@@ -151,6 +90,18 @@ public class AnimalController {
     }
 }
 
+    // Controlador para cambiar enabled a un animal
+    @PutMapping(path="/enabled/{id}", consumes = "application/json")    
+    public ResponseEntity<?> enabledAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {    
+
+    animal.setIdanimal(id);
+    if (aniDao.enabledAnimal(animal) == 1) {
+        return ResponseEntity.ok("Animal habilitado correctamente");
+    } else {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al habilitar el animal");
+    }
+}
+
     // Controlador para buscar animales por municipio
     @GetMapping(path="/buscarmunicipio/{municipio}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorMunicipio(@PathVariable("municipio") String municipio) {
@@ -164,35 +115,86 @@ public class AnimalController {
     }
 
     // Controlador para buscar animales por provincia
+    @GetMapping(path="/buscarprovincia/{provincia}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorProvincia(@PathVariable("provincia") String provincia) {
 
-
+        List<Animal> listado = aniDao.buscarPorProvincia(provincia);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Controlador para buscar animales por protectora
+    @GetMapping(path="/buscarprotectora/{nombre}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorProtectora(@PathVariable("nombre") String nombre) {
 
-
+        List<Animal> listado = aniDao.buscarPorProtectora(nombre);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Controlador para buscar animales por especie
+    @GetMapping(path="/buscarespecie/{especie}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorEspecie(@PathVariable("especie") String especie) {
 
-
-
+        List<Animal> listado = aniDao.buscarPorEspecie(especie);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Controlador para buscar animales por sexo
+    @GetMapping(path="/buscarsexo/{sexo}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorSexo(@PathVariable("sexo") String sexo) {
 
-
-
+        List<Animal> listado = aniDao.buscarPorSexo(sexo);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Controlador para buscar animales por raza
+    @GetMapping(path="/buscarraza/{raza}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorRaza(@PathVariable("raza") String raza) {
 
-
-
+        List<Animal> listado = aniDao.buscarPorRaza(raza);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Controlador para buscar animales por tamaño
+    @GetMapping(path="/buscartamaño/{tamaño}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorTamaño(@PathVariable("tamano") String tamaño) {
 
-
-
+        List<Animal> listado = aniDao.buscarPorTamano(tamaño);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Controlador para buscar animales por envío
+    @GetMapping(path="/buscar/porenvio/{envio}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorEnvío(@PathVariable("envio") String envío) {
 
-
-
+        List<Animal> listado = aniDao.buscarPorEnvío(envío);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

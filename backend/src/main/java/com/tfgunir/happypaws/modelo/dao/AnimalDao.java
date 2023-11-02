@@ -38,7 +38,13 @@ public class AnimalDao implements IAnimalDao{
 
     @Override
     public int enabledAnimal(Animal animal) {
-        return 0;
+        try {
+            aniRepo.save(animal);
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override
@@ -67,46 +73,38 @@ public class AnimalDao implements IAnimalDao{
         return aniRepo.buscarPorMunicipio(municipio);
     }
 
-        @Override
+    @Override
     public List<Animal> buscarPorProvincia(String provincia) {
         return aniRepo.buscarPorMunicipio(provincia);
     }
     
-        @Override
+    @Override
     public List<Animal> buscarPorProtectora(String nombre) {
         return aniRepo.buscarPorProtectora(nombre);
     }
 
-        @Override
-        public List<Animal> buscarPorEspecie(String especie) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'buscarPorEspecie'");
+    @Override
+    public List<Animal> buscarPorEspecie(String especie) {
+        return aniRepo.buscarPorEspecie(especie);
+    }
+
+    @Override
+    public List<Animal> buscarPorSexo(String sexo) {
+        return aniRepo.buscarPorSexo(sexo);
+    }
+
+    @Override
+    public List<Animal> buscarPorRaza(String raza) {
+        return aniRepo.buscarPorRaza(raza);
+    }
+
+    @Override
+    public List<Animal> buscarPorTamano(String tamaño) {
+        return aniRepo.buscarPorTamaño(tamaño);
+    }
+
+    @Override
+    public List<Animal> buscarPorEnvío(String envio) {
+        return aniRepo.buscarPorEnvío(envio);
         }
-
-        @Override
-        public List<Animal> buscarPorSexo(String sexo) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'buscarPorSexo'");
-        }
-
-        @Override
-        public List<Animal> buscarPorRaza(String raza) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'buscarPorRaza'");
-        }
-
-        @Override
-        public List<Animal> buscarPorTamano(String tamano) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'buscarPorTamano'");
-        }
-
-        @Override
-        public List<Animal> buscarPorEnvío(String envio) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'buscarPorEnvío'");
-        }
-    
-
-
 }
