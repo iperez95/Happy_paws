@@ -2,8 +2,6 @@ package com.tfgunir.happypaws.modelo.dao;
 
 import java.util.List;
 
-import javax.persistence.Id;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,14 +38,13 @@ public class AnimalDao implements IAnimalDao{
 
     @Override
     public int enabledAnimal(Animal animal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enabledAnimal'");
+        return 0;
     }
 
     @Override
-    public boolean borrarAnimal(int idanimal) {
+    public boolean borrarAnimal(int id) {
         try {
-            aniRepo.deleteById(idanimal);
+            aniRepo.deleteById(id);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +53,7 @@ public class AnimalDao implements IAnimalDao{
     }
 
     @Override
-    public Animal buscarUnAnimal(int id) {
+    public Animal buscarAnimalId(int id) {
         return aniRepo.findById(id).orElse(null);
     }
 
@@ -66,28 +63,50 @@ public class AnimalDao implements IAnimalDao{
     }
 
     @Override
-    public List<Animal> buscarPorProvincia(int IdProvincia) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorProvincia'");
+    public List<Animal> buscarPorMunicipio(String municipio) {
+        return aniRepo.buscarPorMunicipio(municipio);
     }
 
-    @Override
-    public List<Animal> buscarPorMunicipio(int IdMunicipio) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorMunicipio'");
-    }
-
-    @Override
-    public List<Animal> buscarPorProtectora(int IdProtectora) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorProtectora'");
-    }
-
-    @Override
-    public List<Animal> buscarPorAtributos(int valoresAtributo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarPorAtributos'");
+        @Override
+    public List<Animal> buscarPorProvincia(String provincia) {
+        return aniRepo.buscarPorMunicipio(provincia);
     }
     
+        @Override
+    public List<Animal> buscarPorProtectora(String nombre) {
+        return aniRepo.buscarPorProtectora(nombre);
+    }
+
+        @Override
+        public List<Animal> buscarPorEspecie(String especie) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'buscarPorEspecie'");
+        }
+
+        @Override
+        public List<Animal> buscarPorSexo(String sexo) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'buscarPorSexo'");
+        }
+
+        @Override
+        public List<Animal> buscarPorRaza(String raza) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'buscarPorRaza'");
+        }
+
+        @Override
+        public List<Animal> buscarPorTamano(String tamano) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'buscarPorTamano'");
+        }
+
+        @Override
+        public List<Animal> buscarPorEnvío(String envio) {
+            // TODO Auto-generated method stub
+            throw new UnsupportedOperationException("Unimplemented method 'buscarPorEnvío'");
+        }
+    
+
 
 }

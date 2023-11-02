@@ -9,11 +9,17 @@ public interface IAnimalDao {
     boolean modificarAnimal (Animal animal);
     int enabledAnimal (Animal animal);
     boolean borrarAnimal (int idanimal);
-    Animal buscarUnAnimal (int id);
+
+    Animal buscarAnimalId (int idanimal);
     List<Animal> buscarTodos();
-    List<Animal> buscarPorProvincia(int IdProvincia);
-    List<Animal> buscarPorMunicipio (int IdMunicipio);
-    List<Animal> buscarPorProtectora (int IdProtectora);
-    List<Animal> buscarPorAtributos (int valoresAtributo); // ya veremos como hago esto
     
+    List<Animal> buscarPorMunicipio (String municipio);
+    List<Animal> buscarPorProvincia (String provincia);
+    List<Animal> buscarPorProtectora (String nombre);
+
+    List<Animal> buscarPorEspecie (String especie);
+    List<Animal> buscarPorSexo (String sexo);
+    List<Animal> buscarPorRaza (String raza);
+    List<Animal> buscarPorTamano (String tamano);
+    List<Animal> buscarPorEnvío (String envio);
 }
