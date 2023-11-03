@@ -1,152 +1,171 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; width: 95%; margin-right:auto; margin-left:auto;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+  width: 95%;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 
 /* Definicion de variables de colores */
-:root{
-    --red : #A6252C;
-    --grey-background:#F5F2F2;
-    
-    --button-red-text: #FFFFFF;
+:root {
+  --red: #a6252c;
+  --grey-background: #f5f2f2;
 
-    --button-ligth-red-background: #FBE7E8;
-    --button-ligth-red-text: #A30D11;
+  --button-red-text: #ffffff;
 
-    --text-dark: #1A191F;
+  --button-ligth-red-background: #fbe7e8;
+  --button-ligth-red-text: #a30d11;
+
+  --text-dark: #1a191f;
 }
 
-
-h1{
-    color: var(--text-dark);
-text-align: center;
-font-family: Open Sans;
-font-size: 70px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-
+h1 {
+  color: var(--text-dark);
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-h2{
-    color: var(--text-dark);
-text-align: center;
-font-family: Inter;
-font-size: 55px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+h2 {
+  color: var(--text-dark);
+  text-align: center;
+  font-family: Inter;
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-h3{
-    font-family: Open Sans;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+h3 {
+  font-family: Open Sans;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-h4{
-    color: var(--text-dark);
-text-align: center;
-font-family: Inter;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-
+h4 {
+  color: var(--text-dark);
+  text-align: center;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-h5{
-    color: var(--text-dark);
-    text-align: center;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
+h5 {
+  color: var(--text-dark);
+  text-align: center;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-h6{
-    color: var(--text-dark);
-    text-align: center;
-    font-family: Inter;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-
+h6 {
+  color: var(--text-dark);
+  text-align: center;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
-p{
-    color: var(--text-dark);
-font-family: Open Sans;
-font-size: 24px;
-font-style: normal;
-font-weight: 300;
-line-height: 36px; /* 150% */
-
+p {
+  color: var(--text-dark);
+  font-family: Open Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px; /* 150% */
 }
 
-a{
-color: var(--text-dark);
-font-family: Open Sans;
-font-size: 16px;
-font-style: normal;
-font-weight: 300;
-line-height: 36px; /* 150% */
-
+a {
+  color: var(--text-dark);
+  font-family: Open Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px; /* 150% */
 }
 
-span{
-    color: var(--text-dark);
-    font-family: Open Sans;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 36px; /* 150% */
-    
-    }
+span {
+  color: var(--text-dark);
+  font-family: Open Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px; /* 150% */
+}
 
-select {border-radius: 15px; 
-    background: var(--grey-background);
-    width: auto;
-    height:3vh;
-    flex-shrink: 0;}
+select {
+  border-radius: 15px;
+  background: var(--grey-background);
+  width: auto;
+  height: 3vh;
+  flex-shrink: 0;
+}
 
 /* Botones */
 .custom-btn-red-dark {
-    background-color: var(--red);
-    color: #fff;
-    border-color: var(--red);
+  background-color: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
 }
 
 .custom-btn-red-dark:hover {
-    background-color: #d3a8aa;
-    border-color: var(--red);
+  background-color: #d3a8aa;
+  color: var(--text-dark);
+  border: none;
+  border-radius: 8px;
 }
 
-.custom-btn-green{
-    background-color: #EBF9F1;
-    border-color: #EBF9F1;
-    color: #1F9254;
+.custom-btn-red-light {
+  background-color: #fbe7e8;
+  color: #fff;
+  color: #a30d11;
+  border: none;
+  border-radius: 8px;
 }
 
-.custom-btn-green:hover{
-    background-color: #1F9254;
-    border-color: #1F9254;
-    color: #EBF9F1;
+.custom-btn-red-light:hover {
+  background-color: #a30d11;
+  color: #fbe7e8;
+  border: none;
+  border-radius: 8px;
+}
+.custom-btn-green {
+  background-color: #ebf9f1;
+  color: #1f9254;
+  border: none;
+  border-radius: 8px;
 }
 
+.custom-btn-green:hover {
+  background-color: #1f9254;
+  border-color: #1f9254;
+  color: #ebf9f1;
+  border: none;
+  border-radius: 8px;
+}
 
-
-.card{
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: var(--text-dark);
-    transition: all 0.3s ease-in-out;
-    background-color: #F5F2F2;
+.card {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: var(--text-dark);
+  transition: all 0.3s ease-in-out;
+  background-color: #f5f2f2;
 }
 
 /* .preloader-wrapper {
@@ -162,7 +181,3 @@ select {border-radius: 15px;
 }
 
 .spinner{width: 3rem; height: 3rem} */
-
-
-
-
