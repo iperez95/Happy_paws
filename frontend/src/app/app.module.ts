@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
+import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ProvinciasComponent } from './components/provincias/provincias.componen
     ListaProtectorasComponent,
     AltaProtectoraComponent,
     MunicipiosComponent,
-    ProvinciasComponent
+    ProvinciasComponent,
+    DetalleProtectoraComponent
   ],
   imports: [
     MatFormFieldModule,
