@@ -50,8 +50,8 @@ export class ProtectoraService {
       .pipe(catchError(this.manejarError));
   }
 
-  public modificarUnaProtectora (protectora : Protectora): Observable<Object> {
-    return this._httpClient.put(`${this.endpoint}/protectora/gestion/modificar`, protectora)
+  public actualizarProtectora (id:number, protectora : Protectora): Observable<Object> {
+    return this._httpClient.put(`${this.endpoint}/protectora/gestion/modificar/${id}`, protectora)
       .pipe(catchError(this.manejarError));
   }
 

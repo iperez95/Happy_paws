@@ -11,32 +11,33 @@ import { ProtectoraService } from 'src/app/service/protectora/protectora.service
 })
 export class ModificarProtectoraComponent {
 
-
-  // protectoraModificada: Protectora = new Protectora();
-  protectoraAlmacenada: Protectora = new Protectora();
+  protectora: Protectora = new Protectora();
 
   constructor(private _protectoraService: ProtectoraService,  private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.obtenerProtectora(id);
-    }
+  }
 
   onSubmit(){
-    this.modificarProtectora();    
+    this.actualizarProtectora();
   }
 
   obtenerProtectora(id: number) {
     this._protectoraService.obtenerProtectoraPorId(id)
       .subscribe({
-        next: protectora => this.protectoraAlmacenada = protectora,
+        next: protectora => this.protectora = protectora,
         error: error => console.log(error),
         complete: () => console.log('Obtención de protectora realizada')
+        
       })
+      console.log("Protectora Almacenada :" + this.protectora)
   }
 
-  modificarProtectora( ) {
-    this._protectoraService.modificarUnaProtectora(this.protectoraAlmacenada)
+  actualizarProtectora( ) {
+    this.router.navigate
+    this._protectoraService.actualizarProtectora(this.protectora.idprotectora, this.protectora)
       .subscribe({
         next: dato => console.log(dato),
         error: error => console.log(error),

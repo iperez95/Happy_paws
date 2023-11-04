@@ -46,7 +46,6 @@ public class ProtectoraController {
             return ResponseEntity.ok(p);
         else
             return ResponseEntity.notFound().build();
-      
     }
 
     // LISTADO PROTECTORAS
@@ -107,16 +106,23 @@ public class ProtectoraController {
 
     //TODO DAV comprobar que solo el usuario que gestiona la protectora hacer esto
     // MODIFICAR PROTECTORA
-    @PutMapping(path="/gestion/modificar", consumes = "application/json")
-    public ResponseEntity<Protectora> modificarProtectora(@RequestBody Protectora protectoraRecibida) {
-        if (protectoraRecibida != null) {
-            System.out.print("Protectora recibida: " + protectoraRecibida);
-            protdao.actualizarProtectora(protectoraRecibida);
-            return ResponseEntity.ok(protectoraRecibida);
-        }
-        else {
+    @PutMapping(path="/gestion/modificar/{id}", consumes = "application/json")
+    public ResponseEntity<Protectora> modificarUnaProtectora(@PathVariable("id")int id, @RequestBody Protectora detalleProtectora){ 
+        
+        System.out.println("Buscando protectora con id: "+id);
+        Protectora protectora = protdao.buscarProtectoraId(id);
+
+        protectora.setNombre(detalleProtectora.getNombre());
+        protectora.setDireccion(detalleProtectora.getDireccion());
+        protectora.setDescripcion(detalleProtectora.getDescripcion());
+        protectora.setEmail(detalleProtectora.getEmail());
+
+        Protectora protectoraActualizada = protdao.actualizarProtectora(protectora);
+
+        if (protectoraActualizada!=null)
+            return ResponseEntity.ok(protectoraActualizada);
+        else
             return ResponseEntity.notFound().build();
-        }         
     }
 
 
