@@ -1,6 +1,4 @@
-
-
-  import { Component } from '@angular/core';
+   import { Component } from '@angular/core';
   import { Protectora } from 'src/app/entidades/protectora';
   import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
   import { Router } from '@angular/router';
@@ -17,10 +15,10 @@
     constructor(private _protectoraService : ProtectoraService, private router: Router) { }
 
     IrListadoProtectoras(){
-      this.router.navigate(['/protectoras/listado']);
+      this.router.navigate(['/protectora/todas']);
     }
 
-    guardarProtectra(){
+    guardarProtectora(){
       this._protectoraService.altaProtectora(this.protectora)
       .subscribe({
         next: response => console.log(response),
@@ -30,7 +28,7 @@
     }
     
     onSubmit(){
-     this.guardarProtectra();
+     this.guardarProtectora();
     }
     
   }
