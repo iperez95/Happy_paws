@@ -19,11 +19,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
 import { ModificarProtectoraComponent } from './components/Protectoras/modificar-protectora/modificar-protectora.component';
-import { GestionProtectoraComponent } from './components/Protectoras/gestion-protectora/gestion-protectora.component';
+import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
+
 
 @NgModule({
   declarations: [
@@ -41,12 +43,14 @@ import { GestionProtectoraComponent } from './components/Protectoras/gestion-pro
     ProvinciasComponent,
     DetalleProtectoraComponent,
     ModificarProtectoraComponent,
-    GestionProtectoraComponent
+    GestionProtectoraComponent,
+  
   ],
   imports: [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatTabsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

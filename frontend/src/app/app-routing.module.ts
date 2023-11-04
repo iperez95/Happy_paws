@@ -8,7 +8,7 @@ import { ListaProtectorasComponent } from './components/Protectoras/lista-protec
 import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
 import { ModificarProtectoraComponent } from './components/Protectoras/modificar-protectora/modificar-protectora.component';
-import { GestionProtectoraComponent } from './components/Protectoras/gestion-protectora/gestion-protectora.component';
+import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
 
 const routes: Routes = [
   //animales

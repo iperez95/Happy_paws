@@ -85,7 +85,7 @@ h6 {
 p {
   color: var(--text-dark);
   font-family: Open Sans;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 300;
   line-height: 36px; /* 150% */
@@ -94,7 +94,7 @@ p {
 a {
   color: var(--text-dark);
   font-family: Open Sans;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 300;
   line-height: 36px; /* 150% */
@@ -103,7 +103,7 @@ a {
 span {
   color: var(--text-dark);
   font-family: Open Sans;
-  font-size: 16px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 300;
   line-height: 36px; /* 150% */
@@ -113,7 +113,7 @@ select {
   border-radius: 15px;
   background: var(--grey-background);
   width: auto;
-  height: 3vh;
+  height: 4vh;
   flex-shrink: 0;
 }
 
@@ -157,16 +157,5 @@ select {
   background-color: #f5f2f2;
 }
 
-/* .preloader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .4s ease;
-}
 
-.spinner{width: 3rem; height: 3rem} */
+
