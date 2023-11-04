@@ -21,6 +21,13 @@ public class UsuarioRestController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    /**
+     * This method receives a Usuario object and returns a ResponseEntity with the created Usuario object.
+     * This endpoint is used for user registration.
+     * @param usuario
+     * @return
+     */
     @PostMapping
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario) {
         try {

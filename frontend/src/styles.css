@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; width: 95%; margin-right:auto; margin-left:auto;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; width: 100%; margin-right:auto; margin-left:auto;}
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 select {border-radius: 15px; 
     background: var(--grey-base-f-5-f-5-f-5, #F5F5F5);
@@ -19,6 +19,7 @@ select {border-radius: 15px;
     background-color: #d3a8aa;
     border-color: var(--red-base);
 }
+
 
 /* .preloader-wrapper {
     position: fixed;
