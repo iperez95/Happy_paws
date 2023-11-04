@@ -10,6 +10,8 @@ body {
   margin-bottom: 50vh;
 }
 
+.mat-tab-body-content { overflow: hidden!important}
+
 
 /* Definicion de variables de colores */
 :root {

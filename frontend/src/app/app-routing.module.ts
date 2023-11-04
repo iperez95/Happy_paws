@@ -3,11 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AnimalesComponent } from './components/animales/animales.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
-import { ModificarProtectoraComponent } from './components/Protectoras/modificar-protectora/modificar-protectora.component';
+import { ModificarProtectoraComponent } from './components/Protectoras/gestion/modificar-protectora/modificar-protectora.component';
 import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
 
 const routes: Routes = [
