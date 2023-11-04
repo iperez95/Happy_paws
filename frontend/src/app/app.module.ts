@@ -13,7 +13,7 @@ import { ProtectoraComponent } from './components/Protectoras/protectora/protect
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,6 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
+import { ModificarProtectoraComponent } from './components/Protectoras/modificar-protectora/modificar-protectora.component';
+import { GestionProtectoraComponent } from './components/Protectoras/gestion-protectora/gestion-protectora.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { DetalleProtectoraComponent } from './components/Protectoras/detalle-pro
     AltaProtectoraComponent,
     MunicipiosComponent,
     ProvinciasComponent,
-    DetalleProtectoraComponent
+    DetalleProtectoraComponent,
+    ModificarProtectoraComponent,
+    GestionProtectoraComponent
   ],
   imports: [
     MatFormFieldModule,

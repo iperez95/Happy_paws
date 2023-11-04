@@ -120,45 +120,33 @@ select {
 /* Botones */
 .custom-btn-red-dark {
   background-color: var(--red);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  color: #fff; 
 }
 
 .custom-btn-red-dark:hover {
   background-color: #d3a8aa;
   color: var(--text-dark);
-  border: none;
-  border-radius: 8px;
 }
 
 .custom-btn-red-light {
   background-color: #fbe7e8;
   color: #fff;
   color: #a30d11;
-  border: none;
-  border-radius: 8px;
 }
 
 .custom-btn-red-light:hover {
   background-color: #a30d11;
   color: #fbe7e8;
-  border: none;
-  border-radius: 8px;
 }
 .custom-btn-green {
   background-color: #ebf9f1;
   color: #1f9254;
-  border: none;
-  border-radius: 8px;
 }
 
 .custom-btn-green:hover {
   background-color: #1f9254;
   border-color: #1f9254;
   color: #ebf9f1;
-  border: none;
-  border-radius: 8px;
 }
 
 .card {
