@@ -18,6 +18,7 @@ export class NavComponent {
     private authService: AuthService, 
     private axiosService: AxiosService, 
     private usuarioService: UsuarioService) { }
+
   ngOnInit(): void {
     this.authService.loggedIn$.subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
@@ -26,6 +27,9 @@ export class NavComponent {
     this.user = this.usuarioService.getUserData();
   }
 
+  ngAfterContentChecked()	{
+    this.user = this.usuarioService.getUserData();
+  }
 
   openDialog() {
     this.loginService.openDialog();
