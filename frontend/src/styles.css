@@ -16,97 +16,15 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
   --text-dark: #1a191f;
 }
 
-h1 {
-  color: var(--text-dark);
-  text-align: center;
-  font-family: Open Sans;
-  font-size: 70px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.custom-btn {
+  background-color: var(--red-base, #A6252C);
+  color: #fff;
+  border-color: var(--red-base);
 }
 
-h2 {
-  color: var(--text-dark);
-  text-align: center;
-  font-family: Inter;
-  font-size: 55px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-h3 {
-  font-family: Open Sans;
-  font-size: 28px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
-h4 {
-  color: var(--text-dark);
-  text-align: center;
-  font-family: Inter;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-h5 {
-  color: var(--text-dark);
-  text-align: center;
-  font-family: Inter;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-h6 {
-  color: var(--text-dark);
-  text-align: center;
-  font-family: Inter;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-
-p {
-  color: var(--text-dark);
-  font-family: Open Sans;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 36px; /* 150% */
-}
-
-a {
-  color: var(--text-dark);
-  font-family: Open Sans;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 36px; /* 150% */
-}
-
-span {
-  color: var(--text-dark);
-  font-family: Open Sans;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 36px; /* 150% */
-}
-
-select {
-  border-radius: 15px;
-  background: var(--grey-background);
-  width: auto;
-  height: 4vh;
-  flex-shrink: 0;
+.custom-btn:hover {
+  background-color: #d3a8aa;
+  border-color: var(--red-base);
 }
 
 /* Botones */
@@ -131,36 +49,4 @@ select {
   background-color: #a30d11;
   color: #fbe7e8;
 }
-.custom-btn-green {
-  background-color: #ebf9f1;
-  color: #1f9254;
-}
-
-.custom-btn-green:hover {
-  background-color: #1f9254;
-  border-color: #1f9254;
-  color: #ebf9f1;
-}
-
-/* .preloader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .4s ease;
-*/
-
-.card {
-  margin: 10px;
-  border-radius: 10px;
-  box-shadow: var(--text-dark);
-  transition: all 0.3s ease-in-out;
-  background-color: #f5f2f2;
-}
-
-
 
