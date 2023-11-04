@@ -15,10 +15,10 @@
         </select>
       </div>
       <div class="col-sm-auto">
-        <button class="custom-btn" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
+        <button class="btn custom-btn-red-dark p-2 " (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
       </div>
       <div class="col-sm-auto">
-        <button class="custom-btn" (click)="listar()">Ver todas</button>
+        <button class="btn custom-btn-red-dark p-2 " (click)="listar()">Ver todas</button>
       </div>
     </div>
   </div>
@@ -30,15 +30,24 @@
 <section class="tarjetas">  
   <div class="container.md">
     <div class="row row-cols-auto gy-5">
-      <div class="col-md-4" *ngFor="let protectora of listaProtectoras">
+      <div class="col-md-3" *ngFor="let protectora of listaProtectoras">
         <div class="card h-100"  >
-          <a href="/protectora/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top" alt="{{protectora.nombre}}"></a>
+          <a href="/protectora/detalle/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top" alt="{{protectora.nombre}}"></a>
           <div class="card-body">
-            <h5 class="card-title">{{protectora.nombre}}</h5>
-              <div class="row ">
-                <div class="col-md-auto "><p class="card-text">{{protectora.municipio.provincia.provincia}}</p></div>
-                <div class="col"><img class ="icono" src="assets/images/protectora/find.png" alt="icono find protectora"></div>
+            <div>
+              <h5 class="card-title fw-bold d-flex justify-content-start">{{protectora.nombre}}</h5>
+            </div>
+            <div class="row row-cols-auto ">
+              <div class="col-md-auto d-flex justify-content-start">
+                <h6 class="card-text mt-md-3">{{protectora.municipio.provincia.provincia}}</h6>
               </div>
+              <div class="col">
+                <img class ="icono" src="assets/images/protectora/find.png" alt="icono find protectora">
+              </div>
+              <div class="col">
+                <button (click)="verDetallesProtectora(protectora.idprotectora)" class="btn custom-btn-red-dark">Ver detalles</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
