@@ -2,10 +2,8 @@ package com.tfgunir.happypaws.configuracion;
 
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,7 +14,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -35,6 +32,10 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 
     private UsuarioAuthProvider usuarioAuthProvider;
 
+    /**
+     * This method registers the authentication provider that will be used to validate users.
+     * Possible @DELETE because we are using JWT.
+     */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
@@ -45,6 +46,12 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
                                         "where u.email = ?");
     }
 
+    /**
+     * This method registers a filter that intercepts incoming requests and validates the JWT token in the Authorization header.
+     * @param http
+     * @return
+     * @throws Exception
+     */
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
             .addFilterBefore(new JwtAuthFilter(usuarioAuthProvider), BasicAuthenticationFilter.class)
@@ -71,6 +78,12 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
+    /**
+     * This method registers a CORS filter that allows all requests from localhost:4200.
+     * 
+     * Check if this method is necessary or the one below.
+     * @return
+     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -83,6 +96,13 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
         return source;
     }
 
+    /**
+     * This method registers a CORS filter that allows all requests from localhost:4200.
+     * So in the browser we can access the API from Angular.
+     * 
+     * Check if this method is necessary or the one above.
+     * @return
+     */
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

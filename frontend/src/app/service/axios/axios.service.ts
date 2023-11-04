@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import axios from 'axios';
 
 @Injectable({
@@ -22,6 +23,17 @@ export class AxiosService {
     }
   }
 
+  readToken(): any {
+    const token = this.getAuthToken();
+
+    if (token) {
+      const helper = new JwtHelperService();
+      return helper.decodeToken(token);
+    }
+
+    return null;
+  }
+
   request(method: string, url: string, data: any): Promise<any> {
     let headers = {};
 
@@ -39,5 +51,9 @@ export class AxiosService {
     }).then(response => {
       return response;
     })
+  }
+  
+  removeAuthToken(): void {
+    window.localStorage.removeItem('auth_token');
   }
 }
