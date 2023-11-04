@@ -16,8 +16,8 @@
                         <div class="col-md ">
                             <a>Email: {{protectora.email}}</a>
                         </div>
-                        <div class="col-md ">
-                            <a href="/protectora/gestion/modificar/{{protectora.idprotectora}}">Editar informacion</a>
+                        <div class=" pt-3 col-md ">
+                            <button (click)="actualizarProtectora(protectora.idprotectora)" class="btn custom-btn-red-dark p-2 ">Modificar Datos</button>        
                         </div>
                     </div>
                 </div>
@@ -25,3 +25,14 @@
         </div>
     </div>
 </section>
+
+<section>
+    <mat-tab-group dynamicHeight color="warn" animationDuration="0ms">
+        <mat-tab label="Animales"><app-lista-protectoras></app-lista-protectoras></mat-tab>
+        <mat-tab label="Peticiones">Aqui van las Peticiones de Adopción de esta protectora</mat-tab>
+        <mat-tab label="Adopciones">Aqui van las adopciones completadas de esta protectora</mat-tab>
+    </mat-tab-group>
+</section>
+
+
+

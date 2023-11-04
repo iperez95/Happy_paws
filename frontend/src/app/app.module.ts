@@ -9,7 +9,6 @@ import { ContentComponent } from './components/content/content.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { AnimalesComponent } from './components/animales/animales.component';
-import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
@@ -19,11 +18,13 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
-import { ModificarProtectoraComponent } from './components/Protectoras/modificar-protectora/modificar-protectora.component';
-import { GestionProtectoraComponent } from './components/Protectoras/gestion-protectora/gestion-protectora.component';
+import { ModificarProtectoraComponent } from './components/Protectoras/gestion/modificar-protectora/modificar-protectora.component';
+import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
+
 
 @NgModule({
   declarations: [
@@ -34,19 +35,20 @@ import { GestionProtectoraComponent } from './components/Protectoras/gestion-pro
     HomeComponent,
     AnimalesComponent,
     LoginModalComponent,
-    ProtectoraComponent,
     ListaProtectorasComponent,
     AltaProtectoraComponent,
     MunicipiosComponent,
     ProvinciasComponent,
     DetalleProtectoraComponent,
     ModificarProtectoraComponent,
-    GestionProtectoraComponent
+    GestionProtectoraComponent,
+  
   ],
   imports: [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatTabsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
