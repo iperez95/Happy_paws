@@ -5,6 +5,7 @@ export class Protectora {
     direccion: string;
     urlLogo: string;
     email: string;
+    telefono: string;
     descripcion: string;
   
 

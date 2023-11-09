@@ -5,16 +5,19 @@
                 <div class="col-md-2">
                     <img class="img-fluid" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
                 </div>
-                <div class="row row-cols-auto ">
+                <div class="row row-cols-auto m-3 ">
                     <div class="col-md">
                         <div class="col-md">
                             <h3>{{protectora.nombre}}</h3>
                         </div>
-                        <div class="col-md ">
+                        <div class="col-md mt-3 ">
                             <a>Dirección: {{protectora.direccion}}</a>
                         </div>
-                        <div class="col-md ">
+                        <div class="col-md mt-3 ">
                             <a>Email: {{protectora.email}}</a>
+                        </div>
+                        <div class="col-md mt-3">
+                            <a>Teléfono: {{protectora.telefono}}</a>
                         </div>
                         <div class=" pt-3 col-md ">
                             <button (click)="actualizarProtectora(protectora.idprotectora)" class="btn custom-btn-red-dark p-2 ">Modificar Datos</button>        
@@ -26,7 +29,7 @@
     </div>
 </section>
 
-<section>
+<section class="mt-5">
     <mat-tab-group dynamicHeight color="warn" animationDuration="0ms">
         <mat-tab label="Animales"><app-lista-protectoras></app-lista-protectoras></mat-tab>
         <mat-tab label="Peticiones">Aqui van las Peticiones de Adopción de esta protectora</mat-tab>
