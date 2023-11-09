@@ -36,12 +36,18 @@ export class ModificarProtectoraComponent {
   }
 
   actualizarProtectora( ) {
-    this.router.navigate
     this._protectoraService.actualizarProtectora(this.protectora.idprotectora, this.protectora)
       .subscribe({
         next: dato => console.log(dato),
         error: error => console.log(error),
-        complete: () => console.log('Modificación realizada')
+        complete: () => {
+          console.log('Modificación realizada');
+          this.IrDetalleProtectora();
+        }
       })
+  }
+
+  IrDetalleProtectora(){
+    this.router.navigate(['/protectora/gestion/' + this.protectora.idprotectora]);
   }
 }

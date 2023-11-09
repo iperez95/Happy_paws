@@ -9,11 +9,19 @@
   <div class="mt-md-2" *ngIf="protectora">
     <div class="row d-flex justify-content-center">
       <div class="datos col-md-8 p-5 " >
+
         <div class="col-md ">
           <h3>Localizacion</h3>
           <hr class="line-red" />
-          <a>{{protectora.direccion}}</a>          
+          <div class="col-md ">
+            <a>Direccion: {{protectora.direccion}}</a>
+          </div>
+          <div class="col-md mt-3 ">
+            <a>Provincia: {{protectora.municipio.provincia.provincia}}</a>   
+          </div>        
+                     
         </div>
+
         <div class="col-md mt-sm-5">
           <h3 class="">Descripción</h3>
           <hr class="line-red" />

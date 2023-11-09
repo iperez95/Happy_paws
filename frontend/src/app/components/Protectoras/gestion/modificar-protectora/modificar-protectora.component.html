@@ -1,22 +1,23 @@
-<p>modificar-protectora works!</p>
-
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Modificar protectora: {{protectora.idprotectora}}</h3>
+    <h3 class="text-center mb-5">Modificar protectora</h3>
     <form (ngSubmit)="onSubmit()">
-        <div>
+        <div class="col-md-3">
+            <img class="img-fluid" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
+        </div>
+        <div class="mt-4">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" [(ngModel)]="protectora.nombre" name="nombre" id="nombre" required>
         </div>
-        <div >
+        <div class="mt-4">
             <label for="direccion">Dirección</label>
             <input type="text" class="form-control" [(ngModel)]="protectora.direccion" name="direccion" id="direccion" required>
         </div>
-        <div>
+        <div class="mt-4">
             <label for="descripcion">Descripcion de la protectora</label>
             <textarea rows="4" cols="50" maxlength="1000" type="text-area" class="form-control" [(ngModel)]="protectora.descripcion" name="descripcion" id="descripcion" required></textarea>
         </div>
-        <div>
-            <button  type="submit" class="btn custom-btn-red-dark">Modificar protectora a</button>
+        <div class="mt-4">
+            <button  type="submit" class="btn custom-btn-red-dark">Salvar cambios</button>
         </div>        
     </form>
 </div>
