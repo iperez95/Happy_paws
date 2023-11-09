@@ -112,6 +112,7 @@ public class ProtectoraController {
         protectora.setDireccion(detalleProtectora.getDireccion());
         protectora.setDescripcion(detalleProtectora.getDescripcion());
         protectora.setEmail(detalleProtectora.getEmail());
+        protectora.setTelefono(detalleProtectora.getTelefono());
 
         Protectora protectoraActualizada = protdao.actualizarProtectora(protectora);
 
