@@ -1,14 +1,20 @@
-<!-- contact-form.component.html -->
-<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" formControlName="name" />
-  
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" formControlName="email" />
-  
-    <label for="message">Mensaje:</label>
-    <textarea id="message" formControlName="message"></textarea>
-  
-    <button type="submit" [disabled]="!contactForm.valid">Enviar</button>
-  </form>
-  
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Contacta con HappyPaws</h3>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mt-5">
+            <label class="col-md-2" for="name">Nombre:</label>
+            <input type="text" id="name" formControlName="name" />
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-2" for="email">Correo electrónico:</label>
+            <input type="email" id="email" formControlName="email" />
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-2" for="message">Mensaje:</label>
+            <textarea id="message" formControlName="message"></textarea>
+        </div>
+        <div>
+            <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!contactForm.valid">Enviar</button>
+        </div>        
+    </form>
+</div>

@@ -32,22 +32,22 @@ public class HomeController {
         return "menu";
     }
 
-	  @PostMapping("/contacto")
-    public String handleFormSubmission(@RequestBody ContactForm form) {
-        // Validar el formulario (puedes agregar lógica de validación aquí)
+	@PostMapping("/contacto")
+    public String manejoEnvioformulario(@RequestBody ContactForm form) {
+        // Aquí podemos añadir la validacion del back del formulario.
 
-        // Procesar el formulario y enviar el correo electrónico
+        // Esto proceso y envía el formulario
         sendEmail(form);
 
         return "¡Formulario enviado con éxito!";
     }
 
+	//Método para enviar el formulario al email de HappyPaws
     private void sendEmail(ContactForm form) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo("happypawsunir@gmail.com");
         message.setSubject("Nuevo mensaje de contacto de " + form.getName());
         message.setText("Correo electrónico: " + form.getEmail() + "\n\n" + form.getMessage());
-
         emailSender.send(message);
     }
 
