@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
+import com.tfgunir.happypaws.modelo.entities.ContactoFormulario;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
+import com.tfgunir.happypaws.modelo.service.EmailService;
 
 @RestController
 // TODO DAV comprobar si realmente es necesario el CrossOrigin
@@ -31,7 +33,10 @@ import com.tfgunir.happypaws.modelo.entities.Protectora;
 public class ProtectoraController {
 
     @Autowired
-    ProtectoraDao protdao;    
+    ProtectoraDao protdao;
+
+    @Autowired
+    private EmailService emailService;    
 
     // DETALLE PROTECTORA 
     @GetMapping(path="/{id}", produces = "application/json")
@@ -200,7 +205,7 @@ public class ProtectoraController {
             return ResponseEntity.notFound().build();        
     }
 
-  
+
    
     
     

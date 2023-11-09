@@ -8,6 +8,7 @@ import { AltaProtectoraComponent } from './components/Protectoras/alta-protector
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
 import { ModificarProtectoraComponent } from './components/Protectoras/gestion/modificar-protectora/modificar-protectora.component';
 import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
 
 const routes: Routes = [
   //animales
@@ -20,12 +21,15 @@ const routes: Routes = [
   { path: 'protectora/gestion/modificar/:id', component: ModificarProtectoraComponent},
 
   
+
   //Login
   { path: 'login', component: LoginModalComponent },
   //Home - Inicio
+  { path: 'contacto', component: ContactoComponent},
   { path: '', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent }
+  
 ];
 
 @NgModule({

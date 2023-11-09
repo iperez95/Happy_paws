@@ -24,6 +24,8 @@ import { ProvinciasComponent } from './components/provincias/provincias.componen
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
 import { ModificarProtectoraComponent } from './components/Protectoras/gestion/modificar-protectora/modificar-protectora.component';
 import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+
 
 
 @NgModule({
@@ -42,6 +44,7 @@ import { GestionProtectoraComponent } from './components/Protectoras/gestion/ges
     DetalleProtectoraComponent,
     ModificarProtectoraComponent,
     GestionProtectoraComponent,
+    ContactoComponent,
   
   ],
   imports: [
@@ -53,6 +56,7 @@ import { GestionProtectoraComponent } from './components/Protectoras/gestion/ges
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     RouterModule.forRoot([
       { path: 'animales', component: AnimalesComponent },
