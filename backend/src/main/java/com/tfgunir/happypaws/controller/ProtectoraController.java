@@ -206,11 +206,11 @@ public class ProtectoraController {
     }
 
     // FORMULARIO CONTACTO PROTECTORA
-    @PostMapping("/contacto")
-    public String manejoEnvioformulario(@RequestBody ContactForm form, int idProtectora) {
+    @PostMapping("/contacto/{idProtectora}")
+    public String manejoEnvioformulario(@RequestBody ContactForm form, @PathVariable int idProtectora) {
         // Aquí podemos añadir la validacion del back del formulario.
 
-        // Esto proceso y envía el formulario
+        // Llama al método para enviar el forulario a la protectora por su id
         sendEmail(form,idProtectora);
 
         return "¡Formulario enviado con éxito!";

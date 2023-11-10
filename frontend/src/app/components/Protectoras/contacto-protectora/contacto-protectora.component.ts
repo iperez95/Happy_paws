@@ -44,7 +44,7 @@ export class ContactoProtectoraComponent {
     if (this.contactForm.valid) {
       const formData = this.contactForm.value;
       const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.protectoraContactService.sendProtectoraContactForm(formData, id).subscribe(
+      this.protectoraContactService.sendEmailToProtectora(id, formData).subscribe(
         (response) => {
           console.log(response); // Aqui poner la respuesta del Servidor
         },

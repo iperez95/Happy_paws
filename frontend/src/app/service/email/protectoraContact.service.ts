@@ -18,13 +18,13 @@ export class ProtectoraContactService {
 
   constructor(private _httpClient: HttpClient, private _protectoraService : ProtectoraService) {}
 
-  public contactProtectora (id:number, protectora : Protectora): Observable<Object> {
-    return this._httpClient.put(`${this.endpoint}/protectora/contacto/${id}`, protectora)
-      .pipe(catchError(this.manejarError));
-  }
+  // public contactProtectora (id:number, protectora : Protectora): Observable<Object> {
+  //   return this._httpClient.put(`${this.endpoint}/protectora/contacto/${id}`, protectora)
+  //     .pipe(catchError(this.manejarError));
+  // }
 
-  sendProtectoraContactForm(formData: any, id:number): Observable<any> {
-    return this._httpClient.post(`${this._protectoraService}/protectora/contacto`, formData);
+  sendEmailToProtectora(id: number, formData: any): Observable<any> {
+    return this._httpClient.post(`${this.endpoint}/protectora/contacto/${id}`, formData);
   }
   
     /**
