@@ -2,6 +2,7 @@
   import { Protectora } from 'src/app/entidades/protectora';
   import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
   import { Router } from '@angular/router';
+import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
   @Component({
     selector: 'app-alta-protectora',
@@ -10,9 +11,17 @@
   })
   export class AltaProtectoraComponent {
 
+    altaForm: FormGroup;
     protectora : Protectora = new Protectora();
 
-    constructor(private _protectoraService : ProtectoraService, private router: Router) { }
+    constructor(private fb: FormBuilder, private _protectoraService : ProtectoraService, private router: Router) {
+      this.altaForm = this.fb.group({
+        nombre: ['', Validators.required],
+        direccion: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        descripcion: ['', Validators.required],
+      });
+     }
 
     IrListadoProtectoras(){
       this.router.navigate(['/protectora/todas']);
@@ -28,8 +37,15 @@
     }
     
     onSubmit(){
-     this.guardarProtectora();
-    }
-    
-  }
+      if (this.altaForm.valid) {        
+        this.protectora.nombre = this.altaForm.get('nombre')?.value;
+        this.protectora.direccion = this.altaForm.get('direccion')?.value;
+        this.protectora.email = this.altaForm.get('email')?.value;
+        this.protectora.descripcion = this.altaForm.get('descripcion')?.value;
+        this.guardarProtectora();
+        this.IrListadoProtectoras();
+      }
+    }  
+
+}
 

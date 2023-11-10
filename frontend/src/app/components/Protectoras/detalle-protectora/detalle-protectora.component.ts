@@ -23,7 +23,7 @@ export class DetalleProtectoraComponent {
     this.id = this.route.snapshot.params['id'];
     this.protectora = new Protectora();
     this._protectoraService.obtenerProtectoraPorId(this.id).subscribe( (data: Protectora) => {
-      this.protectora = data;
+    this.protectora = data;
     });
   }
 
@@ -37,6 +37,10 @@ export class DetalleProtectoraComponent {
           this.listaProvincias = data;
           console.log(this.listaProvincias);
         });
+    }
+
+    public enviarMensaje (){
+      this.router.navigate(['protectora/contacto/', this.id]);
     }
 
 

@@ -25,6 +25,7 @@ import { DetalleProtectoraComponent } from './components/Protectoras/detalle-pro
 import { ModificarProtectoraComponent } from './components/Protectoras/gestion/modificar-protectora/modificar-protectora.component';
 import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
 import { ContactoComponent } from './components/contacto/contacto.component';
+import { ContactoProtectoraComponent } from './components/Protectoras/contacto-protectora/contacto-protectora.component';
 
 
 
@@ -45,6 +46,7 @@ import { ContactoComponent } from './components/contacto/contacto.component';
     ModificarProtectoraComponent,
     GestionProtectoraComponent,
     ContactoComponent,
+    ContactoProtectoraComponent,
   
   ],
   imports: [

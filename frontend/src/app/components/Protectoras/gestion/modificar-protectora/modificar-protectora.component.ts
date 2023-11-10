@@ -22,6 +22,7 @@ export class ModificarProtectoraComponent {
 
   onSubmit(){
     this.actualizarProtectora();
+    this.IrDetalleProtectora();
   }
 
   obtenerProtectora(id: number) {
