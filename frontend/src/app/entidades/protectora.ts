@@ -5,8 +5,9 @@ export class Protectora {
     direccion: string;
     urlLogo: string;
     email: string;
-    telefono: string;
+    telefono: number;
     descripcion: string;
+    
   
 
     municipio: {
@@ -17,6 +18,7 @@ export class Protectora {
           provincia: string;
         };
       };
+      
       provincia: {
         idprovincia: number;
         provincia: string;

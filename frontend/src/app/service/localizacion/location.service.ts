@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
-
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProvinciaService {
+export class LocationService {
 
+    
   //URL del servicio Rest
   readonly endpoint = 'http://localhost:8087';
 
@@ -28,6 +27,16 @@ export class ProvinciaService {
     return this._httpClient.get(`${this.endpoint}/provincia/todas`)
       .pipe(catchError(this.manejarError));
   }
+
+  public listarMunicipiosDeUnaProvincia(idProvincia: number): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/municipiosDeProvincia/${idProvincia}`)
+      .pipe(catchError(this.manejarError));
+  }
+
+//   public listarMunicipiosDeUnaProvincia(idProvincia:number): Observable<any> {
+//     return this._httpClient.get(`${this.endpoint}/municipiosDeProvincia/${idProvincia}`)
+//       .pipe(catchError(this.manejarError));
+//   }
 
   /**
    * Método que maneja los posibles errores de las llamadas al servicio rest
@@ -52,5 +61,5 @@ export class ProvinciaService {
   ngOnInit() {
 
   }
-  
+ 
 }
