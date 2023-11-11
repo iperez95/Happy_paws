@@ -50,3 +50,10 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #fbe7e8;
 }
 
+input, textarea{
+  background-color: rgb(226, 226, 226);
+  border: none;
+  min-height: 2vw;
+  width: 100%;
+}
+

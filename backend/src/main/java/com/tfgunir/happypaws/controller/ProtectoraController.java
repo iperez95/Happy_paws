@@ -8,6 +8,8 @@ import java.nio.file.Files;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
+import com.tfgunir.happypaws.modelo.entities.ContactForm;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
 
@@ -31,7 +33,10 @@ import com.tfgunir.happypaws.modelo.entities.Protectora;
 public class ProtectoraController {
 
     @Autowired
-    ProtectoraDao protdao;    
+    ProtectoraDao protdao;
+
+    @Autowired
+    private JavaMailSender emailSender; 
 
     // DETALLE PROTECTORA 
     @GetMapping(path="/{id}", produces = "application/json")
@@ -200,9 +205,26 @@ public class ProtectoraController {
             return ResponseEntity.notFound().build();        
     }
 
-  
-   
-    
+    // FORMULARIO CONTACTO PROTECTORA
+    @PostMapping("/contacto/{idProtectora}")
+    public String manejoEnvioformulario(@RequestBody ContactForm form, @PathVariable int idProtectora) {
+        // Aquí podemos añadir la validacion del back del formulario.
+
+        // Llama al método para enviar el forulario a la protectora por su id
+        sendEmail(form,idProtectora);
+
+        return "¡Formulario enviado con éxito!";
+    }
+
+	//Método para enviar el formulario al email de HappyPaws
+    private void sendEmail(ContactForm form, int idProtectora) {
+        Protectora protectora = protdao.buscarProtectoraId(idProtectora);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(protectora.getEmail());
+        message.setSubject("Mensaje " + form.getName());
+        message.setText("Correo electrónico: " + form.getEmail() + "\n\n" + form.getMessage());
+        emailSender.send(message);
+    }  
     
     
 }

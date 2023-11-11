@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
+import { LocationService } from 'src/app/service/localizacion/location.service';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
 
 @Component({
@@ -12,9 +13,9 @@ import { ProtectoraService } from 'src/app/service/protectora/protectora.service
 export class DetalleProtectoraComponent {
   id: number;
   protectora: Protectora;
-  listaProvincias: Provincia[]=[];
+  provincias: Provincia[]=[];
 
-  constructor(private _protectoraService: ProtectoraService, private route: ActivatedRoute, private router: Router) {
+  constructor(private _protectoraService: ProtectoraService, private _locationService :LocationService, private route: ActivatedRoute, private router: Router) {
     this.route = route;
   }
 
@@ -23,7 +24,7 @@ export class DetalleProtectoraComponent {
     this.id = this.route.snapshot.params['id'];
     this.protectora = new Protectora();
     this._protectoraService.obtenerProtectoraPorId(this.id).subscribe( (data: Protectora) => {
-      this.protectora = data;
+    this.protectora = data;
     });
   }
 
@@ -32,11 +33,16 @@ export class DetalleProtectoraComponent {
     }
 
     private listadoProvincias() {
-      this._protectoraService.listarProvincias()
+      this._locationService.listarProvincias()
         .subscribe(data => {
-          this.listaProvincias = data;
-          console.log(this.listaProvincias);
+          this.provincias = data;
+          
+          console.log(this.provincias);
         });
+    }
+
+    public enviarMensaje (){
+      this.router.navigate(['protectora/contacto/', this.id]);
     }
 
 

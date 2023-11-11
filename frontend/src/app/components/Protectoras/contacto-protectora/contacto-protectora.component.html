@@ -1,0 +1,26 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="mb-5 text-center">Contacta con {{protectora.nombre}}</h3>
+    <form class="" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="row mb-6">
+            <label class="form-label" for="name">Nombre:</label>
+            <div class="col-sm-10">            
+                <input type="text" id="name" formControlName="name" />
+            </div>
+        </div>
+        <div class="mt-3 row mb-6">
+            <label class="col-md-6" for="email">Correo electrónico:</label>
+            <div class="col-sm-10">            
+                <input type="email" id="email" formControlName="email" />
+            </div>
+         </div>
+        <div class="mt-3 row mb-6">
+            <label class="col-md-4" for="message">Mensaje:</label>
+            <div class="col-sm-10">            
+                <textarea rows="4" id="message" formControlName="message"></textarea>
+            </div>
+         </div>
+        <div>
+            <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!contactForm.valid">Enviar</button>
+        </div>        
+    </form>
+</div>
