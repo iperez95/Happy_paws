@@ -3,6 +3,9 @@ package com.tfgunir.happypaws.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -32,15 +35,19 @@ public class HomeController {
         return "menu";
     }
 
-	@PostMapping("/contacto")
-    public String manejoEnvioformulario(@RequestBody ContactForm form) {
-        // Aquí podemos añadir la validacion del back del formulario.
+@PostMapping("/contacto")
+public ResponseEntity<String> manejoEnvioformulario(@RequestBody ContactForm form) {
+    // Aquí podemos añadir la validacion del back del formulario.
 
+    try {
         // Esto proceso y envía el formulario
         sendEmail(form);
-
-        return "¡Formulario enviado con éxito!";
+        return new ResponseEntity<>("¡Tu email ha sido enviado correctamente!", HttpStatus.OK);
+    } catch (MailException e) {
+        // manejo de la excepción
+        return new ResponseEntity<>("Error al enviar el mensaje", HttpStatus.INTERNAL_SERVER_ERROR);
     }
+}
 
 	//Método para enviar el formulario al email de HappyPaws
     private void sendEmail(ContactForm form) {

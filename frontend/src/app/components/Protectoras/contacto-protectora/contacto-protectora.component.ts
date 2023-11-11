@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Protectora } from 'src/app/entidades/protectora';
-import { ContactService } from 'src/app/service/contacto/contact.service';
 import { ProtectoraContactService } from 'src/app/service/email/protectoraContact.service';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
 

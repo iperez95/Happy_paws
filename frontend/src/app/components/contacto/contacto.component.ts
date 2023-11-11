@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { tap } from 'rxjs';
 import { ContactService } from 'src/app/service/contacto/contact.service';
 
 @Component({
@@ -10,6 +11,8 @@ import { ContactService } from 'src/app/service/contacto/contact.service';
 export class ContactoComponent {
 
   contactForm: FormGroup;
+  estadoEnvio: String;
+  enviandoEmail = false;
 
   constructor(private fb: FormBuilder, private contactService: ContactService) {
     this.contactForm = this.fb.group({
@@ -23,16 +26,23 @@ export class ContactoComponent {
 
   onSubmit() {
     if (this.contactForm.valid) {
+      this.enviandoEmail = true;
       const formData = this.contactForm.value;
-      this.contactService.sendContactForm(formData).subscribe(
-        (response) => {
-          console.log(response); // Manejar la respuesta del servidor
-        },
-        (error) => {
-          console.error(error); // Manejar errores
-        }
-      );
+      this.contactService.sendContactForm(formData).pipe(
+        tap(
+          response => {
+            
+            this.estadoEnvio = response;
+          },
+          error => {
+            this.enviandoEmail = false;
+            this.estadoEnvio = error.error;
+            console.error(error);
+          }
+        )
+      ).subscribe();
     }
   }
+  
 
 }
