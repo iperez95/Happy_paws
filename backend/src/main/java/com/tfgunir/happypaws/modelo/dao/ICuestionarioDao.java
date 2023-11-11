@@ -7,9 +7,10 @@ import com.tfgunir.happypaws.modelo.entities.RespuestasAdoptante;
 
 public interface ICuestionarioDao {
 
-List<PreguntasAdoptante> buscarTodas();
-int buscarPregunta(int idpregunta);
+List<PreguntasAdoptante> todasLasPreguntas();
+PreguntasAdoptante buscarPregunta(int idpregunta);
 
-int respuestasAdoptante (RespuestasAdoptante respuestasAdoptante);
+RespuestasAdoptante respuestasAdoptante (RespuestasAdoptante respuestasAdoptante);
+
     
 }

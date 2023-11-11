@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { catchError, Observable, throwError } from 'rxjs';
 import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
+import axios from 'axios';
 
 
 @Injectable({
@@ -11,8 +12,7 @@ import { Provincia } from 'src/app/entidades/provincia';
 export class ProtectoraService {
 
   //URL del servicio Rest
-  readonly endpoint = 'http://localhost:8087';
-
+  readonly endpoint = axios.defaults.baseURL;
   /**
    * Encargado de hacer las peticiones HTTP a nuestro servicio REST
    * @param _httpClient 

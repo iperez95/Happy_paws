@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import axios from 'axios';
 
 
 
@@ -10,8 +11,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class ProvinciaService {
 
   //URL del servicio Rest
-  readonly endpoint = 'http://localhost:8087';
-
+  readonly endpoint = axios.defaults.baseURL;
   /**
    * Encargado de hacer las peticiones HTTP a nuestro servicio REST
    * @param _httpClient 

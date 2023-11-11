@@ -33,10 +33,6 @@ export class LocationService {
       .pipe(catchError(this.manejarError));
   }
 
-//   public listarMunicipiosDeUnaProvincia(idProvincia:number): Observable<any> {
-//     return this._httpClient.get(`${this.endpoint}/municipiosDeProvincia/${idProvincia}`)
-//       .pipe(catchError(this.manejarError));
-//   }
 
   /**
    * Método que maneja los posibles errores de las llamadas al servicio rest

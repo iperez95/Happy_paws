@@ -22,25 +22,20 @@ public class CuestionarioDao implements ICuestionarioDao     {
     
     
     @Override
-    public List<PreguntasAdoptante> buscarTodas() {
+    public List<PreguntasAdoptante> todasLasPreguntas() {
         return prerepo.findAll();
     }
 
-    @Override
-    public int respuestasAdoptante(RespuestasAdoptante respuestasAdoptante) {
-        try {
-            resprepo.save(respuestasAdoptante);
-            return 1;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+     @Override
+    public PreguntasAdoptante buscarPregunta(int idpregunta) {
+        return prerepo.findById(idpregunta).orElse(null);
     }
 
     @Override
-    public int buscarPregunta(int idpregunta) {
-        // TODO Auto-generated method stub
-        return prerepo.findById(idpregunta).get().getIdpregunta();
+    public RespuestasAdoptante respuestasAdoptante(RespuestasAdoptante respuestasAdoptante) {
+        return resprepo.save(respuestasAdoptante);
     }
+
+   
     
 }

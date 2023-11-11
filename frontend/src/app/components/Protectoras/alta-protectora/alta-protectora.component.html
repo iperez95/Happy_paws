@@ -1,28 +1,3 @@
-<!-- <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Alta de protectora</h3>
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" [(ngModel)]="protectora.nombre" name="nombre" id="nombre" required>
-        </div>
-        <div class="form-group mt-3">
-            <label for="direccion">Dirección</label>
-            <input type="text" class="form-control" [(ngModel)]="protectora.direccion" name="direccion" id="direccion" required>
-        </div>
-        <div class="form-group mt-3">
-            <label for="email">Email contacto</label>
-            <input type="text" class="form-control" [(ngModel)]="protectora.email" name="email" id="email" required>
-        </div>
-        <div class="form-group mt-3">
-            <label for="descripcion">Descripcion de la protectora</label>
-            <textarea rows="4" cols="50" maxlength="1000" type="text-area" class="form-control" [(ngModel)]="protectora.descripcion" name="descripcion" id="descripcion" required></textarea>
-        </div>
-        <div>
-            <button type="submit" class="btn custom-btn-red-dark mt-3">Alta protectora</button>
-        </div>        
-    </form>
-</div> -->
-
 <div class="col-md-6 offset-md-3">
     <h3 class="text-center">Alta protectora en HappyPaws</h3>
     <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">

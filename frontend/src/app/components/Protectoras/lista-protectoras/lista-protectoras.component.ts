@@ -44,7 +44,9 @@ export class ListaProtectorasComponent {
     this.router.navigate(['/protectora/detalle/', id]);
    }
 
-
+   public irAltaProtectora() {
+    this.router.navigate(['/protectora/alta']);
+   }
 
   public listarProtectorasPorIdProvincia(idProvincia: number) {
     this._protectoraService.listarProtectoraPorIdProvincia(idProvincia)
