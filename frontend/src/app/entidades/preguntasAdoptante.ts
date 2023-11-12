@@ -1,4 +1,4 @@
-export class Preguntas{
+export class PreguntasAdoptante{
     idpregunta: number;
     pregunta: string;
 }

@@ -10,6 +10,9 @@ public interface ICuestionarioDao {
 List<PreguntasAdoptante> todasLasPreguntas();
 PreguntasAdoptante buscarPregunta(int idpregunta);
 
+void guardarRespuestas(List<RespuestasAdoptante> respuestasList);
+
+
 RespuestasAdoptante respuestasAdoptante (RespuestasAdoptante respuestasAdoptante);
 
     

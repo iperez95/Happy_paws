@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class LocationService {
 
     
   //URL del servicio Rest
-  readonly endpoint = 'http://localhost:8087';
+  readonly endpoint = axios.defaults.baseURL;
 
   /**
    * Encargado de hacer las peticiones HTTP a nuestro servicio REST

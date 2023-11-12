@@ -36,6 +36,11 @@ public class CuestionarioDao implements ICuestionarioDao     {
         return resprepo.save(respuestasAdoptante);
     }
 
+    @Override
+    public void guardarRespuestas(List<RespuestasAdoptante> respuestas) {
+        resprepo.saveAll(respuestas);
+    }
+
    
     
 }

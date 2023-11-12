@@ -4,6 +4,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { correoformularioProtectora} from 'src/app/entidades/correoFormularioProtectora';
 import { Protectora } from 'src/app/entidades/protectora';
 import { ProtectoraService } from '../protectora/protectora.service';
+import axios from 'axios';
 
 
 
@@ -13,7 +14,7 @@ import { ProtectoraService } from '../protectora/protectora.service';
 
 export class ProtectoraContactService {
 
-  readonly endpoint= 'http://localhost:8087';
+  readonly endpoint = axios.defaults.baseURL;
 
 
   constructor(private _httpClient: HttpClient, private _protectoraService : ProtectoraService) {}
