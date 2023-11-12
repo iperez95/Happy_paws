@@ -12,6 +12,7 @@ export class RespuestasAdoptante {
 
   usuario:{
     idusuario: number;
+    email: string;
 
   }
   // usuario: Usuario;

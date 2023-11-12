@@ -11,6 +11,7 @@ List<PreguntasAdoptante> todasLasPreguntas();
 PreguntasAdoptante buscarPregunta(int idpregunta);
 
 void guardarRespuestas(List<RespuestasAdoptante> respuestasList);
+void guardarRespuesta(RespuestasAdoptante respuesta);
 
 
 RespuestasAdoptante respuestasAdoptante (RespuestasAdoptante respuestasAdoptante);

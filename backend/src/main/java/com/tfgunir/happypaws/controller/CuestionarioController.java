@@ -2,9 +2,14 @@ package com.tfgunir.happypaws.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +18,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.CuestionarioDao;
+import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.PreguntasAdoptante;
 import com.tfgunir.happypaws.modelo.entities.RespuestasAdoptante;
 import com.tfgunir.happypaws.modelo.entities.Usuario;
-
+import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -26,8 +33,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin(origins ="*")
 @RequestMapping("/cuestionario")
 public class CuestionarioController {
+
+    private final UsuarioAuthProvider usuarioAuthProvider;
+
+    public CuestionarioController(UsuarioAuthProvider usuarioAuthProvider){
+        this.usuarioAuthProvider = usuarioAuthProvider;
+    }
+
     @Autowired
     CuestionarioDao cuestDao;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
 
     @GetMapping("/preguntas")
@@ -48,6 +65,39 @@ public class CuestionarioController {
             return ResponseEntity.notFound().build();
     }
 
+    //ESTO SERÍA PARA QUE GUARDE EL USUARIO QUE LE LLEGA DEL LOGIN
+    // @PostMapping("/guardar")
+    // public ResponseEntity<RespuestasAdoptante> recibirRespuestas(@RequestBody List<RespuestasAdoptante> respuestas, HttpServletRequest request) {
+    //     try {
+    //         // Obtén el token del encabezado de la solicitud
+    //         String token = request.getHeader("Authorization").substring(7); // Elimina el prefijo "Bearer "
+    
+    //         // Valida el token y obtén el objeto Authentication
+    //         Authentication auth = usuarioAuthProvider.validateToken(token);
+    
+    //         // Obtén el correo electrónico del usuario
+    //         UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
+    //         String email = usuarioDto.getEmail();
+    
+    //         // Encuentra el usuario en la base de datos
+    //         Usuario usuario = usuarioRepository.findByEmail(email);
+    
+    //         // Añade el usuario a cada respuesta y guarda la respuesta
+    //         for (RespuestasAdoptante respuesta : respuestas) {
+    //             respuesta.setUsuario(usuario);
+    //         }
+    //         cuestDao.guardarRespuestas(respuestas);
+    
+    //         return ResponseEntity.ok().build();
+    //     } catch (Exception e) {
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    //     }
+    // }
+
+
+
+
+    // ESTE POST ESTA FUNCIONANDO PERO NO RECOGE EL USUARIO DE SESION
     @PostMapping("/guardar")
     public ResponseEntity<RespuestasAdoptante> recibirRespuestas(@RequestBody List<RespuestasAdoptante> respuestas) {
         try {
@@ -59,63 +109,17 @@ public class CuestionarioController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();                }
     }
 
-    // @PostMapping(path="/respuestas",produces = "application/json", consumes = "application/json")
-    // public ResponseEntity<RespuestasAdoptante> guardarRespuestas (@RequestBody List<RespuestasAdoptante> r){
-    //     //TODO AQUI TIENE QUE COGER EL USUARIO DE SESION
-    //     if (r!=null){
-    //         for (RespuestasAdoptante respuestasAdoptante : r) {
-    //             Usuario usuario = new Usuario();
-    //             usuario.setIdusuario(1);
-    //             respuestasAdoptante.setUsuario(usuario);
 
-    //             System.out.println("Creando cuestionario: "+respuestasAdoptante);
-    //             cuestDao.respuestasAdoptante(respuestasAdoptante);
-    //         }
-    //         return ResponseEntity.ok(r.get(0));            
-    //     }
-    //     else
-    //         return ResponseEntity.notFound().build();
-    // }
+}
 
 
 
-    // @PostMapping(path="/respuestas",produces = "application/json", consumes = "application/json")
-    // public ResponseEntity<RespuestasAdoptante> nuevoCuestionario (@PathVariable("idPregunta") int idPregunta, @RequestBody RespuestasAdoptante respuestas){
-    //        //TODO AQUI TIENE QUE COGER EL USUARIO DE SESION
-           
-    //     if (respuestas!=null){
-    //          Usuario usuario = new Usuario();
-    //         usuario.setIdusuario(1);
-    //         respuestas.setUsuario(usuario);
-
-    //         System.out.println("Creando cuestionario: "+respuestas);
-    //         List<PreguntasAdoptante> preguntasList = cuestDao.todasLasPreguntas();
-    //             String[] respuestaList = respuestas.getRespuesta().split(",");      
-                            
-    //                 for (int i = 0; i < respuestaList.length; i++) {
-                        
-    //                     PreguntasAdoptante preguntaTemporal = new PreguntasAdoptante();
-    //                     preguntaTemporal.setIdpregunta(preguntasList.get(i).getIdpregunta());
-
-    //                     RespuestasAdoptante respuestaTemporal = new RespuestasAdoptante();
-    //                     respuestaTemporal.setRespuesta(respuestaList[i]);
-
-    //                     respuestaTemporal.setUsuario(usuario);
-    //                     respuestaTemporal.setPreguntasAdoptante(preguntaTemporal);
-    //                     cuestDao.respuestasAdoptante(respuestaTemporal);
-    //                 }   
-    //             cuestDao.respuestasAdoptante(respuestas);
-    //             return ResponseEntity.ok(respuestas);
-    //     }
-    //     else
-    //         return ResponseEntity.notFound().build();
-    // }
  
 
    
     
     
-}
+
     
     
 

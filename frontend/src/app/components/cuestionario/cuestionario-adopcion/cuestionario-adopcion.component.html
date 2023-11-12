@@ -4,7 +4,7 @@
         <div formArrayName="respuestasArray">
             <div *ngFor="let respuesta of respuestasArray.controls; let i=index" [formGroupName]="i">
                 <div class="form-group mt-5">
-                    <input type="" id="idpregunta" formControlName="preguntaid" />
+                    <input type="hidden" id="idpregunta" formControlName="preguntaid" />
                                         
                     <label class="col-md-12" for="pregunta">{{ respuesta.get('preguntasAdoptante')?.get('pregunta')?.value }}</label>
                     

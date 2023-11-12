@@ -4,6 +4,8 @@ import axios from "axios";
 import { Observable, catchError, throwError } from "rxjs";
 import { RespuestasAdoptante } from "src/app/entidades/respuestasAdoptante";
 
+import { AxiosService } from "../axios/axios.service";
+
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +21,7 @@ import { RespuestasAdoptante } from "src/app/entidades/respuestasAdoptante";
    * Encargado de hacer las peticiones HTTP a nuestro servicio REST
    * @param _httpClient 
    */
-  constructor(private _httpClient : HttpClient) { 
+  constructor(private _httpClient : HttpClient, private axiosService: AxiosService) { 
   }
 
   
@@ -29,7 +31,15 @@ import { RespuestasAdoptante } from "src/app/entidades/respuestasAdoptante";
     .pipe(catchError(this.manejarError));
   }
 
+
+  //PARA MANDAR EL TOKEN EN LA CABECERA
+  // enviarRespuestas(respuestas: RespuestasAdoptante[]): Promise<any> {
+  //   return this.axiosService.request('post', `${this.endpoint}/cuestionario/guardar`, respuestas);
+  // }
+
+  //ORIGINAL FUNCIONANDO SIN USUARIO EN SESIÓN
   enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<any> {
+    
     return this._httpClient.post<any>(`${this.endpoint}/cuestionario/guardar`, respuestas);
   }
 
