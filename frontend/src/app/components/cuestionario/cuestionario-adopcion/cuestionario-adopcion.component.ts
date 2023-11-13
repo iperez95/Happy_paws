@@ -41,13 +41,13 @@ export class CuestionarioAdopcionComponent {
       });
     });
 
-    const emailUsuario = this._usuarioService.getUserData()?.email;
-    if (emailUsuario) {
+    // const emailUsuario = this._usuarioService.getUserData()?.email;
+    // if (emailUsuario) {
       
-      console.log("Email del usuario logueado: " + emailUsuario);
-    } else {
-      console.log('No user is logged in');
-    }
+    //   console.log("Email del usuario logueado: " + emailUsuario);
+    // } else {
+    //   console.log('No user is logged in');
+    // }
 
 
   };
@@ -63,30 +63,33 @@ export class CuestionarioAdopcionComponent {
     return this.respuestasForm.get('respuestasArray') as FormArray;
   }
 
-  //ESTO SERIA MANDANDO EL USUARIO
+
+
+  //version 2 intentando enviar el token logueado
   onSubmit() { 
-    
+    if (!this.respuestasForm.valid) {
+      return;
+    }
     const respuestas = this.respuestasForm.value.respuestasArray.map((respuesta: { preguntaid: number, respuesta: string, preguntasAdoptante: { pregunta: string } }) => ({  
       // idpregunta: respuesta.preguntaid,
       respuesta: respuesta.respuesta,
       preguntasAdoptante: {
         idpregunta: respuesta.preguntaid,
-        
       },      
     }));
 
     console.log(respuestas);  
 
-    this._cuestionarioService.enviarRespuestas(respuestas).subscribe(
-          response => {
-            console.log('Respuestas enviadas con éxito', response);
-            // Puedes manejar la respuesta del backend según tus necesidades
-          },
-          error => {
-            console.error('Error al enviar respuestas', error);
-            // Puedes manejar los errores según tus necesidades
-          }
-        );
+    this._cuestionarioService.enviarRespuestas(respuestas).subscribe({
+      next: response => {
+        console.log('Respuestas enviadas con éxito', response);
+        // Puedes manejar la respuesta del backend según tus necesidades
+      },
+      error: error => {
+        console.error('Error al enviar respuestas', error);
+        // Puedes manejar los errores según tus necesidades
+      }
+    });
   }
 
   //ONSUBMIT FUNCIONANDO PERO SIN USUARIO EN SESIÓN

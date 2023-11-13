@@ -10,11 +10,7 @@ export class RespuestasAdoptante {
     pregunta: string;
   }
 
-  usuario:{
-    idusuario: number;
-    email: string;
-
-  }
+ 
   // usuario: Usuario;
 
 

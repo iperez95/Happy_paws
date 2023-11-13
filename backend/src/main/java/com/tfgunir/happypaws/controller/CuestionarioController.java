@@ -67,21 +67,26 @@ public class CuestionarioController {
     }
 
     //ESTO SERÍA PARA QUE GUARDE EL USUARIO QUE LE LLEGA DEL LOGIN
-    @PostMapping("/guardar")
-    public ResponseEntity<RespuestasAdoptante> recibirRespuestas(@RequestBody List<RespuestasAdoptante> respuestas, @RequestHeader(value="Authorization") String token, HttpServletRequest request) {
+    @PostMapping(path="/guardar", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<String> guardarCuestionario(
+            @RequestHeader("Authorization") String authorizationHeader,
+            @RequestBody List<RespuestasAdoptante> respuestas) {
         try {
             // Obtén el token del encabezado de la solicitud
-            token = request.getHeader("Authorization").substring(7); // Elimina el prefijo "Bearer "
+            String token = authorizationHeader.substring("Bearer ".length());
     
             // Valida el token y obtén el objeto Authentication
             Authentication auth = usuarioAuthProvider.validateToken(token);
     
             // Obtén el correo electrónico del usuario
             UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
+            System.out.println("Usuario en token: " + usuarioDto);
             String email = usuarioDto.getEmail();
+            System.out.println("email en token: " + email);
     
             // Encuentra el usuario en la base de datos
             Usuario usuario = usuarioRepository.findByEmail(email);
+            System.out.println("Usuario en BD: " + usuario);
     
             // Añade el usuario a cada respuesta y guarda la respuesta
             for (RespuestasAdoptante respuesta : respuestas) {
@@ -89,7 +94,8 @@ public class CuestionarioController {
                 cuestDao.guardarRespuesta(respuesta);
 
             }
-            // cuestDao.guardarRespuestas(respuestas);
+            //  cuestDao.guardarRespuestas(respuestas);
+            respuestas.forEach(System.out::println);
     
             return ResponseEntity.ok().build();
         } catch (Exception e) {

@@ -4,6 +4,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
 import axios from 'axios';
+import { AxiosService } from '../axios/axios.service';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class ProtectoraService {
    * Encargado de hacer las peticiones HTTP a nuestro servicio REST
    * @param _httpClient 
    */
-  constructor(private _httpClient : HttpClient) { 
+  constructor(private _httpClient : HttpClient, private axiosService: AxiosService) { 
   }
 
   /**
@@ -40,10 +41,24 @@ export class ProtectoraService {
       .pipe(catchError(this.manejarError));
   }
 
+  // ALTA MANDANDO TOKEN EN LA CABECERA
   public altaProtectora(protectora: Protectora): Observable<Object> {
-    return this._httpClient.post(`${this.endpoint}/protectora/alta`, protectora)
+    const token = this.axiosService.getAuthToken();
+    if (!token) {
+      throw new Error('No hay token');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    console.log('Token:', token);
+    console.log('Headers:', headers);
+    return this._httpClient.post(`${this.endpoint}/protectora/alta`, protectora, {headers})
       .pipe(catchError(this.manejarError));
   }
+
+  //ESTA FUNCIONANDO PERO NO MANDA EL TOKEN
+  // public altaProtectora(protectora: Protectora): Observable<Object> {
+  //   return this._httpClient.post(`${this.endpoint}/protectora/alta`, protectora)
+  //     .pipe(catchError(this.manejarError));
+  // }
 
   public obtenerProtectoraPorId(idprotectora : number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/protectora/${idprotectora}`)

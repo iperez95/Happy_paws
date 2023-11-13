@@ -33,8 +33,13 @@ import { AxiosService } from "../axios/axios.service";
 
 // 2DO INTENTO ENVIO RESPUESTAS CON TOKEN 
  enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<any> {
-  const token = localStorage.getItem('token');
-  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  const token = this.axiosService.getAuthToken();
+  if (!token) {
+    throw new Error('No hay token');
+  }
+  const headers = new HttpHeaders().set(
+    'Authorization', 
+    `Bearer ${token}`);
    
   return this._httpClient.post<any>(`${this.endpoint}/cuestionario/guardar`, respuestas, {headers});
     // return this.axiosService.request('post', `${this.endpoint}/cuestionario/guardar`, respuestas)
