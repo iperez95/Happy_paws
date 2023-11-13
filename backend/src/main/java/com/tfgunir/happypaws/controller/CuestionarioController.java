@@ -66,8 +66,9 @@ public class CuestionarioController {
             return ResponseEntity.notFound().build();
     }
 
-    //ESTO SERÍA PARA QUE GUARDE EL USUARIO QUE LE LLEGA DEL LOGIN
-    @PostMapping(path="/guardar", produces = "application/json", consumes = "application/json")
+    
+    //GUARDA LAS RESPUESTAS DE UN USUARIO
+    @PostMapping("/guardar")
     public ResponseEntity<String> guardarCuestionario(
             @RequestHeader("Authorization") String authorizationHeader,
             @RequestBody List<RespuestasAdoptante> respuestas) {

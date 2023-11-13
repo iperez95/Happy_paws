@@ -114,7 +114,7 @@ public class ProtectoraController {
             return ResponseEntity.notFound().build();
     }
 
-    //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
+    
     // ALTA PROTECTORA FUNCIONANDO PERO SIN AGREGAR EL USUARIO QUE LO DA DE ALTA
     // @PostMapping(path="/alta", produces = "application/json", consumes = "application/json")
     // public ResponseEntity<Protectora> altaProtectora (@RequestBody Protectora p ){
@@ -125,10 +125,12 @@ public class ProtectoraController {
     //         return ResponseEntity.badRequest().build();
     // }
 
+    //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
     // ALTA PROTECTORA INTENTANDO QUE AGREGUE EL USUARIO DE LA SESIÓN
     @PostMapping("/alta")
-    public ResponseEntity<Protectora> altaProtectora ( @RequestBody Protectora p, @RequestHeader("Authorization") String authorizationHeader ){
-        try{
+    public ResponseEntity<Protectora> altaProtectora(@RequestBody Protectora p,
+            @RequestHeader("Authorization") String authorizationHeader) {
+        try {
             String token = authorizationHeader.substring(7);
 
             // Valida el token y obtén el objeto Authentication
@@ -146,11 +148,10 @@ public class ProtectoraController {
 
             p.setUsuario(usuario);
 
-            System.out.println("Email del usuario que da de alta la protectora: "+email);
-           
-        
+            System.out.println("Email del usuario que da de alta la protectora: " + email);
+
             protdao.altaProtectora(p);
-        return ResponseEntity.ok().build();
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }

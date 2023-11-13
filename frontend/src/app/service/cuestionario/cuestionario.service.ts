@@ -31,29 +31,21 @@ import { AxiosService } from "../axios/axios.service";
     .pipe(catchError(this.manejarError));
   }
 
-// 2DO INTENTO ENVIO RESPUESTAS CON TOKEN 
- enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<any> {
+// ENVIA RESUPUESTAS FORMULARIO CON TOKEN SESION
+ enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<Object> {
   const token = this.axiosService.getAuthToken();
   if (!token) {
     throw new Error('No hay token');
   }
-  const headers = new HttpHeaders().set(
-    'Authorization', 
-    `Bearer ${token}`);
-   
-  return this._httpClient.post<any>(`${this.endpoint}/cuestionario/guardar`, respuestas, {headers});
-    // return this.axiosService.request('post', `${this.endpoint}/cuestionario/guardar`, respuestas)
-    // .then(response => response.data)
-    // .catch(error => {
-    //   console.log('Error en solicitud Posst',error);
-    //   throw error;
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    console.log('Token:', token);
+    console.log('Headers:', headers);
+  return this._httpClient.post(`${this.endpoint}/cuestionario/guardar`, respuestas, {headers})
+    .pipe(catchError(this.manejarError));;
   }
 
 
-  //PARA MANDAR EL TOKEN EN LA CABECERA
-  // enviarRespuestas(respuestas: RespuestasAdoptante[]): Promise<any> {
-  //   return this.axiosService.request('post', `${this.endpoint}/cuestionario/guardar`, respuestas);
-  // }
+  
 
   //ORIGINAL FUNCIONANDO SIN USUARIO EN SESIÓN
   // enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<any> {
