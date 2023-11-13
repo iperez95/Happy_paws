@@ -27,6 +27,7 @@ import com.tfgunir.happypaws.modelo.entities.Usuario;
 import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 
 @RestController
@@ -66,48 +67,50 @@ public class CuestionarioController {
     }
 
     //ESTO SERÍA PARA QUE GUARDE EL USUARIO QUE LE LLEGA DEL LOGIN
-    // @PostMapping("/guardar")
-    // public ResponseEntity<RespuestasAdoptante> recibirRespuestas(@RequestBody List<RespuestasAdoptante> respuestas, HttpServletRequest request) {
-    //     try {
-    //         // Obtén el token del encabezado de la solicitud
-    //         String token = request.getHeader("Authorization").substring(7); // Elimina el prefijo "Bearer "
+    @PostMapping("/guardar")
+    public ResponseEntity<RespuestasAdoptante> recibirRespuestas(@RequestBody List<RespuestasAdoptante> respuestas, @RequestHeader(value="Authorization") String token, HttpServletRequest request) {
+        try {
+            // Obtén el token del encabezado de la solicitud
+            token = request.getHeader("Authorization").substring(7); // Elimina el prefijo "Bearer "
     
-    //         // Valida el token y obtén el objeto Authentication
-    //         Authentication auth = usuarioAuthProvider.validateToken(token);
+            // Valida el token y obtén el objeto Authentication
+            Authentication auth = usuarioAuthProvider.validateToken(token);
     
-    //         // Obtén el correo electrónico del usuario
-    //         UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
-    //         String email = usuarioDto.getEmail();
+            // Obtén el correo electrónico del usuario
+            UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
+            String email = usuarioDto.getEmail();
     
-    //         // Encuentra el usuario en la base de datos
-    //         Usuario usuario = usuarioRepository.findByEmail(email);
+            // Encuentra el usuario en la base de datos
+            Usuario usuario = usuarioRepository.findByEmail(email);
     
-    //         // Añade el usuario a cada respuesta y guarda la respuesta
-    //         for (RespuestasAdoptante respuesta : respuestas) {
-    //             respuesta.setUsuario(usuario);
-    //         }
-    //         cuestDao.guardarRespuestas(respuestas);
+            // Añade el usuario a cada respuesta y guarda la respuesta
+            for (RespuestasAdoptante respuesta : respuestas) {
+                respuesta.setUsuario(usuario);
+                cuestDao.guardarRespuesta(respuesta);
+
+            }
+            // cuestDao.guardarRespuestas(respuestas);
     
-    //         return ResponseEntity.ok().build();
-    //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    //     }
-    // }
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
 
 
 
     // ESTE POST ESTA FUNCIONANDO PERO NO RECOGE EL USUARIO DE SESION
-    @PostMapping("/guardar")
-    public ResponseEntity<RespuestasAdoptante> recibirRespuestas(@RequestBody List<RespuestasAdoptante> respuestas) {
-        try {
-            // Lógica para guardar las respuestas
-            cuestDao.guardarRespuestas(respuestas);
-            return ResponseEntity.ok().build();
-                } 
-            catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();                }
-    }
+    // @PostMapping("/guardar")
+    // public ResponseEntity<RespuestasAdoptante> recibirRespuestas(@RequestBody List<RespuestasAdoptante> respuestas) {
+    //     try {
+    //         // Lógica para guardar las respuestas
+    //         cuestDao.guardarRespuestas(respuestas);
+    //         return ResponseEntity.ok().build();
+    //             } 
+    //         catch (Exception e) {
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();                }
+    // }
 
 
 }

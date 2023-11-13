@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { ActivatedRoute, Router } from '@angular/router';
 import { PreguntasAdoptante } from 'src/app/entidades/preguntasAdoptante';
 import { RespuestasAdoptante } from 'src/app/entidades/respuestasAdoptante';
+import { AxiosService } from 'src/app/service/axios/axios.service';
 import { CuestionarioService } from 'src/app/service/cuestionario/cuestionario.service';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 
@@ -20,7 +21,7 @@ export class CuestionarioAdopcionComponent {
 
   preguntas: PreguntasAdoptante[] = [];
  
-  constructor(private fb: FormBuilder, private _cuestionarioService: CuestionarioService, private _usuarioService : UsuarioService,  private router: Router, private route: ActivatedRoute) {}
+  constructor(private fb: FormBuilder, private _cuestionarioService: CuestionarioService, private _usuarioService : UsuarioService, private axiosService : AxiosService,  private router: Router, private route: ActivatedRoute) {}
   
   ngOnInit() {
     this.listarPreguntas();
@@ -63,20 +64,57 @@ export class CuestionarioAdopcionComponent {
   }
 
   //ESTO SERIA MANDANDO EL USUARIO
-  // onSubmit() { 
-  //   const respuestas = this.respuestasForm.value.respuestasArray.map((respuesta: { preguntaid: number, respuesta: string, preguntasAdoptante: { pregunta: string } }) => ({  
-  //     // idpregunta: respuesta.preguntaid,
+  onSubmit() { 
+    
+    const respuestas = this.respuestasForm.value.respuestasArray.map((respuesta: { preguntaid: number, respuesta: string, preguntasAdoptante: { pregunta: string } }) => ({  
+      // idpregunta: respuesta.preguntaid,
+      respuesta: respuesta.respuesta,
+      preguntasAdoptante: {
+        idpregunta: respuesta.preguntaid,
+        
+      },      
+    }));
+
+    console.log(respuestas);  
+
+    this._cuestionarioService.enviarRespuestas(respuestas).subscribe(
+          response => {
+            console.log('Respuestas enviadas con éxito', response);
+            // Puedes manejar la respuesta del backend según tus necesidades
+          },
+          error => {
+            console.error('Error al enviar respuestas', error);
+            // Puedes manejar los errores según tus necesidades
+          }
+        );
+  }
+
+  //ONSUBMIT FUNCIONANDO PERO SIN USUARIO EN SESIÓN
+  // onSubmit() {
+  //   const usuario = this._usuarioService.getUserData();
+  //   if (usuario) {
+  //     const emailUsuario = usuario.email;
+  //     console.log("Email del usuario logueado: " + emailUsuario);
+  //   } else {
+  //     console.log('No user is logged in');
+  //   }
+
+  //   const respuestas = this.respuestasForm.value.respuestasArray.map((respuesta: { preguntaid: number, respuesta: string, preguntasAdoptante: { pregunta: string }, usuario:{idusuario:number} }) => ({  
+      
+  //     idpregunta: respuesta.preguntaid,
   //     respuesta: respuesta.respuesta,
   //     preguntasAdoptante: {
   //       idpregunta: respuesta.preguntaid,
-  //       // pregunta: respuesta.preguntasAdoptante.pregunta,
+  //       pregunta: respuesta.preguntasAdoptante.pregunta,
   //     },
   //     //TODODM cambiar el idusuario por el usuario logueado
-      
+  //     usuario:{
+  //       idusuario: 1,
+       
+  //     },
   //   }));
-
   //   console.log(respuestas);
-  //   this._cuestionarioService.enviarRespuestas(respuestas).then(
+  //   this._cuestionarioService.enviarRespuestas(respuestas).subscribe(
   //     response => {
   //       console.log('Respuestas enviadas con éxito', response);
   //       // Puedes manejar la respuesta del backend según tus necesidades
@@ -87,43 +125,5 @@ export class CuestionarioAdopcionComponent {
   //     }
   //   );
   // }
-
-
-  //ONSUBMIT FUNCIONANDO PERO SIN USUARIO EN SESIÓN
-  onSubmit() {
-    const usuario = this._usuarioService.getUserData();
-    if (usuario) {
-      const emailUsuario = usuario.email;
-      console.log("Email del usuario logueado: " + emailUsuario);
-    } else {
-      console.log('No user is logged in');
-    }
-
-    const respuestas = this.respuestasForm.value.respuestasArray.map((respuesta: { preguntaid: number, respuesta: string, preguntasAdoptante: { pregunta: string }, usuario:{idusuario:number} }) => ({  
-      
-      idpregunta: respuesta.preguntaid,
-      respuesta: respuesta.respuesta,
-      preguntasAdoptante: {
-        idpregunta: respuesta.preguntaid,
-        pregunta: respuesta.preguntasAdoptante.pregunta,
-      },
-      //TODODM cambiar el idusuario por el usuario logueado
-      usuario:{
-        idusuario: 1,
-       
-      },
-    }));
-    console.log(respuestas);
-    this._cuestionarioService.enviarRespuestas(respuestas).subscribe(
-      response => {
-        console.log('Respuestas enviadas con éxito', response);
-        // Puedes manejar la respuesta del backend según tus necesidades
-      },
-      error => {
-        console.error('Error al enviar respuestas', error);
-        // Puedes manejar los errores según tus necesidades
-      }
-    );
-  }
 
 }

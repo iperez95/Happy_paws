@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import axios from "axios";
 import { Observable, catchError, throwError } from "rxjs";
@@ -23,12 +23,25 @@ import { AxiosService } from "../axios/axios.service";
    */
   constructor(private _httpClient : HttpClient, private axiosService: AxiosService) { 
   }
-
+ 
   
 
   obtenerPreguntas(): Observable<any>{
     return this._httpClient.get(`${this.endpoint}/cuestionario/preguntas`)
     .pipe(catchError(this.manejarError));
+  }
+
+// 2DO INTENTO ENVIO RESPUESTAS CON TOKEN 
+ enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<any> {
+  const token = localStorage.getItem('token');
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+   
+  return this._httpClient.post<any>(`${this.endpoint}/cuestionario/guardar`, respuestas, {headers});
+    // return this.axiosService.request('post', `${this.endpoint}/cuestionario/guardar`, respuestas)
+    // .then(response => response.data)
+    // .catch(error => {
+    //   console.log('Error en solicitud Posst',error);
+    //   throw error;
   }
 
 
@@ -38,10 +51,10 @@ import { AxiosService } from "../axios/axios.service";
   // }
 
   //ORIGINAL FUNCIONANDO SIN USUARIO EN SESIÓN
-  enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<any> {
+  // enviarRespuestas(respuestas: RespuestasAdoptante[]): Observable<any> {
     
-    return this._httpClient.post<any>(`${this.endpoint}/cuestionario/guardar`, respuestas);
-  }
+  //   return this._httpClient.post<any>(`${this.endpoint}/cuestionario/guardar`, respuestas);
+  // }
 
 
   // public guardarLasRespuestas(respuestas: Respuestas[]): Observable<any>{
