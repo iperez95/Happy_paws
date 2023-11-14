@@ -1,1 +1,20 @@
-<p>animal works!</p>
+// Componente que muestra los datos de un animal
+
+<div>
+
+    <p>Estas en animales</p>
+
+    <div *ngIf="animal">
+        <p>{{animal.idanimal}}</p>
+        <p>{{animal.nombre}}</p>
+        <p>{{animal.fechaNacimiento}}</p>
+        <p>{{animal.descripcion}}</p>
+        <p>{{animal.enabled}}</p>
+        <p>{{animal.fechaEnabled}}</p>
+        <p>{{animal.municipio}}</p>
+        <p>{{animal.valoresAtributos}}</p>
+    </div>
+    
+</div>
+
+

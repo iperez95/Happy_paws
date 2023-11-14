@@ -8,7 +8,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
-import { AnimalesComponent } from './components/animales/animales.component';
 import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,7 +30,6 @@ import { ListaAnimalesComponent } from './components/animales/lista-animales/lis
     FooterComponent,
     ContentComponent,
     HomeComponent,
-    AnimalesComponent,
     LoginModalComponent,
     ProtectoraComponent,
     ListaProtectorasComponent,
@@ -51,7 +49,7 @@ import { ListaAnimalesComponent } from './components/animales/lista-animales/lis
     FormsModule,
     MatDialogModule,
     RouterModule.forRoot([
-      { path: 'animales', component: AnimalesComponent },
+      { path: 'animales', component: AnimalComponent },
       { path: 'home', component: HomeComponent },
     ]),
     BrowserAnimationsModule

@@ -50,7 +50,7 @@ public class AnimalController {
 }
 
     // Controlador para dar de alta un animal
-    @PostMapping(path="/alta", produces = "application/json", consumes = "application/json")
+    @PostMapping(path="/gestion/alta", produces = "application/json", consumes = "application/json")
     public ResponseEntity<?> altaAnimal(@RequestBody Animal animal) {
     if (aniDao.altaAnimal(animal)) {
         return ResponseEntity.ok("Animal creado correctamente");
@@ -60,7 +60,7 @@ public class AnimalController {
 }
 
     // Controlador para eliminar un animal
-    @DeleteMapping(path="/eliminar/{id}", consumes = "application/json")
+    @DeleteMapping(path="/gestion/eliminar/{id}", consumes = "application/json")
     public ResponseEntity<?> eliminarAnimal(@PathVariable("id") int id) {
 
     if (aniDao.borrarAnimal(id)) {
@@ -70,7 +70,7 @@ public class AnimalController {
     }
 }
     // Controlador para modificar un animal
-    @GetMapping(path="/modificar/{id}", produces = "application/json")
+    @GetMapping(path="/gestion/modificar/{id}", produces = "application/json")
     public ResponseEntity<Animal> obtenerAnimal(@PathVariable("id") int id) {
     Animal animal = aniDao.buscarAnimalId(id);
     if (animal != null) {
@@ -80,7 +80,7 @@ public class AnimalController {
     }
 }
 
-    @PutMapping(path="/modificar/{id}", consumes = "application/json")
+    @PutMapping(path="/gestion/modificar/{id}", consumes = "application/json")
     public ResponseEntity<?> modificarAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {
     animal.setIdanimal(id);
     if (aniDao.modificarAnimal(animal)) {
@@ -91,7 +91,7 @@ public class AnimalController {
 }
 
     // Controlador para cambiar enabled a un animal
-    @PutMapping(path="/enabled/{id}", consumes = "application/json")    
+    @PutMapping(path="/gestion/enabled/{id}", consumes = "application/json")    
     public ResponseEntity<?> enabledAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {    
 
     animal.setIdanimal(id);
@@ -137,6 +137,19 @@ public class AnimalController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Controlador para buscar animales por id protectora
+    // @GetMapping(path="/buscar/poridprotectora/{id}", produces = "application/json")
+    // public ResponseEntity<List<Animal>> buscarPorIdProtectora(@PathVariable("id") int id) {
+
+    //     List<Animal> listado = aniDao.buscarPorIdProtectora(id);
+    //     if (listado != null && !listado.isEmpty()) {
+    //         return ResponseEntity.ok(listado);
+    //     } else {
+    //         return ResponseEntity.notFound().build();
+    //     }
+    // }
+
 
     // Controlador para buscar animales por especie
     @GetMapping(path="/buscar/porespecie/{especie}", produces = "application/json")
