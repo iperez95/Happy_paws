@@ -21,6 +21,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
+import { AnimalComponent } from './components/animales/animal/animal.component';
+import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ProvinciasComponent } from './components/provincias/provincias.componen
     ListaProtectorasComponent,
     AltaProtectoraComponent,
     MunicipiosComponent,
-    ProvinciasComponent
+    ProvinciasComponent,
+    AnimalComponent,
+    ListaAnimalesComponent
   ],
   imports: [
     MatFormFieldModule,
