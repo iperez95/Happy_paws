@@ -9,7 +9,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name = "protectoras")
+@Table(name = "PROTECTORAS")
 @NamedQuery(name = "Protectora.findAll", query = "SELECT p FROM Protectora p")
 public class Protectora implements Serializable {
 	private static final long serialVersionUID = 1L;

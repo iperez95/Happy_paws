@@ -15,7 +15,7 @@ export class UsuarioService {
     if (!tokenData) {
         return null;
     }
-
+    console.log(tokenData);
     const usuario = new Usuario();
     usuario.email = tokenData.iss;
     usuario.nombre = tokenData.nombre;

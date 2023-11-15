@@ -29,6 +29,7 @@ export class NavComponent {
 
   ngAfterContentChecked()	{
     this.user = this.usuarioService.getUserData();
+    console.log(this.user);
   }
 
   openDialog() {

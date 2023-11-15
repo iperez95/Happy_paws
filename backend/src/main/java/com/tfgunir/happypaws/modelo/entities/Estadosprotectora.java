@@ -12,7 +12,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="estadosprotectoras")
+@Table(name="ESTADOSPROTECTORAS")
 @NamedQuery(name="Estadosprotectora.findAll", query="SELECT e FROM Estadosprotectora e")
 public class Estadosprotectora implements Serializable {
 	private static final long serialVersionUID = 1L;
