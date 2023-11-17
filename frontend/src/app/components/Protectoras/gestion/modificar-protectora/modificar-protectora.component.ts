@@ -48,7 +48,10 @@ export class ModificarProtectoraComponent {
       })
   }
 
-  IrDetalleProtectora(){
-    this.router.navigate(['/protectora/gestion/' + this.protectora.idprotectora]);
+  IrDetalleProtectora() {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/protectora/gestion/' + this.protectora.idprotectora]);
+    }); 
   }
+ 
 }

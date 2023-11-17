@@ -7,9 +7,11 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +19,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
+
+
+import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
+import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.ContactForm;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
+import com.tfgunir.happypaws.modelo.entities.Usuario;
+import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 
 @RestController
 // TODO DAV comprobar si realmente es necesario el CrossOrigin
@@ -36,7 +47,16 @@ public class ProtectoraController {
     ProtectoraDao protdao;
 
     @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
     private JavaMailSender emailSender; 
+
+    private final UsuarioAuthProvider usuarioAuthProvider;
+
+    public ProtectoraController(UsuarioAuthProvider usuarioAuthProvider){
+        this.usuarioAuthProvider = usuarioAuthProvider;
+    }
 
     // DETALLE PROTECTORA 
     @GetMapping(path="/{id}", produces = "application/json")
@@ -94,15 +114,47 @@ public class ProtectoraController {
             return ResponseEntity.notFound().build();
     }
 
+    
+    // ALTA PROTECTORA FUNCIONANDO PERO SIN AGREGAR EL USUARIO QUE LO DA DE ALTA
+    // @PostMapping(path="/alta", produces = "application/json", consumes = "application/json")
+    // public ResponseEntity<Protectora> altaProtectora (@RequestBody Protectora p ){
+    //     protdao.altaProtectora(p);
+    //     if (p!=null)
+    //         return ResponseEntity.created(null).body(p);    
+    //     else
+    //         return ResponseEntity.badRequest().build();
+    // }
+
     //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
-    // ALTA PROTECTORA
-    @PostMapping(path="/alta", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Protectora> altaProtectora (@RequestBody Protectora p ){
-        protdao.altaProtectora(p);
-        if (p!=null)
-            return ResponseEntity.created(null).body(p);    
-        else
-            return ResponseEntity.badRequest().build();
+    // ALTA PROTECTORA INTENTANDO QUE AGREGUE EL USUARIO DE LA SESIÓN
+    @PostMapping("/alta")
+    public ResponseEntity<Protectora> altaProtectora(@RequestBody Protectora p,
+            @RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            String token = authorizationHeader.substring(7);
+
+            // Valida el token y obtén el objeto Authentication
+            Authentication auth = usuarioAuthProvider.validateToken(token);
+
+            // Obtén el correo electrónico del usuario
+            UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
+            System.out.println("Usuario en token: " + usuarioDto);
+            String email = usuarioDto.getEmail();
+            System.out.println("email en token: " + email);
+
+            // Encuentra el usuario en la base de datos
+            Usuario usuario = usuarioRepository.findByEmail(email);
+            System.out.println("Usuario en BD: " + usuario);
+
+            p.setUsuario(usuario);
+
+            System.out.println("Email del usuario que da de alta la protectora: " + email);
+
+            protdao.altaProtectora(p);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     //TODO DAV comprobar que solo el usuario que gestiona la protectora hacer esto

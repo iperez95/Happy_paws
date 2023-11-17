@@ -34,6 +34,8 @@ import { RegistroProtectoraComponent } from './components/registro-protectora/re
 import { AnimalComponent } from './components/animales/animal/animal.component';
 import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
 import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
+import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
+
 
 
 @NgModule({
@@ -61,6 +63,7 @@ import { AltaAnimalComponent } from './components/animales/alta-animal/alta-anim
     AnimalComponent,
     ListaAnimalesComponent,
     AltaAnimalComponent
+    CuestionarioAdopcionComponent,
 
   ],
   imports: [

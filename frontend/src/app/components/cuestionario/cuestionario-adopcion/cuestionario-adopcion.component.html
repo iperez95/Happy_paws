@@ -1,0 +1,67 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Cuestionario de Adopcion</h3>
+    <form [formGroup]="respuestasForm" (ngSubmit)="onSubmit()">
+        <div formArrayName="respuestasArray">
+            <div *ngFor="let respuesta of respuestasArray.controls; let i=index" [formGroupName]="i">
+                <div class="form-group mt-5">
+                    <input type="hidden" id="idpregunta" formControlName="preguntaid" />
+                                        
+                    <label class="col-md-12" for="pregunta">{{ respuesta.get('preguntasAdoptante')?.get('pregunta')?.value }}</label>
+                    
+                    <textarea rows="4" id="respuesta" formControlName="respuesta"></textarea>
+                </div>
+            </div>
+        </div>
+        <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!respuestasForm.valid">Enviar solicitud Adopción</button>
+    </form>
+</div>
+
+<!-- <div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Cuestionario de Adopcion</h3>
+    <form [formGroup]="respuestasForm" (ngSubmit)="onSubmit()">
+        <div formArrayName="respuestasArray">
+            <div *ngFor="let respuesta of respuestasArray.controls; let i=index" [formGroupName]="i">
+                <div  class="form-group mt-5" *ngFor="let pregunta of preguntas">
+                    <input type="hidden" id="idpregunta" formControlName="preguntaid" value="{{pregunta.idpregunta}}" />
+                    <label class="col-md-12" for="pregunta">{{pregunta.pregunta}}</label>
+                    <textarea rows="4" id="respuesta" formControlName="respuesta"></textarea>
+                </div>
+            </div>
+        </div>
+        <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!respuestasForm.valid">Enviar solicitud Adopción</button>
+    </form>
+</div> -->
+
+<!-- <div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Cuestionario de Adopcion</h3>
+    <form [formGroup]="respuestasForm" (ngSubmit)="onSubmit()">
+        <div formArrayName="respuestasArray">
+            <div *ngFor="let respuesta of respuestasArray.controls; let i=index" [formGroupName]="i">
+                <div  class="form-group mt-5" *ngFor="let pregunta of preguntas">
+                    <input type="hidden" id="idpregunta" formControlName="preguntaid" value="{{pregunta.idpregunta}}" />
+                    <label class="col-md-12" for="pregunta">{{pregunta.pregunta}}</label>
+                    <textarea rows="4" id="respuesta" formControlName="respuesta"></textarea>
+                </div>
+            </div>
+        </div>
+        <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!respuestasForm.valid">Enviar solicitud Adopción</button>
+    </form>
+</div> -->
+
+<!-- <div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Cuestionario de Adopcion</h3>
+    <form [formGroup]="respuestasForm" (ngSubmit)="onSubmit()">
+        <div formArrayName="respuestasArray">
+            <div *ngor="let respuesta of respuestaArray.controls; let i=index" [formGroupName]="1">
+                <div  class="form-group mt-5" *ngFor="let pregunta of preguntas">
+                    <input type="hidden" id="idpregunta" formControlName="preguntaid" value="{{pregunta.idpregunta}}" />
+                    <label class="col-md-12" for="pregunta">{{pregunta.pregunta}}</label>
+                    <textarea rows="4" id="respuesta" formControlName="respuesta"></textarea>
+                </div>
+                <div>
+                    <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!respuestasForm.valid">Enviar solicitud Adopción</button>
+                </div>  
+            </div> 
+        </div>     
+    </form>
+</div> -->
