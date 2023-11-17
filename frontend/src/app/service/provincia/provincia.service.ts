@@ -25,7 +25,7 @@ export class ProvinciaService {
    * Rest.
    */
   public listarProvincias(): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/provincia/listado`)
+    return this._httpClient.get(`${this.endpoint}/provincia/todas`)
       .pipe(catchError(this.manejarError));
   }
 

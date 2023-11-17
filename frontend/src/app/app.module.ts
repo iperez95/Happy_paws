@@ -8,21 +8,33 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
-import { ProtectoraComponent } from './components/protectoras/protectora/protectora.component';
 import { ListaProtectorasComponent } from './components/protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AltaProtectoraComponent } from './components/protectoras/alta-protectora/alta-protectora.component';
 import { FormsModule } from '@angular/forms';
+import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
+import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
+import { ModificarProtectoraComponent } from './components/Protectoras/gestion/modificar-protectora/modificar-protectora.component';
+import { GestionProtectoraComponent } from './components/Protectoras/gestion/gestion-protectora/gestion-protectora.component';
+import { ContactoComponent } from './components/contacto/contacto.component';
+import { ContactoProtectoraComponent } from './components/Protectoras/contacto-protectora/contacto-protectora.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroProtectoraComponent } from './components/registro-protectora/registro-protectora.component';
 import { AnimalComponent } from './components/animales/animal/animal.component';
 import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
 import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +44,6 @@ import { AltaAnimalComponent } from './components/animales/alta-animal/alta-anim
     ContentComponent,
     HomeComponent,
     LoginModalComponent,
-    ProtectoraComponent,
     ListaProtectorasComponent,
     AltaProtectoraComponent,
     MunicipiosComponent,
@@ -40,15 +51,28 @@ import { AltaAnimalComponent } from './components/animales/alta-animal/alta-anim
     AnimalComponent,
     ListaAnimalesComponent,
     AltaAnimalComponent
+    DetalleProtectoraComponent,
+    ModificarProtectoraComponent,
+    GestionProtectoraComponent,
+    ContactoComponent,
+    ContactoProtectoraComponent,
+    RegistroComponent,
+    RegistroProtectoraComponent,
+    AnimalComponent,
+    ListaAnimalesComponent,
+    AltaAnimalComponent
+
   ],
   imports: [
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatTabsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatDialogModule,
     RouterModule.forRoot([
       { path: 'animales', component: AnimalComponent },

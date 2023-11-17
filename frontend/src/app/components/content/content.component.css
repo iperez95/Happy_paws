@@ -23,12 +23,102 @@
     height: 300px;
 }
 
+.text-banner {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .container-homepage {
-    background-image: url("/assets/images/home/perros-transformed.png");
+    background-image: url(/assets/images/home/perros-transformed.png);
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    min-height: 400px;
+    background-position: 25% 30%;
+}
+
+.container-homepage p {
+    color: rgba(255, 255, 255, 0.98);
+    text-align: center;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.dogs{
+    background-image: url("/assets/images/home/perro-card.jpg");
     background-repeat: no-repeat;
     background-position: center top;
-    background-size: 100% auto;
-    min-height: 650px;
+    border-radius: 50px !important;
+    background-position: center;
+    background-size: cover;
+}
+
+.cats{
+    background-image: url("/assets/images/home/gato-card.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50px !important;
+    background-size: cover;
+}
+
+.CardAnimals {
+    width: 70%;
+    height: 350px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    justify-content: space-between !important;
+
+}
+
+.CardAnimals a {
+    display: block; 
+    width: fit-content; 
+    margin: auto;
+    position: relative; 
+    top: 80%; 
+
+}
+
+.home-container-info {
+    background-color: #F5F2F2;
+    fill: #F5F2F2;
+}
+
+.texto-svg {
+    color: #000;
+    text-align: center;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-height: 27px;
+    margin:auto;
+    max-width: 600px; /* Adjust this value as needed */
+}
+
+.info-button {
+    width: 155px;
+    height: 40px;
+    padding: 8px 16px;
+    background: #F6F6F6;
+    border-radius: 8px;
+    border: 1px #A6252C solid;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    display: inline-flex;
+    margin: 50px;
+}
+
+.info-text {
+    color: #A6252C;
+    font-size: 15px;
+    font-weight: 450;
+    line-height: 16px;
+    letter-spacing: 0.20px;
+    word-wrap: break-word;
+    text-align: center;
 }
 
 

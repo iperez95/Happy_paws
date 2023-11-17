@@ -1,49 +1,59 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; width: 100%; margin-right:auto; margin-left:auto;}
+body { font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-tab-body-content { overflow: hidden!important}
 
-html, body { height: 100%; width: 95%; margin-right:auto; margin-left:auto;}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-select {border-radius: 15px; 
-    background: var(--grey-base-f-5-f-5-f-5, #F5F5F5);
-    width: auto;
-    height:3vh;
-    flex-shrink: 0;}
+/* Definicion de variables de colores */
+:root {
+  --red: #a6252c;
+  --grey-background: #f5f2f2;
+
+  --button-red-text: #ffffff;
+
+  --button-ligth-red-background: #fbe7e8;
+  --button-ligth-red-text: #a30d11;
+
+  --text-dark: #1a191f;
+}
 
 .custom-btn {
-    background-color: var(--red-base, #A6252C);
-    color: #fff;
-    border-color: var(--red-base);
+  background-color: var(--red-base, #A6252C);
+  color: #fff;
+  border-color: var(--red-base);
 }
 
 .custom-btn:hover {
-    background-color: #d3a8aa;
-    border-color: var(--red-base);
+  background-color: #d3a8aa;
+  border-color: var(--red-base);
 }
 
-/* .preloader-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all .4s ease;
+/* Botones */
+.custom-btn-red-dark {
+  background-color: var(--red);
+  color: #fff; 
 }
 
-.spinner{width: 3rem; height: 3rem} */
-
-
-
-.card{
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
-    transition: all 0.3s ease-in-out;
-    background-color: #F5F2F2;
+.custom-btn-red-dark:hover {
+  background-color: #d3a8aa;
+  color: var(--text-dark);
 }
 
 
+.custom-btn-red-light {
+  background-color: #fbe7e8;
+  color: #fff;
+  color: #a30d11;
+}
 
+.custom-btn-red-light:hover {
+  background-color: #a30d11;
+  color: #fbe7e8;
+}
+
+input, textarea{
+  background-color: rgb(226, 226, 226);
+  border: none;
+  min-height: 2vw;
+  width: 100%;
+}
 

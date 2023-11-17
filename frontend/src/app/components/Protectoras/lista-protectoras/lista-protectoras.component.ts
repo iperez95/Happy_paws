@@ -1,4 +1,5 @@
 import { Component, HostListener, NgModule, Pipe } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
@@ -25,7 +26,7 @@ export class ListaProtectorasComponent {
   provinciaSeleccionada: string;
   provinciaSeleccionadaId: number;   
 
-   constructor (private _protectoraService:ProtectoraService, _provinciaService:ProvinciaService ) { } 
+   constructor (private _protectoraService:ProtectoraService, _provinciaService:ProvinciaService, private router :Router ) { } 
   
    ngOnInit():void {
     this.listar();
@@ -38,6 +39,11 @@ export class ListaProtectorasComponent {
         console.log(this.listaProtectoras);
       });
    }
+
+   public verDetallesProtectora(id: number) {
+    this.router.navigate(['/protectora/detalle/', id]);
+   }
+
 
 
   public listarProtectorasPorIdProvincia(idProvincia: number) {
@@ -55,6 +61,8 @@ export class ListaProtectorasComponent {
         console.log(this.listaProvincias);
       });
   }
+
+
 
 
 

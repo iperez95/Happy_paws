@@ -35,23 +35,23 @@ export class ProtectoraService {
       .pipe(catchError(this.manejarError));
   }
   
-  public listarProtectoraPorProvincia(provincia: string): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/protectora/listadofront/provincia/${provincia}`)
-      .pipe(catchError(this.manejarError));
-  }
-
   public listarProtectoraPorIdProvincia(provinciaId: number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/protectora/porprovincia/${provinciaId}`)
       .pipe(catchError(this.manejarError));
   }
 
   public altaProtectora(protectora: Protectora): Observable<Object> {
-    return this._httpClient.post(`${this.endpoint}/protectora/gestion/alta`, protectora)
+    return this._httpClient.post(`${this.endpoint}/protectora/alta`, protectora)
       .pipe(catchError(this.manejarError));
   }
 
   public obtenerProtectoraPorId(idprotectora : number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/protectora/${idprotectora}`)
+      .pipe(catchError(this.manejarError));
+  }
+
+  public actualizarProtectora (id:number, protectora : Protectora): Observable<Object> {
+    return this._httpClient.put(`${this.endpoint}/protectora/gestion/modificar/${id}`, protectora)
       .pipe(catchError(this.manejarError));
   }
 

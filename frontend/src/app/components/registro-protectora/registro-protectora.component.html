@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Registro</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p>Registrate para poder acceder a la plataforma</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+                <div class="form-group m-3">
+                  <label for="nombre">Nombre</label>
+                  <input type="text" class="form-control" name="nombre" placeholder="Introduce tu nombre" [(ngModel)]="usuario.nombre">
+                </div>
+                <div class="form-group m-3">
+                    <label for="apellidos">Apellidos</label>
+                    <input type="text" class="form-control" name="apellidos" [(ngModel)]="usuario.apellidos" placeholder="Introduce tus Apellidos">
+                </div>
+                <div class="form-group m-3">
+                    <label for="dni">Dni</label>
+                    <input type="text" class="form-control" name="dni" [(ngModel)]="usuario.dni" placeholder="Introduce tu DNI">
+                </div>
+                <div class="form-group m-3">
+                    <label for="telefono">Telefono</label>
+                    <input type="tel" class="form-control" name="telefono" [(ngModel)]="usuario.telefono" placeholder="Introduce tu Telefono">
+                </div>
+                <div class="form-group m-3">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" [(ngModel)]="usuario.direccion" placeholder="Introduce tu Telefono">
+                </div>
+                <div class="form-group m-3">
+                    <label for="dni">Email</label>
+                    <input type="email" class="form-control" name="email" [(ngModel)]="usuario.email" placeholder="Introduce tu Email">
+                </div>
+                <div class="form-group m-3">
+                    <label for="password">Contraseña</label>
+                    <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" placeholder="Introduce tu Contraseña">
+                </div>
+                <button type="submit" class="btn btn-primary m-3">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>

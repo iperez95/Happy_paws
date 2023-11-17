@@ -22,17 +22,27 @@ public class UsuarioDao implements IUsuarioDao {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public boolean altaUsuario(Usuario usuario) {
+    public UsuarioDto altaUsuario(Usuario usuario) {
         Usuario tmpUsuario = usuarioRepository.findByEmail(usuario.getEmail());
         if (tmpUsuario != null) {
-            return false;
+            throw new AppException("Un usuario con este email ya existe", HttpStatus.BAD_REQUEST);
         }
 
         try {
             usuarioRepository.save(usuario);
-            return true;
+            return UsuarioDto.builder()
+                .id(usuario.getIdusuario())
+                .nombre(usuario.getNombre())
+                .apellidos(usuario.getApellidos())
+                .email(usuario.getEmail())
+                .direccion(usuario.getDireccion())
+                .dni(usuario.getDni())
+                .rol(usuario.getRol().toString())
+                .enabled(usuario.getEnabled())
+                .password(usuario.getPassword())
+                .build();
         } catch (Exception e) {
-            return false;
+            throw new AppException(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

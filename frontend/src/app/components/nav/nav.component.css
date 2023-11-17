@@ -25,3 +25,31 @@
     border-color: #A6252C !important;
 }
 
+.align-vertical {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Or any other value that suits your needs */
+}
+
+.btn-dropdown-logged {
+    box-shadow: none;
+    /* height: 35px; */
+    border: 0;
+    border-radius: 0px;
+    color: #A6252C;
+}
+
+.dropdown-menu > li > a:hover {
+    cursor: pointer;
+    background-color: #A6252C;
+    color: #fff;
+}
+
+.nav-item> a:hover {
+    cursor: pointer;
+    background-color: #A6252C;
+    color: #fff;
+}
+
+

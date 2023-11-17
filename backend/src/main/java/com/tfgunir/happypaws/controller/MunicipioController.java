@@ -13,7 +13,7 @@ import com.tfgunir.happypaws.modelo.entities.Municipio;
 
 @RestController
 @CrossOrigin(origins ="*")
-@RequestMapping("/municipio")
+@RequestMapping("/municipiosDeProvincia")
 public class MunicipioController {
 
     @Autowired
@@ -29,7 +29,7 @@ public class MunicipioController {
             return ResponseEntity.notFound().build();
     }
 
-    @GetMapping(path="/porprovincia/{idprov}", produces = "application/json")
+    @GetMapping(path="/{idprov}", produces = "application/json")
     public ResponseEntity<Iterable<Municipio>> listadoMunicipiosPorIdProv (@PathVariable("idprov") int idprov){
        
         Iterable<Municipio> listado = munidao.municipiosPorIdProvincia(idprov);

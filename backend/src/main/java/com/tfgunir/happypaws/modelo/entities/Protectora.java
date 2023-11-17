@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The persistent class for the protectoras database table.
  * 
  */
 @Entity
-@Table(name = "protectoras")
+@Table(name = "PROTECTORAS")
 @NamedQuery(name = "Protectora.findAll", query = "SELECT p FROM Protectora p")
 public class Protectora implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -26,34 +28,42 @@ public class Protectora implements Serializable {
 
 	private String email;
 
+	private String telefono;
+
+	
+
 	@Column(name = "URL_LOGO")
 	private String urlLogo;
 
 	// uni-directional many-to-one association to Estadosprotectora
 	@ManyToOne
 	@JoinColumn(name = "IDESTADOPROTECTORA")
+	@JsonIgnore
 	private Estadosprotectora estadosprotectora;
 
 	// uni-directional many-to-one association to Municipio
 	@ManyToOne
 	@JoinColumn(name = "IDMUNICIPIO")
+	@JsonIgnore
 	private Municipio municipio;
 
 	// uni-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name = "IDUSUARIO")
+	@JsonIgnore
 	private Usuario usuario;
 
 	public Protectora() {
 	}
 
-	public Protectora(int idprotectora, String descripcion, String direccion, String nombre, String email,
+	public Protectora(int idprotectora, String descripcion, String direccion, String nombre, String email, String telefono,
 			String urlLogo, Estadosprotectora estadosprotectora, Municipio municipio, Usuario usuario) {
 		this.idprotectora = idprotectora;
 		this.descripcion = descripcion;
 		this.direccion = direccion;
 		this.nombre = nombre;
 		this.email = email;
+		this.telefono = telefono;
 		this.urlLogo = urlLogo;
 		this.estadosprotectora = estadosprotectora;
 		this.municipio = municipio;
@@ -108,6 +118,14 @@ public class Protectora implements Serializable {
 		this.email = email;
 	}
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
 	public Estadosprotectora getEstadosprotectora() {
 		return this.estadosprotectora;
 	}
@@ -157,8 +175,11 @@ public class Protectora implements Serializable {
 	@Override
 	public String toString() {
 		return "Protectora [idprotectora=" + idprotectora + ", descripcion=" + descripcion + ", direccion=" + direccion
-				+ ", nombre=" + nombre + ", email=" + email + ", urlLogo=" + urlLogo + ", estadosprotectora="
-				+ estadosprotectora + ", municipio=" + municipio + ", usuario=" + usuario + "]";
+				+ ", nombre=" + nombre + ", email=" + email + ", telefono=" + telefono + ", urlLogo=" + urlLogo
+				+ ", estadosprotectora=" + estadosprotectora + ", municipio=" + municipio + ", usuario=" + usuario
+				+ "]";
 	}
+
+	
 
 }

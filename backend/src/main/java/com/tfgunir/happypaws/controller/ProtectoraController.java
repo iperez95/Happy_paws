@@ -1,8 +1,15 @@
 package com.tfgunir.happypaws.controller;
 
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
+import com.tfgunir.happypaws.modelo.entities.ContactForm;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
 
@@ -24,7 +33,10 @@ import com.tfgunir.happypaws.modelo.entities.Protectora;
 public class ProtectoraController {
 
     @Autowired
-    ProtectoraDao protdao;    
+    ProtectoraDao protdao;
+
+    @Autowired
+    private JavaMailSender emailSender; 
 
     // DETALLE PROTECTORA 
     @GetMapping(path="/{id}", produces = "application/json")
@@ -35,7 +47,6 @@ public class ProtectoraController {
             return ResponseEntity.ok(p);
         else
             return ResponseEntity.notFound().build();
-      
     }
 
     // LISTADO PROTECTORAS
@@ -85,8 +96,8 @@ public class ProtectoraController {
 
     //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
     // ALTA PROTECTORA
-    @PostMapping(path="/gestion/alta", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Protectora> altaProtectora (@RequestBody Protectora p){
+    @PostMapping(path="/alta", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<Protectora> altaProtectora (@RequestBody Protectora p ){
         protdao.altaProtectora(p);
         if (p!=null)
             return ResponseEntity.created(null).body(p);    
@@ -94,18 +105,48 @@ public class ProtectoraController {
             return ResponseEntity.badRequest().build();
     }
 
-    //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
+    //TODO DAV comprobar que solo el usuario que gestiona la protectora hacer esto
     // MODIFICAR PROTECTORA
-    @PutMapping(path="/gestion/modificar", consumes = "application/json")
-    public ResponseEntity<Protectora> modificarProtectora (@PathVariable("id") int id, @RequestBody Protectora p){
-        Protectora protUpdate= protdao.buscarProtectoraId(id);
-        if (protUpdate!=null) {
-            p = protdao.modificarProtectora(p);
-            return ResponseEntity.ok(p);    
-        }
+    @PutMapping(path="/gestion/modificar/{id}", consumes = "application/json")
+    public ResponseEntity<Protectora> modificarUnaProtectora(@PathVariable("id")int id, @RequestBody Protectora detalleProtectora){ 
+        
+        System.out.println("Buscando protectora con id: "+id);
+        Protectora protectora = protdao.buscarProtectoraId(id);
+
+        protectora.setNombre(detalleProtectora.getNombre());
+        protectora.setDireccion(detalleProtectora.getDireccion());
+        protectora.setDescripcion(detalleProtectora.getDescripcion());
+        protectora.setEmail(detalleProtectora.getEmail());
+        protectora.setTelefono(detalleProtectora.getTelefono());
+
+        Protectora protectoraActualizada = protdao.actualizarProtectora(protectora);
+
+        if (protectoraActualizada!=null)
+            return ResponseEntity.ok(protectoraActualizada);
         else
-            return ResponseEntity.notFound().build();        
+            return ResponseEntity.notFound().build();
     }
+
+
+    //Añadir logo protectora una vez creada
+    @PutMapping(path="/gestion/subirlogo")
+    public ResponseEntity<Protectora> subirLogo(@RequestParam("id") int id, @RequestParam("logo") MultipartFile logo) {
+        if (!logo.isEmpty()) {
+            String nombreLogo = String.valueOf(id);
+            Path urlLogo = Paths.get("uploads/" + id + "/").resolve(nombreLogo).toAbsolutePath();
+            try {
+                Files.createDirectories(urlLogo.getParent());
+                Files.copy(logo.getInputStream(), urlLogo);
+                protdao.subirLogo(id, urlLogo.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+   
+        return ResponseEntity.ok().build();
+    }
+
+
 
     //BORRAR UNA PROTECTORA
     @DeleteMapping(path="/gestion/borrar/{id}")
@@ -127,7 +168,7 @@ public class ProtectoraController {
             Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
             estadoProtectoraTemporal.setIdestadoprotectora(1);
             p.setEstadosprotectora(estadoProtectoraTemporal);
-            protdao.modificarProtectora(p);
+            protdao.actualizarProtectora(p);
             return ResponseEntity.ok(p);    
         }
         else
@@ -142,7 +183,7 @@ public class ProtectoraController {
             Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
             estadoProtectoraTemporal.setIdestadoprotectora(3);
             p.setEstadosprotectora(estadoProtectoraTemporal);
-            protdao.modificarProtectora(p);
+            protdao.actualizarProtectora(p);
             return ResponseEntity.ok(p);    
         }
         else
@@ -157,13 +198,33 @@ public class ProtectoraController {
             Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
             estadoProtectoraTemporal.setIdestadoprotectora(2);
             p.setEstadosprotectora(estadoProtectoraTemporal);
-            protdao.modificarProtectora(p);
+            protdao.actualizarProtectora(p);
             return ResponseEntity.ok(p);    
         }
         else
             return ResponseEntity.notFound().build();        
     }
-    
+
+    // FORMULARIO CONTACTO PROTECTORA
+    @PostMapping("/contacto/{idProtectora}")
+    public String manejoEnvioformulario(@RequestBody ContactForm form, @PathVariable int idProtectora) {
+        // Aquí podemos añadir la validacion del back del formulario.
+
+        // Llama al método para enviar el forulario a la protectora por su id
+        sendEmail(form,idProtectora);
+
+        return "¡Formulario enviado con éxito!";
+    }
+
+	//Método para enviar el formulario al email de HappyPaws
+    private void sendEmail(ContactForm form, int idProtectora) {
+        Protectora protectora = protdao.buscarProtectoraId(idProtectora);
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(protectora.getEmail());
+        message.setSubject("Mensaje " + form.getName());
+        message.setText("Correo electrónico: " + form.getEmail() + "\n\n" + form.getMessage());
+        emailSender.send(message);
+    }  
     
     
 }

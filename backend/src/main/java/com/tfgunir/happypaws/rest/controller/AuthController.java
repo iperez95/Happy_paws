@@ -21,6 +21,11 @@ public class AuthController {
     @Autowired
     private UsuarioAuthProvider usuarioAuthProvider;
 
+    /**
+     * This method receives a CredentialsDto object and returns a UsuarioDto object with the token.
+     * @param credentialsDto
+     * @return
+     */
     @PostMapping("/api/login")
     public ResponseEntity<UsuarioDto> login(@RequestBody CredentialsDto credentialsDto) {
         UsuarioDto user = usuarioDao.login(credentialsDto);

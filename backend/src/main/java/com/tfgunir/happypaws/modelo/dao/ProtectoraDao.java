@@ -18,15 +18,31 @@ public class ProtectoraDao implements IProtectoraDao {
     @Override
     public int altaProtectora(Protectora protectora) {
         try {
-            //Se asigna estado 3 pendiente de validacion, en el alta de la protectora.
             Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
-            estadoProtectoraTemporal.setIdestadoprotectora(3);
+            estadoProtectoraTemporal.setIsActivated();
             protectora.setEstadosprotectora(estadoProtectoraTemporal);
             protrepo.save(protectora);
             return 1;
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
+        }
+    }
+
+     //TODO dav añadir al return mensaje protectora no encontrada
+    @Override
+    public Protectora actualizarProtectora(Protectora protectora) {
+        try{
+        if (buscarProtectoraId(protectora.getIdprotectora())!=null){}
+        //Actualiza los datos de una protectora activa.
+        Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+        estadoProtectoraTemporal.setIdestadoprotectora(1);
+        protectora.setEstadosprotectora(estadoProtectoraTemporal);
+            protrepo.save(protectora);
+           return protectora;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -52,14 +68,7 @@ public class ProtectoraDao implements IProtectoraDao {
             return 0;
     }
 
-    //TODO dav añadir al return mensaje protectora no encontrada
-    @Override
-    public Protectora modificarProtectora(Protectora protectora) {
-        if (buscarProtectoraId(protectora.getIdprotectora())!=null)
-            return protrepo.save(protectora);
-        else
-            return null;
-        }
+   
 
     @Override
     public Protectora buscarProtectoraId(int id) {
@@ -95,6 +104,18 @@ public class ProtectoraDao implements IProtectoraDao {
              e.printStackTrace();
              return 0;
          }
+    }
+
+    @Override
+    public void subirLogo(int id, String urlLogo) {
+        //Obtenemos la protectora por su ID
+        Protectora protectora = buscarProtectoraId(id);
+        if (protectora!=null){
+            //Asignamos el logo
+            protectora.setUrlLogo(urlLogo);
+            //Guardamos la protectora
+            protrepo.save(protectora);
+        }
     }
  
 

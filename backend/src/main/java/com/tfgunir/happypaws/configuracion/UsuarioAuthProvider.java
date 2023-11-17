@@ -19,17 +19,31 @@ import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * This class provides methods to create and validate JWT tokens for a given UsuarioDto.
+ */
 @RequiredArgsConstructor
 @Component
 public class UsuarioAuthProvider {
+    /**
+     * The secret key used to sign the JWT token.
+     */
     @Value("${security.jwt.token.secret-key:secret-key}")
     private String secretKey;
 
+    /**
+     * This method encodes the secret key to Base64.
+     */
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
+    /**
+     * Creates a JWT token for the given UsuarioDto.
+     * @param dto
+     * @return
+     */
     public String createToken(UsuarioDto dto) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3600000);
@@ -42,6 +56,11 @@ public class UsuarioAuthProvider {
             .sign(Algorithm.HMAC256(secretKey));
     }
 
+    /**
+     * Validates a JWT token and returns the authentication object for the user.
+     * @param token
+     * @return
+     */
     public Authentication validateToken(String token) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         JWTVerifier verifier = JWT.require(algorithm)
