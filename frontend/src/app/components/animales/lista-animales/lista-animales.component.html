@@ -1,1 +1,14 @@
-<p>lista-animales works!</p>
+<h1>LISTADO DE ANIMALES</h1>
+
+
+<app-animal 
+    *ngFor="let a of listaAnimales"
+    [animal]="a"
+>
+</app-animal>
+
+<tr *ngIf="listaAnimales.length==0">
+    <td class="rojo" colspan="4">
+        No se han encontrado Animales
+    </td>
+</tr>

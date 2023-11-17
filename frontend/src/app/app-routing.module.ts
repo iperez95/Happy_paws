@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AnimalesComponent } from './components/animales/animales.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProtectoraComponent } from './components/Protectoras/protectora/protectora.component';
-import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
-import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
+import { ProtectoraComponent } from './components/protectoras/protectora/protectora.component';
+import { ListaProtectorasComponent } from './components/protectoras/lista-protectoras/lista-protectoras.component';
+import { AltaProtectoraComponent } from './components/protectoras/alta-protectora/alta-protectora.component';
+import { AnimalComponent } from './components/animales/animal/animal.component';
+import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
+import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 
 const routes: Routes = [
   //animales
-  { path: 'animales', component: AnimalesComponent },
+  { path: 'animales', component: AnimalComponent },
+  { path: 'animales/listado', component:ListaAnimalesComponent},
+  { path: 'animales/verUno/:id', component: AnimalComponent},
+  { path: 'animales/gestion/alta', component: AltaAnimalComponent},
+
   //Protectoras
   { path: 'protectora/:id', component: ProtectoraComponent },
   { path: 'protectoras', component: ListaProtectorasComponent },

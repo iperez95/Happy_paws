@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Animal } from 'src/app/entidades/animal';
-import { NonNullableFormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -18,33 +17,37 @@ export class AnimalService {
 
   // Método que lista todos los animales del servicio Rest
   public listarAnimales(): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animal/listado`)
+    return this._httpClient.get(`${this.endpoint}/animales/listado`)
       .pipe(catchError(this.manejarError));
   }
 
   // Método para ver un animal por su id
   public verAnimal(idanimal: number): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animal/verUno/${idanimal}`)
+    return this._httpClient.get(`${this.endpoint}/animales/verUno/${idanimal}`)
       .pipe(catchError(this.manejarError));
   }
 
   // Método para dar de alta un animal
   
   public altaAnimal(animal: Animal): Observable<Object> {
-    return this._httpClient.post(`${this.endpoint}/animal/gestion/alta`, animal)
+    let headers = new HttpHeaders();
+    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+    return this._httpClient.post(`${this.endpoint}/animales/gestion/alta`, 
+      animal.toString(), 
+      {headers: headers })
       .pipe(catchError(this.manejarError));
   }
 
   // Método para eliminar un animal
   public eliminarAnimal(idanimal: number): Observable<any> {
-    return this._httpClient.delete(`${this.endpoint}/animal/gestion/eliminar/${idanimal}`)
+    return this._httpClient.delete(`${this.endpoint}/animales/gestion/eliminar/${idanimal}`)
       .pipe(catchError(this.manejarError));
   }
 
 
   // Método para modificar un animal
   public modificarAnimal(idanimal: number, animal : Animal): Observable<any> {
-    return this._httpClient.put(`${this.endpoint}/animal/gestion/modificar/${idanimal}`, animal)
+    return this._httpClient.put(`${this.endpoint}/animales/gestion/modificar/${idanimal}`, animal)
       .pipe(catchError(this.manejarError));
   }
 
@@ -54,20 +57,20 @@ export class AnimalService {
 
   // Método para buscar animales por provincia
   public listarAnimalPorProvincia(provincia: string): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animal/buscar/porprovincia/${provincia}`)
+    return this._httpClient.get(`${this.endpoint}/animales/buscar/porprovincia/${provincia}`)
       .pipe(catchError(this.manejarError));
   }
 
 
   // Método que lista todos los animales de una protectora por su nombre
   public listarAnimalPorProtectora(nombre: String): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animal/buscar/porprotectora/${nombre}`)
+    return this._httpClient.get(`${this.endpoint}/animales/buscar/porprotectora/${nombre}`)
       .pipe( catchError(this.manejarError));
   }
 
   //Método que lista todos los animales de una protectora por su id 
   public listarAnimalPorIdProtectora(idprotectora: number): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animal/buscar/poridprotectora/${idprotectora}`)
+    return this._httpClient.get(`${this.endpoint}/animales/buscar/poridprotectora/${idprotectora}`)
       .pipe( catchError(this.manejarError));  
   }                         // faltaria impler el método en el backend  comentado en el controller
 

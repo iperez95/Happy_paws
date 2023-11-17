@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
 import { AnimalService } from 'src/app/service/Animal/animal.service';
@@ -10,18 +10,18 @@ import { AnimalService } from 'src/app/service/Animal/animal.service';
 })
 export class AnimalComponent implements OnInit{
 
-  id:number;
-  animal : Animal;
-  route: ActivatedRoute;
+  // id:number;
+  // animal : Animal;
+  // route: ActivatedRoute;
 
-  constructor(private _animalService: AnimalService, route: ActivatedRoute) {
-    this.route = route;
-  }
+  // constructor(private _animalService: AnimalService, route: ActivatedRoute) {
+  //   this.route = route;
+  // }
 
+  @Input() animal : Animal;
 
+  constructor(){}
 
-
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit() {
   }
 }

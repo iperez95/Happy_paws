@@ -22,6 +22,7 @@ import { MunicipiosComponent } from './components/municipios/municipios.componen
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { AnimalComponent } from './components/animales/animal/animal.component';
 import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
+import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ListaAnimalesComponent } from './components/animales/lista-animales/lis
     MunicipiosComponent,
     ProvinciasComponent,
     AnimalComponent,
-    ListaAnimalesComponent
+    ListaAnimalesComponent,
+    AltaAnimalComponent
   ],
   imports: [
     MatFormFieldModule,
