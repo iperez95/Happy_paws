@@ -12,7 +12,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="estadosprotectoras")
+@Table(name="ESTADOSPROTECTORAS")
 @NamedQuery(name="Estadosprotectora.findAll", query="SELECT e FROM Estadosprotectora e")
 public class Estadosprotectora implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +32,11 @@ public class Estadosprotectora implements Serializable {
 
 	public void setIdestadoprotectora(int idestadoprotectora) {
 		this.idestadoprotectora = idestadoprotectora;
+	}
+
+	public void setIsActivated() {
+		this.idestadoprotectora = 1;
+		this.estado = "Activo";
 	}
 
 	public String getEstado() {

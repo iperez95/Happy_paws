@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The persistent class for the protectoras database table.
  * 
  */
 @Entity
-@Table(name = "protectoras")
+@Table(name = "PROTECTORAS")
 @NamedQuery(name = "Protectora.findAll", query = "SELECT p FROM Protectora p")
 public class Protectora implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -36,16 +38,19 @@ public class Protectora implements Serializable {
 	// uni-directional many-to-one association to Estadosprotectora
 	@ManyToOne
 	@JoinColumn(name = "IDESTADOPROTECTORA")
+	@JsonIgnore
 	private Estadosprotectora estadosprotectora;
 
 	// uni-directional many-to-one association to Municipio
 	@ManyToOne
 	@JoinColumn(name = "IDMUNICIPIO")
+	@JsonIgnore
 	private Municipio municipio;
 
 	// uni-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name = "IDUSUARIO")
+	@JsonIgnore
 	private Usuario usuario;
 
 	public Protectora() {
