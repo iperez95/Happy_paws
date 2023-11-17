@@ -12,7 +12,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="multimedias")
+@Table(name="MULTIMEDIAS")
 @NamedQuery(name="Multimedia.findAll", query="SELECT m FROM Multimedia m")
 public class Multimedia implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -12,7 +12,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="tipos_atributos")
+@Table(name="TIPOS_ATRIBUTOS")
 @NamedQuery(name="TiposAtributo.findAll", query="SELECT t FROM TiposAtributo t")
 public class TiposAtributo implements Serializable {
 	private static final long serialVersionUID = 1L;
