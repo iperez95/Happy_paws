@@ -44,7 +44,6 @@ public class Protectora implements Serializable {
 	// uni-directional many-to-one association to Municipio
 	@ManyToOne
 	@JoinColumn(name = "IDMUNICIPIO")
-	@JsonIgnore
 	private Municipio municipio;
 
 	// uni-directional many-to-one association to Usuario

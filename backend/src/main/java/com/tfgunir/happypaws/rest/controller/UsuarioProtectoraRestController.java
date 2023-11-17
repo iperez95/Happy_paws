@@ -46,7 +46,6 @@ public class UsuarioProtectoraRestController {
     public ResponseEntity<?> crearUsuario(@RequestBody ProtectoraRequestDto protectoraRequestDto) {
         Usuario usuario = protectoraRequestDto.getUsuario();
         Protectora protectora = protectoraRequestDto.getProtectora();
-        System.out.println(protectora);
         try {
             usuario.setEmailNormalizado(usuario.getEmail());
             usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));

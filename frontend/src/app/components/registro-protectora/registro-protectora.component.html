@@ -12,6 +12,7 @@
     <div class="row">
         <div class="col-md-4">
             <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+                <h2>Detalles de usuario</h2>
                 <div class="form-group m-3">
                   <label for="nombre">Nombre</label>
                   <input type="text" class="form-control" name="nombre" placeholder="Introduce tu nombre" [(ngModel)]="usuario.nombre">
@@ -39,6 +40,31 @@
                 <div class="form-group m-3">
                     <label for="password">Contraseña</label>
                     <input type="password" class="form-control" name="password" [(ngModel)]="usuario.password" placeholder="Introduce tu Contraseña">
+                </div>
+                <h2>Detalles de protectora</h2>
+                <div class="form-group m-3">
+                    <label for="protec_nombre">Nombre</label>
+                    <input type="text" class="form-control" name="protec_nombre" placeholder="Nombre de la protectora" [(ngModel)]="protectora.nombre">
+                </div>
+                <div class="form-group m-3">
+                    <label for="protec_descripcion">Descripcion</label>
+                    <input type="text" class="form-control" name="protec_descripcion" placeholder="Descripcion de la protectora" [(ngModel)]="protectora.descripcion">
+                </div>
+                <div class="form-group m-3">
+                    <label for="protec_direccion">Direccion</label>
+                    <input type="text" class="form-control" name="protec_direccion" placeholder="Direccion de la protectora" [(ngModel)]="protectora.direccion">
+                </div>
+                <div class="form-group m-3">
+                    <label for="protec_email">Email</label>
+                    <input type="email" class="form-control" name="protec_email" placeholder="Email de la protectora" [(ngModel)]="protectora.email">
+                </div>
+                <div class="form-group m-3">
+                    <label for="nombre">Telefono</label>
+                    <input type="protec_tel" class="form-control" name="protec_tel" placeholder="Telefono de la protectora" [(ngModel)]="protectora.telefono">
+                </div>
+                <div class="form-group m-3">
+                    <label for="protec_logo">Logo</label>
+                    <input type="url" class="form-control" name="protec_logo" placeholder="URL del logo" [(ngModel)]="protectora.urlLogo">
                 </div>
                 <button type="submit" class="btn btn-primary m-3">Enviar</button>
             </form>

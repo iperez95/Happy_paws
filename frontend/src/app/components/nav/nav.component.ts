@@ -4,6 +4,7 @@ import { AuthService } from '../../service/auth/auth.service';
 import { AxiosService } from '../../service/axios/axios.service';
 import { Usuario } from 'src/app/entidades/usuario';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -17,7 +18,9 @@ export class NavComponent {
     private loginService: LoginService, 
     private authService: AuthService, 
     private axiosService: AxiosService, 
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,
+    private _router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.authService.loggedIn$.subscribe((loggedIn) => {
@@ -29,7 +32,6 @@ export class NavComponent {
 
   ngAfterContentChecked()	{
     this.user = this.usuarioService.getUserData();
-    console.log(this.user);
   }
 
   openDialog() {
@@ -37,10 +39,9 @@ export class NavComponent {
   }
 
   logout(): void {
-    // Remove the token from the local storage
     this.axiosService.removeAuthToken();  
-    // Update the loggedIn property
     this.authService.setLoggedIn(false);
+    this._router.navigate(['/']);
   }
 
 }

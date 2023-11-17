@@ -37,7 +37,7 @@ public class UsuarioDao implements IUsuarioDao {
                 .email(usuario.getEmail())
                 .direccion(usuario.getDireccion())
                 .dni(usuario.getDni())
-                .rol(usuario.getRol().toString())
+                .rol(usuario.getRol().getNombre())
                 .enabled(usuario.getEnabled())
                 .password(usuario.getPassword())
                 .build();
@@ -78,7 +78,7 @@ public class UsuarioDao implements IUsuarioDao {
                 .email(usuario.getEmail())
                 .direccion(usuario.getDireccion())
                 .dni(usuario.getDni())
-                .rol(usuario.getRol().toString())
+                .rol(usuario.getRol().getNombre())
                 .enabled(usuario.getEnabled())
                 .password(usuario.getPassword())
                 .build();

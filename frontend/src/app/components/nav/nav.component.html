@@ -53,7 +53,7 @@
                     Bienvenido, {{user?.nombre}}
                   </button>
                   <ul class="dropdown-menu dropdown-menu-start">
-                    <li><a class="dropdown-item" href="#">Mi Perfil</a></li>
+                    <li><a class="dropdown-item" href="{{user?.isProtectora() ? 'protectora/gestion' : 'adoptante/gestion'}}">Mi Perfil</a></li>
                     <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
                   </ul>
                 </div>
