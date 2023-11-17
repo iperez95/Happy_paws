@@ -8,7 +8,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
-import { AnimalesComponent } from './components/animales/animales.component';
+import { ListaProtectorasComponent } from './components/protectoras/lista-protectoras/lista-protectoras.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AltaProtectoraComponent } from './components/protectoras/alta-protectora/alta-protectora.component';
+import { FormsModule } from '@angular/forms';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
@@ -28,7 +31,9 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { ContactoProtectoraComponent } from './components/Protectoras/contacto-protectora/contacto-protectora.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { RegistroProtectoraComponent } from './components/registro-protectora/registro-protectora.component';
-
+import { AnimalComponent } from './components/animales/animal/animal.component';
+import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
+import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 
 
 @NgModule({
@@ -38,12 +43,14 @@ import { RegistroProtectoraComponent } from './components/registro-protectora/re
     FooterComponent,
     ContentComponent,
     HomeComponent,
-    AnimalesComponent,
     LoginModalComponent,
     ListaProtectorasComponent,
     AltaProtectoraComponent,
     MunicipiosComponent,
     ProvinciasComponent,
+    AnimalComponent,
+    ListaAnimalesComponent,
+    AltaAnimalComponent
     DetalleProtectoraComponent,
     ModificarProtectoraComponent,
     GestionProtectoraComponent,
@@ -51,7 +58,10 @@ import { RegistroProtectoraComponent } from './components/registro-protectora/re
     ContactoProtectoraComponent,
     RegistroComponent,
     RegistroProtectoraComponent,
-  
+    AnimalComponent,
+    ListaAnimalesComponent,
+    AltaAnimalComponent
+
   ],
   imports: [
     MatFormFieldModule,
@@ -65,7 +75,7 @@ import { RegistroProtectoraComponent } from './components/registro-protectora/re
     ReactiveFormsModule,
     MatDialogModule,
     RouterModule.forRoot([
-      { path: 'animales', component: AnimalesComponent },
+      { path: 'animales', component: AnimalComponent },
       { path: 'home', component: HomeComponent },
     ]),
     BrowserAnimationsModule
