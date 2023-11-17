@@ -34,6 +34,11 @@ public class Estadosprotectora implements Serializable {
 		this.idestadoprotectora = idestadoprotectora;
 	}
 
+	public void setIsActivated() {
+		this.idestadoprotectora = 1;
+		this.estado = "Activo";
+	}
+
 	public String getEstado() {
 		return this.estado;
 	}

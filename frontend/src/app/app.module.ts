@@ -27,6 +27,7 @@ import { GestionProtectoraComponent } from './components/Protectoras/gestion/ges
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ContactoProtectoraComponent } from './components/Protectoras/contacto-protectora/contacto-protectora.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroProtectoraComponent } from './components/registro-protectora/registro-protectora.component';
 
 
 
@@ -49,6 +50,7 @@ import { RegistroComponent } from './components/registro/registro.component';
     ContactoComponent,
     ContactoProtectoraComponent,
     RegistroComponent,
+    RegistroProtectoraComponent,
   
   ],
   imports: [

@@ -11,6 +11,7 @@ import { GestionProtectoraComponent } from './components/Protectoras/gestion/ges
 import { ContactoComponent } from './components/contacto/contacto.component';
 import { ContactoProtectoraComponent } from './components/Protectoras/contacto-protectora/contacto-protectora.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { RegistroProtectoraComponent } from './components/registro-protectora/registro-protectora.component';
 
 const routes: Routes = [
   //animales
@@ -29,6 +30,7 @@ const routes: Routes = [
   //Login
   { path: 'login', component: LoginModalComponent },
   { path: 'registro', component: RegistroComponent },
+  {path: 'registro-protectora', component: RegistroProtectoraComponent},
   //Home - Inicio
   { path: 'contacto', component: ContactoComponent},
   { path: '', component: HomeComponent },
