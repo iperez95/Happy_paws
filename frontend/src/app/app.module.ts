@@ -30,7 +30,10 @@ import { ListaAnimalesComponent } from './components/animales/lista-animales/lis
 import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
-import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
+//import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
+import { PetecionesAdopcionComponent } from './components/peteciones-adopcion/peteciones-adopcion.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { AdopcionesCompletadasComponent } from './components/adopciones-completadas/adopciones-completadas.component';
 
 
 
@@ -43,7 +46,7 @@ import { AltaProtectoraComponent } from './components/Protectoras/alta-protector
     HomeComponent,
     LoginModalComponent,
     ListaProtectorasComponent,
-    AltaProtectoraComponent,
+    //AltaProtectoraComponent,
     MunicipiosComponent,
     ProvinciasComponent,
     AnimalComponent,
@@ -60,6 +63,8 @@ import { AltaProtectoraComponent } from './components/Protectoras/alta-protector
     ListaAnimalesComponent,
     AltaAnimalComponent,
     CuestionarioAdopcionComponent,
+    PetecionesAdopcionComponent,
+    AdopcionesCompletadasComponent,
 
   ],
   imports: [
@@ -71,6 +76,7 @@ import { AltaProtectoraComponent } from './components/Protectoras/alta-protector
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    MatChipsModule,
     ReactiveFormsModule,
     MatDialogModule,
     RouterModule.forRoot([

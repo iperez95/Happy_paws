@@ -1,5 +1,4 @@
 export class Protectora {
-
     idprotectora: number;
     nombre: string;
     direccion: string;
@@ -7,24 +6,21 @@ export class Protectora {
     email: string;
     telefono: number;
     descripcion: string;
+    idmunicipio: string;
     
-  
-
     municipio: {
-        idmunicipio: number;
-        municipio: string;
-        provincia: {
-          idprovincia: number;
-          provincia: string;
-        };
-      };
-      
+      idmunicipio: number;
+      municipio: string;
       provincia: {
         idprovincia: number;
         provincia: string;
       };
-    
-    
+    };
+
+    provincia: {
+      idprovincia: number;
+      provincia: string;
+    };
 
     public toString() : string {
         return JSON.stringify(this)

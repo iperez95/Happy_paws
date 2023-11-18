@@ -8,5 +8,5 @@ public interface IMunicipioDao {
 
     List<Municipio> listadoMunicipios();
     List<Municipio> municipiosPorIdProvincia(int idProvincia);
-    
+    Municipio municipioPorId(int id); 
 }

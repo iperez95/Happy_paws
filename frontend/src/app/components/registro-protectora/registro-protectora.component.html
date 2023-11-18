@@ -66,6 +66,18 @@
                     <label for="protec_logo">Logo</label>
                     <input type="url" class="form-control" name="protec_logo" placeholder="URL del logo" [(ngModel)]="protectora.urlLogo">
                 </div>
+                <div class="form-group m-3">
+                    <label for="protec_provincia">Provincia</label>
+                    <select id="provincia" (change)="listadoMunicipiosProvincia($event)">
+                        <option *ngFor="let provincia of provincias" [ngValue]="provincia.idprovincia">{{provincia.provincia}}</option>
+                    </select>
+                </div>
+                <div class="form-group m-3">
+                    <label for="protec_municipio">Municipio</label>
+                    <select id="municipio" name="protec_municipio" [(ngModel)]="idMunicipio">
+                        <option *ngFor="let municipio of municipios"  [ngValue]="municipio.idmunicipio">{{municipio.municipio}}</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary m-3">Enviar</button>
             </form>
         </div>

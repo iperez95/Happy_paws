@@ -5,6 +5,9 @@ import { AuthService } from 'src/app/service/auth/auth.service';
 import { AxiosService } from 'src/app/service/axios/axios.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
+import { Municipio } from 'src/app/entidades/municipio';
+import { Provincia } from 'src/app/entidades/provincia';
+import { LocationService } from 'src/app/service/localizacion/location.service';
 
 @Component({
   selector: 'app-registro-protectora',
@@ -15,20 +18,29 @@ export class RegistroProtectoraComponent {
     isSubmitted = false;
     usuario: Usuario = new Usuario();
     protectora: Protectora = new Protectora();
+    municipio : Municipio = new Municipio();
+    provincia : Provincia =  new Provincia();
+    provincias: Provincia [] = [];
+    municipios: Municipio [] = [];
+    idMunicipio: number;
 
     constructor(
       private axiosService: AxiosService,
       private authService: AuthService,
       private _router: Router,
+      private _locationService: LocationService
     ) {}
   
     ngOnInit(): void {
+      this.listadoProvincias();
+      this.listadoMunicipiosProvincia(null);
     }
   
     onSubmit(values: any) {
       this.axiosService.request("POST", '/api/usuarioProtectoras', {
         "usuario": this.usuario,
-        "protectora": this.protectora
+        "protectora": this.protectora,
+        "idMunicipio": this.idMunicipio,
       }).then(response => {
         this.authService.setLoggedIn(true); // Update the loggedIn property
         this.axiosService.setAuthToken(response.data.token); // Save the token in the local storage
@@ -45,10 +57,28 @@ export class RegistroProtectoraComponent {
       }).catch(error => {
         Swal.fire({
           title: 'Algo ha salido mal',
-          text: error.response.data.message,
+          text: error.response.data,
           icon: 'error',
         })
       });
     }
-  }
+
+    private listadoProvincias() {
+      this._locationService.listarProvincias()
+        .subscribe(data => {
+          this.provincias = data;          
+        });
+    }
+
+    listadoMunicipiosProvincia(event: any) {
+      let idProvincia: number = 1;
+      if (event != null) {
+        idProvincia = event.target.value;
+      }
+
+      this._locationService.listarMunicipiosDeUnaProvincia(idProvincia).subscribe(municipios => {
+        this.municipios = municipios;
+      });
+    }
+}
 
