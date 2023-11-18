@@ -100,6 +100,11 @@ public class AdopcionDto {
     public String toString() {
         return "AdopcionDto [idAdopcion=" + idAdopcion + ", idProtectora=" + idProtectora + ", idUsuario=" + idUsuario
                 + ", idAnimal=" + idAnimal + ", idEstadoAdopcion=" + idEstadoAdopcion + "]";
+    }
+
+
+    public Object map(Object object) {
+        return null;
     }   
 
 

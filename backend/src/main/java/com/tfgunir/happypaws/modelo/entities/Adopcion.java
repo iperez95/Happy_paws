@@ -4,8 +4,6 @@ package com.tfgunir.happypaws.modelo.entities;
 import java.io.Serializable;
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import java.util.Date;
 
 
@@ -32,25 +30,21 @@ public class Adopcion implements Serializable {
 	//uni-directional many-to-one association to Animal
 	@ManyToOne
 	@JoinColumn(name="IDANIMAL")
-	@JsonManagedReference
 	private Animal animal;
 
 	//uni-directional many-to-one association to Estadosadopcion
 	@ManyToOne
 	@JoinColumn(name="IDESTADOADOPCION")
-	@JsonManagedReference
 	private Estadosadopcion estadosadopcion;
 
 	//uni-directional many-to-one association to Protectora
 	@ManyToOne
 	@JoinColumn(name="IDPROTECTORA")
-	@JsonManagedReference
 	private Protectora protectora;
 
 	//uni-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="IDUSUARIO")
-	@JsonManagedReference
 	private Usuario usuario;
 
 	public Adopcion() {
