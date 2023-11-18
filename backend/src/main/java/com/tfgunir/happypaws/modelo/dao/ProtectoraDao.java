@@ -68,7 +68,9 @@ public class ProtectoraDao implements IProtectoraDao {
             return 0;
     }
 
-   
+    public Protectora buscarProtectoraPorUsuario(int idUsuario) {
+        return protrepo.findByUsuario(idUsuario);
+    }
 
     @Override
     public Protectora buscarProtectoraId(int id) {

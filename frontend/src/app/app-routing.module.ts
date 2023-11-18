@@ -25,11 +25,11 @@ const routes: Routes = [
   
 
   //Protectoras
-  { path: 'protectora/gestion/:id', component: GestionProtectoraComponent },
+  { path: 'protectora/gestion', component: GestionProtectoraComponent },
   { path: 'protectora/detalle/:id', component: DetalleProtectoraComponent },
   { path: 'protectora/todas', component: ListaProtectorasComponent },
   //{ path: 'protectora/alta', component: AltaProtectoraComponent },
-  { path: 'protectora/gestion/modificar/:id', component: ModificarProtectoraComponent},
+  { path: 'protectora/gestion/modificar', component: ModificarProtectoraComponent},
   { path: 'protectora/contacto/:id', component: ContactoProtectoraComponent},
 
   //Cuestionario de adopción

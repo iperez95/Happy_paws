@@ -22,6 +22,7 @@ export class UsuarioService {
     this.usuario.nombre = tokenData.nombre;
     this.usuario.apellidos = tokenData.apellidos;
     this.usuario.rol = tokenData.rol;
+    this.usuario.id = tokenData.id;
 
     return this.usuario;
   }

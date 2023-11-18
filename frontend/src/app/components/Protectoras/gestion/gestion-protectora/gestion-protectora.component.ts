@@ -3,6 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Protectora } from 'src/app/entidades/protectora';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
+import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 
 
 
@@ -13,33 +14,35 @@ import { ProtectoraService } from 'src/app/service/protectora/protectora.service
 
 })
 export class GestionProtectoraComponent {
-  id: number;
   protectora: Protectora;
   route: ActivatedRoute;
   background: ThemePalette = undefined;
-
-  
 
   toggleBackground() {
     this.background = this.background ? undefined : 'primary';
   }
 
-  constructor(private _protectoraService: ProtectoraService, private router: Router, route: ActivatedRoute) {
+  constructor(
+    private _protectoraService: ProtectoraService,
+    private router: Router,
+    route: ActivatedRoute,
+    private usuarioService: UsuarioService
+  ) {
     this.route = route;
   }
 
-  
-
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this._protectoraService.obtenerProtectoraPorId(this.id).subscribe( (data: Protectora) => {
-      this.protectora = data;
-    });
+    const user = this.usuarioService.getUserData();
+    if (user) {
+      this._protectoraService.obtenerProtectoraPorIdUsuario(user.id).subscribe( (data: Protectora) => {
+        this.protectora = data;
+      });
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   actualizarProtectora(id:number) {
-    this.router.navigate(['protectora/gestion/modificar/', id]);
-     }
-
-
+    this.router.navigate(['protectora/gestion/modificar']);
+  }
 }

@@ -68,6 +68,16 @@ public class ProtectoraRestController {
             return ResponseEntity.notFound().build();
     }
 
+    @GetMapping(path="/usuario/{id}", produces = "application/json")
+    public ResponseEntity<Protectora> buscarPorUsuarioId(@PathVariable("id")int id) {
+        Protectora p = protdao.buscarProtectoraPorUsuario(id);
+        if (p!=null)
+            return ResponseEntity.ok(p);
+        else
+            return ResponseEntity.notFound().build();
+
+    }
+
     // LISTADO PROTECTORAS
     @GetMapping(path="/gestion/listado", produces = "application/json")
     public ResponseEntity<Iterable<Protectora>> listadoProtectoras (){

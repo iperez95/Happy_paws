@@ -21,5 +21,5 @@ public interface IProtectoraDao {
     List<Protectora> buscarPorNombreProvincia(String nombre);
 
     void subirLogo(int id, String urlLogo);
-    
+    Protectora buscarProtectoraPorUsuario(int idUsuario);
 }

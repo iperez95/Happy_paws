@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Protectora } from 'src/app/entidades/protectora';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
+import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 
 @Component({
   selector: 'app-modificar-protectora',
@@ -13,11 +14,20 @@ export class ModificarProtectoraComponent {
 
   protectora: Protectora = new Protectora();
 
-  constructor(private _protectoraService: ProtectoraService,  private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private _protectoraService: ProtectoraService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private usuarioService: UsuarioService
+  ) { }
 
   ngOnInit() {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.obtenerProtectora(id);
+    const user = this.usuarioService.getUserData();
+    if (user) {
+      this.obtenerProtectora(user.id);
+    } else {
+      this.router.navigate(['/']);
+    }
   }
 
   onSubmit(){
@@ -26,7 +36,7 @@ export class ModificarProtectoraComponent {
   }
 
   obtenerProtectora(id: number) {
-    this._protectoraService.obtenerProtectoraPorId(id)
+    this._protectoraService.obtenerProtectoraPorIdUsuario(id)
       .subscribe({
         next: protectora => this.protectora = protectora,
         error: error => console.log(error),
@@ -50,7 +60,7 @@ export class ModificarProtectoraComponent {
 
   IrDetalleProtectora() {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/protectora/gestion/' + this.protectora.idprotectora]);
+      this.router.navigate(['/protectora/gestion']);
     }); 
   }
  
