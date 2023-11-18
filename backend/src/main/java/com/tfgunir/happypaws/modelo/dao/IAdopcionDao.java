@@ -1,6 +1,8 @@
 package com.tfgunir.happypaws.modelo.dao;
 
 import java.util.List;
+
+import com.tfgunir.happypaws.modelo.dto.AdopcionDto;
 import com.tfgunir.happypaws.modelo.entities.Adopcion;
 
 public interface IAdopcionDao {
@@ -9,7 +11,14 @@ public interface IAdopcionDao {
     int realizarAdopcion(Adopcion adopcion);
     int rechazarAdopcion(Adopcion adopcion);
     int borrarAdopcion(Adopcion adopcion);
+
+    List<Adopcion> buscarTodasAdopciones();
+    List<Adopcion> adopcionesPorIDProtectora(int IdProtectora);
+
     Adopcion buscarAdopcionId(int id);
-    List<Adopcion> buscarTodas();
-    List<Adopcion> buscarTodasPorProtectora(int IdProtectora);
+    
+    // List<AdopcionDto> adopcionesProtectoraPorIdDto(int IdProtectora);
+    
+    AdopcionDto convertirAdopcionDto(Adopcion adopcion);
+    
 }
