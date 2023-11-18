@@ -6,7 +6,8 @@ import com.tfgunir.happypaws.modelo.dto.AdopcionDto;
 import com.tfgunir.happypaws.modelo.entities.Adopcion;
 
 public interface IAdopcionDao {
-    int altaAdopcion(Adopcion adopcion);
+    Adopcion altaAdopcion(Adopcion adopcion);
+    
     int enCursoAdopcion(Adopcion adopcion);
     int realizarAdopcion(Adopcion adopcion);
     int rechazarAdopcion(Adopcion adopcion);
