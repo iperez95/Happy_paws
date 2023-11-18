@@ -8,13 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ContentComponent } from './components/content/content.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginModalComponent } from './components/login-modal/login-modal.component';
-import { ListaProtectorasComponent } from './components/protectoras/lista-protectoras/lista-protectoras.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AltaProtectoraComponent } from './components/protectoras/alta-protectora/alta-protectora.component';
-import { FormsModule } from '@angular/forms';
-import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -35,6 +29,8 @@ import { AnimalComponent } from './components/animales/animal/animal.component';
 import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
 import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
+import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
+import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
 
 
 
@@ -52,7 +48,7 @@ import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestio
     ProvinciasComponent,
     AnimalComponent,
     ListaAnimalesComponent,
-    AltaAnimalComponent
+    AltaAnimalComponent,
     DetalleProtectoraComponent,
     ModificarProtectoraComponent,
     GestionProtectoraComponent,
@@ -62,7 +58,7 @@ import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestio
     RegistroProtectoraComponent,
     AnimalComponent,
     ListaAnimalesComponent,
-    AltaAnimalComponent
+    AltaAnimalComponent,
     CuestionarioAdopcionComponent,
 
   ],
