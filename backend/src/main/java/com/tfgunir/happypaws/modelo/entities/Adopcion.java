@@ -82,6 +82,7 @@ public class Adopcion implements Serializable {
 		this.estadosadopcion = estadosadopcion;
 	}
 
+
 	public Protectora getProtectora() {
 		return this.protectora;
 	}

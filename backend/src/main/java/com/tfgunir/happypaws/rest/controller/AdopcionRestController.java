@@ -62,7 +62,7 @@ public class AdopcionRestController {
     }
 
     /**
-     * Recupera todas las adopciones para un refugio dado por el ID del refugio.
+     * Recupera todas las adopciones para una protectora el ID de protectora.
      * @param idProtectora El ID del refugio.
      * @return La entidad de respuesta que contiene la lista de DTO de adopción.
      */
@@ -130,8 +130,8 @@ public class AdopcionRestController {
             // FIN AÑADIR ESTADO DE ADOPCIÓN "EN CURSO" A LA ADOPCIÓN
 
             // AÑADE LA FECHA DE ADOPCIÓN A LA ADOPCIÓN
-                Date fechaActual = new Date();
-                adopcion.setFechaAdopcion(fechaActual);
+                // Date fechaActual = new Date();
+                // adopcion.setFechaAdopcion(fechaActual);
             // FIN AÑADIR FECHA DE ADOPCIÓN A LA ADOPCIÓN
 
             adopdao.altaAdopcion(adopcion);

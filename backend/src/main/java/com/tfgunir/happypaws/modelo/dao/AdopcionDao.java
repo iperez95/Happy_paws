@@ -164,6 +164,10 @@ public class AdopcionDao implements IAdopcionDao {
         adopcionDto.setIdUsuario(adopcion.getUsuario().getIdusuario());
         adopcionDto.setIdAnimal(adopcion.getAnimal().getIdanimal());
         adopcionDto.setIdEstadoAdopcion(adopcion.getEstadosadopcion().getIdestadoadopcion());
+        adopcionDto.setFechaAdopcion(adopcion.getFechaAdopcion());
+        adopcionDto.setNombreProtectora(adopcion.getProtectora().getNombre());
+        adopcionDto.setNombreUsuario(adopcion.getUsuario().getNombre() + " " + adopcion.getUsuario().getApellidos());
+        adopcionDto.setNombreAnimal(adopcion.getAnimal().getNombre());
         return adopcionDto;
     }
 }
