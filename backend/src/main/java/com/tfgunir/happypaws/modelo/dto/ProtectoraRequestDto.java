@@ -15,4 +15,5 @@ import lombok.NoArgsConstructor;
 public class ProtectoraRequestDto {
     private Usuario usuario;
     private Protectora protectora;
+    private int idMunicipio;
 }

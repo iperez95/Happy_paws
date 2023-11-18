@@ -24,4 +24,7 @@ public class MunicipioDao implements IMunicipioDao {
        return munirepo.municipiosPorIdProvincia(idprov);
     }
     
+    public Municipio municipioPorId(int id) {
+        return munirepo.findById(id).orElse(null);
+    }
 }

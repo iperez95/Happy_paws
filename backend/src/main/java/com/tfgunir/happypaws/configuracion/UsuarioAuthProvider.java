@@ -54,6 +54,7 @@ public class UsuarioAuthProvider {
             .withClaim("nombre", dto.getNombre())
             .withClaim("apellidos", dto.getApellidos())
             .withClaim("rol", dto.getRol())
+            .withClaim("id", dto.getId())
             .sign(Algorithm.HMAC256(secretKey));
     }
 

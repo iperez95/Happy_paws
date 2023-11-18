@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
+import com.tfgunir.happypaws.modelo.dao.IMunicipioDao;
 import com.tfgunir.happypaws.modelo.dao.IProtectoraDao;
 import com.tfgunir.happypaws.modelo.dao.IUsuarioDao;
 import com.tfgunir.happypaws.modelo.dto.ProtectoraRequestDto;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
+import com.tfgunir.happypaws.modelo.entities.Municipio;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.entities.Rol;
 import com.tfgunir.happypaws.modelo.entities.Usuario;
@@ -29,6 +31,9 @@ public class UsuarioProtectoraRestController {
 
     @Autowired
     private IProtectoraDao protectoraDao;
+
+    @Autowired
+    private IMunicipioDao municipioDao;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -54,9 +59,14 @@ public class UsuarioProtectoraRestController {
             usuario.setFechaenabled(new Date());
             byte enabled = 1; 
             usuario.setEnabled(enabled);
+            Municipio municipio = municipioDao.municipioPorId(protectoraRequestDto.getIdMunicipio());
+            if (municipio == null) {
+                return new ResponseEntity<>("El municipio seleccionado no existe", HttpStatus.BAD_REQUEST);
+            }
             UsuarioDto usuarioDto = usuarioDao.altaUsuario(usuario);
             if (usuarioDto != null) {
                 protectora.setUsuario(usuario);
+                protectora.setMunicipio(municipio);
                 if (protectoraDao.altaProtectora(protectora) == 0) {
                     return new ResponseEntity<>("Ha ocurrido un error al crear la protectora", HttpStatus.INTERNAL_SERVER_ERROR);
                 }

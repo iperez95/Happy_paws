@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.IUsuarioDao;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
+import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.entities.Rol;
 import com.tfgunir.happypaws.modelo.entities.Usuario;
 
@@ -28,6 +31,16 @@ public class UsuarioRestController {
 
     @Autowired
     private UsuarioAuthProvider usuarioAuthProvider;
+
+    @GetMapping(path="/{id}", produces = "application/json")
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable("id") int id) {
+        Usuario u = usuarioDao.buscarUnUsuario(id);
+        if (u!=null)
+            return ResponseEntity.ok(u);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
 
     /**
      * This method receives a Usuario object and returns a ResponseEntity with the created Usuario object.

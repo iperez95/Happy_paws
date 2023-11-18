@@ -1,0 +1,17 @@
+.contendor{
+    margin-top: 50px;
+
+}
+
+.search-tab{
+    border-radius: 15px;
+    background:#F5F5F5;
+    width: 200px;
+    height: 36px;
+    flex-shrink: 0;
+    margin-bottom: 30px;
+    text-align: center;
+
+
+}
+

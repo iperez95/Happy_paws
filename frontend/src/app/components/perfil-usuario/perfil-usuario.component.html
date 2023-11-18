@@ -1,0 +1,29 @@
+<div class="contenedor">
+    <section *ngIf="usuario">
+        <div class="container.md overflow-hidden">
+            <div class="row row-cols-auto m-3">
+                <div class="row row-cols-auto m-3 ">
+                    <div class="col-md">
+                        <h1>Perfil de usuario</h1>
+                        <hr>
+                        <div class="col-md">
+                            <h3>Hola, {{usuario.nombre}} {{usuario.apellidos}}</h3>
+                        </div>
+                        <div class="col-md mt-3 ">
+                            <a>Dirección: {{usuario.direccion}}</a>
+                        </div>
+                        <div class="col-md mt-3 ">
+                            <a>Email: {{usuario.email}}</a>
+                        </div>
+                        <div class="col-md mt-3">
+                            <a>Teléfono: {{usuario.telefono}}</a>
+                        </div>
+                        <div class="col-md mt-3">
+                            <a>Dni: {{usuario.dni}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

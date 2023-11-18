@@ -65,20 +65,15 @@ export class ProtectoraService {
       .pipe(catchError(this.manejarError));
   }
 
+  public obtenerProtectoraPorIdUsuario(idUsuario : number): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/protectora/usuario/${idUsuario}`)
+      .pipe(catchError(this.manejarError));
+  }
+
   public actualizarProtectora (id:number, protectora : Protectora): Observable<Object> {
     return this._httpClient.put(`${this.endpoint}/protectora/gestion/modificar/${id}`, protectora)
       .pipe(catchError(this.manejarError));
   }
-
-  
-  
-
- 
-
-
-
-
-
 
   /**
    * Método que maneja los posibles errores de las llamadas al servicio rest
