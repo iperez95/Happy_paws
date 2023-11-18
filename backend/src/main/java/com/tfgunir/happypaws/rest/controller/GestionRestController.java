@@ -1,4 +1,4 @@
-package com.tfgunir.happypaws.controller;
+package com.tfgunir.happypaws.rest.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
 
 @Controller
 @RequestMapping ("/gestion")
-public class GestionController {
+public class GestionRestController {
 
     @Autowired
     ProtectoraDao protdao;

@@ -1,4 +1,4 @@
-package com.tfgunir.happypaws.controller;
+package com.tfgunir.happypaws.rest.controller;
 
 import java.util.List;
 
@@ -33,11 +33,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 @RestController
 @CrossOrigin(origins ="*")
 @RequestMapping("/cuestionario")
-public class CuestionarioController {
+public class CuestionarioRestController {
 
     private final UsuarioAuthProvider usuarioAuthProvider;
 
-    public CuestionarioController(UsuarioAuthProvider usuarioAuthProvider){
+    public CuestionarioRestController(UsuarioAuthProvider usuarioAuthProvider){
         this.usuarioAuthProvider = usuarioAuthProvider;
     }
 
