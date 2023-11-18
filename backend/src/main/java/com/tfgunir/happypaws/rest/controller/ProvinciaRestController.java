@@ -1,4 +1,4 @@
-package com.tfgunir.happypaws.controller;
+package com.tfgunir.happypaws.rest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import com.tfgunir.happypaws.modelo.entities.Provincia;
 @RestController
 @CrossOrigin(origins ="*")
 @RequestMapping("/provincia")
-public class ProvinciaController {
+public class ProvinciaRestController {
 
     @Autowired
     ProvinciaDao provdao;

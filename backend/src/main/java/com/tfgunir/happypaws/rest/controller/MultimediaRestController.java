@@ -1,4 +1,4 @@
-package com.tfgunir.happypaws.controller;
+package com.tfgunir.happypaws.rest.controller;
 
 
 import java.util.List;
@@ -18,7 +18,7 @@ import com.tfgunir.happypaws.modelo.entities.Multimedia;
 
 @Controller
 @RequestMapping("/multimedia")
-public class MultimediaController {
+public class MultimediaRestController {
     @Autowired
     MultimediaDao multdao;
 

@@ -1,4 +1,4 @@
-package com.tfgunir.happypaws.controller;
+package com.tfgunir.happypaws.rest.controller;
 
 
 import java.io.IOException;
@@ -41,7 +41,7 @@ import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 // TODO DAV comprobar si realmente es necesario el CrossOrigin
 @CrossOrigin(origins ="*")
 @RequestMapping("/protectora")
-public class ProtectoraController {
+public class ProtectoraRestController {
 
     @Autowired
     ProtectoraDao protdao;
@@ -54,7 +54,7 @@ public class ProtectoraController {
 
     private final UsuarioAuthProvider usuarioAuthProvider;
 
-    public ProtectoraController(UsuarioAuthProvider usuarioAuthProvider){
+    public ProtectoraRestController(UsuarioAuthProvider usuarioAuthProvider){
         this.usuarioAuthProvider = usuarioAuthProvider;
     }
 
