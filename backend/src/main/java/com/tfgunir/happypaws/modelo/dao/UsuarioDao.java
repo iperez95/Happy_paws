@@ -60,8 +60,7 @@ public class UsuarioDao implements IUsuarioDao {
 
     @Override
     public Usuario buscarUnUsuario(int id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'buscarUnUsuario'");
+        return usuarioRepository.findById(id).orElse(null);
     }
 
     @Override

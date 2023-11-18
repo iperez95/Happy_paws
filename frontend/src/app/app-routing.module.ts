@@ -15,6 +15,7 @@ import { AnimalComponent } from './components/animales/animal/animal.component';
 import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
 import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 
 const routes: Routes = [
   //animales
@@ -32,6 +33,9 @@ const routes: Routes = [
   { path: 'protectora/gestion/modificar', component: ModificarProtectoraComponent},
   { path: 'protectora/contacto/:id', component: ContactoProtectoraComponent},
 
+
+  //Adoptante
+  {path: 'adoptante/gestion', component: PerfilUsuarioComponent},
   //Cuestionario de adopción
   { path: 'cuestionario/adopcion', component: CuestionarioAdopcionComponent},
 

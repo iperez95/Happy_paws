@@ -34,6 +34,7 @@ import { ListaProtectorasComponent } from './components/Protectoras/lista-protec
 import { PetecionesAdopcionComponent } from './components/peteciones-adopcion/peteciones-adopcion.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { AdopcionesCompletadasComponent } from './components/adopciones-completadas/adopciones-completadas.component';
+import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 
 
 
@@ -65,6 +66,7 @@ import { AdopcionesCompletadasComponent } from './components/adopciones-completa
     CuestionarioAdopcionComponent,
     PetecionesAdopcionComponent,
     AdopcionesCompletadasComponent,
+    PerfilUsuarioComponent,
 
   ],
   imports: [
