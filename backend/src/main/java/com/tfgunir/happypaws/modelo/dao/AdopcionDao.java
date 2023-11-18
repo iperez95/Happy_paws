@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tfgunir.happypaws.modelo.dto.AdopcionDto;
 import com.tfgunir.happypaws.modelo.entities.Adopcion;
 import com.tfgunir.happypaws.modelo.entities.Estadosadopcion;
 import com.tfgunir.happypaws.modelo.repository.AdopcionRepository;
@@ -18,10 +19,22 @@ public class AdopcionDao implements IAdopcionDao {
     
 
     @Override
-    public List<Adopcion> buscarTodas() {
+    public List<Adopcion> buscarTodasAdopciones() {
         return adopRepo.findAll();
     }
 
+      @Override
+    public Adopcion buscarAdopcionId(int id) {
+        return adopRepo.findById(id).orElse(null);
+    }
+
+      @Override
+    public List<Adopcion> adopcionesPorIDProtectora(int IdProtectora) {
+        return adopRepo.adopcionesPorProtectora(IdProtectora);
+    }
+
+
+    
     @Override
     public int altaAdopcion(Adopcion adopcion) {
         try{
@@ -38,10 +51,7 @@ public class AdopcionDao implements IAdopcionDao {
         }
     }
 
-    @Override
-    public Adopcion buscarAdopcionId(int id) {
-    return adopRepo.findById(id).orElse(null);
-    }
+   
 
 
   
@@ -58,13 +68,7 @@ public class AdopcionDao implements IAdopcionDao {
     }
     
 
-    @Override
-    public List<Adopcion> buscarTodasPorProtectora(int IdProtectora) {
-        if (adopRepo.adopcionesPorProtectora(IdProtectora)!=null)
-            return adopRepo.adopcionesPorProtectora(IdProtectora);
-        else
-            return null;
-    }
+
 
     @Override
     public int enCursoAdopcion(Adopcion adopcion) {
@@ -120,4 +124,34 @@ public class AdopcionDao implements IAdopcionDao {
         }
             return 0;   
     }
+
+  
+
+    // @Override
+    // public List<Adopcion> adopcionesProtectoraPorId(int IdProtectora) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'adopcionesProtectoraPorId'");
+    // }
+
+    // @Override
+    // public List<AdopcionDto> adopcionesProtectoraPorIdDto(int IdProtectora) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'adopcionesProtectoraPorIdDto'");
+    // }
+    
+
+    public AdopcionDto convertirAdopcionDto(Adopcion adopcion){
+        AdopcionDto adopcionDto = new AdopcionDto();
+        adopcionDto.setIdAdopcion(adopcion.getIdadopcion());
+        adopcionDto.setIdProtectora(adopcion.getProtectora().getIdprotectora());
+        adopcionDto.setIdUsuario(adopcion.getUsuario().getIdusuario());
+        adopcionDto.setIdAnimal(adopcion.getAnimal().getIdanimal());
+        adopcionDto.setIdEstadoAdopcion(adopcion.getEstadosadopcion().getIdestadoadopcion());
+        return adopcionDto;
+    }
+
+  
+
+
+    
 }
