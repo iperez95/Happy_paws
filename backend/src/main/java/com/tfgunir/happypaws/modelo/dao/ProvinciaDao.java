@@ -9,7 +9,7 @@ import com.tfgunir.happypaws.modelo.entities.Provincia;
 import com.tfgunir.happypaws.modelo.repository.ProvinciaRepository;
 
 @Service
-public class ProvinciaDao implements IProvincia{
+public class ProvinciaDao implements IProvinciaDao{
 
     @Autowired
     ProvinciaRepository provrepo;

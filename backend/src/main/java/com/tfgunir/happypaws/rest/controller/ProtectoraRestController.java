@@ -28,7 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 
 
-import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.ContactForm;
@@ -126,7 +125,7 @@ public class ProtectoraRestController {
     // }
 
     //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
-    // ALTA PROTECTORA INTENTANDO QUE AGREGUE EL USUARIO DE LA SESIÓN
+    // ALTA PROTECTORA QUE AGREGA EL USUARIO EN SESIÓN
     @PostMapping("/alta")
     public ResponseEntity<Protectora> altaProtectora(@RequestBody Protectora p,
             @RequestHeader("Authorization") String authorizationHeader) {

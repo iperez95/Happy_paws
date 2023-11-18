@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.tfgunir.happypaws.modelo.entities.Municipio;
 
-public interface IMunicipio {
+public interface IMunicipioDao {
 
     List<Municipio> listadoMunicipios();
     List<Municipio> municipiosPorIdProvincia(int idProvincia);

@@ -9,7 +9,7 @@ import com.tfgunir.happypaws.modelo.entities.Municipio;
 import com.tfgunir.happypaws.modelo.repository.MunicipioRepository;
 
 @Service
-public class MunicipioDao implements IMunicipio {
+public class MunicipioDao implements IMunicipioDao {
 
     @Autowired
     MunicipioRepository munirepo;

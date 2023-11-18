@@ -5,10 +5,11 @@ import com.tfgunir.happypaws.modelo.entities.Adopcion;
 
 public interface IAdopcionDao {
     int altaAdopcion(Adopcion adopcion);
-    int aceptarAdopcion(Adopcion adopcion);
+    int enCursoAdopcion(Adopcion adopcion);
+    int realizarAdopcion(Adopcion adopcion);
+    int rechazarAdopcion(Adopcion adopcion);
     int borrarAdopcion(Adopcion adopcion);
-    int denegarAdopcion(Adopcion adopcion);
-    int buscarUnaAdopcion(int id);
+    Adopcion buscarAdopcionId(int id);
     List<Adopcion> buscarTodas();
     List<Adopcion> buscarTodasPorProtectora(int IdProtectora);
 }

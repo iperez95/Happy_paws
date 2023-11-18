@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tfgunir.happypaws.modelo.dao.IProvinciaDao;
 import com.tfgunir.happypaws.modelo.dao.ProvinciaDao;
 import com.tfgunir.happypaws.modelo.entities.Provincia;
 
@@ -16,7 +17,7 @@ import com.tfgunir.happypaws.modelo.entities.Provincia;
 public class ProvinciaRestController {
 
     @Autowired
-    ProvinciaDao provdao;
+    IProvinciaDao provdao;
 
     @GetMapping(path="/todas", produces = "application/json")
     public ResponseEntity<Iterable<Provincia>> listadoProvincias (){
