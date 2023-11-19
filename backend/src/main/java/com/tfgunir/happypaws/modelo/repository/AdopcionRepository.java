@@ -16,6 +16,26 @@ public interface AdopcionRepository extends JpaRepository<Adopcion, Integer>{
                 nativeQuery = true)  
     List<Adopcion> adopcionesPorProtectora(int idProtectora);
 
+     @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
+                + "where adop.idestadoadopcion = 1 and adop.idprotectora = ?1",
+                nativeQuery = true)  
+    List<Adopcion> adopcionesEnCursoPorProtectora(int idProtectora);
+
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
+                + "where adop.idestadoadopcion = 2 and adop.idprotectora = ?1",
+                nativeQuery = true)  
+    List<Adopcion> adopcionesRealizadasPorProtectora(int idProtectora);
+
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
+                + "where adop.idestadoadopcion = 3 and adop.idprotectora = ?1",
+                nativeQuery = true)  
+    List<Adopcion> adopcionesRechazadasPorProtectora(int idProtectora);
+
+    
+
     // @Query(value = "SELECT usuario.idusuario, prote.idprotectora, ani.idanimal, est.idestadoadopcion FROM ADOPCIONES adop \r\n"
     //                 + " inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
     //                 + " inner join USUARIOS usu on usu.idusuario = adop.idusuario \r\n"

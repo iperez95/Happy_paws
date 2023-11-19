@@ -81,6 +81,57 @@ public class AdopcionRestController {
         }
     }
 
+    
+    @GetMapping(path="/encurso/protectora/{id}", produces = "application/json")
+    public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesEnCursoProtectoraId(@PathVariable("id") int idProtectora) {
+        Iterable<Adopcion> adopciones = adopdao.adopcionesEnCursoPorIdProtectora(idProtectora);
+     
+        if (adopciones != null){
+            List <AdopcionDto> adopcionesDto = new ArrayList<>();
+            for (Adopcion adopcion : adopciones) {
+                adopcionesDto.add(adopdao.convertirAdopcionDto(adopcion));
+            }
+         
+            return new ResponseEntity<>(adopcionesDto, HttpStatus.OK);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping(path="/realizadas/protectora/{id}", produces = "application/json")
+    public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesRealizadasProtectoraId(@PathVariable("id") int idProtectora) {
+        Iterable<Adopcion> adopciones = adopdao.adopcionesRealizadasPorIdProtectora(idProtectora);
+     
+        if (adopciones != null){
+            List <AdopcionDto> adopcionesDto = new ArrayList<>();
+            for (Adopcion adopcion : adopciones) {
+                adopcionesDto.add(adopdao.convertirAdopcionDto(adopcion));
+            }
+         
+            return new ResponseEntity<>(adopcionesDto, HttpStatus.OK);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping(path="/rechazadas/protectora/{id}", produces = "application/json")
+    public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesRechazadasProtectoraId(@PathVariable("id") int idProtectora) {
+        Iterable<Adopcion> adopciones = adopdao.adopcionesRechazadasPorIdProtectora(idProtectora);
+     
+        if (adopciones != null){
+            List <AdopcionDto> adopcionesDto = new ArrayList<>();
+            for (Adopcion adopcion : adopciones) {
+                adopcionesDto.add(adopdao.convertirAdopcionDto(adopcion));
+            }
+         
+            return new ResponseEntity<>(adopcionesDto, HttpStatus.OK);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    
+
     /**
      * Recupera una adopción por su ID de adopción.
      * @param idAdopcion El ID de la adopción.

@@ -48,6 +48,22 @@ public class AdopcionDao implements IAdopcionDao {
         return adopRepo.adopcionesPorProtectora(IdProtectora);
     }
 
+    @Override
+    public List<Adopcion> adopcionesEnCursoPorIdProtectora(int IdProtectora) {
+        return adopRepo.adopcionesEnCursoPorProtectora(IdProtectora);
+    }
+
+    @Override
+    public List<Adopcion> adopcionesRealizadasPorIdProtectora(int IdProtectora) {
+        return adopRepo.adopcionesRealizadasPorProtectora(IdProtectora);
+    }
+
+    @Override
+    public List<Adopcion> adopcionesRechazadasPorIdProtectora(int IdProtectora) {
+        return adopRepo.adopcionesRechazadasPorProtectora(IdProtectora);
+    }
+
+
     /**
      * Guarda el objeto Adopcion dado en la base de datos.
      * 

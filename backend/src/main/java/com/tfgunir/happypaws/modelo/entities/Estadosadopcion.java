@@ -37,6 +37,10 @@ public class Estadosadopcion implements Serializable {
 		this.idestadoadopcion = 1;
 		this.estado = "En curso";
 	}
+	public void getEnCurso() {
+		this.idestadoadopcion = 1;
+		this.estado = "En curso";
+	}
 
 	public void setRealizada() {
 		this.idestadoadopcion = 2;
