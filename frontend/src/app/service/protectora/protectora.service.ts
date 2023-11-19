@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Protectora } from 'src/app/entidades/protectora';
 import { Provincia } from 'src/app/entidades/provincia';
 import axios from 'axios';
@@ -74,6 +74,17 @@ export class ProtectoraService {
     return this._httpClient.put(`${this.endpoint}/protectora/gestion/modificar/${id}`, protectora)
       .pipe(catchError(this.manejarError));
   }
+
+  public subirFoto(archivo: File, id: number): Observable <Protectora> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id.toString());
+    return this._httpClient.post(`${this.endpoint}/protectora/gestion/upload`, formData).pipe(
+    map((  resp: any ) => resp.protectora as Protectora),
+    catchError(this.manejarError)
+    );
+  }
+
 
   /**
    * Método que maneja los posibles errores de las llamadas al servicio rest

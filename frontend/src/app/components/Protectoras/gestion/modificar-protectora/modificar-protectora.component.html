@@ -1,29 +1,48 @@
 <div class="col-md-6 offset-md-3">
     <h3 class="text-center mb-5">Modificar protectora</h3>
     <form (ngSubmit)="onSubmit()">
-        <div class="col-md-3">
-            <img class="img-fluid" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="mt-4">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" [(ngModel)]="protectora.nombre" name="nombre" id="nombre" required>
+                    </div>
+                    <div class="mt-4">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" class="form-control" [(ngModel)]="protectora.direccion" name="direccion" id="direccion" required>
+                    </div>
+                    <div class="mt-4">
+                        <label for="direccion">Teléfono</label>
+                        <input type="text" class="form-control" [(ngModel)]="protectora.telefono" name="telefono" id="telefono" required>
+                    </div>
+                    <div class="mt-4">
+                        <label for="direccion">Email</label>
+                        <input type="text" class="form-control" [(ngModel)]="protectora.email" name="email" id="email" required>
+                    </div>
+                    <div class="mt-4">
+                        <label for="descripcion">Descripcion de la protectora</label>
+                        <textarea rows="4" cols="50" maxlength="1000" type="text-area" class="form-control" [(ngModel)]="protectora.descripcion" name="descripcion" id="descripcion" required></textarea>
+                    </div>
+                    
+                </div>
+                <div class="col-sm">
+                    <!-- <img class="img-fluid" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}"> -->
+                    <img src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}" class="img-fluid" width="300" height="300">
+                    <div class="mt-4 input-group">
+                        <div class="custom-file">
+                            <input (change)="seleccionarFoto($event)" type="file" class="foto" name="foto" id="foto" aria-describedby="foto" accept="image/*">
+                            <label class="custom-file-label" for="foto">Seleccionar Foto</label>
+                        </div>
+                        <div class="subir-foto">
+                            <button (click)="subirFoto()" type="button" class="btn custom-btn-red-dark">Subir foto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="mt-4">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" [(ngModel)]="protectora.nombre" name="nombre" id="nombre" required>
-        </div>
-        <div class="mt-4">
-            <label for="direccion">Dirección</label>
-            <input type="text" class="form-control" [(ngModel)]="protectora.direccion" name="direccion" id="direccion" required>
-        </div>
-        <div class="mt-4">
-            <label for="direccion">Teléfono</label>
-            <input type="text" class="form-control" [(ngModel)]="protectora.telefono" name="telefono" id="telefono" required>
-        </div>
-        <div class="mt-4">
-            <label for="direccion">Email</label>
-            <input type="text" class="form-control" [(ngModel)]="protectora.email" name="email" id="email" required>
-        </div>
-        <div class="mt-4">
-            <label for="descripcion">Descripcion de la protectora</label>
-            <textarea rows="4" cols="50" maxlength="1000" type="text-area" class="form-control" [(ngModel)]="protectora.descripcion" name="descripcion" id="descripcion" required></textarea>
-        </div>
+        
+       
         <div class="mt-4">
             <button  type="submit" class="btn custom-btn-red-dark">Guardar cambios</button>
         </div>        
