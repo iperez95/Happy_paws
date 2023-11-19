@@ -15,6 +15,9 @@ public interface IAdopcionDao {
 
     List<Adopcion> buscarTodasAdopciones();
     List<Adopcion> adopcionesPorIDProtectora(int IdProtectora);
+    List<Adopcion> adopcionesEnCursoPorIdProtectora(int IdProtectora);
+    List<Adopcion> adopcionesRealizadasPorIdProtectora(int IdProtectora);
+    List<Adopcion> adopcionesRechazadasPorIdProtectora(int IdProtectora);
 
     Adopcion buscarAdopcionId(int id);
     

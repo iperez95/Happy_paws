@@ -8,33 +8,54 @@ import org.springframework.data.jpa.repository.Query;
 import com.tfgunir.happypaws.modelo.dto.AdopcionDto;
 import com.tfgunir.happypaws.modelo.entities.Adopcion;
 
+
 public interface AdopcionRepository extends JpaRepository<Adopcion, Integer>{
 
-     @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+    /**
+     * Obtiene una lista de adopciones por protectora.
+     * 
+     * @param idProtectora El ID de la protectora.
+     * @return Una lista de adopciones realizadas por la protectora especificada.
+     */
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
                 + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
                 + "where adop.idprotectora = ?1",
                 nativeQuery = true)  
     List<Adopcion> adopcionesPorProtectora(int idProtectora);
 
-    // @Query(value = "SELECT usuario.idusuario, prote.idprotectora, ani.idanimal, est.idestadoadopcion FROM ADOPCIONES adop \r\n"
-    //                 + " inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
-    //                 + " inner join USUARIOS usu on usu.idusuario = adop.idusuario \r\n"
-    //                 + " inner join ANIMALES ani on ani.idanimal = adop.idanimal \r\n"
-    //                 + " inner join ESTADOSADOPCIONES est on est.idestadoadopcion = adop.idestadoadopcion \r\n"
-    //                 + " where prote.idprotectora = ?1",
-    //             nativeQuery = true)  
-    // List<Adopcion> adopcionesPorProtectora(int idProtectora);
+    /**
+     * Obtiene una lista de adopciones en curso por protectora.
+     * 
+     * @param idProtectora El ID de la protectora.
+     * @return Una lista de adopciones en curso realizadas por la protectora especificada.
+     */
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
+                + "where adop.idestadoadopcion = 1 and adop.idprotectora = ?1",
+                nativeQuery = true)  
+    List<Adopcion> adopcionesEnCursoPorProtectora(int idProtectora);
 
-    // @Query(value = "SELECT * FROM ADOPCIONES \r\n"
-    //                 + " where idAdopcion = ?1",
-    //             nativeQuery = true)  
-    // AdopcionDto adopcionPorID(int idAdopcion);
+    /**
+     * Obtiene una lista de adopciones realizadas por protectora.
+     * 
+     * @param idProtectora El ID de la protectora.
+     * @return Una lista de adopciones realizadas por la protectora especificada.
+     */
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
+                + "where adop.idestadoadopcion = 2 and adop.idprotectora = ?1",
+                nativeQuery = true)  
+    List<Adopcion> adopcionesRealizadasPorProtectora(int idProtectora);
 
-    
-
-    // @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
-    //             + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
-    //             + "where adop.idprotectora = ?1",
-    //             nativeQuery = true)  
-    // List<AdopcionDto> adopcionesPorProtectoraDto(int idAdopcion);
+    /**
+     * Obtiene una lista de adopciones rechazadas por protectora.
+     * 
+     * @param idProtectora El ID de la protectora.
+     * @return Una lista de adopciones rechazadas por la protectora especificada.
+     */
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
+                + "where adop.idestadoadopcion = 3 and adop.idprotectora = ?1",
+                nativeQuery = true)  
+    List<Adopcion> adopcionesRechazadasPorProtectora(int idProtectora);
 }
