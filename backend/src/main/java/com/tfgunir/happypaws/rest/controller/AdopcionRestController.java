@@ -82,6 +82,13 @@ public class AdopcionRestController {
     }
 
     
+    /**
+     * Obtiene todas las adopciones en curso de una protectora específica.
+     * 
+     * @param idProtectora El ID de la protectora.
+     * @return ResponseEntity con una lista de objetos AdopcionDto en formato JSON si se encuentran adopciones en curso,
+     *         o ResponseEntity con estado 404 (Not Found) si no se encuentran adopciones.
+     */
     @GetMapping(path="/encurso/protectora/{id}", produces = "application/json")
     public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesEnCursoProtectoraId(@PathVariable("id") int idProtectora) {
         Iterable<Adopcion> adopciones = adopdao.adopcionesEnCursoPorIdProtectora(idProtectora);
@@ -98,6 +105,12 @@ public class AdopcionRestController {
         }
     }
 
+    /**
+     * Obtiene todas las adopciones realizadas por una protectora dado su ID.
+     *
+     * @param idProtectora el ID de la protectora de animales
+     * @return ResponseEntity con una lista de AdopcionDto si se encuentran adopciones realizadas, o ResponseEntity not found si no se encuentran adopciones
+     */
     @GetMapping(path="/realizadas/protectora/{id}", produces = "application/json")
     public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesRealizadasProtectoraId(@PathVariable("id") int idProtectora) {
         Iterable<Adopcion> adopciones = adopdao.adopcionesRealizadasPorIdProtectora(idProtectora);
@@ -114,6 +127,12 @@ public class AdopcionRestController {
         }
     }
 
+    /**
+     * Obtiene todas las adopciones rechazadas por una protectora dado su ID.
+     *
+     * @param idProtectora el ID de la protectora de animales
+     * @return ResponseEntity con una lista de AdopcionDto si se encuentran adopciones rechazadas, o ResponseEntity not found si no se encuentran adopciones
+     */
     @GetMapping(path="/rechazadas/protectora/{id}", produces = "application/json")
     public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesRechazadasProtectoraId(@PathVariable("id") int idProtectora) {
         Iterable<Adopcion> adopciones = adopdao.adopcionesRechazadasPorIdProtectora(idProtectora);
