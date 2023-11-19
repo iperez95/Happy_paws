@@ -29,7 +29,6 @@ public class Protectora implements Serializable {
 	private String email;
 
 	private String telefono;
-
 	
 
 	@Column(name = "URL_LOGO")

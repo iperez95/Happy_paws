@@ -284,12 +284,12 @@ public class ProtectoraRestController {
         if (!archivo.isEmpty()) {
         
             String nombreArchivo = UUID.randomUUID().toString() +"_" + archivo.getOriginalFilename().replace(" ", "");
-            Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
+            Path rutaArchivo = Paths.get("..//frontend//src//assets//images//protectora//").resolve(nombreArchivo).toAbsolutePath();
 
             try {
                 //Files.createDirectories(rutaArchivo.getParent());
                 Files.copy(archivo.getInputStream(), rutaArchivo);
-                protectora.setUrlLogo(nombreArchivo);
+                protectora.setUrlLogo("/assets/images/protectora/"+nombreArchivo);
                 protdao.actualizarProtectora(protectora);
 
                 response.put("protectora", protectora);
@@ -303,40 +303,8 @@ public class ProtectoraRestController {
         }
         
     return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-
-
-        // if (!archivo.isEmpty()) {
-        //     String nombreArchivo = String.valueOf(id);
-        //     Path rutaArchivo = Paths.get("uploads/" + id + "/").resolve(nombreArchivo).toAbsolutePath();
-        //     try {
-        //         Files.createDirectories(rutaArchivo.getParent());
-        //         Files.copy(archivo.getInputStream(), rutaArchivo);
-        //         protdao.subirLogo(id, rutaArchivo.toString());
-        //     } catch (IOException e) {
-        //         e.printStackTrace();
-        //     }
-        // }
-        // return ResponseEntity.ok().build();
     }
 
-
-    // //Añadir logo protectora una vez creada
-    // @PutMapping(path="/gestion/subirlogo")
-    // public ResponseEntity<Protectora> subirLogo(@RequestParam("id") int id, @RequestParam("logo") MultipartFile logo) {
-    //     if (!logo.isEmpty()) {
-    //         String nombreLogo = String.valueOf(id);
-    //         Path urlLogo = Paths.get("uploads/" + id + "/").resolve(nombreLogo).toAbsolutePath();
-    //         try {
-    //             Files.createDirectories(urlLogo.getParent());
-    //             Files.copy(logo.getInputStream(), urlLogo);
-    //             protdao.subirLogo(id, urlLogo.toString());
-    //         } catch (IOException e) {
-    //             e.printStackTrace();
-    //         }
-    //     }
-   
-    //     return ResponseEntity.ok().build();
-    // }
     
     
 }

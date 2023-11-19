@@ -80,7 +80,7 @@ export class ProtectoraService {
     formData.append("archivo", archivo);
     formData.append("id", id.toString());
     return this._httpClient.post(`${this.endpoint}/protectora/gestion/upload`, formData).pipe(
-    map((  resp: any ) => resp.protectora),
+    map((  resp: any ) => resp.protectora as Protectora),
     catchError(this.manejarError)
     );
   }

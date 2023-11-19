@@ -82,8 +82,17 @@ export class ModificarProtectoraComponent {
           console.log(this.protectora);
         },
         error: error => console.log(error),
-        complete: () => console.log('Foto subida ${this.protectora.foto}')
+        complete: () => {
+          swal.fire('Foto subida', `La foto se ha subido con éxito`, 'success');
+          this.IrGestionProtectora(); 
+        }
       })
+  }
+
+  IrGestionProtectora() {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/protectora/gestion/modificar']);
+    }); 
   }
  
 }
