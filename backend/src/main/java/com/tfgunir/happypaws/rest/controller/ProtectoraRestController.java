@@ -4,6 +4,9 @@ package com.tfgunir.happypaws.rest.controller;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import java.nio.file.Files;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -189,23 +192,7 @@ public class ProtectoraRestController {
     }
 
 
-    //Añadir logo protectora una vez creada
-    @PutMapping(path="/gestion/subirlogo")
-    public ResponseEntity<Protectora> subirLogo(@RequestParam("id") int id, @RequestParam("logo") MultipartFile logo) {
-        if (!logo.isEmpty()) {
-            String nombreLogo = String.valueOf(id);
-            Path urlLogo = Paths.get("uploads/" + id + "/").resolve(nombreLogo).toAbsolutePath();
-            try {
-                Files.createDirectories(urlLogo.getParent());
-                Files.copy(logo.getInputStream(), urlLogo);
-                protdao.subirLogo(id, urlLogo.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-   
-        return ResponseEntity.ok().build();
-    }
+    
 
 
 
@@ -285,7 +272,71 @@ public class ProtectoraRestController {
         message.setSubject("Mensaje " + form.getName());
         message.setText("Correo electrónico: " + form.getEmail() + "\n\n" + form.getMessage());
         emailSender.send(message);
-    }  
+    }   
+
+    //AÑADIMOS EL LOGO DE LA PROTECTRA
+    @PostMapping(path="/gestion/upload")
+    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
+        Map<String, Object> response = new HashMap<>();
+
+        Protectora protectora = protdao.buscarProtectoraId(id);
+
+        if (!archivo.isEmpty()) {
+        
+            String nombreArchivo = UUID.randomUUID().toString() +"_" + archivo.getOriginalFilename().replace(" ", "");
+            Path rutaArchivo = Paths.get("uploads").resolve(nombreArchivo).toAbsolutePath();
+
+            try {
+                //Files.createDirectories(rutaArchivo.getParent());
+                Files.copy(archivo.getInputStream(), rutaArchivo);
+                protectora.setUrlLogo(nombreArchivo);
+                protdao.actualizarProtectora(protectora);
+
+                response.put("protectora", protectora);
+                response.put("mensaje", "Has subido correctamente el logo: " + nombreArchivo);
+
+            } catch (IOException e) {
+                response.put("mensaje", "Error al subir el logo: " + nombreArchivo);
+                response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+        
+    return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+
+
+        // if (!archivo.isEmpty()) {
+        //     String nombreArchivo = String.valueOf(id);
+        //     Path rutaArchivo = Paths.get("uploads/" + id + "/").resolve(nombreArchivo).toAbsolutePath();
+        //     try {
+        //         Files.createDirectories(rutaArchivo.getParent());
+        //         Files.copy(archivo.getInputStream(), rutaArchivo);
+        //         protdao.subirLogo(id, rutaArchivo.toString());
+        //     } catch (IOException e) {
+        //         e.printStackTrace();
+        //     }
+        // }
+        // return ResponseEntity.ok().build();
+    }
+
+
+    // //Añadir logo protectora una vez creada
+    // @PutMapping(path="/gestion/subirlogo")
+    // public ResponseEntity<Protectora> subirLogo(@RequestParam("id") int id, @RequestParam("logo") MultipartFile logo) {
+    //     if (!logo.isEmpty()) {
+    //         String nombreLogo = String.valueOf(id);
+    //         Path urlLogo = Paths.get("uploads/" + id + "/").resolve(nombreLogo).toAbsolutePath();
+    //         try {
+    //             Files.createDirectories(urlLogo.getParent());
+    //             Files.copy(logo.getInputStream(), urlLogo);
+    //             protdao.subirLogo(id, urlLogo.toString());
+    //         } catch (IOException e) {
+    //             e.printStackTrace();
+    //         }
+    //     }
+   
+    //     return ResponseEntity.ok().build();
+    // }
     
     
 }
