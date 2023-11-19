@@ -1,4 +1,4 @@
-package com.tfgunir.happypaws.controller;
+package com.tfgunir.happypaws.rest.controller;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import com.tfgunir.happypaws.modelo.entities.Animal;
 
 @Controller
 @RequestMapping("/animales")
-public class AnimalController {
+public class AnimalRestController {
     
      @Autowired
      private AnimalDao aniDao;
