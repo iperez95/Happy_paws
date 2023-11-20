@@ -1,1 +1,40 @@
-<p>alta-animal works!</p>
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Alta protectora en HappyPaws</h3>
+    <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">
+        <div  class="form-group mt-5">
+            <label class="col-md-3" for="nombre">Nombre:</label>
+            <input type="text" id="nombre" formControlName="nombre" />
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="descripcion">FechaNacimiento</label>
+            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="descripcion">FechaAlta:</label>
+            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="descripcion">Descripcion:</label>
+            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="descripcion">enabled:</label>
+            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="provincia">Provincia:</label>
+            <select id="provincia" formControlName="provincia">
+              <option *ngFor="let provincia of provincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+        <label class="col-md-2" for="municipio">Municipio:</label>
+        <select id="municipio" formControlName="municipio">
+            <option *ngFor="let municipio of municipios"  [value]="municipio.idmunicipio">{{municipio.municipio}}</option>
+        </select>
+        </div>
+        <div>
+            <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!altaForm.valid">Enviar</button>
+        </div>        
+    </form>
+</div>

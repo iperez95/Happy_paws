@@ -19,11 +19,11 @@ export class Animal {
         };
       };
 
-    valoresAtributo: {
-        idvalor: number;
-        idtipo : number;
-        valor: string;
-    }
+    // valoresAtributo: {
+    //     idvalor: number;
+    //     idtipo : number;
+    //     valor: string;
+    //}
 
     //  Constructor
     // constructor() {

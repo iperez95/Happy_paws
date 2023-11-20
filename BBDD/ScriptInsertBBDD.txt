@@ -1080,10 +1080,7 @@ VALUES
 INSERT INTO ANIMALES (IDPROTECTORA,IDMUNICIPIO,ENABLED,NOMBRE,DESCRIPCION,FECHA_NACIMIENTO,FECHA_ALTA)
 VALUES
 		(1,105,true,"Norbert",
-        "Buenas tardes amigos,
-		Os presento a NORBERT observar que bellezón 😍 esta preciosidad es un jovenzuelo, cruce de Pastor & Border Collie medianito de un año y medio de edad, que dio con sus huesos en la perrera hace unas semanas, a últimos de Septiembre.
-		NORBERT es el típico buenazo, super cariñoso y obediente y podría vivir con otros perros/as sin problemas. El pobre peludo ya ha tenido bastante perrera y necesitamos que salga de ahí rápido.
-		Norbert busca un Hogar: está sano, bien físicamente y se entrega debidamente vacunado y desparasitado. Actualmente está en la protectora de Barcelona, pero puede viajar a cualquier punto de España. Podéis contactar conmigo aquí para cualquier duda:",
+        "Buenas tardes amigos, Os presento a NORBERT observar que bellezón, esta preciosidad es un jovenzuelo, cruce de Pastor & Border Collie medianito de un año y medio de edad, que dio con sus huesos en la perrera hace unas semanas, a últimos de Septiembre. NORBERT es el típico buenazo, super cariñoso y obediente y podría vivir con otros perros/as sin problemas. El pobre peludo ya ha tenido bastante perrera y necesitamos que salga de ahí rápido. Norbert busca un Hogar: está sano, bien físicamente y se entrega debidamente vacunado y desparasitado. Actualmente está en la protectora de Barcelona, pero puede viajar a cualquier punto de España. Podéis contactar conmigo aquí para cualquier duda:",
 		"2020-12-01","2023-10-12"),
         (2,897,true,"Maya",
         "MAYA es un cruce de mastín de un añito de edad. Cariñosa, buena, dócil y obediente. Muy sociable se lleva muy bien con otros animales como gatos y con todos los perros. Con los extraños es muy cariñosa y con los niños. Maya es un cielo de perrita que fue abandonada en el campo y un matrimonio mayor encontró este verano. Ellos la adoran y le encantaría quedarse con ella pero hay que ser sensatos y ellos son personas muy mayores para tener una perrita tan joven (79 y 82años) Actualmente está con esta familia en su piso en acogida convive con su gata y nos cuentan que es muy buena y a pesar de ser un perro grande no se nota que está  en casa, es tranquila y silenciosa. Quieres ser tú su familia? escribenos y te contamos más sobre la amorosa Maya",
@@ -1095,10 +1092,10 @@ VALUES
 -- -----------------------------------------------------
 -- INSERT de ATRIBUTOS ANIMALES
 -- -----------------------------------------------------
-INSERT INTO ATRIBUTOS_ANIMALES (IDANIMAL,IDVALOR)
+/*INSERT INTO ATRIBUTOS_ANIMALES (IDANIMAL,IDVALOR)
 VALUES
 		(1,1),(1,7),(1,15),(1,20);
-		
+	*/	
 -- -----------------------------------------------------
 -- INSERT de PREGUNTAS_ADOPTANTES
 -- -----------------------------------------------------
