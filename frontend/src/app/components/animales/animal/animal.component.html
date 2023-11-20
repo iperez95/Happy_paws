@@ -1,20 +1,12 @@
-// Componente que muestra los datos de un animal
+<!-- Componente que muestra los datos de un animal --> 
 
-<div>
-
-    <p>Estas en animales</p>
-
-    <div class="row" *ngIf="animal">
-        <p>{{animal.idanimal}}</p>
-        <p>{{animal.nombre}}</p>
-        <p>{{animal.fechaNacimiento}}</p>
-        <p>{{animal.descripcion}}</p>
-        <p>{{animal.enabled}}</p>
-        <p>{{animal.fechaEnabled}}</p>
-        <p>{{animal.municipio}}</p>
-        <p>{{animal.valoresAtributo}}</p>
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="{{animal.nombre}}">
+    <div class="card-body">
+        <h3 class="card-title">{{animal.nombre}}</h3>
+        <h5 class="card-text">{{animal.municipio.provincia.provincia}}</h5>   
+        <h5 class="card-text">{{animal.fechaNacimiento}}</h5>
+        <p class="card-text">{{animal.descripcion}}</p>
+      <a href="/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component.html" class="btn btn-primary">Adóptame</a>
     </div>
-    
-</div>
-
-
+  </div>

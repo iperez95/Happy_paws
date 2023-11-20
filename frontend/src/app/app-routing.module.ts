@@ -19,7 +19,6 @@ import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuar
 
 const routes: Routes = [
   //animales
-  { path: 'animales', component: AnimalComponent },
   { path: 'animales/listado', component:ListaAnimalesComponent},
   { path: 'animales/verUno/:id', component: AnimalComponent},
   { path: 'animales/gestion/alta', component: AltaAnimalComponent},

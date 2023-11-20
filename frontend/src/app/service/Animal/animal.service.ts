@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Animal } from 'src/app/entidades/animal';
+import axios from 'axios';
+import { AxiosService } from '../axios/axios.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +13,15 @@ export class AnimalService {
 
   
   //URL del servicio Rest
+  //readonly endpoint = axios.defaults.baseURL;
   readonly endpoint = 'http://localhost:8087';
-  
-  constructor(private _httpClient : HttpClient) { }
 
+    /**
+   * Encargado de hacer las peticiones HTTP a nuestro servicio REST
+   * @param _httpClient 
+   */
+  //constructor(private _httpClient : HttpClient, private axiosService: AxiosService) { }
+  constructor(private _httpClient : HttpClient) { }
   // Método que lista todos los animales del servicio Rest
   public listarAnimales(): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/animales/listado`)

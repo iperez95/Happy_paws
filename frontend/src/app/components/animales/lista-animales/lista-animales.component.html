@@ -1,11 +1,26 @@
-<h1>LISTADO DE ANIMALES</h1>
+<!-- Componente que muestra la lista de animales --> 
 
+<!-- <div *ngFor=" let animal of listaAnimales" class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="{{animal.nombre}}">
+    <div class="card-body">
+        <h3 class="card-title">{{animal.nombre}}</h3>
+        <h5 class="card-text">{{animal.municipio.provincia}}</h5>   
+        <h5 class="card-text">{{animal.fechaNacimiento}}</h5>
+        <p class="card-text">{{animal.descripcion}}</p>
+      <a href="/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component.html" class="btn btn-primary">Adóptame</a>
+    </div>
+</div> -->
 
-<app-animal 
-    *ngFor="let a of listaAnimales"
-    [animal]="a"
->
-</app-animal>
+<section class="tarjetas m-3">  
+    <div class="container.md">
+      <div class="row row-cols-auto gy-5">
+                    <app-animal class="col-md-4"
+                        *ngFor=" let a of listaAnimales"
+                        [animal]="a">
+                    </app-animal>
+                </div>
+            </div>
+        </section>
 
 <tr *ngIf="listaAnimales.length==0">
     <td class="rojo" colspan="4">

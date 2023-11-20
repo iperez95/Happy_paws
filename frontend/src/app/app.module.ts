@@ -82,7 +82,7 @@ import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuar
     ReactiveFormsModule,
     MatDialogModule,
     RouterModule.forRoot([
-      { path: 'animales', component: AnimalComponent },
+      { path: 'animales', component: ListaAnimalesComponent},
       { path: 'home', component: HomeComponent },
     ]),
     BrowserAnimationsModule
