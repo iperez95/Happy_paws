@@ -30,6 +30,14 @@ export class ListaAnimalesComponent {
     });    
   }
 
+  public verDetallesAnimal(id: number) {
+    this.router.navigate(['animal/verUno/', id]);
+   }
+
+   public irAltaAnimal() {
+    this.router.navigate(['/animal/gestion/alta']);
+   }
+
   // public listar(){
   //   let obs : Observable<any> = this._animalService.listarAnimales();
   //   //Cuando invocamos el método subscribe es cuando ejecutamos la petición 

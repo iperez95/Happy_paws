@@ -13,17 +13,25 @@
 
 <section class="tarjetas m-3">  
     <div class="container.md">
-      <div class="row row-cols-auto gy-5">
-                    <app-animal class="col-md-4"
-                        *ngFor=" let a of listaAnimales"
-                        [animal]="a">
-                    </app-animal>
+        <div class="col-sm-auto">
+            <button class="btn custom-btn-red-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
+        </div>
+        <br>
+        <div class="row row-cols-auto gy-5">
+            <app-animal class="col-md-4"
+                *ngFor=" let a of listaAnimales"
+                [animal]="a">
+                    <div class="col">
+                        <button class="btn custom-btn-red-dark" (click)="verDetallesAnimal(a.idanimal)">Ver detalles</button>
+                     </div>
+            </app-animal>
                 </div>
-            </div>
-        </section>
+                
+    </div>
+</section>
 
 <tr *ngIf="listaAnimales.length==0">
-    <td class="rojo" colspan="4">
+    <td>
         No se han encontrado Animales
     </td>
 </tr>

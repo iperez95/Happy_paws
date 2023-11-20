@@ -13,8 +13,8 @@ export class AnimalService {
 
   
   //URL del servicio Rest
-  //readonly endpoint = axios.defaults.baseURL;
-  readonly endpoint = 'http://localhost:8087';
+  readonly endpoint = axios.defaults.baseURL;
+  //readonly endpoint = 'http://localhost:8087';
 
     /**
    * Encargado de hacer las peticiones HTTP a nuestro servicio REST
@@ -36,7 +36,7 @@ export class AnimalService {
 
   // Método para dar de alta un animal
   
-  public altaAnimal(animal: Animal): Observable<Object> {
+  public altaAnimal(animal: Animal): Observable<object> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     return this._httpClient.post(`${this.endpoint}/animales/gestion/alta`, 
