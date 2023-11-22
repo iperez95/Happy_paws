@@ -83,28 +83,28 @@ public class AnimalDao implements IAnimalDao{
         return aniRepo.buscarPorProtectora(nombre);
     }
 
-    @Override
-    public List<Animal> buscarPorEspecie(String especie) {
-        return aniRepo.buscarPorEspecie(especie);
-    }
+    // @Override
+    // public List<Animal> buscarPorEspecie(String especie) {
+    //     return aniRepo.buscarPorEspecie(especie);
+    // }
 
-    @Override
-    public List<Animal> buscarPorSexo(String sexo) {
-        return aniRepo.buscarPorSexo(sexo);
-    }
+    // @Override
+    // public List<Animal> buscarPorSexo(String sexo) {
+    //     return aniRepo.buscarPorSexo(sexo);
+    // }
 
-    @Override
-    public List<Animal> buscarPorRaza(String raza) {
-        return aniRepo.buscarPorRaza(raza);
-    }
+    // @Override
+    // public List<Animal> buscarPorRaza(String raza) {
+    //     return aniRepo.buscarPorRaza(raza);
+    // }
 
-    @Override
-    public List<Animal> buscarPorTamano(String tamaño) {
-        return aniRepo.buscarPorTamaño(tamaño);
-    }
+    // @Override
+    // public List<Animal> buscarPorTamano(String tamaño) {
+    //     return aniRepo.buscarPorTamaño(tamaño);
+    // }
 
-    @Override
-    public List<Animal> buscarPorEnvío(String envio) {
-        return aniRepo.buscarPorEnvío(envio);
-        }
+    // @Override
+    // public List<Animal> buscarPorEnvío(String envio) {
+    //     return aniRepo.buscarPorEnvío(envio);
+    //     }
 }

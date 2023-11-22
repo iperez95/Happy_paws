@@ -29,13 +29,8 @@ export class ListaAnimalesComponent {
       console.log(this.listaAnimales);
     });    
   }
-
-  public verDetallesAnimal(id: number) {
-    this.router.navigate(['animal/verUno/', id]);
-   }
-
    public irAltaAnimal() {
-    this.router.navigate(['/animal/gestion/alta']);
+    this.router.navigate(['/animales/gestion/alta']);
    }
 
   // public listar(){

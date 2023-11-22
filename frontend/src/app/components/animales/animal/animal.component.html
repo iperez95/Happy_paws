@@ -7,6 +7,7 @@
         <h5 class="card-text">{{animal.municipio.provincia.provincia}}</h5>   
         <h5 class="card-text">{{animal.fechaNacimiento}}</h5>
         <p class="card-text">{{animal.descripcion}}</p>
-      <a href="/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component.html" class="btn btn-primary">Adóptame</a>
+        <button class="btn custom-btn-red-dark" (click)="verDetallesAnimal(animal.idanimal)">Ver detalles</button>
+        <a href="cuestionario/adopcion" class="btn btn-primary">Adóptame</a>
     </div>
   </div>

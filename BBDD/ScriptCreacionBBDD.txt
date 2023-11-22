@@ -61,8 +61,6 @@ FOREIGN KEY(IDROL) REFERENCES ROLES(IDROL),
 FOREIGN KEY(IDMUNICIPIO) REFERENCES MUNICIPIOS(IDMUNICIPIO)
 );
 
-
-
 -- -----------------------------------------------------
 -- Table 'hpawsbbdd'.'ESTADOSPROTECTORAS'
 -- -----------------------------------------------------
@@ -118,6 +116,40 @@ FOREIGN KEY(IDUSUARIO) REFERENCES USUARIOS(IDUSUARIO)
 );
 
 -- -----------------------------------------------------
+-- Table 'hpawsbbdd'.'ESPECIE'
+-- -----------------------------------------------------
+CREATE TABLE ESPECIE (
+    IDESPECIE INT AUTO_INCREMENT PRIMARY KEY,
+    ESPECIE VARCHAR(50)
+);
+
+-- -----------------------------------------------------
+-- Table 'hpawsbbdd'.'RAZA'
+-- -----------------------------------------------------
+CREATE TABLE RAZA (
+    IDRAZA INT AUTO_INCREMENT PRIMARY KEY,
+    IDESPECIE INT,
+    RAZA VARCHAR(50),
+    FOREIGN KEY (IDESPECIE) REFERENCES ESPECIE(IDESPECIE)
+);
+
+-- -----------------------------------------------------
+-- Table 'hpawsbbdd'.'SEXO'
+-- -----------------------------------------------------
+CREATE TABLE SEXO (
+    IDSEXO INT AUTO_INCREMENT PRIMARY KEY,
+    SEXO VARCHAR(10)
+);
+
+-- -----------------------------------------------------
+-- Table 'hpawsbbdd'.'TAMAÑO'
+-- -----------------------------------------------------
+CREATE TABLE TAMAÑO (
+    IDTAMAÑO INT AUTO_INCREMENT PRIMARY KEY,
+    TAMAÑO VARCHAR(20)
+);
+
+-- -----------------------------------------------------
 -- Table 'hpawsbbdd'.'ANIMALES'
 -- -----------------------------------------------------
 CREATE TABLE ANIMALES
@@ -125,15 +157,21 @@ CREATE TABLE ANIMALES
 IDANIMAL INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 IDPROTECTORA INT NOT NULL,
 IDMUNICIPIO INT,
-	enabled BOOLEAN NOT NULL DEFAULT false,
+IDRAZA INT,
+IDSEXO INT,
+IDTAMAÑO INT,
+	ENVIO BOOLEAN,
+	ENABLED BOOLEAN NOT NULL DEFAULT false,
 	NOMBRE VARCHAR (20) NOT NULL,
 	FECHA_NACIMIENTO DATE, 
 	FECHA_ALTA DATE,
 	FECHA_enabled DATE, 
 	DESCRIPCION VARCHAR (1000),
 FOREIGN KEY(IDPROTECTORA) REFERENCES PROTECTORAS(IDPROTECTORA),
-FOREIGN KEY(IDMUNICIPIO) REFERENCES MUNICIPIOS(IDMUNICIPIO)
-
+FOREIGN KEY(IDMUNICIPIO) REFERENCES MUNICIPIOS(IDMUNICIPIO),
+FOREIGN KEY(IDRAZA) REFERENCES RAZA(IDRAZA),
+FOREIGN KEY(IDSEXO) REFERENCES SEXO(IDSEXO),
+FOREIGN KEY(IDTAMAÑO) REFERENCES TAMAÑO(IDTAMAÑO)
 );
 
 -- -----------------------------------------------------
@@ -174,7 +212,7 @@ IDANIMAL INT NOT NULL,
 	
 FOREIGN KEY(IDANIMAL) REFERENCES ANIMALES(IDANIMAL)
 );
-
+/*
 -- -----------------------------------------------------
 -- Table 'hpawsbbdd'.'TIPOS_ATRIBUTOS
 -- -----------------------------------------------------
@@ -212,7 +250,7 @@ PRIMARY KEY (IDANIMAL, IDVALOR),
 FOREIGN KEY (IDANIMAL) REFERENCES ANIMALES (IDANIMAL),
 FOREIGN KEY (IDVALOR) REFERENCES VALORES_ATRIBUTOS (IDVALOR)	
 );
-
+*/
 -- -----------------------------------------------------
 -- -----------------------------------------------------
 -- -----------------------------------------------------
