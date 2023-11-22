@@ -19,11 +19,6 @@ export class Animal {
         };
       };
 
-    // valoresAtributo: {
-    //     idvalor: number;
-    //     idtipo : number;
-    //     valor: string;
-    //}
 
     //  Constructor
     // constructor() {
@@ -41,11 +36,6 @@ export class Animal {
     //           idprovincia: 0,
     //           provincia: ''
     //         }
-    //     };
-    //     this.valoresAtributo = {
-    //         idvalor: 0,
-    //         idtipo : 0,
-    //         valor: ''
     //     };
     // }
 

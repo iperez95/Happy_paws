@@ -17,9 +17,9 @@ public interface IAnimalDao {
     List<Animal> buscarPorProvincia (String provincia);
     List<Animal> buscarPorProtectora (String nombre);
 
-    List<Animal> buscarPorEspecie (String especie);
-    List<Animal> buscarPorSexo (String sexo);
-    List<Animal> buscarPorRaza (String raza);
-    List<Animal> buscarPorTamano (String tamano);
-    List<Animal> buscarPorEnvío (String envio);
+    // List<Animal> buscarPorEspecie (String especie);
+    // List<Animal> buscarPorSexo (String sexo);
+    // List<Animal> buscarPorRaza (String raza);
+    // List<Animal> buscarPorTamano (String tamano);
+    // List<Animal> buscarPorEnvío (String envio);
 }

@@ -6,7 +6,7 @@ VALUES
 	("Administrador"),
 	("Protectora"),
     ("Adoptante");
-    
+/*    
 -- -----------------------------------------------------
 -- INSERT de atributos
 -- -----------------------------------------------------
@@ -35,7 +35,7 @@ VALUES
     ("6", "Pequeño"),("6", "Mediano"),("6", "Grande"),
     ("7", "Si"),("7", "No"),
     ("8", "Si"),("8", "No");
-    
+    */
 -- -----------------------------------------------------
 -- INSERT de provincias
 -- -----------------------------------------------------
@@ -1036,7 +1036,7 @@ ALTER TABLE MUNICIPIOS 	DROP COLUMN CODMUNICIPIO,
 						DROP COLUMN DC;
     
 -- -----------------------------------------------------
--- INSERT de usuarios
+-- INSERT de USUARIOS
 -- -----------------------------------------------------
 
 INSERT INTO USUARIOS (IDROL, ENABLED, NOMBRE, APELLIDOS, DNI, DIRECCION, IDMUNICIPIO, TELEFONO, EMAIL, EMAIL_NORMALIZADO, PASSWORD, FECHA_ALTA)
@@ -1065,7 +1065,6 @@ VALUES
     ('Realizada'),
     ('Rechazada');
 
-
 -- -----------------------------------------------------
 -- INSERT de PROTECTORAS
 -- -----------------------------------------------------
@@ -1075,18 +1074,57 @@ VALUES
 		(1,"Protectora 2","protectora2@email.com",632145698, "C/ de la protectora 2, 78954 Valencia","6937","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.es%2Fpin%2F523895369132376648%2F&psig=AOvVaw1Y42vo2v7EWdXB7mTk8yTs&ust=1697219555160000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOjr4deJ8YEDFQAAAAAdAAAAABAI","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."); 
 
 -- -----------------------------------------------------
+-- INSERT de ESPECIE
+-- -----------------------------------------------------
+INSERT INTO ESPECIE (ESPECIE)
+VALUES
+	("Perro"),
+    ("Gato");
+
+-- -----------------------------------------------------
+-- INSERT de RAZA
+-- -----------------------------------------------------
+INSERT INTO RAZA (IDESPECIE, RAZA)
+VALUES
+	(1, "Mestizo"),
+    (1, "Pitbull"),
+	(1, "Pastor Alemán"),
+    (1, "Caniche"),
+	(2, "Común Europeo"),
+    (2, "Persa"),
+	(2, "Angora"),
+    (2, "Bengalí");
+
+-- -----------------------------------------------------
+-- INSERT de SEXO
+-- -----------------------------------------------------
+INSERT INTO SEXO (SEXO)
+VALUES
+	("Macho"),
+    ("Hembra");
+
+-- -----------------------------------------------------
+-- INSERT de TAMAÑO
+-- -----------------------------------------------------
+INSERT INTO TAMAÑO (TAMAÑO)
+VALUES
+	("Grande"),
+    ("Mediano"),
+    ("Pequeño");
+
+-- -----------------------------------------------------
 -- INSERT de ANIMALES
 -- -----------------------------------------------------
-INSERT INTO ANIMALES (IDPROTECTORA,IDMUNICIPIO,ENABLED,NOMBRE,DESCRIPCION,FECHA_NACIMIENTO,FECHA_ALTA)
+INSERT INTO ANIMALES (IDPROTECTORA,IDMUNICIPIO,IDRAZA,IDSEXO,IDTAMAÑO,ENVIO,ENABLED,NOMBRE,DESCRIPCION,FECHA_NACIMIENTO,FECHA_ALTA)
 VALUES
-		(1,105,true,"Norbert",
+		(1,105,3,1,1,false,true,"Norbert",
         "Buenas tardes amigos, Os presento a NORBERT observar que bellezón, esta preciosidad es un jovenzuelo, cruce de Pastor & Border Collie medianito de un año y medio de edad, que dio con sus huesos en la perrera hace unas semanas, a últimos de Septiembre. NORBERT es el típico buenazo, super cariñoso y obediente y podría vivir con otros perros/as sin problemas. El pobre peludo ya ha tenido bastante perrera y necesitamos que salga de ahí rápido. Norbert busca un Hogar: está sano, bien físicamente y se entrega debidamente vacunado y desparasitado. Actualmente está en la protectora de Barcelona, pero puede viajar a cualquier punto de España. Podéis contactar conmigo aquí para cualquier duda:",
 		"2020-12-01","2023-10-12"),
-        (2,897,true,"Maya",
+        (2,897,1,2,1,false,true,"Maya",
         "MAYA es un cruce de mastín de un añito de edad. Cariñosa, buena, dócil y obediente. Muy sociable se lleva muy bien con otros animales como gatos y con todos los perros. Con los extraños es muy cariñosa y con los niños. Maya es un cielo de perrita que fue abandonada en el campo y un matrimonio mayor encontró este verano. Ellos la adoran y le encantaría quedarse con ella pero hay que ser sensatos y ellos son personas muy mayores para tener una perrita tan joven (79 y 82años) Actualmente está con esta familia en su piso en acogida convive con su gata y nos cuentan que es muy buena y a pesar de ser un perro grande no se nota que está  en casa, es tranquila y silenciosa. Quieres ser tú su familia? escribenos y te contamos más sobre la amorosa Maya",
 		"2020-04-23","2023-10-11"),
-        (1,425,true,"Estrella",
-        "Esta preciosa perrita no ha tenido suerte en su corta vida. Abandonada de carrocho fueadoptada de la perrera provincial por alguien quizás demasiado joven paraentender la responsabilidad que significa tener un animal a tu cuidado. Escariñosa , alegre, activa . Ajena a su nuevo abandono busca el juego con todoslos perros y las personas. Unos 10 meses de edad y unos 20 kg. Tiene un tamañomedianito ideal. Se encuentra en la provincia de Huelva pero puede viajar.Buscamos a una familia activa que le guste pasear por la playa o la montaña yle de mucha actividad a esta maravillosa perrita. Si quieres saber más deEstrella estaremos encantadas de contarte y mandarte videos y fotos de estahermosa perrita.",
+        (1,425,1,2,2,true,true,"Estrella",
+        "Esta preciosa perrita no ha tenido suerte en su corta vida. Abandonada de carrocho fueadoptada de la perrera provincial por alguien quizás demasiado joven paraentender la responsabilidad que significa tener un animal a tu cuidado. Escariñosa , alegre, activa . Ajena a su nuevo abandono busca el juego con todoslos perros y las personas. Unos 10 meses de edad y unos 20 kg. Tiene un tamaño medianito ideal. Se encuentra en la provincia de Huelva pero puede viajar.Buscamos a una familia activa que le guste pasear por la playa o la montaña y le de mucha actividad a esta maravillosa perrita. Si quieres saber más de Estrella estaremos encantadas de contarte y mandarte videos y fotos de esta hermosa perrita.",
 		"2020-02-14","2023-10-13");
         
 -- -----------------------------------------------------

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
+import { Router } from '@angular/router';
 import { AnimalService } from 'src/app/service/Animal/animal.service';
 
 @Component({
@@ -20,8 +21,12 @@ export class AnimalComponent implements OnInit{
 
   @Input() animal : Animal;
 
-  constructor(){}
+  constructor(private router :Router){}
 
   ngOnInit() {
   }
+  
+  public verDetallesAnimal(id: number) {
+    this.router.navigate(['animales/verUno/', id]);
+   }
 }
