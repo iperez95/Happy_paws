@@ -79,11 +79,11 @@ public class Animal implements Serializable {
 		return descripcion;
 	}
 
-	public boolean isEnabled() {
+	public boolean getEnabled() {
 		return enabled;
 	}
 
-	public boolean isEnvio() {
+	public boolean getEnvio() {
 		return envio;
 	}
 

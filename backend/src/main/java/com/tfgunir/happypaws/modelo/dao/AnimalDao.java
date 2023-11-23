@@ -39,6 +39,7 @@ public class AnimalDao implements IAnimalDao{
     @Override
     public boolean enabledAnimal(Animal animal) {
         try {
+            animal.setEnabled(!animal.getEnabled());
             aniRepo.save(animal);
             return true;
         } catch (Exception e) {
