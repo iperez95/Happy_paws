@@ -97,7 +97,7 @@ public class AnimalRestController {
     public ResponseEntity<?> enabledAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {    
 
     animal.setIdanimal(id);
-    if (aniDao.enabledAnimal(animal) == 1) {
+    if (aniDao.enabledAnimal(animal) == true) {
         return ResponseEntity.ok("Animal habilitado correctamente");
     } else {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al habilitar el animal");
@@ -116,11 +116,35 @@ public class AnimalRestController {
         }
     }
 
+    // Controlador para buscar animales por ID municipio
+    @GetMapping(path="/buscar/poridmunicipio/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorIdMunicipio(@PathVariable("idmunicipio") int idmunicipio) {
+
+        List<Animal> listado = aniDao.buscarPorIdMunicipio(idmunicipio);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     // Controlador para buscar animales por provincia
     @GetMapping(path="/buscar/porprovincia/{provincia}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorProvincia(@PathVariable("provincia") String provincia) {
 
         List<Animal> listado = aniDao.buscarPorProvincia(provincia);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+        // Controlador para buscar animales por ID provincia
+    @GetMapping(path="/buscar/poridprovincia/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorIDProvincia(@PathVariable("idprovincia") int idprovincia) {
+
+        List<Animal> listado = aniDao.buscarPorIdProvincia(idprovincia);
         if (listado != null && !listado.isEmpty()) {
             return ResponseEntity.ok(listado);
         } else {
@@ -141,75 +165,74 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por id protectora
-    // @GetMapping(path="/buscar/poridprotectora/{id}", produces = "application/json")
-    // public ResponseEntity<List<Animal>> buscarPorIdProtectora(@PathVariable("id") int id) {
+    @GetMapping(path="/buscar/poridprotectora/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorIdProtectora(@PathVariable("idprotectora") int idprotectora) {
 
-    //     List<Animal> listado = aniDao.buscarPorIdProtectora(id);
-    //     if (listado != null && !listado.isEmpty()) {
-    //         return ResponseEntity.ok(listado);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
-
+     List<Animal> listado = aniDao.buscarPorIdProtectora(idprotectora);
+     if (listado != null && !listado.isEmpty()) {
+        return ResponseEntity.ok(listado);
+    } else {
+         return ResponseEntity.notFound().build();
+     }
+  }
 
     // Controlador para buscar animales por especie
-    // @GetMapping(path="/buscar/porespecie/{especie}", produces = "application/json")
-    // public ResponseEntity<List<Animal>> buscarPorEspecie(@PathVariable("especie") String especie) {
+    @GetMapping(path="/buscar/porespecie/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorEspecie(@PathVariable("idespecie") int idespecie) {
 
-    //     List<Animal> listado = aniDao.buscarPorEspecie(especie);
-    //     if (listado != null && !listado.isEmpty()) {
-    //         return ResponseEntity.ok(listado);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
+        List<Animal> listado = aniDao.buscarPorEspecie(idespecie);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-    // // Controlador para buscar animales por sexo
-    // @GetMapping(path="/buscar/porsexo/{sexo}", produces = "application/json")
-    // public ResponseEntity<List<Animal>> buscarPorSexo(@PathVariable("sexo") String sexo) {
+    // Controlador para buscar animales por sexo
+    @GetMapping(path="/buscar/porsexo/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorSexo(@PathVariable("idsexo") int idsexo) {
 
-    //     List<Animal> listado = aniDao.buscarPorSexo(sexo);
-    //     if (listado != null && !listado.isEmpty()) {
-    //         return ResponseEntity.ok(listado);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
+        List<Animal> listado = aniDao.buscarPorSexo(idsexo);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-    // // Controlador para buscar animales por raza
-    // @GetMapping(path="/buscar/porraza/{raza}", produces = "application/json")
-    // public ResponseEntity<List<Animal>> buscarPorRaza(@PathVariable("raza") String raza) {
+    // Controlador para buscar animales por raza
+    @GetMapping(path="/buscar/porraza/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorRaza(@PathVariable("idraza") int idraza) {
 
-    //     List<Animal> listado = aniDao.buscarPorRaza(raza);
-    //     if (listado != null && !listado.isEmpty()) {
-    //         return ResponseEntity.ok(listado);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
+        List<Animal> listado = aniDao.buscarPorRaza(idraza);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-    // // Controlador para buscar animales por tamaño
-    // @GetMapping(path="/buscar/portamaño/{tamaño}", produces = "application/json")
-    // public ResponseEntity<List<Animal>> buscarPorTamaño(@PathVariable("tamano") String tamaño) {
+    // Controlador para buscar animales por tamaño
+    @GetMapping(path="/buscar/portamaño/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorTamaño(@PathVariable("idtamano") int idtamaño) {
 
-    //     List<Animal> listado = aniDao.buscarPorTamano(tamaño);
-    //     if (listado != null && !listado.isEmpty()) {
-    //         return ResponseEntity.ok(listado);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
+        List<Animal> listado = aniDao.buscarPorTamaño(idtamaño);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
-    // // Controlador para buscar animales por envío
-    // @GetMapping(path="/buscar/porenvio/{envio}", produces = "application/json")
-    // public ResponseEntity<List<Animal>> buscarPorEnvío(@PathVariable("envio") String envío) {
+    // Controlador para buscar animales por envío
+    @GetMapping(path="/buscar/porenvio/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorEnvío(@PathVariable("idenvio") boolean envio) {
 
-    //     List<Animal> listado = aniDao.buscarPorEnvío(envío);
-    //     if (listado != null && !listado.isEmpty()) {
-    //         return ResponseEntity.ok(listado);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
-    // }
+        List<Animal> listado = aniDao.buscarPorEnvio(envio);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
