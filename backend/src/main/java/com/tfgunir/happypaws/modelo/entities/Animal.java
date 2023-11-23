@@ -61,8 +61,8 @@ public class Animal implements Serializable {
 
 	//bi-directional many-to-one association to Tamaño
 	@ManyToOne
-	@JoinColumn(name="IDTAMAÑO")
-	private Tamaño tamaño;
+	@JoinColumn(name="IDTAMANO")
+	private Tamano tamano;
 
 	public Animal() {
 	}
@@ -119,8 +119,8 @@ public class Animal implements Serializable {
 		return sexo;
 	}
 
-	public Tamaño getTamaño() {
-		return tamaño;
+	public Tamano getTamano() {
+		return tamano;
 	}
 
 	public void setIdanimal(int idanimal) {
@@ -171,13 +171,13 @@ public class Animal implements Serializable {
 		this.sexo = sexo;
 	}
 
-	public void setTamaño(Tamaño tamaño) {
-		this.tamaño = tamaño;
+	public void setTamano(Tamano tamano) {
+		this.tamano = tamano;
 	}
 
 	public Animal(int idanimal, String descripcion, boolean enabled, boolean envio, Date fechaAlta, Date fECHA_enabled,
 			Date fechaNacimiento, Municipio municipio, Protectora protectora, String nombre, Raza raza, Sexo sexo,
-			Tamaño tamaño) {
+			Tamano tamano) {
 		this.idanimal = idanimal;
 		this.descripcion = descripcion;
 		this.enabled = enabled;
@@ -190,7 +190,7 @@ public class Animal implements Serializable {
 		this.nombre = nombre;
 		this.raza = raza;
 		this.sexo = sexo;
-		this.tamaño = tamaño;
+		this.tamano = tamano;
 	}
 
 	@Override
@@ -220,7 +220,7 @@ public class Animal implements Serializable {
 		return "Animal [idanimal=" + idanimal + ", descripcion=" + descripcion + ", enabled=" + enabled + ", envio="
 				+ envio + ", fechaAlta=" + fechaAlta + ", FECHA_enabled=" + FECHA_enabled + ", fechaNacimiento="
 				+ fechaNacimiento + ", municipio=" + municipio + ", protectora=" + protectora + ", nombre=" + nombre
-				+ ", raza=" + raza + ", sexo=" + sexo + ", tamaño=" + tamaño + "]";
+				+ ", raza=" + raza + ", sexo=" + sexo + ", tamaño=" + tamano + "]";
 	}
 
 	

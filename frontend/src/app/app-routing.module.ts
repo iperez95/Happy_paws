@@ -16,11 +16,12 @@ import { ListaAnimalesComponent } from './components/animales/lista-animales/lis
 import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 
 const routes: Routes = [
   //animales
   { path: 'animales/listado', component:ListaAnimalesComponent},
-  { path: 'animales/verUno/:id', component: AnimalComponent},
+  { path: 'animales/verUno/:id', component: AnimaldetalladoComponent},
   { path: 'animales/gestion/alta', component: AltaAnimalComponent},
   
 

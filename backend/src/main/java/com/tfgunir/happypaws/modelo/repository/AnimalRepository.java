@@ -80,7 +80,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer>{
                         "inner join tamaño t on a.IDTAMAÑO = t.IDTAMAÑO" +
                         "where t.TAMAÑO =?1", 
                         nativeQuery = true)
-                List<Animal> buscarPorTamaño(int idtamaño);
+                List<Animal> buscarPorTamaño(int idtamano);
         
         // Query para buscar todos los animales por envio
         @Query(value = "Select a.* from animales a" +

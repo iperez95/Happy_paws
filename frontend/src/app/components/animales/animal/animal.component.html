@@ -1,13 +1,49 @@
-<!-- Componente que muestra los datos de un animal --> 
-
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="{{animal.nombre}}">
-    <div class="card-body">
-        <h3 class="card-title">{{animal.nombre}}</h3>
-        <h5 class="card-text">{{animal.municipio.provincia.provincia}}</h5>   
-        <h5 class="card-text">{{animal.fechaNacimiento}}</h5>
-        <p class="card-text">{{animal.descripcion}}</p>
-        <button class="btn custom-btn-red-dark" (click)="verDetallesAnimal(animal.idanimal)">Ver detalles</button>
-        <a href="cuestionario/adopcion" class="btn btn-primary">Adóptame</a>
+<!-- Componente que muestra una ficha con algunos de los datos de un animal --> 
+  <div class="container mt-4">
+    <div class="row">
+        <!-- Imagen -->
+        <div class="col-md-12">
+            <img [src]="" alt="{{animal.nombre}}" class="img-fluid">
+        </div>
     </div>
-  </div>
+
+    <div class="row mt-4">
+        <!-- Nombre del animal y protectora -->
+        <div class="col-md-6">
+            <h4>{{animal.nombre}}</h4>
+        </div>
+        <div class="col-md-6">
+            <h4>{{animal.protectora.nombre}}</h4>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Localización -->
+        <div class="col-md-12">
+            <p>{{animal.municipio.provincia.provincia}}</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Atributos: Sexo, Raza, Tamaño, Envío -->
+        <div class="col-md-3">
+            <p>{{animal.sexo.sexo}}</p>
+        </div>
+        <div class="col-md-3">
+            <p>{{animal.raza.raza}}</p>
+        </div>
+        <div class="col-md-3">
+            <p>{{animal.tamano.tamano}}</p>
+        </div>
+        <div class="col-md-3">
+            <p>{{animal.envio.valueOf}}</p>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Botón para ver el componente completo del animal -->
+        <div class="col-md-12">
+            <a href="animales/verUno/:id" class="btn btn-primary">Ver más información</a>
+        </div>
+    </div>
+</div>

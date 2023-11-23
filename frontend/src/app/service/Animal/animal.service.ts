@@ -68,6 +68,11 @@ export class AnimalService {
       .pipe(catchError(this.manejarError));
   }
 
+    // Método para buscar animales por provincia
+    public listarAnimalPorIdProvincia(idprovincia: number): Observable<any> {
+      return this._httpClient.get(`${this.endpoint}/animales/buscar/poridprovincia/${idprovincia}`)
+        .pipe(catchError(this.manejarError));
+    }
 
   // Método que lista todos los animales de una protectora por su nombre
   public listarAnimalPorProtectora(nombre: String): Observable<any> {
@@ -79,7 +84,7 @@ export class AnimalService {
   public listarAnimalPorIdProtectora(idprotectora: number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/animales/buscar/poridprotectora/${idprotectora}`)
       .pipe( catchError(this.manejarError));  
-  }                         // faltaria impler el método en el backend  comentado en el controller
+  }                 
 
 
 

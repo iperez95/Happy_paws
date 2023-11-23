@@ -114,8 +114,8 @@ public class AnimalDao implements IAnimalDao{
     }
 
     @Override
-    public List<Animal> buscarPorTamaño(int idtamaño) {
-        return aniRepo.buscarPorTamaño(idtamaño);
+    public List<Animal> buscarPorTamaño(int idtamano) {
+        return aniRepo.buscarPorTamaño(idtamano);
     }
 
     @Override

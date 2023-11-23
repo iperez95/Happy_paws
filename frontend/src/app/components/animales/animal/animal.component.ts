@@ -19,14 +19,18 @@ export class AnimalComponent implements OnInit{
   //   this.route = route;
   // }
 
-  @Input() animal : Animal;
+  @Input() animal: Animal; multimedia: string;
 
-  constructor(private router :Router){}
+  constructor(private router: Router) {}
 
   ngOnInit() {
   }
-  
+
   public verDetallesAnimal(id: number) {
     this.router.navigate(['animales/verUno/', id]);
-   }
+  }
+
+  getUrlForAnimal(id: number): string {
+    return this.multimedia[id];
+  }
 }

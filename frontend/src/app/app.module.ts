@@ -35,6 +35,7 @@ import { PetecionesAdopcionComponent } from './components/peteciones-adopcion/pe
 import { MatChipsModule } from '@angular/material/chips';
 import { AdopcionesCompletadasComponent } from './components/adopciones-completadas/adopciones-completadas.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
+import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 
 
 
@@ -64,6 +65,7 @@ import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuar
     PetecionesAdopcionComponent,
     AdopcionesCompletadasComponent,
     PerfilUsuarioComponent,
+    AnimaldetalladoComponent,
 
   ],
   imports: [
@@ -78,10 +80,7 @@ import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuar
     MatChipsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    RouterModule.forRoot([
-      { path: 'animales', component: ListaAnimalesComponent},
-      { path: 'home', component: HomeComponent },
-    ]),
+    RouterModule,
     BrowserAnimationsModule
   ],
   providers: [],

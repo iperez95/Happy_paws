@@ -23,6 +23,6 @@ public interface IAnimalDao {
     List<Animal> buscarPorEspecie (int idespecie);
     List<Animal> buscarPorSexo (int idsexo);
     List<Animal> buscarPorRaza (int idraza);
-    List<Animal> buscarPorTamaño (int idtamaño);
+    List<Animal> buscarPorTamaño (int idtamano);
     List<Animal> buscarPorEnvio (boolean envio);
 }

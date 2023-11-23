@@ -8,50 +8,50 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="TAMAÑO")
-@NamedQuery(name="Tamaño.findAll", query="SELECT t FROM Tamaño t")
-public class Tamaño implements Serializable {
+@Table(name="TAMANO")
+@NamedQuery(name="Tamano.findAll", query="SELECT t FROM Tamano t")
+public class Tamano implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int idtamaño;
+	private int idtamano;
 
-	private String tamaño;
+	private String tamano;
 
 	//bi-directional many-to-one association to Animale
 	//@OneToMany(mappedBy="tamaño")
 	//private List<Animal> animales;
 
-	public Tamaño() {
+	public Tamano() {
 	}
 
-	public int getIdtamaño() {
-		return this.idtamaño;
+	public int getIdtamano() {
+		return this.idtamano;
 	}
 
-	public void setIdtamaño(int idtamaño) {
-		this.idtamaño = idtamaño;
+	public void setIdtamano(int idtamano) {
+		this.idtamano = idtamano;
 	}
 
-	public String getTamaño() {
-		return this.tamaño;
+	public String getTamano() {
+		return this.tamano;
 	}
 
-	public void setTamaño(String tamaño) {
-		this.tamaño = tamaño;
+	public void setTamaño(String tamano) {
+		this.tamano = tamano;
 	}
 
-	public Tamaño(int idtamaño, String tamaño) {
-		this.idtamaño = idtamaño;
-		this.tamaño = tamaño;
+	public Tamano(int idtamano, String tamano) {
+		this.idtamano = idtamano;
+		this.tamano = tamano;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idtamaño;
+		result = prime * result + idtamano;
 		return result;
 	}
 
@@ -63,14 +63,14 @@ public class Tamaño implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Tamaño other = (Tamaño) obj;
-		if (idtamaño != other.idtamaño)
+		Tamano other = (Tamano) obj;
+		if (idtamano != other.idtamano)
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Tamaño [idtamaño=" + idtamaño + ", tamaño=" + tamaño + "]";
+		return "Tamaño [idtamaño=" + idtamano + ", tamaño=" + tamano + "]";
 	}
 }

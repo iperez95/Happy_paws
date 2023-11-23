@@ -59,7 +59,27 @@ export class AltaAnimalComponent {
               provincia: '', // No es necesario enviar este valor al backend
             },
           },
-
+          protectora: {
+            idprotectora: 0,
+            nombre: ''
+          },
+          raza: {
+            idraza: 0,
+            raza: '',
+            especie: {
+              idespecie: 0,
+              especie: ''
+            }
+          },
+          sexo: {
+            idsexo: 0,
+            sexo: ''
+          },
+          tamano: {
+            idtamano: 0,
+            tamano: ''
+          },
+          envio: false
         };
         console.log(animal);
         this.guardarAnimal(animal);
