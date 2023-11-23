@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.util.Date;
-import java.util.List;
-
 
 /**
  * The persistent class for the animales database table.
@@ -19,26 +17,25 @@ public class Animal implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idanimal;
 
-	private byte enabled;
-
 	private String descripcion;
+
+	private boolean enabled;
+
+	private boolean envio;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA_ALTA")
 	private Date fechaAlta;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="FECHA_enabled")
-	private Date fechaenabled;
+	private Date FECHA_enabled;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="FECHA_NACIMIENTO")
 	private Date fechaNacimiento;
-
-	private String nombre;
 
 	//uni-directional many-to-one association to Municipio
 	@ManyToOne
@@ -50,106 +47,150 @@ public class Animal implements Serializable {
 	@JoinColumn(name="IDPROTECTORA")
 	private Protectora protectora;
 
-	//bi-directional many-to-many association to ValoresAtributo
-	@ManyToMany(mappedBy="animal")
-	private List<ValoresAtributo> valoresAtributo;
+	private String nombre;
+
+	//bi-directional many-to-one association to Raza
+	@ManyToOne
+	@JoinColumn(name="IDRAZA")
+	private Raza raza;
+
+	//bi-directional many-to-one association to Sexo
+	@ManyToOne
+	@JoinColumn(name="IDSEXO")
+	private Sexo sexo;
+
+	//bi-directional many-to-one association to Tamaño
+	@ManyToOne
+	@JoinColumn(name="IDTAMAÑO")
+	private Tamaño tamaño;
 
 	public Animal() {
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public int getIdanimal() {
-		return this.idanimal;
+		return idanimal;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public boolean isEnvio() {
+		return envio;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public Date getFECHA_enabled() {
+		return FECHA_enabled;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public Municipio getMunicipio() {
+		return municipio;
+	}
+
+	public Protectora getProtectora() {
+		return protectora;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public Raza getRaza() {
+		return raza;
+	}
+
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public Tamaño getTamaño() {
+		return tamaño;
 	}
 
 	public void setIdanimal(int idanimal) {
 		this.idanimal = idanimal;
 	}
 
-	public byte getenabled() {
-		return this.enabled;
-	}
-
-	public void setenabled(byte enabled) {
-		this.enabled = enabled;
-	}
-
-	public String getDescripcion() {
-		return this.descripcion;
-	}
-
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
-	public Date getFechaAlta() {
-		return this.fechaAlta;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public void setEnvio(boolean envio) {
+		this.envio = envio;
 	}
 
 	public void setFechaAlta(Date fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public Date getFechaenabled() {
-		return this.fechaenabled;
-	}
-
-	public void setFechaenabled(Date fechaenabled) {
-		this.fechaenabled = fechaenabled;
-	}
-
-	public Date getFechaNacimiento() {
-		return this.fechaNacimiento;
+	public void setFECHA_enabled(Date fECHA_enabled) {
+		FECHA_enabled = fECHA_enabled;
 	}
 
 	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getNombre() {
-		return this.nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public Municipio getMunicipio() {
-		return this.municipio;
-	}
-
 	public void setMunicipio(Municipio municipio) {
 		this.municipio = municipio;
-	}
-
-	public Protectora getProtectora() {
-		return this.protectora;
 	}
 
 	public void setProtectora(Protectora protectora) {
 		this.protectora = protectora;
 	}
 
-	public List<ValoresAtributo> getValoresAtributo() {
-		return this.valoresAtributo;
-	}
-
-	public void setValoresAtributo(List<ValoresAtributo> valoresAtributo) {
-		this.valoresAtributo = valoresAtributo;
-	}
-
-	public Animal(int idanimal, byte enabled, String descripcion, Date fechaAlta, Date fechaenabled,
-			Date fechaNacimiento, String nombre, Municipio municipio, Protectora protectora,
-			List<ValoresAtributo> valoresAtributo) {
-		this.idanimal = idanimal;
-		this.enabled = enabled;
-		this.descripcion = descripcion;
-		this.fechaAlta = fechaAlta;
-		this.fechaenabled = fechaenabled;
-		this.fechaNacimiento = fechaNacimiento;
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public void setRaza(Raza raza) {
+		this.raza = raza;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+
+	public void setTamaño(Tamaño tamaño) {
+		this.tamaño = tamaño;
+	}
+
+	public Animal(int idanimal, String descripcion, boolean enabled, boolean envio, Date fechaAlta, Date fECHA_enabled,
+			Date fechaNacimiento, Municipio municipio, Protectora protectora, String nombre, Raza raza, Sexo sexo,
+			Tamaño tamaño) {
+		this.idanimal = idanimal;
+		this.descripcion = descripcion;
+		this.enabled = enabled;
+		this.envio = envio;
+		this.fechaAlta = fechaAlta;
+		this.FECHA_enabled = fECHA_enabled;
+		this.fechaNacimiento = fechaNacimiento;
 		this.municipio = municipio;
 		this.protectora = protectora;
-		this.valoresAtributo = valoresAtributo;
+		this.nombre = nombre;
+		this.raza = raza;
+		this.sexo = sexo;
+		this.tamaño = tamaño;
 	}
 
 	@Override
@@ -176,10 +217,11 @@ public class Animal implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Animal [idanimal=" + idanimal + ", enabled=" + enabled + ", descripcion=" + descripcion + ", fechaAlta="
-				+ fechaAlta + ", fechaenabled=" + fechaenabled + ", fechaNacimiento=" + fechaNacimiento + ", nombre="
-				+ nombre + ", municipio=" + municipio + ", protectora=" + protectora + ", valoresAtributo="
-				+ valoresAtributo + "]";
+		return "Animal [idanimal=" + idanimal + ", descripcion=" + descripcion + ", enabled=" + enabled + ", envio="
+				+ envio + ", fechaAlta=" + fechaAlta + ", FECHA_enabled=" + FECHA_enabled + ", fechaNacimiento="
+				+ fechaNacimiento + ", municipio=" + municipio + ", protectora=" + protectora + ", nombre=" + nombre
+				+ ", raza=" + raza + ", sexo=" + sexo + ", tamaño=" + tamaño + "]";
 	}
 
+	
 }

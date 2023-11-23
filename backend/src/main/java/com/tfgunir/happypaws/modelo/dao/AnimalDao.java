@@ -37,13 +37,13 @@ public class AnimalDao implements IAnimalDao{
     }
 
     @Override
-    public int enabledAnimal(Animal animal) {
+    public boolean enabledAnimal(Animal animal) {
         try {
             aniRepo.save(animal);
-            return 1;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return 0;
+            return false;
         }
     }
 
@@ -74,8 +74,18 @@ public class AnimalDao implements IAnimalDao{
     }
 
     @Override
+    public List<Animal> buscarPorIdMunicipio(int idmunicipio) {
+        return aniRepo.buscarPorIdMunicipio(idmunicipio);
+    }
+
+    @Override
     public List<Animal> buscarPorProvincia(String provincia) {
         return aniRepo.buscarPorMunicipio(provincia);
+    }
+    
+    @Override
+    public List<Animal> buscarPorIdProvincia(int idprovincia) {
+        return aniRepo.buscarPorIdProvincia(idprovincia);
     }
     
     @Override
@@ -83,28 +93,33 @@ public class AnimalDao implements IAnimalDao{
         return aniRepo.buscarPorProtectora(nombre);
     }
 
-    // @Override
-    // public List<Animal> buscarPorEspecie(String especie) {
-    //     return aniRepo.buscarPorEspecie(especie);
-    // }
+    @Override
+    public List<Animal> buscarPorIdProtectora(int idprotectora) {
+        return aniRepo.buscarPorIdProtectora(idprotectora);
+    }
 
-    // @Override
-    // public List<Animal> buscarPorSexo(String sexo) {
-    //     return aniRepo.buscarPorSexo(sexo);
-    // }
+    @Override
+    public List<Animal> buscarPorEspecie(int idespecie) {
+        return aniRepo.buscarPorEspecie(idespecie);
+    }
 
-    // @Override
-    // public List<Animal> buscarPorRaza(String raza) {
-    //     return aniRepo.buscarPorRaza(raza);
-    // }
+    @Override
+    public List<Animal> buscarPorSexo(int idsexo) {
+        return aniRepo.buscarPorSexo(idsexo);
+    }
 
-    // @Override
-    // public List<Animal> buscarPorTamano(String tamaño) {
-    //     return aniRepo.buscarPorTamaño(tamaño);
-    // }
+    @Override
+    public List<Animal> buscarPorRaza(int idraza) {
+        return aniRepo.buscarPorRaza(idraza);
+    }
 
-    // @Override
-    // public List<Animal> buscarPorEnvío(String envio) {
-    //     return aniRepo.buscarPorEnvío(envio);
-    //     }
+    @Override
+    public List<Animal> buscarPorTamaño(int idtamaño) {
+        return aniRepo.buscarPorTamaño(idtamaño);
+    }
+
+    @Override
+    public List<Animal> buscarPorEnvio(boolean envio) {
+        return aniRepo.buscarPorEnvio(envio);
+    }
 }
