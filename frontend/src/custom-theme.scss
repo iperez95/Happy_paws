@@ -28,6 +28,9 @@ $frontend-theme: mat.define-light-theme((
   )
 ));
 
+$custom-colors: (
+  "custom-color": #8E0B0B
+);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -39,4 +42,3 @@ button{
   /* Button */
   box-shadow: 0px 2px 10px 0px rgba(101, 192, 237, 0.50);
   }
-

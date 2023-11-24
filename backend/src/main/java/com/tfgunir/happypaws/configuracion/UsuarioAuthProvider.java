@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.JWTCreator.Builder;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
@@ -42,20 +43,28 @@ public class UsuarioAuthProvider {
     /**
      * Creates a JWT token for the given UsuarioDto.
      * @param dto
+     * @param i
      * @return
      */
-    public String createToken(UsuarioDto dto) {
+    public String createToken(UsuarioDto dto, Integer idProtectora) {
         Date now = new Date();
         Date validity = new Date(now.getTime() + 3600000);
-        return JWT.create()
-            .withIssuer(dto.getEmail())
+        Builder jwt = JWT.create();
+
+        jwt.withIssuer(dto.getEmail())
             .withIssuedAt(now)
             .withExpiresAt(validity)
             .withClaim("nombre", dto.getNombre())
             .withClaim("apellidos", dto.getApellidos())
             .withClaim("rol", dto.getRol())
-            .withClaim("id", dto.getId())
-            .sign(Algorithm.HMAC256(secretKey));
+            .withClaim("id", dto.getId());
+
+        if (idProtectora != null) {
+            System.out.println("idProtectora: " + idProtectora);
+            jwt.withClaim("idProtectora", idProtectora.toString());
+        }
+
+        return jwt.sign(Algorithm.HMAC256(secretKey));
     }
 
     /**

@@ -12,37 +12,14 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Neo</td>
-                <td>Pedro González</td>
-                <td>13/05/2023</td>
-                <td>0034</td>
-                <td><button class="btn custom-btn-red-dark p-1">Ver</button></td>
+            <tr *ngFor="let adopcion of adopciones">
+                <td scope="row">{{adopcion.idAdopcion}}</td>
+                <td>{{adopcion.nombreAnimal}}</td>
+                <td>{{adopcion.nombreUsuario}}</td>
+                <td>{{adopcion.fechaAdopcion}}</td>
+                <td>{{adopcion.idAnimal}}</td>
                 <td>
-                    <button class="btn btn-success p-1 m-1">Aceptar</button>
-                    <button class="btn btn-danger p-1 m-1">Rechazar</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Neo</td>
-                <td>Pedro González</td>
-                <td>13/05/2023</td>
-                <td>0034</td>
-                <td><button class="btn custom-btn-red-dark p-1">Ver</button></td>
-                <td>
-                    <button class="btn btn-success p-1 m-1">Aceptar</button>
-                    <button class="btn btn-danger p-1 m-1">Rechazar</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">1</th>
-                <td>Neo</td>
-                <td>Pedro González</td>
-                <td>13/05/2023</td>
-                <td>0034</td>
-                <td><button class="btn custom-btn-red-dark p-1">Ver</button></td>
+                    <a class="btn custom-btn-red-dark p-1" href="/adopcion/detalle/{{adopcion.idAdopcion}}">Ver</a>                </td>
                 <td>
                     <button class="btn btn-success p-1 m-1">Aceptar</button>
                     <button class="btn btn-danger p-1 m-1">Rechazar</button>

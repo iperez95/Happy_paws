@@ -1,0 +1,16 @@
+hr{
+    color: #8E0B0B;
+    border-width: 3px;
+    opacity: 1;
+    margin: 0;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.custom-border-color{
+    border-color:#8E0B0B;
+}
+
+h3{
+    color:#706d6d;
+}
