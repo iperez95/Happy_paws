@@ -7,20 +7,27 @@ export class Protectora {
     telefono: number;
     descripcion: string;
     idmunicipio: string;
-    
-    municipio: {
-      idmunicipio: number;
-      municipio: string;
-      provincia: {
-        idprovincia: number;
-        provincia: string;
-      };
-    };
+    nombreMunicipio: string;
+    idprovincia: string;
+    nombreProvincia: string;
+    idEstadoProtectora: number;
+    nombreEstadoProtectora: string;
 
-    provincia: {
-      idprovincia: number;
-      provincia: string;
-    };
+
+    
+    // municipio: {
+    //   idmunicipio: number;
+    //   municipio: string;
+    //   provincia: {
+    //     idprovincia: number;
+    //     provincia: string;
+    //   };
+    // };
+
+    // provincia: {
+    //   idprovincia: number;
+    //   provincia: string;
+    // };
 
     public toString() : string {
         return JSON.stringify(this)
