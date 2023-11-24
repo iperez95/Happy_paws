@@ -70,7 +70,7 @@ public class UsuarioProtectoraRestController {
                 if (protectoraDao.altaProtectora(protectora) == 0) {
                     return new ResponseEntity<>("Ha ocurrido un error al crear la protectora", HttpStatus.INTERNAL_SERVER_ERROR);
                 }
-                usuarioDto.setToken(usuarioAuthProvider.createToken(usuarioDto));
+                usuarioDto.setToken(usuarioAuthProvider.createToken(usuarioDto, protectora.getIdprotectora()));
                 return new ResponseEntity<>(usuarioDto, HttpStatus.CREATED);
             }
 

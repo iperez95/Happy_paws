@@ -8,6 +8,7 @@ export class Usuario {
     telefono: string;
     direccion: string;
     rol: string;
+    idProtectora: number;
 
     isProtectora(): boolean {
         return this.rol == 'Protectora';

@@ -60,7 +60,7 @@ public class UsuarioRestController {
             usuario.setEnabled(enabled);
             UsuarioDto usuarioDto = usuarioDao.altaUsuario(usuario);
             if (usuarioDto != null) {
-                usuarioDto.setToken(usuarioAuthProvider.createToken(usuarioDto));
+                usuarioDto.setToken(usuarioAuthProvider.createToken(usuarioDto, null));
                 return new ResponseEntity<>(usuarioDto, HttpStatus.CREATED);
             }
 

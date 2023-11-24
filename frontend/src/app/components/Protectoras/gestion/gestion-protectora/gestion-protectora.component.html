@@ -1,12 +1,11 @@
-<div class="contenedor">
-<section>
+<section class="contenedor">
     <div *ngIf="protectora">
         <div class="container.md overflow-hidden">
             <div class="row row-cols-auto m-3">
-                <div class="col-md-2">
-                    <img  class="img-fluid" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
+                <div class="col-md-3">
+                    <img (click)="cambiarFoto()" class="img-fluid" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
                 </div>
-                <div class="row row-cols-auto m-3 ">
+                <div class="row row-cols-auto ">
                     <div class="col-md">
                         <div class="col-md">
                             <h3>{{protectora.nombre}}</h3>
@@ -28,16 +27,16 @@
             </div>
         </div>
     </div>
-</section>
 
-<section class="mt-5">
-    <mat-tab-group dynamicHeight color="warn" animationDuration="0ms">
-        <mat-tab label="Animales"><app-lista-protectoras></app-lista-protectoras></mat-tab>
-        <mat-tab label="Peticiones"><app-peteciones-adopcion></app-peteciones-adopcion></mat-tab>
-        <mat-tab label="Adopciones"><app-adopciones-completadas></app-adopciones-completadas></mat-tab>
-    </mat-tab-group>
+    <section class="mt-5">
+        <mat-tab-group dynamicHeight color="warn" animationDuration="0ms">
+            <mat-tab label="Animales"><app-lista-protectoras></app-lista-protectoras></mat-tab>
+            <mat-tab label="Peticiones"><app-peteciones-adopcion></app-peteciones-adopcion></mat-tab>
+            <mat-tab label="Adopciones"><app-adopciones-completadas></app-adopciones-completadas></mat-tab>
+        </mat-tab-group>
+    </section>
+
 </section>
-</div>
 
 
 
