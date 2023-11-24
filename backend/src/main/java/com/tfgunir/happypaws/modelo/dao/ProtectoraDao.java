@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tfgunir.happypaws.modelo.dto.ProtectoraDto;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.repository.ProtectoraRepository;
@@ -118,6 +119,24 @@ public class ProtectoraDao implements IProtectoraDao {
             //Guardamos la protectora
             protrepo.save(protectora);
         }
+    }
+
+    public ProtectoraDto convertirProtectoraDto (Protectora protectora){
+        ProtectoraDto protectoraDto = new ProtectoraDto();
+        protectoraDto.setIdprotectora(protectora.getIdprotectora());
+        protectoraDto.setDescripcion(protectora.getDescripcion());
+        protectoraDto.setDireccion(protectora.getDireccion());
+        protectoraDto.setEmail(protectora.getEmail());
+        protectoraDto.setNombre(protectora.getNombre());
+        protectoraDto.setTelefono(protectora.getTelefono());
+        protectoraDto.setUrlLogo(protectora.getUrlLogo());
+        protectoraDto.setIdEstadoProtectora(protectora.getEstadosprotectora().getIdestadoprotectora());
+        protectoraDto.setNombreEstadoProtectora(protectora.getEstadosprotectora().getEstado());
+        protectoraDto.setIdProvincia(protectora.getMunicipio().getProvincia().getIdprovincia());
+        protectoraDto.setNombreProvincia(protectora.getMunicipio().getProvincia().getProvincia());
+        protectoraDto.setIdMunicipio(protectora.getMunicipio().getIdmunicipio());
+        protectoraDto.setNombreMunicipio(protectora.getMunicipio().getMunicipio());
+        return protectoraDto;
     }
  
 
