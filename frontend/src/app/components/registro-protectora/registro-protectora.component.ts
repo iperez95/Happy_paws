@@ -22,7 +22,7 @@ export class RegistroProtectoraComponent {
     provincia : Provincia =  new Provincia();
     provincias: Provincia [] = [];
     municipios: Municipio [] = [];
-    idMunicipio: number;
+    idMunicipio: number = 0;
 
     constructor(
       private axiosService: AxiosService,
@@ -37,6 +37,8 @@ export class RegistroProtectoraComponent {
     }
   
     onSubmit(values: any) {
+      console.log(values);
+      console.log(this.idMunicipio);
       this.axiosService.request("POST", '/api/usuarioProtectoras', {
         "usuario": this.usuario,
         "protectora": this.protectora,
@@ -71,8 +73,10 @@ export class RegistroProtectoraComponent {
     }
 
     listadoMunicipiosProvincia(event: any) {
+      //console.log(event.target.value);
       let idProvincia: number = 1;
       if (event != null) {
+        console.log(event.target.value);
         idProvincia = event.target.value;
       }
 

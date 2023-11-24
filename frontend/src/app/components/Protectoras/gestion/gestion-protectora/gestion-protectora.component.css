@@ -1,13 +1,13 @@
 .contenedor{
  margin: 50px 60px 50px 50px;
 }
-.img-fluid.rounded-circle {
-    border-radius: 50%;
+.img-fluid {
+    
+    border-radius: 5%; /* Agrega bordes redondeados a la imagen */
+    margin-bottom: 20px; /* Añade espacio debajo de la imagen */
     object-fit: cover;
-    width: 100px; /* adjust as needed */
-    height: 100px; /* adjust as needed */
-    width: 230px;
-    height: 230px;
+    max-width: 300px;
+    max-height: 300px;
     border: 2px solid black; /* add this line */
 
 }

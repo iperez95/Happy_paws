@@ -1,7 +1,5 @@
-.form-control {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+.col-md-6 {
+    text-align: center; /* Centra el contenido dentro de la columna */
 }
 
 .img-fluid {

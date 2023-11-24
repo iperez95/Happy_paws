@@ -1,0 +1,24 @@
+
+
+hr{
+    color: #8E0B0B;
+    border-width: 3px;
+    opacity: 1;
+    margin: 0;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.custom-border-color{
+    border-color:#8E0B0B;
+}
+
+.btn-volver{
+    border-radius: 8px;
+    background: var(--main-primary, #fcfcfc);
+    /* Button */
+    box-shadow: 0px 2px 10px 0px rgba(101, 192, 237, 0.50);
+    color: #A6252C;
+    border-color:#8E0B0B;
+}
+

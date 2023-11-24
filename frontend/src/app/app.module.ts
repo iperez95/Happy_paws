@@ -36,6 +36,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { AdopcionesCompletadasComponent } from './components/adopciones-completadas/adopciones-completadas.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
+import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
 
 
 
@@ -66,6 +67,7 @@ import { AnimaldetalladoComponent } from './components/animales/animaldetallado/
     AdopcionesCompletadasComponent,
     PerfilUsuarioComponent,
     AnimaldetalladoComponent,
+    SubirFotoComponent,
 
   ],
   imports: [
