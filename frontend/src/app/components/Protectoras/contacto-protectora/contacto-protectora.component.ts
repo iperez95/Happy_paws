@@ -4,6 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Protectora } from 'src/app/entidades/protectora';
 import { ProtectoraContactService } from 'src/app/service/email/protectoraContact.service';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
+import { tap } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contacto-protectora',
@@ -14,6 +18,8 @@ export class ContactoProtectoraComponent {
 
   contactForm: FormGroup;
   protectora: Protectora = new Protectora();
+  estadoEnvio: String;
+  enviandoEmail = false;
 
   constructor(private fb: FormBuilder, private protectoraContactService: ProtectoraContactService,private _protectoraService: ProtectoraService, private router: Router, private route: ActivatedRoute) {
     this.contactForm = this.fb.group({
@@ -40,18 +46,30 @@ export class ContactoProtectoraComponent {
   }
 
   onSubmit() {
-    if (this.contactForm.valid) {
-      const formData = this.contactForm.value;
-      const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.protectoraContactService.sendEmailToProtectora(id, formData).subscribe(
-        (response) => {
-          console.log(response); // Aqui poner la respuesta del Servidor
-        },
-        (error) => {
-          console.error(error); // Implementar los errores recibidos del Servidor
-        }
-      );
-    }
+      if (this.contactForm.valid) {
+        this.enviandoEmail = true;
+        const formData = this.contactForm.value;
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+        this.protectoraContactService.sendEmailToProtectora(id, formData).pipe(
+          tap(response => {
+            this.estadoEnvio = response;
+            swal.fire('Enviado', `El formulario se ha enviado correctamente`, 'success');
+            this.volverDetalleProtectora()
+          }),
+          catchError(error => {
+            this.enviandoEmail = false;
+            this.estadoEnvio = error.error;
+            console.error(error);
+            swal.fire('Error de Envío', 'error');
+            return of(null); // return a safe value or observable
+          })
+        ).subscribe();
+      }
+  
   }
 
+  volverDetalleProtectora(){
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.router.navigate(['/protectora/detalle/', id]);
+  }
 }

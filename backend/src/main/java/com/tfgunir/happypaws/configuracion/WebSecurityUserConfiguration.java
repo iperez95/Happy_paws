@@ -69,6 +69,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().authorizeRequests()
             .antMatchers("/api/**").permitAll()
+            // .antMatchers("/protectora/gestion/**").hasAnyAuthority("Administrador", "Protectora")
             .and().httpBasic()
             .and().csrf().disable();	
 	}    

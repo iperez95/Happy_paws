@@ -4,7 +4,9 @@ package com.tfgunir.happypaws.rest.controller;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.nio.file.Files;
@@ -12,6 +14,7 @@ import java.nio.file.Files;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.Authentication;
@@ -32,6 +35,8 @@ import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 
 
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
+import com.tfgunir.happypaws.modelo.dto.AdopcionDto;
+import com.tfgunir.happypaws.modelo.dto.ProtectoraDto;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.ContactForm;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
@@ -60,7 +65,7 @@ public class ProtectoraRestController {
         this.usuarioAuthProvider = usuarioAuthProvider;
     }
 
-    // DETALLE PROTECTORA 
+    // DETALLE PROTECTORA SIN DTO
     @GetMapping(path="/{id}", produces = "application/json")
     public ResponseEntity<Protectora> buscarProtectoraId (@PathVariable("id")int id){
         System.out.println("Buscando protectora con id: "+id);
@@ -70,6 +75,22 @@ public class ProtectoraRestController {
         else
             return ResponseEntity.notFound().build();
     }
+
+    // DETALLE PROTECTORA DTO
+    // @GetMapping(path="/{id}", produces = "application/json")
+    // public ResponseEntity<ProtectoraDto> buscarProtectoraId (@PathVariable("id")int id){
+    //     System.out.println("Buscando protectora con id: "+id);
+
+    //     Protectora protectora = protdao.buscarProtectoraId(id);
+
+    //     if (protectora!=null){
+    //         ProtectoraDto protectoraDto = protdao.convertirProtectoraDto(protectora);
+    //         return ResponseEntity.ok(protectoraDto);
+    //     } else {
+    //         return ResponseEntity.notFound().build();
+    //     }
+            
+    // }
 
     @GetMapping(path="/usuario/{id}", produces = "application/json")
     public ResponseEntity<Protectora> buscarPorUsuarioId(@PathVariable("id")int id) {
@@ -82,18 +103,18 @@ public class ProtectoraRestController {
     }
 
     // LISTADO PROTECTORAS
-    @GetMapping(path="/gestion/listado", produces = "application/json")
-    public ResponseEntity<Iterable<Protectora>> listadoProtectoras (){
+    // @GetMapping(path="/gestion/listado", produces = "application/json")
+    // public ResponseEntity<Iterable<Protectora>> listadoProtectoras (){
        
-        Iterable<Protectora> listado = protdao.listadoProtectoras();
-        if (listado!=null)
-            return ResponseEntity.ok(listado);
-        else
-            return ResponseEntity.notFound().build();
-    }
+    //     Iterable<Protectora> listado = protdao.listadoProtectoras();
+    //     if (listado!=null)
+    //         return ResponseEntity.ok(listado);
+    //     else
+    //         return ResponseEntity.notFound().build();
+    // }
 
 
-     // LISTADO PROTECTORAS CON MUNICIPIO Y PROVINCIA
+     // LISTADO PROTECTORAS SIN DTO  CON MUNICIPIO Y PROVINCIA
     @GetMapping(path="/listadofront", produces = "application/json")
     public ResponseEntity<Iterable<Protectora>> listadoProtectorasMunicProv (){
        
@@ -103,6 +124,24 @@ public class ProtectoraRestController {
         else
             return ResponseEntity.notFound().build();
     }
+
+    // LISTADO PROTECTORAS DTO CON MUNICIPIO Y PROVINCIA
+    // @GetMapping(path="/listadofront", produces = "application/json")
+    // public ResponseEntity<Iterable<ProtectoraDto>> listadoProtectorasMunicProv (){
+       
+    //     Iterable<Protectora> protectoras = protdao.listadoProtectorasMunicProv();
+
+    //     if (protectoras!=null){
+    //         List<ProtectoraDto> protectorasDto = new ArrayList<>();
+    //         for (Protectora protectora : protectoras) {                
+    //             protectorasDto.add(protdao.convertirProtectoraDto(protectora));
+    //         }
+    //     return new ResponseEntity<>(protectorasDto, HttpStatus.OK);     
+    //     } 
+    //     else {
+    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+    //     }
+    // }
 
     // LISTADO PROTECTORAS POR ID PROVINCIA
     @GetMapping(path="/porprovincia/{id}", produces = "application/json")
@@ -255,13 +294,18 @@ public class ProtectoraRestController {
 
     // FORMULARIO CONTACTO PROTECTORA
     @PostMapping("/contacto/{idProtectora}")
-    public String manejoEnvioformulario(@RequestBody ContactForm form, @PathVariable int idProtectora) {
-        // Aquí podemos añadir la validacion del back del formulario.
-
-        // Llama al método para enviar el forulario a la protectora por su id
-        sendEmail(form,idProtectora);
-
-        return "¡Formulario enviado con éxito!";
+    public ResponseEntity<Map<String, String>> manejoEnvioformulario(@RequestBody ContactForm form, @PathVariable int idProtectora) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            // Esto proceso y envía el formulario
+            sendEmail(form,idProtectora);
+            response.put("message", "¡Tu email ha sido enviado correctamente!");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (MailException e) {
+            // manejo de la excepción
+            response.put("message", "Error al enviar el mensaje");
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 	//Método para enviar el formulario al email de HappyPaws
@@ -285,7 +329,7 @@ public class ProtectoraRestController {
             return ResponseEntity.notFound().build();
     }
 
-    //AÑADE EL LOGO DE LA PROTECTRA
+    //AÑADE EL LOGO SUBIDO A LA PROTECTRA
     @PostMapping(path="/gestion/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
         Map<String, Object> response = new HashMap<>();

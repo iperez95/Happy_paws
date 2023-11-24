@@ -41,7 +41,7 @@ export class ListaProtectorasComponent {
    }
 
    public verDetallesProtectora(id: number) {
-    this.router.navigate(['/protectora/detalle/', id]);
+    this.router.navigate(['/protectora/detalle/' + id]);
    }
 
    public irAltaProtectora() {

@@ -17,7 +17,7 @@ public class AdopcionDto {
     public AdopcionDto() {
     }
 
-    public AdopcionDto(int idAdopcion, int idProtectora, int idUsuario, int idAnimal, int idEstadoAdopcion, Date fechaAdopcion, String nombreProtectora, String nombreUsuario, String nombreAnimal /*, other fields...*/) {
+    public AdopcionDto(int idAdopcion, int idProtectora, int idUsuario, int idAnimal, int idEstadoAdopcion, Date fechaAdopcion, String nombreProtectora, String nombreUsuario, String nombreAnimal ) {
         this.idAdopcion = idAdopcion;
         this.idProtectora = idProtectora;
         this.idUsuario = idUsuario;
