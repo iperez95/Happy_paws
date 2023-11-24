@@ -1,1 +1,52 @@
-<p>animaldetallado works!</p>
+<!--<div *ngIf="animal"> -->
+
+<!-- Botón para volver al listado de animales -->
+<button href="animales/listado" class="btn btn-primary">Volver al listado de animales</button>
+
+<!-- Carrusel de imágenes -->
+<div class="carousel">
+  <!-- Aquí irían las imágenes del carrusel -->
+</div>
+
+<!-- Detalles del animal -->
+<div class="detalles">
+  <div class="row">
+    <div class="col">
+      <p>Conoce a {{animal?.nombre}}</p>
+      <p>{{ animal?.fechaNacimiento | date }}</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p>Provincia: {{ animal?.municipio?.provincia?.provincia }}</p>
+      <p>Protectora: {{ animal?.protectora }}</p>
+      <p>Envío: {{ animal?.envio  ? "Puede viajar" : "No puede viajar" }}</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+      <h2>DETALLES</h2>
+      <p>Especie: {{ animal?.raza?.especie }}</p>
+      <p>Raza: {{ animal?.raza }}</p>
+      <p>Sexo: {{ animal?.sexo }}</p>
+      <p>Tamaño: {{ animal?.tamano }}</p>
+      <p>Edad: {{ getAnimalAge(animal.fechaNacimiento) }}</p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+      <h2>DESCRIPCIÓN</h2>
+      <p>{{ animal?.descripcion }}</p>
+    </div>
+  </div>
+</div>
+
+<!-- Botón de Solicitar Adopción -->
+<div class="text-center">
+  <button href="cuestionario/adopcion" class="btn btn-success">Solicitar Adopción</button>
+</div>
+<!--</div>-->

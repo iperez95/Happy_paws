@@ -80,7 +80,10 @@ import { AnimaldetalladoComponent } from './components/animales/animaldetallado/
     MatChipsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    RouterModule,
+    RouterModule.forRoot([
+      { path: 'animales', component: ListaAnimalesComponent},
+      { path: 'home', component: HomeComponent },
+    ]),
     BrowserAnimationsModule
   ],
   providers: [],

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Animal } from 'src/app/entidades/animal';
-import { AnimalService } from 'src/app/service/Animal/animal.service';
+import { AnimalService } from 'src/app/service/animal/animal.service';
 
 @Component({
   selector: 'app-lista-animales',

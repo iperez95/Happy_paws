@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
 import { Router } from '@angular/router';
-import { AnimalService } from 'src/app/service/Animal/animal.service';
+import { AnimalService } from 'src/app/service/animal/animal.service';
 
 @Component({
   selector: 'app-animal',
@@ -30,7 +30,7 @@ export class AnimalComponent implements OnInit{
     this.router.navigate(['animales/verUno/', id]);
   }
 
-  getUrlForAnimal(id: number): string {
-    return this.multimedia[id];
-  }
+  // getUrlForAnimal(id: number): string {
+  //   return this.multimedia[id];
+  // }
 }
