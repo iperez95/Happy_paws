@@ -17,6 +17,7 @@ import { AltaAnimalComponent } from './components/animales/alta-animal/alta-anim
 import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
+import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 
 const routes: Routes = [
   //animales
