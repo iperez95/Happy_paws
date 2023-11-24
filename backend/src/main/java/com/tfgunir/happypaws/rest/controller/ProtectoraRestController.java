@@ -66,31 +66,31 @@ public class ProtectoraRestController {
     }
 
     // DETALLE PROTECTORA SIN DTO
-    @GetMapping(path="/{id}", produces = "application/json")
-    public ResponseEntity<Protectora> buscarProtectoraId (@PathVariable("id")int id){
-        System.out.println("Buscando protectora con id: "+id);
-        Protectora p = protdao.buscarProtectoraId(id);
-        if (p!=null)
-            return ResponseEntity.ok(p);
-        else
-            return ResponseEntity.notFound().build();
-    }
+    // @GetMapping(path="/{id}", produces = "application/json")
+    // public ResponseEntity<Protectora> buscarProtectoraId (@PathVariable("id")int id){
+    //     System.out.println("Buscando protectora con id: "+id);
+    //     Protectora p = protdao.buscarProtectoraId(id);
+    //     if (p!=null)
+    //         return ResponseEntity.ok(p);
+    //     else
+    //         return ResponseEntity.notFound().build();
+    // }
 
     // DETALLE PROTECTORA DTO
-    // @GetMapping(path="/{id}", produces = "application/json")
-    // public ResponseEntity<ProtectoraDto> buscarProtectoraId (@PathVariable("id")int id){
-    //     System.out.println("Buscando protectora con id: "+id);
+    @GetMapping(path="/{id}", produces = "application/json")
+    public ResponseEntity<ProtectoraDto> buscarProtectoraId (@PathVariable("id")int id){
+        System.out.println("Buscando protectora con id: "+id);
 
-    //     Protectora protectora = protdao.buscarProtectoraId(id);
+        Protectora protectora = protdao.buscarProtectoraId(id);
 
-    //     if (protectora!=null){
-    //         ProtectoraDto protectoraDto = protdao.convertirProtectoraDto(protectora);
-    //         return ResponseEntity.ok(protectoraDto);
-    //     } else {
-    //         return ResponseEntity.notFound().build();
-    //     }
+        if (protectora!=null){
+            ProtectoraDto protectoraDto = protdao.convertirProtectoraDto(protectora);
+            return ResponseEntity.ok(protectoraDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
             
-    // }
+    }
 
     @GetMapping(path="/usuario/{id}", produces = "application/json")
     public ResponseEntity<Protectora> buscarPorUsuarioId(@PathVariable("id")int id) {
@@ -115,66 +115,90 @@ public class ProtectoraRestController {
 
 
      // LISTADO PROTECTORAS SIN DTO  CON MUNICIPIO Y PROVINCIA
-    @GetMapping(path="/listadofront", produces = "application/json")
-    public ResponseEntity<Iterable<Protectora>> listadoProtectorasMunicProv (){
+    // @GetMapping(path="/listadofront", produces = "application/json")
+    // public ResponseEntity<Iterable<Protectora>> listadoProtectorasMunicProv (){
        
-        Iterable<Protectora> listado = protdao.listadoProtectorasMunicProv();
-        if (listado!=null)
-            return ResponseEntity.ok(listado);
-        else
-            return ResponseEntity.notFound().build();
-    }
+    //     Iterable<Protectora> listado = protdao.listadoProtectorasMunicProv();
+    //     if (listado!=null)
+    //         return ResponseEntity.ok(listado);
+    //     else
+    //         return ResponseEntity.notFound().build();
+    // }
 
     // LISTADO PROTECTORAS DTO CON MUNICIPIO Y PROVINCIA
-    // @GetMapping(path="/listadofront", produces = "application/json")
-    // public ResponseEntity<Iterable<ProtectoraDto>> listadoProtectorasMunicProv (){
+    @GetMapping(path="/listadofront", produces = "application/json")
+    public ResponseEntity<Iterable<ProtectoraDto>> listadoProtectorasMunicProv (){
        
-    //     Iterable<Protectora> protectoras = protdao.listadoProtectorasMunicProv();
+        Iterable<Protectora> protectoras = protdao.listadoProtectorasMunicProv();
 
-    //     if (protectoras!=null){
-    //         List<ProtectoraDto> protectorasDto = new ArrayList<>();
-    //         for (Protectora protectora : protectoras) {                
-    //             protectorasDto.add(protdao.convertirProtectoraDto(protectora));
-    //         }
-    //     return new ResponseEntity<>(protectorasDto, HttpStatus.OK);     
-    //     } 
-    //     else {
-    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-    //     }
-    // }
-
-    // LISTADO PROTECTORAS POR ID PROVINCIA
-    @GetMapping(path="/porprovincia/{id}", produces = "application/json")
-    public ResponseEntity<Iterable<Protectora>> buscarPorProvincia (@PathVariable("id") int id){
-       
-        Iterable<Protectora> listado = protdao.buscarPorIdProvincia(id);
-        if (listado!=null)
-            return ResponseEntity.ok(listado);
-        else
-            return ResponseEntity.notFound().build();
+        if (protectoras!=null){
+            List<ProtectoraDto> protectorasDto = new ArrayList<>();
+            for (Protectora protectora : protectoras) {                
+                protectorasDto.add(protdao.convertirProtectoraDto(protectora));
+            }
+        return new ResponseEntity<>(protectorasDto, HttpStatus.OK);     
+        } 
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
     }
 
-    // LISTADO PROTECTORAS POR NOMBRE PROVINCIA
-    @GetMapping(path="/listadofront/provincia/{nombre}", produces = "application/json")
-    public ResponseEntity<Iterable<Protectora>> porNombreProvincia (@PathVariable("nombre") String nombre){
+    // LISTADO PROTECTORAS SIN DTO POR ID PROVINCIA
+    // @GetMapping(path="/porprovincia/{id}", produces = "application/json")
+    // public ResponseEntity<Iterable<Protectora>> buscarPorProvincia (@PathVariable("id") int id){
        
-        Iterable<Protectora> listado = protdao.buscarPorNombreProvincia(nombre);
-        if (listado!=null)
-            return ResponseEntity.ok(listado);
-        else
-            return ResponseEntity.notFound().build();
-    }
-
-    
-    // ALTA PROTECTORA FUNCIONANDO PERO SIN AGREGAR EL USUARIO QUE LO DA DE ALTA
-    // @PostMapping(path="/alta", produces = "application/json", consumes = "application/json")
-    // public ResponseEntity<Protectora> altaProtectora (@RequestBody Protectora p ){
-    //     protdao.altaProtectora(p);
-    //     if (p!=null)
-    //         return ResponseEntity.created(null).body(p);    
+    //     Iterable<Protectora> listado = protdao.buscarPorIdProvincia(id);
+    //     if (listado!=null)
+    //         return ResponseEntity.ok(listado);
     //     else
-    //         return ResponseEntity.badRequest().build();
+    //         return ResponseEntity.notFound().build();
     // }
+
+    // LISTADO PROTECTORAS CON DTO POR ID PROVINCIA
+    @GetMapping(path="/porprovincia/{id}", produces = "application/json")
+    public ResponseEntity<Iterable<ProtectoraDto>> buscarPorProvincia (@PathVariable("id") int id){
+       
+        Iterable<Protectora> protectoras = protdao.buscarPorIdProvincia(id);
+        if (protectoras!=null){
+            List<ProtectoraDto> listadoDto = new ArrayList<>();
+            for (Protectora protectora : protectoras) {                
+                listadoDto.add(protdao.convertirProtectoraDto(protectora));
+            }
+            return new ResponseEntity<>(listadoDto, HttpStatus.OK);     
+        } 
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }   
+    }
+
+
+    // LISTADO PROTECTORAS SIN DTO POR NOMBRE PROVINCIA
+    // @GetMapping(path="/listadofront/provincia/{nombre}", produces = "application/json")
+    // public ResponseEntity<Iterable<Protectora>> porNombreProvincia (@PathVariable("nombre") String nombre){
+       
+    //     Iterable<Protectora> listado = protdao.buscarPorNombreProvincia(nombre);
+    //     if (listado!=null)
+    //         return ResponseEntity.ok(listado);
+    //     else
+    //         return ResponseEntity.notFound().build();
+    // }
+
+    // LISTADO PROTECTORAS DTO POR NOMBRE PROVINCIA
+    @GetMapping(path="/listadofront/provincia/{nombre}", produces = "application/json")
+    public ResponseEntity<Iterable<ProtectoraDto>> porNombreProvincia (@PathVariable("nombre") String nombre){
+        Iterable<Protectora> protectoras = protdao.buscarPorNombreProvincia(nombre);
+        if (protectoras!=null){
+            List<ProtectoraDto> listadoDto = new ArrayList<>();
+            for (Protectora protectora : protectoras) {                
+                listadoDto.add(protdao.convertirProtectoraDto(protectora));
+            }
+            return new ResponseEntity<>(listadoDto, HttpStatus.OK);     
+        } 
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+    }
+
 
     //TODO DAV comprobar que solo los usuarios tipo protectora pueden hacer esto
     // ALTA PROTECTORA QUE AGREGA EL USUARIO EN SESIÓN
@@ -229,11 +253,6 @@ public class ProtectoraRestController {
         else
             return ResponseEntity.notFound().build();
     }
-
-
-    
-
-
 
     //BORRAR UNA PROTECTORA
     @DeleteMapping(path="/gestion/borrar/{id}")

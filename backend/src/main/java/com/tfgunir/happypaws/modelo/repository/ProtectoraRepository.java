@@ -13,7 +13,7 @@ public interface ProtectoraRepository extends JpaRepository<Protectora, Integer>
     @Query(value = "SELECT prote.*, muni.MUNICIPIO, prov.PROVINCIA FROM PROTECTORAS prote\r\n"
                 + "inner join MUNICIPIOS muni on muni.IDMUNICIPIO = prote.IDMUNICIPIO \r\n"
                 + "inner join PROVINCIAS prov on prov.IDPROVINCIA = muni.IDPROVINCIA \r\n"
-                + "where prov.PROVINCIA = ?1",
+                + "where prov.PROVINCIA = ?1 prote.idestadoprotectora = 1",
                 nativeQuery = true)    
     List<Protectora> protetorasPorNombreProvincia(String nombre);
 
@@ -27,7 +27,7 @@ public interface ProtectoraRepository extends JpaRepository<Protectora, Integer>
     @Query(value = "SELECT prote.*, muni.MUNICIPIO, prov.PROVINCIA FROM PROTECTORAS prote\r\n"
                 + "inner join MUNICIPIOS muni on muni.IDMUNICIPIO = prote.IDMUNICIPIO \r\n"
                 + "inner join PROVINCIAS prov on prov.IDPROVINCIA = muni.IDPROVINCIA \r\n"
-                + "where prov.IDPROVINCIA = ?1",
+                + "where prov.IDPROVINCIA = ?1 AND prote.idestadoprotectora = 1",
                 nativeQuery = true)    
     List<Protectora> protetorasPorIdProvincia(int idprovincia);
 
