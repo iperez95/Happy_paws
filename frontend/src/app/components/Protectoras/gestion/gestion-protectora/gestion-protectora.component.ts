@@ -45,4 +45,12 @@ export class GestionProtectoraComponent {
   actualizarProtectora(id:number) {
     this.router.navigate(['protectora/gestion/modificar']);
   }
+
+  cambiarFoto() {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/protectora/gestion/subirfoto/']);
+    }); 
+  }
+
+  
 }

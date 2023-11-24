@@ -274,7 +274,18 @@ public class ProtectoraRestController {
         emailSender.send(message);
     }   
 
-    //AÑADIMOS EL LOGO DE LA PROTECTRA
+    // SUBIR FOTO PROTECTORA 
+    @GetMapping(path="/gestion/subirfoto/{id}", produces = "application/json")
+    public ResponseEntity<Protectora> subirFoto (@PathVariable("id")int id){
+        System.out.println("Buscando protectora con id: "+id);
+        Protectora p = protdao.buscarProtectoraId(id);
+        if (p!=null)
+            return ResponseEntity.ok(p);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
+    //AÑADE EL LOGO DE LA PROTECTRA
     @PostMapping(path="/gestion/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
         Map<String, Object> response = new HashMap<>();
