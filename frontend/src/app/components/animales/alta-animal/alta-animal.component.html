@@ -1,5 +1,5 @@
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Alta protectora en HappyPaws</h3>
+    <h3 class="text-center">Alta Animal en HappyPaws</h3>
     <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">
         <div  class="form-group mt-5">
             <label class="col-md-3" for="nombre">Nombre:</label>
@@ -7,18 +7,34 @@
         </div>
         <div class="form-group mt-3">
             <label class="col-md-3" for="descripcion">FechaNacimiento</label>
-            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
+            <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento">
         </div>
         <div class="form-group mt-3">
-            <label class="col-md-3" for="descripcion">FechaAlta:</label>
-            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
+            <label class="col-md-3" for="especie">Especie:</label>
+            <select id="especie" formControlName="especie">
+              <option *ngFor="let especie of especies" [value]="especie.idespecie">{{especie.especie}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="raza">Raza:</label>
+            <select id="raza" formControlName="raza">
+              <option *ngFor="let raza of razas" [value]="raza.idraza">{{raza.raza}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="sexo">Sexo:</label>
+            <select id="sexo" formControlName="sexo">
+              <option *ngFor="let sexo of sexos" [value]="sexo.idsexo">{{sexo.sexo}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="tamano">Tamaño:</label>
+            <select id="tamano" formControlName="tamano">
+              <option *ngFor="let tamano of tamanos" [value]="tamano.idtamano">{{tamano.tamano}}</option>
+            </select>
         </div>
         <div class="form-group mt-3">
             <label class="col-md-3" for="descripcion">Descripcion:</label>
-            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
-        </div>
-        <div class="form-group mt-3">
-            <label class="col-md-3" for="descripcion">enabled:</label>
             <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
         </div>
         <div class="form-group mt-3">
@@ -32,6 +48,15 @@
         <select id="municipio" formControlName="municipio">
             <option *ngFor="let municipio of municipios"  [value]="municipio.idmunicipio">{{municipio.municipio}}</option>
         </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="descripcion">Apto para envio:</label>
+            <div>
+                <input type="radio" id="envioSi" value="true" formControlName="envio">
+                <label for="envioSi">Si</label>
+                <input type="radio" id="envioNo" value="false" formControlName="envio">
+                <label for="envioNo">No</label>
+            </div>
         </div>
         <div>
             <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!altaForm.valid">Enviar</button>

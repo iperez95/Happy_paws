@@ -3,6 +3,27 @@
 export class Animal {
 
     idanimal : number;
+    protectora:{
+      idprotectora: number;
+      nombre: string;
+    }
+    raza: {
+      idraza: number;
+      raza: string;
+      especie: {
+        idespecie: number;
+        especie: string;
+      }
+    }
+    sexo: {
+      idsexo: number;
+      sexo: string;
+    }
+    tamano: {
+      idtamano: number;
+      tamano: string;
+    }
+    envio: boolean;
     nombre : string;
     fechaNacimiento: Date;
     fechaAlta: Date;
@@ -38,8 +59,6 @@ export class Animal {
     //         }
     //     };
     // }
-
-
 
 
 

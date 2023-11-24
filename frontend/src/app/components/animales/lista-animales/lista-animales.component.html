@@ -17,13 +17,17 @@
             <button class="btn custom-btn-red-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
         </div>
         <br>
-        <div class="row row-cols-auto gy-5">
-            <app-animal class="col-md-4"
-                *ngFor=" let a of listaAnimales"
-                [animal]="a">
-            </app-animal>
+        <section>
+            <div class="row row-cols-auto gy-5">
+                <div class="col-md-2">
+                    //aqui iria el filtro
                 </div>
-                
+                 <app-animal class="col-md-3"
+                    *ngFor=" let a of listaAnimales"
+                    [animal]="a">
+                </app-animal>
+            </div>
+        </section>
     </div>
 </section>
 

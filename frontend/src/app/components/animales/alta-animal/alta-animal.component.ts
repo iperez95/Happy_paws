@@ -1,11 +1,21 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Animal } from 'src/app/entidades/animal';
-import { AnimalService } from 'src/app/service/Animal/animal.service';
+import { AnimalService } from 'src/app/service/animal/animal.service';
 import { Municipio } from 'src/app/entidades/municipio';
 import { Provincia } from 'src/app/entidades/provincia';
 import { Router } from '@angular/router';
 import { LocationService } from 'src/app/service/localizacion/location.service';
+import { Raza } from 'src/app/entidades/raza';
+import { Tamano } from 'src/app/entidades/tamano';
+import { Especie } from 'src/app/entidades/especie';
+import { Protectora } from 'src/app/entidades/protectora';
+import { Sexo } from 'src/app/entidades/sexo';
+import { EspecieService } from 'src/app/service/especie/especie.service';
+import { RazaService } from 'src/app/service/raza/raza.service';
+import { SexoService } from 'src/app/service/sexo/sexo.service';
+import { TamanosService } from 'src/app/service/tamano/tamano.service';
+
 
 @Component({
   selector: 'app-alta-animal',
@@ -18,13 +28,21 @@ export class AltaAnimalComponent {
 
   provincias: Provincia [] = [];
   municipios: Municipio [] = [];
+  razas: Raza [] = [];
+  especies: Especie [] = [];
+  tamanos: Tamano [] = [];
+  sexos: Sexo [] = [];
 
   municipio : Municipio = new Municipio();
   provincia : Provincia =  new Provincia();
+  raza : Raza = new Raza();
+  especie : Especie = new Especie();
+  tamano : Tamano = new Tamano();
+  sexo: Sexo = new Sexo;
 
   provinciaSeleccionadaId: number;
 
-  constructor(private fb: FormBuilder, private _animalService : AnimalService, private router: Router, private _locationService: LocationService) {  
+  constructor(private fb: FormBuilder, private _animalService : AnimalService, private router: Router, private _locationService: LocationService, private _especieService: EspecieService, private _razaService: RazaService, private _sexoService: SexoService, private _tamanoService: TamanosService) {  
     this.altaForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
@@ -38,7 +56,7 @@ export class AltaAnimalComponent {
     this.listadoMunicipiosProvincia();
   }
 
-
+  enabled: boolean = true;
 
     onSubmit() {
       if (this.altaForm.valid) {
@@ -48,9 +66,9 @@ export class AltaAnimalComponent {
           nombre: this.altaForm.get('nombre')?.value,
           descripcion: this.altaForm.get('descripcion')?.value,
           fechaNacimiento: this.altaForm.get('fechaNacimiento')?.value,
-          fechaAlta: this.altaForm.get('fechaAlta')?.value,
+          fechaAlta: new Date(),
           enabled: this.altaForm.get('enabled')?.value,
-          fechaEnabled: this.altaForm.get('fechaEnabled')?.value,
+          fechaEnabled: new Date(),
           municipio: {
             idmunicipio: this.altaForm.get('municipio')?.value,
             municipio: '',
@@ -59,14 +77,34 @@ export class AltaAnimalComponent {
               provincia: '', // No es necesario enviar este valor al backend
             },
           },
-
+          protectora: {
+            idprotectora: 0,
+            nombre: ''
+          },
+          raza: {
+            idraza: 0,
+            raza: '',
+            especie: {
+              idespecie: 0,
+              especie: ''
+            }
+          },
+          sexo: {
+            idsexo: 0,
+            sexo: ''
+          },
+          tamano: {
+            idtamano: 0,
+            tamano: ''
+          },
+          envio: false
         };
         console.log(animal);
         this.guardarAnimal(animal);
         this.IrListadoAnimales();
       }
     }
-  
+
 
     IrListadoAnimales(){
       this.router.navigate(['/animales/listado']);
@@ -101,7 +139,42 @@ export class AltaAnimalComponent {
          
         });
       });
-    }     
+    }  
+    
+    private listadoEspecies(){
+      this._especieService.listarEspecies()
+       .subscribe((data: any[]) => {
+          this.especies = data;
+          
+          console.log(this.especies);
+        });  
+    }
+
+    private listadoRazas(){
+      this._razaService.listarRazas()
+      .subscribe((data: any[]) => {
+          this.razas = data;
+          
+          console.log(this.razas);
+        });
+    }
+
+    private listadoSexos(){
+      this._sexoService.listarSexos()
+      .subscribe((data: any[]) => {
+          this.sexos = data;
+          
+          console.log(this.sexos);
+        });
+    }
+
+    private listadoTamanos(){
+      this._tamanoService.listarTamanos()
+     .subscribe((data: any[]) => {
+      this.tamanos = data;
+      
+      console.log(this.tamanos);
+    });
   }
 
-
+}

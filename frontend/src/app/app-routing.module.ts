@@ -21,7 +21,7 @@ import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/
 const routes: Routes = [
   //animales
   { path: 'animales/listado', component:ListaAnimalesComponent},
-  { path: 'animales/verUno/:id', component: AnimalComponent},
+  { path: 'animales/verUno/:id', component: AnimaldetalladoComponent},
   { path: 'animales/gestion/alta', component: AltaAnimalComponent},
   
 

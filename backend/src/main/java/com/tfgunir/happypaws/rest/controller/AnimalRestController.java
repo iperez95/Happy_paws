@@ -213,10 +213,10 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por tamaño
-    @GetMapping(path="/buscar/portamaño/{id}", produces = "application/json")
-    public ResponseEntity<List<Animal>> buscarPorTamaño(@PathVariable("idtamano") int idtamaño) {
+    @GetMapping(path="/buscar/portamano/{id}", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarPorTamaño(@PathVariable("idtamano") int idtamano) {
 
-        List<Animal> listado = aniDao.buscarPorTamaño(idtamaño);
+        List<Animal> listado = aniDao.buscarPorTamaño(idtamano);
         if (listado != null && !listado.isEmpty()) {
             return ResponseEntity.ok(listado);
         } else {
