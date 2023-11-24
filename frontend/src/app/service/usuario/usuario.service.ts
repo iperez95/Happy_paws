@@ -12,7 +12,6 @@ export class UsuarioService {
 
   getUserData(): Usuario | null | undefined {
     const tokenData = this.axiosService.readToken();
-
     if (!tokenData) {
         this.usuario = new Usuario();
         return null;
@@ -23,26 +22,8 @@ export class UsuarioService {
     this.usuario.apellidos = tokenData.apellidos;
     this.usuario.rol = tokenData.rol;
     this.usuario.id = tokenData.id;
+    this.usuario.idProtectora = tokenData.idProtectora;
 
     return this.usuario;
-  }
-}
-
-export class UsuarioProtectoraService {
-  constructor(private axiosService: AxiosService) { }
-
-  getUserData(): Usuario | null | undefined {
-    const tokenData = this.axiosService.readToken();
-
-    if (!tokenData) {
-        return null;
-    }
-    console.log(tokenData);
-    const usuario = new Usuario();
-    usuario.email = tokenData.iss;
-    usuario.nombre = tokenData.nombre;
-    usuario.apellidos = tokenData.apellidos;
-
-    return usuario;
   }
 }
