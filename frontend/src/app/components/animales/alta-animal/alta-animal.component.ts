@@ -54,6 +54,10 @@ export class AltaAnimalComponent {
    ngOnInit() {
     this.listadoProvincias();
     this.listadoMunicipiosProvincia();
+    this.listadoEspecies();
+    this.listadoRazas();
+    this.listadoSexos();
+    this.listadoTamanos();
   }
 
   enabled: boolean = true;

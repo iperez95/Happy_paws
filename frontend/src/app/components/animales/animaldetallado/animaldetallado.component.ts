@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
+import { AnimalService } from 'src/app/service/animal/animal.service';
 
 @Component({
   selector: 'app-animaldetallado',
@@ -10,13 +11,29 @@ import { Animal } from 'src/app/entidades/animal';
 export class AnimaldetalladoComponent {
 
 
-animal: Animal; 
-multimedia: string;
+animal: Animal;
+
+id: number;
+
+//multimedia: string;
 
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private activateRouter: ActivatedRoute, private _animalService: AnimalService) {}
 
   ngOnInit() {
+    this.activateRouter.params.subscribe((params) => {
+      this.id = parseInt(params['id']);
+      this.getAnimal();
+    })
+  }
+
+  private getAnimal(): void {
+    this._animalService.verAnimal(this.id).subscribe({
+      next: animal => {
+        this.animal = animal;
+      },
+      error: err => console.log(err)
+    });
   }
 
   getAnimalAge(fechaNacimiento: Date): number {
