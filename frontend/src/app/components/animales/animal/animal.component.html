@@ -43,7 +43,7 @@
     <div class="row mt-4">
         <!-- Botón para ver el componente completo del animal -->
         <div class="col-md-12">
-            <a href="animales/verUno/:id" class="btn btn-primary">Ver más información</a>
+            <a [routerLink]="['/animales/verUno', animal.idanimal]" class="btn btn-primary">Ver más información</a>
         </div>
     </div>
 </div>

@@ -29,8 +29,8 @@ export class AnimalService {
   }
 
   // Método para ver un animal por su id
-  public verAnimal(idanimal: number): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animales/verUno/${idanimal}`)
+  public verAnimal(idanimal: number): Observable<Animal> {
+    return this._httpClient.get<Animal>(`${this.endpoint}/animales/verUno/${idanimal}`)
       .pipe(catchError(this.manejarError));
   }
 

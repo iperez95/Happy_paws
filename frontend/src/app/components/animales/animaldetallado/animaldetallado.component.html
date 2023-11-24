@@ -1,7 +1,7 @@
 <!--<div *ngIf="animal"> -->
 
 <!-- Botón para volver al listado de animales -->
-<button href="animales/listado" class="btn btn-primary">Volver al listado de animales</button>
+<a href="animales/listado" class="btn btn-primary">Volver al listado de animales</a>
 
 <!-- Carrusel de imágenes -->
 <div class="carousel">
@@ -12,15 +12,15 @@
 <div class="detalles">
   <div class="row">
     <div class="col">
-      <p>Conoce a {{animal?.nombre}}</p>
-      <p>{{ animal?.fechaNacimiento | date }}</p>
+      <p>Conoce a {{animal.nombre}}</p>
+      <p>{{ animal.fechaNacimiento | date }}</p>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <p>Provincia: {{ animal?.municipio?.provincia?.provincia }}</p>
-      <p>Protectora: {{ animal?.protectora }}</p>
-      <p>Envío: {{ animal?.envio  ? "Puede viajar" : "No puede viajar" }}</p>
+      <p>Provincia: {{ animal.municipio.provincia.provincia }}</p>
+      <p>Protectora: {{ animal.protectora.nombre }}</p>
+      <p>Envío: {{ animal.envio ? "Puede viajar" : "No puede viajar" }}</p>
     </div>
   </div>
 
@@ -28,10 +28,10 @@
   <div class="row">
     <div class="col">
       <h2>DETALLES</h2>
-      <p>Especie: {{ animal?.raza?.especie }}</p>
-      <p>Raza: {{ animal?.raza }}</p>
-      <p>Sexo: {{ animal?.sexo }}</p>
-      <p>Tamaño: {{ animal?.tamano }}</p>
+      <p>Especie: {{ animal.raza.especie.especie }}</p>
+      <p>Raza: {{ animal.raza.raza }}</p>
+      <p>Sexo: {{ animal.sexo.sexo }}</p>
+      <p>Tamaño: {{ animal.tamano.tamano }}</p>
       <p>Edad: {{ getAnimalAge(animal.fechaNacimiento) }}</p>
     </div>
   </div>
@@ -40,13 +40,14 @@
   <div class="row">
     <div class="col">
       <h2>DESCRIPCIÓN</h2>
-      <p>{{ animal?.descripcion }}</p>
+      <p>{{ animal.descripcion }}</p>
     </div>
   </div>
 </div>
 
 <!-- Botón de Solicitar Adopción -->
 <div class="text-center">
-  <button href="cuestionario/adopcion" class="btn btn-success">Solicitar Adopción</button>
+  <a href="cuestionario/adopcion" class="btn btn-success">Solicitar Adopción</a>
+
 </div>
 <!--</div>-->
