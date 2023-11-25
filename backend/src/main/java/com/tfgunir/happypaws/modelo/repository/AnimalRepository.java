@@ -68,11 +68,7 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer>{
                 List<Animal> buscarPorSexo(int idsexo);
         
         // Query para buscar todos los animales por raza
-        @Query(value = "Select a.* from animales a" +
-                        "inner join especie e on a.IDESPECIE = e.IDESPECIE" +
-                        "inner join raza r on a.IDRAZA = r.IDRAZA" +
-                        "where r.RAZA =?1", 
-                        nativeQuery = true)
+        @Query(value = "SELECT a FROM Animal a WHERE a.raza.idraza = :idraza")
                 List<Animal> buscarPorRaza(int idraza);
         
         // Query para buscar todos los animales por tamaño

@@ -21,18 +21,25 @@
             <div class="row row-cols-auto gy-5">
                 <div class="col-md-2">
                     //aqui iria el filtro
+                    <select (change)="buscar($event)"> 
+                        
+                        <option *ngFor = " let r of listaRazas" value="{{r.idraza}}">{{r.raza}}</option>
+
+                    </select>
+
                 </div>
-                 <app-animal class="col-md-3"
-                    *ngFor=" let a of listaAnimales"
-                    [animal]="a">
-                </app-animal>
+                <div class="row">
+                    <div *ngFor="let a of listaAnimales" class="col-md-4">
+                      <app-animal [animal]="a"></app-animal>
+                    </div>
+                  </div>
             </div>
         </section>
     </div>
 </section>
 
-<tr *ngIf="listaAnimales.length==0">
+<ng-template #sinAnimales>
     <td>
         No se han encontrado Animales
     </td>
-</tr>
+</ng-template>
