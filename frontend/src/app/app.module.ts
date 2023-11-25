@@ -37,6 +37,7 @@ import { AdopcionesCompletadasComponent } from './components/adopciones-completa
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
+import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 
 
 
@@ -68,6 +69,7 @@ import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/
     PerfilUsuarioComponent,
     AnimaldetalladoComponent,
     SubirFotoComponent,
+    PanelAdminComponent,
 
   ],
   imports: [

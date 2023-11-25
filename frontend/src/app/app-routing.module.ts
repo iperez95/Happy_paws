@@ -18,6 +18,7 @@ import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestio
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
+import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 
 const routes: Routes = [
   //animales
@@ -41,6 +42,8 @@ const routes: Routes = [
   //Cuestionario de adopción
   { path: 'cuestionario/adopcion', component: CuestionarioAdopcionComponent},
 
+  //Admin
+  { path: 'admin/gestion', component: PanelAdminComponent},
   //Login
   { path: 'login', component: LoginModalComponent },
   { path: 'registro', component: RegistroComponent },

@@ -18,6 +18,10 @@ export class Usuario {
         return this.rol == 'Adoptante';
     }
 
+    isAdministrador(): boolean {
+        return this.rol == 'Administrador';
+    }
+
     public toString() : string {
         return JSON.stringify(this)
     }

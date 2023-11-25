@@ -16,6 +16,7 @@ export class UsuarioService {
         this.usuario = new Usuario();
         return null;
     }
+    console.log(tokenData);
 
     this.usuario.email = tokenData.iss;
     this.usuario.nombre = tokenData.nombre;
