@@ -2,33 +2,33 @@ package com.tfgunir.happypaws.modelo.dto;
 
 public class MultimediaDto {
 
-    int idmultimedia;
-    int idanimal;
+    int idMultimedia;
+    int idAnimal;
     String enlace;
 
     public MultimediaDto() {
     }
 
-    public MultimediaDto(int idmultimedia, int idanimal, String enlace) {
-        this.idmultimedia = idmultimedia;
-        this.idanimal = idanimal;
+    public MultimediaDto(int idMultimedia, int idAnimal, String enlace) {
+        this.idMultimedia = idMultimedia;
+        this.idAnimal = idAnimal;
         this.enlace = enlace;
     }
 
-    public int getIdmultimedia() {
-        return idmultimedia;
+    public int getidMultimedia() {
+        return idMultimedia;
     }
 
-    public void setIdmultimedia(int idmultimedia) {
-        this.idmultimedia = idmultimedia;
+    public void setidMultimedia(int idMultimedia) {
+        this.idMultimedia = idMultimedia;
     }
 
-    public int getIdanimal() {
-        return idanimal;
+    public int getidAnimal() {
+        return idAnimal;
     }
 
-    public void setIdanimal(int idanimal) {
-        this.idanimal = idanimal;
+    public void setidAnimal(int idAnimal) {
+        this.idAnimal = idAnimal;
     }
     
     public String getEnlace() {
@@ -43,7 +43,7 @@ public class MultimediaDto {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + idmultimedia;
+        result = prime * result + idMultimedia;
         return result;
     }
 
@@ -56,14 +56,14 @@ public class MultimediaDto {
         if (getClass() != obj.getClass())
             return false;
         MultimediaDto other = (MultimediaDto) obj;
-        if (idmultimedia != other.idmultimedia)
+        if (idMultimedia != other.idMultimedia)
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "MultimediaDto [idmultimedia=" + idmultimedia + ", idanimal=" + idanimal + ", enlace=" + enlace + "]";
+        return "MultimediaDto [idMultimedia=" + idMultimedia + ", idAnimal=" + idAnimal + ", enlace=" + enlace + "]";
     }
 
     
