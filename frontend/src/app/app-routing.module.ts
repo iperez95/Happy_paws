@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'animales/gestion/alta', component: AltaAnimalComponent},
   { path: 'animales/gestion', component: GestionAnimalComponent},
   { path: 'animales/gestion/modificar/:id', component: ModificarAnimalComponent},
-  { path: 'animales/gestion/subirfotoanimal', component: SubirfotoAnimalComponent},
+  { path: 'animales/gestion/subirfotoanimal/:id', component: SubirfotoAnimalComponent},
   //protectoras
   
  

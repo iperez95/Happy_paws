@@ -1,6 +1,13 @@
 package com.tfgunir.happypaws.rest.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +21,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.tfgunir.happypaws.modelo.dao.AnimalDao;
+import com.tfgunir.happypaws.modelo.dao.MultimediaDao;
 import com.tfgunir.happypaws.modelo.entities.Animal;
+import com.tfgunir.happypaws.modelo.entities.Multimedia;
+import com.tfgunir.happypaws.modelo.entities.Protectora;
 
 @Controller
 @RequestMapping("/animales")
@@ -26,6 +37,8 @@ public class AnimalRestController {
     
      @Autowired
      private AnimalDao aniDao;
+
+     @Autowired MultimediaDao multiDao;
 
     // Controlador para el listado de animales
     @GetMapping(path="/listado", produces = "application/json")
@@ -235,4 +248,51 @@ public class AnimalRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // SUBIR FOTO ANIMAL
+    @GetMapping(path="/gestion/subirfoto/{id}", produces = "application/json")
+    public ResponseEntity<Animal> subirFoto (@PathVariable("id")int id){
+        System.out.println("Buscando protectora con id: "+id);
+        Animal animal = aniDao.buscarAnimalId(id);
+        if (animal!=null)
+            return ResponseEntity.ok(animal);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
+    //AÑADE EL LOGO SUBIDO A LA PROTECTRA
+    @PostMapping(path="/gestion/upload")
+public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
+    Map<String, Object> response = new HashMap<>();
+
+    Animal animal = aniDao.buscarAnimalId(id);
+
+    Multimedia multimedia = new Multimedia();
+
+    if (!archivo.isEmpty()) {
+    
+        String nombreArchivo = UUID.randomUUID().toString() +"_" + archivo.getOriginalFilename().replace(" ", "");
+        Path rutaArchivo = Paths.get("..//frontend//src//assets//images//animales//" + id).resolve(nombreArchivo).toAbsolutePath();
+
+        try {
+            if (!Files.exists(rutaArchivo.getParent())) {
+                Files.createDirectories(rutaArchivo.getParent());
+            }
+            Files.copy(archivo.getInputStream(), rutaArchivo);
+            multimedia.setEnlace("/assets/images/animales/" + id + "/" + nombreArchivo);
+            multimedia.setAnimal(animal);
+            multiDao.altaMultimedia(multimedia);
+            
+            response.put("multimedia", multimedia);
+            response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
+
+        } catch (IOException e) {
+            response.put("mensaje", "Error al subir la imagen: " + nombreArchivo);
+            response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    
+return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+}
 }
