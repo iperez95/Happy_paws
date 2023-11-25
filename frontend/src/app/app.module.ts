@@ -16,6 +16,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
+
 import { MunicipiosComponent } from './components/municipios/municipios.component';
 import { ProvinciasComponent } from './components/provincias/provincias.component';
 import { DetalleProtectoraComponent } from './components/Protectoras/detalle-protectora/detalle-protectora.component';
@@ -37,6 +38,7 @@ import { AdopcionesCompletadasComponent } from './components/adopciones-completa
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
+import { FotosAnimalesComponent } from './components/animales/fotos-animales/fotos-animales.component';
 
 
 
@@ -68,6 +70,7 @@ import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/
     PerfilUsuarioComponent,
     AnimaldetalladoComponent,
     SubirFotoComponent,
+    FotosAnimalesComponent,
 
   ],
   imports: [

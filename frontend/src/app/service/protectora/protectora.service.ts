@@ -21,6 +21,10 @@ export class ProtectoraService {
   constructor(private _httpClient : HttpClient, private axiosService: AxiosService) { 
   }
 
+  ngOnInit() {
+
+  }
+
   /**
    * Método que lista todas las protectoras del servicio Rest
    * @returns un objeto de tipo Observable<any> con la llámada formada al servicio
@@ -94,6 +98,12 @@ export class ProtectoraService {
     );
   }
 
+  public animalesProtectora(idProtectora: number): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/buscar/poridprotectora/${idProtectora}`)
+      .pipe(catchError(this.manejarError));
+  }
+
+
 
   /**
    * Método que maneja los posibles errores de las llamadas al servicio rest
@@ -115,10 +125,8 @@ export class ProtectoraService {
     return throwError(() => new Error(mensajeError));
   }
 
+  
 
 
-  ngOnInit() {
-
-  }
   
 }

@@ -109,6 +109,12 @@ export class AnimalService {
   .pipe( catchError(this.manejarError));
   }
 
+  
+public fotosAnimal (idAnimal:number): Observable<any> {
+  return this._httpClient.get(`${this.endpoint}/multimedia/animal/${idAnimal}`)
+    .pipe(catchError(this.manejarError));
+}
+
 
 
 
