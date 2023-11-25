@@ -40,6 +40,7 @@ import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 import { GestionAnimalComponent } from './components/animales/gestion/gestion-animal/gestion-animal.component';
 import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
+import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
 
 
 
@@ -74,6 +75,7 @@ import { ModificarAnimalComponent } from './components/animales/gestion/modifica
     PanelAdminComponent,
     GestionAnimalComponent,
     ModificarAnimalComponent,
+    SubirfotoAnimalComponent,
 
   ],
   imports: [

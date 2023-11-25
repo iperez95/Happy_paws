@@ -19,8 +19,11 @@ import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 import { GestionAnimalComponent } from './components/animales/gestion/gestion-animal/gestion-animal.component';
-import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
 import { AltaAnimalComponent } from './components/animales/gestion/alta-animal/alta-animal.component';
+import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
+import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
+
+
 
 const routes: Routes = [
   //animales
@@ -29,6 +32,8 @@ const routes: Routes = [
   { path: 'animales/gestion/alta', component: AltaAnimalComponent},
   { path: 'animales/gestion', component: GestionAnimalComponent},
   { path: 'animales/gestion/modificar/:id', component: ModificarAnimalComponent},
+  { path: 'animales/gestion/subirfotoanimal', component: SubirfotoAnimalComponent},
+  //protectoras
   
  
 
