@@ -13,19 +13,29 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { RegistroProtectoraComponent } from './components/registro-protectora/registro-protectora.component';
 import { AnimalComponent } from './components/animales/animal/animal.component';
 import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
-import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
 import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
 import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuario.component';
 import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
+import { GestionAnimalComponent } from './components/animales/gestion/gestion-animal/gestion-animal.component';
+import { AltaAnimalComponent } from './components/animales/gestion/alta-animal/alta-animal.component';
+import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
+import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
+
+
 
 const routes: Routes = [
   //animales
   { path: 'animales/listado', component:ListaAnimalesComponent},
   { path: 'animales/verUno/:id', component: AnimaldetalladoComponent},
   { path: 'animales/gestion/alta', component: AltaAnimalComponent},
+  { path: 'animales/gestion', component: GestionAnimalComponent},
+  { path: 'animales/gestion/modificar/:id', component: ModificarAnimalComponent},
+  { path: 'animales/gestion/subirfotoanimal', component: SubirfotoAnimalComponent},
+  //protectoras
   
+ 
 
   //Protectoras
   { path: 'protectora/gestion', component: GestionProtectoraComponent },
