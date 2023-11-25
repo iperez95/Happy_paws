@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
 import { AnimalService } from 'src/app/service/animal/animal.service';
+import { Multimedia } from 'src/app/entidades/multimedia';
 
 @Component({
   selector: 'app-animaldetallado',
@@ -15,7 +16,7 @@ animal: Animal;
 
 id: number;
 
-//multimedia: string;
+fotosMultimedia: Multimedia[] = [];
 
 
   constructor(private router: Router, private activateRouter: ActivatedRoute, private _animalService: AnimalService) {}
@@ -24,6 +25,7 @@ id: number;
     this.activateRouter.params.subscribe((params) => {
       this.id = parseInt(params['id']);
       this.getAnimal();
+      this.listaFotosAnimal(this.id);
     })
   }
 
@@ -46,5 +48,15 @@ id: number;
     }
     return age;
   }
+
+  public listaFotosAnimal(idAnimal: number) {
+    console.log("Id Animal:" + idAnimal);
+    this._animalService.fotosAnimal(idAnimal)
+      .subscribe(data => {
+        this.fotosMultimedia = data;
+        console.log(this.fotosMultimedia);
+      });
+  }
+  
   
 }
