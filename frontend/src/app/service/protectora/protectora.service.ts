@@ -56,7 +56,6 @@ export class ProtectoraService {
 
   //ESTA FUNCIONANDO PERO NO MANDA EL TOKEN
   // public altaProtectora(protectora: Protectora): Observable<Object> {
-  //   return this._httpClient.post(`${this.endpoint}/protectora/alta`, protectora)
   //     .pipe(catchError(this.manejarError));
   // }
 
@@ -72,6 +71,16 @@ export class ProtectoraService {
 
   public actualizarProtectora (id:number, protectora : Protectora): Observable<Object> {
     return this._httpClient.put(`${this.endpoint}/protectora/gestion/modificar/${id}`, protectora)
+      .pipe(catchError(this.manejarError));
+  }
+
+  public inactivarProtectora (id:number, protectora:Protectora): Observable<Object> {
+    return this._httpClient.put(`${this.endpoint}/protectora/gestion/inactivar/${id}`,protectora)
+      .pipe(catchError(this.manejarError));
+  }
+
+  public activarProtectora (id:number, protectora:Protectora): Observable<Object> {
+    return this._httpClient.put(`${this.endpoint}/protectora/gestion/activar/${id}`,protectora)
       .pipe(catchError(this.manejarError));
   }
 

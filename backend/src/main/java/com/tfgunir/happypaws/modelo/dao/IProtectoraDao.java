@@ -10,7 +10,7 @@ public interface IProtectoraDao {
     
     int altaProtectora (Protectora protectora);
     Protectora actualizarProtectora (Protectora protectora);
-    int bajaProtectora (Protectora protectora);
+    int cambiarEstadoInactivoProtectora (Protectora protectora);
     int enabledProtectora (Protectora protectora);
     int borrarProtectora (Protectora protectora);
     

@@ -299,13 +299,22 @@ public class ProtectoraRestController {
     //CAMBIAR ESTADO PROTECTORA >> INACTIVO
     @PutMapping(path="/gestion/inactivar/{id}")
     public ResponseEntity<Protectora> inactivarProtectora (@PathVariable("id") int id){
-        Protectora p = protdao.buscarProtectoraId(id);
-        if (p!=null) {
+
+        System.out.println("Buscando protectora con id: "+id);
+
+        Protectora protectora = protdao.buscarProtectoraId(id);
+        System.out.println("Protectora encontrada: "+protectora);
+
+        if (protectora!=null) {
             Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
             estadoProtectoraTemporal.setIdestadoprotectora(2);
-            p.setEstadosprotectora(estadoProtectoraTemporal);
-            protdao.actualizarProtectora(p);
-            return ResponseEntity.ok(p);    
+            System.out.println("Estado protectora temporal: "+estadoProtectoraTemporal);
+
+            protectora.setEstadosprotectora(estadoProtectoraTemporal);
+            System.out.println("Protectora con estado actualizado: "+protectora);
+
+            protdao.actualizarProtectora(protectora);
+            return ResponseEntity.ok(protectora);    
         }
         else
             return ResponseEntity.notFound().build();        

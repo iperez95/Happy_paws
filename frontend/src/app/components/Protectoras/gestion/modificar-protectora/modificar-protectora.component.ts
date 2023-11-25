@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Protectora } from 'src/app/entidades/protectora';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-modificar-protectora',
@@ -59,6 +59,61 @@ export class ModificarProtectoraComponent {
           this.IrDetalleProtectora();
         }
       })
+  }
+
+  
+//Pone la protectora en inactiva. NO BORRA LOS DATOS
+  bajaProtectora() {
+    Swal.fire({
+      title: "¿Estás seguro de que quieres dar de baja a la protectora?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Sí, dar de baja",
+      denyButtonText: "No, cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._protectoraService.inactivarProtectora(this.protectora.idprotectora, this.protectora)
+          .subscribe({
+            next: dato => console.log(dato),
+            error: error => console.log(error),
+            complete: () => {
+              console.log('Baja realizada');
+              Swal.fire('Realizado', `La protectora ha sido dada de baja correctamente`, 'success');
+              this.IrDetalleProtectora();
+            }
+          })
+      } else if (result.isDenied) {
+        Swal.fire("Los cambios no se han guardado", "", "info");
+      }
+    });
+  }
+
+  //Pone la protectora activa.
+  activarProtectora() {
+    Swal.fire({
+      title: "¿Estás seguro de que quieres activar esta protectora?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      confirmButtonText: "Sí, activar",
+      denyButtonText: "No, cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._protectoraService.activarProtectora(this.protectora.idprotectora, this.protectora)
+          .subscribe({
+            next: dato => console.log(dato),
+            error: error => console.log(error),
+            complete: () => {
+              console.log('Activación realizada');
+              Swal.fire('Realizado', `La protectora ha sido activada correctamente`, 'success');
+              this.IrDetalleProtectora();
+            }
+          })
+      } else if (result.isDenied) {
+        Swal.fire("Los cambios no se han guardado", "", "info");
+      }
+    });
   }
 
   IrDetalleProtectora() {

@@ -35,10 +35,6 @@ public class ProtectoraDao implements IProtectoraDao {
     public Protectora actualizarProtectora(Protectora protectora) {
         try{
         if (buscarProtectoraId(protectora.getIdprotectora())!=null){}
-        //Actualiza los datos de una protectora activa.
-        Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
-        estadoProtectoraTemporal.setIdestadoprotectora(1);
-        protectora.setEstadosprotectora(estadoProtectoraTemporal);
             protrepo.save(protectora);
            return protectora;
         } catch (Exception e) {
@@ -48,10 +44,11 @@ public class ProtectoraDao implements IProtectoraDao {
     }
 
      @Override
-    public int bajaProtectora(Protectora protectora) {
-        if (buscarProtectoraId(protectora.getIdprotectora())!=null){
+    public int cambiarEstadoInactivoProtectora(Protectora protectora) {
+        if (protectora!=null){
             Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
             estadoProtectoraTemporal.setIdestadoprotectora(2);
+            protectora.setEstadosprotectora(estadoProtectoraTemporal);
             return 1;
         }
         else 
