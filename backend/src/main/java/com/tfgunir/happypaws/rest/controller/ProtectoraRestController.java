@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,15 +128,19 @@ public class ProtectoraRestController {
 
     // LISTADO PROTECTORAS DTO CON MUNICIPIO Y PROVINCIA
     @GetMapping(path="/listadofront", produces = "application/json")
-    public ResponseEntity<Iterable<ProtectoraDto>> listadoProtectorasMunicProv (){
+    public ResponseEntity<List<ProtectoraDto>> listadoProtectorasMunicProv (){
        
-        Iterable<Protectora> protectoras = protdao.listadoProtectorasMunicProv();
+        List<Protectora> protectoras = protdao.listadoProtectorasMunicProv();
 
         if (protectoras!=null){
             List<ProtectoraDto> protectorasDto = new ArrayList<>();
             for (Protectora protectora : protectoras) {                
                 protectorasDto.add(protdao.convertirProtectoraDto(protectora));
             }
+
+        //Ordena las protectoras por Provincia    
+        protectorasDto.sort(Comparator.comparing(ProtectoraDto::getNombreProvincia)); 
+           
         return new ResponseEntity<>(protectorasDto, HttpStatus.OK);     
         } 
         else {
