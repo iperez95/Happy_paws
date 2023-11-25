@@ -42,6 +42,7 @@ import { ModalCuestionarioComponent } from './components/modal-cuestionario/moda
 import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adopciones-usuario.component';
 import { GestionAnimalComponent } from './components/animales/gestion/gestion-animal/gestion-animal.component';
 import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
+import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
 
 
 
@@ -78,6 +79,7 @@ import { ModificarAnimalComponent } from './components/animales/gestion/modifica
     AdopcionesUsuarioComponent,
     GestionAnimalComponent,
     ModificarAnimalComponent,
+    SubirfotoAnimalComponent,
 
   ],
   imports: [
