@@ -21,8 +21,8 @@
                 <td>
                     <a class="btn custom-btn-red-dark p-1" href="/adopcion/detalle/{{adopcion.idAdopcion}}">Ver</a>                </td>
                 <td>
-                    <button class="btn btn-success p-1 m-1">Aceptar</button>
-                    <button class="btn btn-danger p-1 m-1">Rechazar</button>
+                    <button class="btn btn-success p-1 m-1" (click)="approveAdoption(adopcion.idAdopcion)">Aceptar</button>
+                    <button class="btn btn-danger p-1 m-1" (click)="rejectAdoption(adopcion.idAdopcion)" >Rechazar</button>
                 </td>
             </tr>
         </tbody>

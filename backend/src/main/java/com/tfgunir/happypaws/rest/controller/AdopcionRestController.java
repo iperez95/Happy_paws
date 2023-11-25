@@ -211,7 +211,35 @@ public class AdopcionRestController {
             catch (Exception e) {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
             }
-    }   
+    }  
+    
+    @GetMapping(path="/aprobar/{id}", produces = "application/json")
+    public ResponseEntity<AdopcionDto> aprobarAdopcion(@PathVariable("id") int idAdopcion) {
+        Adopcion adopcion = adopdao.buscarAdopcionId(idAdopcion);
+        if (adopcion != null){
+            Estadosadopcion estadoAdopcionTemp = new Estadosadopcion();
+            estadoAdopcionTemp.setRealizada();
+            adopcion.setEstadosadopcion(estadoAdopcionTemp);
+            adopdao.altaAdopcion(adopcion);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping(path="/rechazar/{id}", produces = "application/json")
+    public ResponseEntity<AdopcionDto> rechazarAdopcion(@PathVariable("id") int idAdopcion) {
+        Adopcion adopcion = adopdao.buscarAdopcionId(idAdopcion);
+        if (adopcion != null){
+            Estadosadopcion estadoAdopcionTemp = new Estadosadopcion();
+            estadoAdopcionTemp.setRechazada();
+            adopcion.setEstadosadopcion(estadoAdopcionTemp);
+            adopdao.altaAdopcion(adopcion);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
 
 
