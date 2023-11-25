@@ -117,12 +117,6 @@ public fotosAnimal (idAnimal:number): Observable<any> {
 
 
 
-
-
-
-
-
-
     /**
    * Método que maneja los posibles errores de las llamadas al servicio rest
    * @param error 
