@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tfgunir.happypaws.modelo.dto.MultimediaDto;
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
 import com.tfgunir.happypaws.modelo.repository.MultimediaRepository;
 
@@ -24,6 +25,8 @@ public class MultimediaDao implements IMultimediaDao {
             return 0;
         }
     }
+
+   
 
     @Override
     public Multimedia modificarMultimedia(Multimedia multimedia) {
@@ -58,5 +61,7 @@ public class MultimediaDao implements IMultimediaDao {
     public Multimedia multimediaPorId(int idMultimedia) {
         return multirepo.findById(idMultimedia).get();
     }
+
+    
            
 }

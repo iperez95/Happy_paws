@@ -15,5 +15,7 @@ public interface MultimediaRepository extends JpaRepository<Multimedia, Integer>
     + "where ani.idanimal = ?1",
 			nativeQuery = true)    
     List<Multimedia> todosMultimediasAnimal(int idAnimal);
+
+    
     
 }
