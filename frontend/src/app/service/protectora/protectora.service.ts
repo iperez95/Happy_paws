@@ -94,6 +94,10 @@ export class ProtectoraService {
     );
   }
 
+  public animalesProtectora(idProtectora: number): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/buscar/poridprotectora/${idProtectora}`)
+      .pipe(catchError(this.manejarError));
+  }
 
   /**
    * Método que maneja los posibles errores de las llamadas al servicio rest
