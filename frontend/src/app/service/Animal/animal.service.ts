@@ -109,7 +109,12 @@ export class AnimalService {
   .pipe( catchError(this.manejarError));
   }
 
-  
+
+
+
+
+
+
 
 
     /**
