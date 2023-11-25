@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Animal } from 'src/app/entidades/animal';
 import axios from 'axios';
 import { AxiosService } from '../axios/axios.service';
+import { Multimedia } from 'src/app/entidades/multimedia';
 
 @Injectable({
   providedIn: 'root'
@@ -114,6 +115,16 @@ export class AnimalService {
   public fotosAnimal (idAnimal:number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/multimedia/animal/${idAnimal}`)
       .pipe(catchError(this.manejarError));
+  }
+
+  public subirFoto(archivo: File, id: number): Observable <Multimedia> {
+    let formData = new FormData();
+    formData.append("archivo", archivo);
+    formData.append("id", id.toString());
+    return this._httpClient.post(`${this.endpoint}/animales/gestion/upload`, formData).pipe(
+    map((  resp: any ) => resp.multimedia as Multimedia),
+    catchError(this.manejarError)
+    );
   }
   
 
