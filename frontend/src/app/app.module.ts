@@ -27,7 +27,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { RegistroProtectoraComponent } from './components/registro-protectora/registro-protectora.component';
 import { AnimalComponent } from './components/animales/animal/animal.component';
 import { ListaAnimalesComponent } from './components/animales/lista-animales/lista-animales.component';
-import { AltaAnimalComponent } from './components/animales/alta-animal/alta-animal.component';
+import { AltaAnimalComponent } from './components/animales/gestion/alta-animal/alta-animal.component';
 import { CuestionarioAdopcionComponent } from './components/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component';
 import { ListaProtectorasComponent } from './components/Protectoras/lista-protectoras/lista-protectoras.component';
 //import { AltaProtectoraComponent } from './components/Protectoras/alta-protectora/alta-protectora.component';
@@ -40,6 +40,8 @@ import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
 import { ModalCuestionarioComponent } from './components/modal-cuestionario/modal-cuestionario.component';
 import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adopciones-usuario.component';
+import { GestionAnimalComponent } from './components/animales/gestion/gestion-animal/gestion-animal.component';
+import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
 
 
 
@@ -74,6 +76,8 @@ import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adop
     PanelAdminComponent,
     ModalCuestionarioComponent,
     AdopcionesUsuarioComponent,
+    GestionAnimalComponent,
+    ModificarAnimalComponent,
 
   ],
   imports: [
