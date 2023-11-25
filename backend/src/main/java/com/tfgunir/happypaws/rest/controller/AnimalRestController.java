@@ -105,16 +105,16 @@ public class AnimalRestController {
 }
 
     // Controlador para buscar animales por municipio
-    @GetMapping(path="/buscar/pormunicipio/{municipio}", produces = "application/json")
-    public ResponseEntity<List<Animal>> buscarPorMunicipio(@PathVariable("municipio") String municipio) {
+    // @GetMapping(path="/buscar/pormunicipio/{municipio}", produces = "application/json")
+    // public ResponseEntity<List<Animal>> buscarPorMunicipio(@PathVariable("municipio") String municipio) {
 
-        List<Animal> listado = aniDao.buscarPorMunicipio(municipio);
-        if (listado != null && !listado.isEmpty()) {
-            return ResponseEntity.ok(listado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+    //     List<Animal> listado = aniDao.buscarPorMunicipio(municipio);
+    //     if (listado != null && !listado.isEmpty()) {
+    //         return ResponseEntity.ok(listado);
+    //     } else {
+    //         return ResponseEntity.notFound().build();
+    //     }
+    // }
 
     // Controlador para buscar animales por ID municipio
     @GetMapping(path="/buscar/poridmunicipio/{idmunicipio}", produces = "application/json")
@@ -129,16 +129,16 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por provincia
-    @GetMapping(path="/buscar/porprovincia/{provincia}", produces = "application/json")
-    public ResponseEntity<List<Animal>> buscarPorProvincia(@PathVariable("provincia") String provincia) {
+    // @GetMapping(path="/buscar/porprovincia/{provincia}", produces = "application/json")
+    // public ResponseEntity<List<Animal>> buscarPorProvincia(@PathVariable("provincia") String provincia) {
 
-        List<Animal> listado = aniDao.buscarPorProvincia(provincia);
-        if (listado != null && !listado.isEmpty()) {
-            return ResponseEntity.ok(listado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+    //     List<Animal> listado = aniDao.buscarPorProvincia(provincia);
+    //     if (listado != null && !listado.isEmpty()) {
+    //         return ResponseEntity.ok(listado);
+    //     } else {
+    //         return ResponseEntity.notFound().build();
+    //     }
+    // }
 
         // Controlador para buscar animales por ID provincia
     @GetMapping(path="/buscar/poridprovincia/{idprovincia}", produces = "application/json")
@@ -153,16 +153,16 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por protectora
-    @GetMapping(path="/buscar/porprotectora/{nombre}", produces = "application/json")
-    public ResponseEntity<List<Animal>> buscarPorProtectora(@PathVariable("nombre") String nombre) {
+    // @GetMapping(path="/buscar/porprotectora/{nombre}", produces = "application/json")
+    // public ResponseEntity<List<Animal>> buscarPorProtectora(@PathVariable("nombre") String nombre) {
 
-        List<Animal> listado = aniDao.buscarPorProtectora(nombre);
-        if (listado != null && !listado.isEmpty()) {
-            return ResponseEntity.ok(listado);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+    //     List<Animal> listado = aniDao.buscarPorProtectora(nombre);
+    //     if (listado != null && !listado.isEmpty()) {
+    //         return ResponseEntity.ok(listado);
+    //     } else {
+    //         return ResponseEntity.notFound().build();
+    //     }
+    // }
 
     // Controlador para buscar animales por id protectora
     @GetMapping(path="/buscar/poridprotectora/{idprotectora}", produces = "application/json")
