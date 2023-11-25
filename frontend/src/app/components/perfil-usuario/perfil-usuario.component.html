@@ -1,29 +1,53 @@
 <div class="contenedor">
-    <section *ngIf="usuario">
-        <div class="container.md overflow-hidden">
-            <div class="row row-cols-auto m-3">
-                <div class="row row-cols-auto m-3 ">
-                    <div class="col-md">
-                        <h1>Perfil de usuario</h1>
-                        <hr>
-                        <div class="col-md">
-                            <h3>Hola, {{usuario.nombre}} {{usuario.apellidos}}</h3>
+    <div>
+        <section *ngIf="usuario">
+            <div class="row m-3">
+                <div class="col-md">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img class="img-fluid" src="/assets/images/Usuario/Untitled design (1) (1).png" alt="foto perfil">
                         </div>
-                        <div class="col-md mt-3 ">
-                            <a>Dirección: {{usuario.direccion}}</a>
-                        </div>
-                        <div class="col-md mt-3 ">
-                            <a>Email: {{usuario.email}}</a>
-                        </div>
-                        <div class="col-md mt-3">
-                            <a>Teléfono: {{usuario.telefono}}</a>
-                        </div>
-                        <div class="col-md mt-3">
-                            <a>Dni: {{usuario.dni}}</a>
+                        <div class="col-md-9 pt-5 ms-5">
+                            <div class="row">
+                                <div class="col-md">
+                                    <h3>Hola, {{usuario.nombre}} {{usuario.apellidos}}</h3>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md">
+                                    <a><b>Dirección:</b> {{usuario.direccion}}</a>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md">
+                                    <a><b>Email:</b> {{usuario.email}}</a>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md">
+                                    <a><b>Teléfono:</b> {{usuario.telefono}}</a>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md">
+                                    <a><b>Dni:</b> {{usuario.dni}}</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+    </div>
+    
+    
+    
+
+    <section class="mt-5">
+        <mat-tab-group dynamicHeight color="warn" animationDuration="0ms">
+            <mat-tab label="Formulario de adopción"><app-cuestionario-adopcion></app-cuestionario-adopcion></mat-tab>
+            <mat-tab label="Estado adopciones"><app-adopciones-completadas></app-adopciones-completadas></mat-tab>
+        </mat-tab-group>
     </section>
+
 </div>
