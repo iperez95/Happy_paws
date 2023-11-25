@@ -55,8 +55,10 @@
                   <button class="btn btn-dropdown-logged dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Bienvenido, {{user?.nombre}}
                   </button>
-                  <ul class="dropdown-menu dropdown-menu-start">
-                    <li><a class="dropdown-item" href="{{user?.isProtectora() ? 'protectora/gestion' : 'adoptante/gestion'}}">Mi Perfil</a></li>
+                  <ul class="dropdown-menu dropdown-menu-start" [ngSwitch]="user?.rol">
+                    <li *ngSwitchCase="'Adoptante'" ><a class="dropdown-item" href="adoptante/gestion">Mi Perfil</a></li>
+                    <li *ngSwitchCase="'Protectora'" ><a class="dropdown-item" href="protectora/gestion">Mi Perfil</a></li>
+                    <li *ngSwitchCase="'Administrador'" ><a class="dropdown-item" href="admin/gestion">Mi Panel</a></li>
                     <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
                   </ul>
                 </div>
