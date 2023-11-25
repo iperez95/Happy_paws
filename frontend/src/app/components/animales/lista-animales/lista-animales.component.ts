@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Animal } from 'src/app/entidades/animal';
+import { Raza } from 'src/app/entidades/raza';
 import { AnimalService } from 'src/app/service/animal/animal.service';
+import { RazaService } from 'src/app/service/raza/raza.service';
 
 @Component({
   selector: 'app-lista-animales',
@@ -11,16 +13,15 @@ import { AnimalService } from 'src/app/service/animal/animal.service';
 })
 export class ListaAnimalesComponent {
 
-  listaAnimales : Animal[] = []
+  public listaAnimales : Animal[] = []
+  public listaRazas : Raza[]=[]
 
-  constructor(private _animalService : AnimalService, private router :Router) { 
-    //this._animalService = _animalService
-    //Cargamos la lista de Animales al inicializar el componente
-    //this.listar()
+  constructor(private _animalService : AnimalService, private router :Router, private _razaService: RazaService) { 
   }
 
   ngOnInit():void {
     this.listar();
+    this.getRazas();
    }
 
   public listar(){
@@ -33,23 +34,31 @@ export class ListaAnimalesComponent {
     this.router.navigate(['/animales/gestion/alta']);
    }
 
-  // public listar(){
-  //   let obs : Observable<any> = this._animalService.listarAnimales();
-  //   //Cuando invocamos el método subscribe es cuando ejecutamos la petición 
-  //   //HTTP al servidor. Dentro de método ponemos 2 funciones lambda, next
-  //   //se ejecutará si todo ha ido bien, error se ejecutará si ha habido
-  //   //algún problema
-  //   obs.subscribe({
-  //       next:  respuesta => {
-  //         this.listaAnimales = respuesta;
-  //         console.log(`listar -> ${JSON.stringify(respuesta)}`)
-  //       },
-  //       error: e => {
-  //         this.listaAnimales = []
-  //         console.log(`listar -> No se han podido listar las personas, ${e}`)
-  //         alert(e)
-  //       }
-  //     });
-  // }
+   private getRazas():void {
+    this._razaService.listarRazas().subscribe({
+      next: data => {
+        this.listaRazas= data;
+      },
+      error: error => {
+        console.error(error);
+      }
+    });
+    }
 
-}
+          
+    public buscar(event:any):void{
+      const idRaza = event.target.value;
+      this._animalService.listarAnimalPorRaza(idRaza).subscribe({
+        next: data => {
+          this.listaAnimales = data;
+         },
+        error: error => {
+          this.listaAnimales=[]; 
+        }
+
+      });
+
+   }
+
+
+  }

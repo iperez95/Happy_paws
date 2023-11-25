@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import axios from 'axios';
+import { Raza } from 'src/app/entidades/raza';
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +23,7 @@ export class RazaService {
 public listarRazas(): Observable<any>{
     return this._httpClient.get(`${this.endpoint}/atributos/razas`)
      .pipe(catchError(this.manejarError));
-  
-}
+  }
 
 
 

@@ -117,7 +117,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por ID municipio
-    @GetMapping(path="/buscar/poridmunicipio/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/poridmunicipio/{idmunicipio}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIdMunicipio(@PathVariable("idmunicipio") int idmunicipio) {
 
         List<Animal> listado = aniDao.buscarPorIdMunicipio(idmunicipio);
@@ -141,7 +141,7 @@ public class AnimalRestController {
     }
 
         // Controlador para buscar animales por ID provincia
-    @GetMapping(path="/buscar/poridprovincia/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/poridprovincia/{idprovincia}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIDProvincia(@PathVariable("idprovincia") int idprovincia) {
 
         List<Animal> listado = aniDao.buscarPorIdProvincia(idprovincia);
@@ -165,7 +165,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por id protectora
-    @GetMapping(path="/buscar/poridprotectora/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/poridprotectora/{idprotectora}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIdProtectora(@PathVariable("idprotectora") int idprotectora) {
 
      List<Animal> listado = aniDao.buscarPorIdProtectora(idprotectora);
@@ -177,7 +177,7 @@ public class AnimalRestController {
   }
 
     // Controlador para buscar animales por especie
-    @GetMapping(path="/buscar/porespecie/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/porespecie/{idespecie}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorEspecie(@PathVariable("idespecie") int idespecie) {
 
         List<Animal> listado = aniDao.buscarPorEspecie(idespecie);
@@ -189,7 +189,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por sexo
-    @GetMapping(path="/buscar/porsexo/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/porsexo/{idsexo}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorSexo(@PathVariable("idsexo") int idsexo) {
 
         List<Animal> listado = aniDao.buscarPorSexo(idsexo);
@@ -201,7 +201,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por raza
-    @GetMapping(path="/buscar/porraza/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/porraza/{idraza}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorRaza(@PathVariable("idraza") int idraza) {
 
         List<Animal> listado = aniDao.buscarPorRaza(idraza);
@@ -213,7 +213,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por tamaño
-    @GetMapping(path="/buscar/portamano/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/portamano/{idtamano}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorTamaño(@PathVariable("idtamano") int idtamano) {
 
         List<Animal> listado = aniDao.buscarPorTamaño(idtamano);
@@ -225,7 +225,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por envío
-    @GetMapping(path="/buscar/porenvio/{id}", produces = "application/json")
+    @GetMapping(path="/buscar/porenvio/{idenvio}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorEnvío(@PathVariable("idenvio") boolean envio) {
 
         List<Animal> listado = aniDao.buscarPorEnvio(envio);
