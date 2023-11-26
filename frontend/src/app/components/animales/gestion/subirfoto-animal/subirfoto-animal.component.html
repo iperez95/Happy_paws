@@ -3,10 +3,9 @@
     <div class="col-md-6">
         <!-- FOTOS DEL ANIMAL -->
         <div class="row">
-            <div class="col-lg-3 col-md-4 col-6" *ngFor="let foto of fotosMultimedia; let i = index">
-                <a href="#" data-toggle="modal" [attr.data-target]="'#modal' + i">
-                    <img class="img-fluid img-thumbnail" [src]="foto.enlace" alt="Foto {{i + 1}}">
-                </a>
+            <div class="col-md-3 col-10 m-4" *ngFor="let foto of fotosMultimedia; let i = index">
+                <img class="img-fluid img-thumbnail " [src]="foto.enlace" alt="Foto {{i + 1}}" style="height: 200px; width: 200px; object-fit: cover;">
+                <button (click)="borrarFoto(foto.idMultimedia)" type="button" class="btn custom-btn-red-dark">Borrar foto</button>
             </div>
         </div>
         <div class="mt-4 input-group">

@@ -127,6 +127,10 @@ export class AnimalService {
     );
   }
   
+  public borrarFoto(id: number): Observable<any> {
+    return this._httpClient.delete(`${this.endpoint}/animales/gestion/borrarfoto/${id}`)
+      .pipe(catchError(this.manejarError));
+  }
 
 
 

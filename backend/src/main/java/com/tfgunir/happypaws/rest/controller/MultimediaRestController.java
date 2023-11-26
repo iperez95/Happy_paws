@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tfgunir.happypaws.modelo.dao.AnimalDao;
 import com.tfgunir.happypaws.modelo.dao.MultimediaDao;
+import com.tfgunir.happypaws.modelo.dto.MultimediaDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
 
@@ -38,15 +40,35 @@ public class MultimediaRestController {
     @Autowired
     AnimalDao anidao;
 
+    //SIN DTO
+    // @GetMapping(path = "/animal/{id}", produces = "application/json")
+    // public ResponseEntity<List<Multimedia>> listMultimediasAnimal(Model model,
+    //         @PathVariable(name = "id") int idAnimal) {
+    //     List<Multimedia> listMultimedia = multdao.multimediasAnimal(idAnimal);
+    //     if (listMultimedia != null) {
+    //         return new ResponseEntity<>(listMultimedia, HttpStatus.OK);
+    //     } else {
+    //         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    //     }
+    // }
+
     @GetMapping(path = "/animal/{id}", produces = "application/json")
-    public ResponseEntity<List<Multimedia>> listMultimediasAnimal(Model model,
-            @PathVariable(name = "id") int idAnimal) {
-        List<Multimedia> listMultimedia = multdao.multimediasAnimal(idAnimal);
-        if (listMultimedia != null) {
-            return new ResponseEntity<>(listMultimedia, HttpStatus.OK);
-        } else {
+    public ResponseEntity<List<MultimediaDto>> listMultimediasAnimal(Model model,
+            @PathVariable(name = "id") int id) {
+        
+        List<Multimedia> multimedias = multdao.multimediasAnimal(id);
+        if (multimedias !=null){
+            List<MultimediaDto> multimediaDto = new ArrayList<>();
+            for (Multimedia multimedia : multimedias) {
+                multimediaDto.add(multdao.convertirMultimediaDto(multimedia));
+            }
+            return new ResponseEntity<>(multimediaDto, HttpStatus.OK);
+        }
+        else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+
+       
     }
 
     // SUBIR FOTO ANIMAL

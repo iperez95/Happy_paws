@@ -262,37 +262,68 @@ public class AnimalRestController {
 
     //AÑADE EL LOGO SUBIDO A LA PROTECTRA
     @PostMapping(path="/gestion/upload")
-public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
-    Map<String, Object> response = new HashMap<>();
+    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
+        Map<String, Object> response = new HashMap<>();
 
-    Animal animal = aniDao.buscarAnimalId(id);
+        Animal animal = aniDao.buscarAnimalId(id);
 
-    Multimedia multimedia = new Multimedia();
+        Multimedia multimedia = new Multimedia();
 
-    if (!archivo.isEmpty()) {
-    
-        String nombreArchivo = UUID.randomUUID().toString() +"_" + archivo.getOriginalFilename().replace(" ", "");
-        Path rutaArchivo = Paths.get("..//frontend//src//assets//images//animales//" + id).resolve(nombreArchivo).toAbsolutePath();
+        if (!archivo.isEmpty()) {
+        
+            String nombreArchivo = UUID.randomUUID().toString() +"_" + archivo.getOriginalFilename().replace(" ", "");
+            Path rutaArchivo = Paths.get("..//frontend//src//assets//images//animales//" + id).resolve(nombreArchivo).toAbsolutePath();
 
-        try {
-            if (!Files.exists(rutaArchivo.getParent())) {
-                Files.createDirectories(rutaArchivo.getParent());
+            try {
+                if (!Files.exists(rutaArchivo.getParent())) {
+                    Files.createDirectories(rutaArchivo.getParent());
+                }
+                Files.copy(archivo.getInputStream(), rutaArchivo);
+                multimedia.setEnlace("/assets/images/animales/" + id + "/" + nombreArchivo);
+                multimedia.setAnimal(animal);
+                multiDao.altaMultimedia(multimedia);
+                
+                response.put("multimedia", multimedia);
+                response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
+
+            } catch (IOException e) {
+                response.put("mensaje", "Error al subir la imagen: " + nombreArchivo);
+                response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
-            Files.copy(archivo.getInputStream(), rutaArchivo);
-            multimedia.setEnlace("/assets/images/animales/" + id + "/" + nombreArchivo);
-            multimedia.setAnimal(animal);
-            multiDao.altaMultimedia(multimedia);
-            
-            response.put("multimedia", multimedia);
-            response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
+        }
+        
+        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+    }
 
-        } catch (IOException e) {
-            response.put("mensaje", "Error al subir la imagen: " + nombreArchivo);
+    //Borrar foto animal
+    @DeleteMapping(path="/gestion/borrarfoto/{id}")
+    public ResponseEntity<?> borrarFoto(@PathVariable("id") int id) {
+        Map<String, Object> response = new HashMap<>();
+        try {
+            if (multiDao.borrarMultimedia(id) == 1) {
+                response.put("mensaje", "Foto eliminada correctamente");
+                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+            } else {
+                response.put("mensaje", "No se encontró la foto");
+                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            response.put("mensaje", "Error al eliminar la foto");
             response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
-return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-}
+
+    // @DeleteMapping("/gestion/borrarfoto/{id}")
+    // public ResponseEntity<?> borrarFoto(@PathVariable int id) {
+    //     try {
+    //         multiDao.borrarMultimedia(id);
+    //         return ResponseEntity.ok().body("Foto borrada con éxito");
+    //     } catch (Exception e) {
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al borrar la foto");
+    //     }
+    // }
+        
+        
 }
