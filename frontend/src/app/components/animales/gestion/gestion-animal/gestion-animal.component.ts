@@ -53,25 +53,15 @@ export class GestionAnimalComponent {
     });
  }
 
-  // public listar(){
-  //   this._animalService.listarAnimalPorIdProtectora(this.protectora.idprotectora).subscribe(data => {
-  //     this.listaAnimales = data;
-  //     console.log(this.listaAnimales);
-  //   });
-  // }
   public irAltaAnimal() {
     this.router.navigate(['/animales/gestion/alta']);
    }
-
-  //  private animalesPorProtectora() {
-  //   this.listaAnimales = this.animales.filter(animal => animal.protectora.idprotectora === this.protectora.idprotectora);
-  // }
 
   public irModificalAnimal(idanimal: number) {
     this.router.navigate(['/animales/gestion/modificar', idanimal]);
    }
 
-   public BorrarAnimal(idanimal: number){
+   public borrarAnimal(idanimal: number){
     this._animalService.eliminarAnimal(idanimal).subscribe(() => {
       this.router.navigate(['/animales/gestion']);
     },
@@ -79,6 +69,5 @@ export class GestionAnimalComponent {
       console.error("Error al eliminar el animal:", error);
     });
     
-
    }
 }
