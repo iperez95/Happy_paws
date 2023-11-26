@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'animales/gestion', component: GestionAnimalComponent},
   { path: 'animales/gestion/modificar/:id', component: ModificarAnimalComponent},
   { path: 'animales/gestion/subirfotoanimal/:id', component: SubirfotoAnimalComponent},
-  //protectoras
+
   
  
 
