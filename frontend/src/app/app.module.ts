@@ -38,15 +38,13 @@ import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuar
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
-import { ModalCuestionarioComponent } from './components/modal-cuestionario/modal-cuestionario.component';
-import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adopciones-usuario.component';
 import { GestionAnimalComponent } from './components/animales/gestion/gestion-animal/gestion-animal.component';
 import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
 import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
 import { ListadoGestionProtectorasComponent } from './components/panel-admin/Protectoras/listado-gestion-protectoras/listado-gestion-protectoras.component';
 import { EditarProtectoraGestionComponent } from './components/panel-admin/Protectoras/editar-protectora-gestion/editar-protectora-gestion.component';
-
-
+import { ModalCuestionarioComponent } from './components/modal-cuestionario/modal-cuestionario.component';
+import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adopciones-usuario.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +82,6 @@ import { EditarProtectoraGestionComponent } from './components/panel-admin/Prote
     SubirfotoAnimalComponent,
     ListadoGestionProtectorasComponent,
     EditarProtectoraGestionComponent,
-
   ],
   imports: [
     MatFormFieldModule,
