@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.CuestionarioDao;
+import com.tfgunir.happypaws.modelo.dto.CuestionarioDto;
+import com.tfgunir.happypaws.modelo.dto.RespuestasAdoptanteDto;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.PreguntasAdoptante;
 import com.tfgunir.happypaws.modelo.entities.RespuestasAdoptante;
@@ -89,6 +91,10 @@ public class CuestionarioRestController {
             Usuario usuario = usuarioRepository.findByEmail(email);
             System.out.println("Usuario en BD: " + usuario);
     
+            Boolean result = cuestDao.borrarRespuestasDeUsuario(usuario.getIdusuario());
+            if (result == false) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
             // Añade el usuario a cada respuesta y guarda la respuesta
             for (RespuestasAdoptante respuesta : respuestas) {
                 respuesta.setUsuario(usuario);
@@ -104,7 +110,14 @@ public class CuestionarioRestController {
         }
     }
 
-
+    @GetMapping("/verRespuestas/{idUsuario}")
+    public ResponseEntity<?> verRespuestas(@PathVariable("idUsuario") int idUsuario) {
+        List<RespuestasAdoptanteDto> cuestionario = cuestDao.preguntasYRespuestasPorUsuario(idUsuario);
+        if (cuestionario!=null)
+            return ResponseEntity.ok(cuestionario);
+        else
+            return ResponseEntity.notFound().build();
+    }
 
 
     // ESTE POST ESTA FUNCIONANDO PERO NO RECOGE EL USUARIO DE SESION

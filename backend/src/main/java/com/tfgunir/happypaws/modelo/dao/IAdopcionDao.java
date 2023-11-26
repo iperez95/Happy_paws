@@ -18,11 +18,13 @@ public interface IAdopcionDao {
     List<Adopcion> adopcionesEnCursoPorIdProtectora(int IdProtectora);
     List<Adopcion> adopcionesRealizadasPorIdProtectora(int IdProtectora);
     List<Adopcion> adopcionesRechazadasPorIdProtectora(int IdProtectora);
+    List<Adopcion> adopcionesCompletadasPorIdProtectora(int IdProtectora);
 
     Adopcion buscarAdopcionId(int id);
     
     // List<AdopcionDto> adopcionesProtectoraPorIdDto(int IdProtectora);
     
     AdopcionDto convertirAdopcionDto(Adopcion adopcion);
+    List<Adopcion> adopcionesPorIDAdoptante(int idAdoptante);
     
 }

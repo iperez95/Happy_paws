@@ -43,8 +43,8 @@ import { ModificarAnimalComponent } from './components/animales/gestion/modifica
 import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
 import { ListadoGestionProtectorasComponent } from './components/panel-admin/Protectoras/listado-gestion-protectoras/listado-gestion-protectoras.component';
 import { EditarProtectoraGestionComponent } from './components/panel-admin/Protectoras/editar-protectora-gestion/editar-protectora-gestion.component';
-
-
+import { ModalCuestionarioComponent } from './components/modal-cuestionario/modal-cuestionario.component';
+import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adopciones-usuario.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +80,8 @@ import { EditarProtectoraGestionComponent } from './components/panel-admin/Prote
     SubirfotoAnimalComponent,
     ListadoGestionProtectorasComponent,
     EditarProtectoraGestionComponent,
-
+    ModalCuestionarioComponent,
+    AdopcionesUsuarioComponent,
   ],
   imports: [
     MatFormFieldModule,

@@ -26,6 +26,10 @@ public class AdopcionDao implements IAdopcionDao {
         return adopRepo.findAll();
     }
 
+    public List<Adopcion> adopcionesPorIDAdoptante(int idAdoptante) {
+        return adopRepo.findByIdUsuario(idAdoptante);
+    }
+
     /**
      * Busca una adopcion por su ID en la base de datos.
      * 
@@ -61,6 +65,11 @@ public class AdopcionDao implements IAdopcionDao {
     @Override
     public List<Adopcion> adopcionesRechazadasPorIdProtectora(int IdProtectora) {
         return adopRepo.adopcionesRechazadasPorProtectora(IdProtectora);
+    }
+
+    @Override
+    public List<Adopcion> adopcionesCompletadasPorIdProtectora(int IdProtectora) {
+        return adopRepo.adopcionesCompletadasPorIdProtectora(IdProtectora);
     }
 
 

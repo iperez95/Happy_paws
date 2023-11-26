@@ -121,5 +121,16 @@
     text-align: center;
 }
 
+.modal.fade.in {
+    opacity: 1;
+  }
+  .modal.in .modal-dialog {
+    transform: translate(0, 0);
+  }
+  .modal-backdrop.in {
+    opacity: 0.5;
+    /* opacity: $modal-backdrop-opacity; (SCSS) */
+  }
+
 
 

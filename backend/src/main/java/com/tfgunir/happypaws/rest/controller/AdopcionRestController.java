@@ -61,6 +61,20 @@ public class AdopcionRestController {
         }
     }
 
+    @GetMapping(path="/adoptante/{id}", produces = "application/json")
+    public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesAdoptanteId(@PathVariable("id") int idAdoptante) {
+        Iterable<Adopcion> adopciones = adopdao.adopcionesPorIDAdoptante(idAdoptante);
+     
+        if (adopciones != null){
+            List <AdopcionDto> adopcionesDto = new ArrayList<>();
+            for (Adopcion adopcion : adopciones) {
+                adopcionesDto.add(adopdao.convertirAdopcionDto(adopcion));
+            }
+            return new ResponseEntity<>(adopcionesDto, HttpStatus.OK);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     /**
      * Recupera todas las adopciones para una protectora el ID de protectora.
      * @param idProtectora El ID del refugio.
@@ -136,6 +150,28 @@ public class AdopcionRestController {
     @GetMapping(path="/rechazadas/protectora/{id}", produces = "application/json")
     public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesRechazadasProtectoraId(@PathVariable("id") int idProtectora) {
         Iterable<Adopcion> adopciones = adopdao.adopcionesRechazadasPorIdProtectora(idProtectora);
+     
+        if (adopciones != null){
+            List <AdopcionDto> adopcionesDto = new ArrayList<>();
+            for (Adopcion adopcion : adopciones) {
+                adopcionesDto.add(adopdao.convertirAdopcionDto(adopcion));
+            }
+         
+            return new ResponseEntity<>(adopcionesDto, HttpStatus.OK);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+      /**
+     * Obtiene todas las adopciones completadas por una protectora dado su ID.
+     *
+     * @param idProtectora el ID de la protectora de animales
+     * @return ResponseEntity con una lista de AdopcionDto si se encuentran adopciones aceptadas o rechazadas, o ResponseEntity not found si no se encuentran adopciones
+     */
+    @GetMapping(path="/completadas/protectora/{id}", produces = "application/json")
+    public ResponseEntity<Iterable<AdopcionDto>> todasAdopcionesCompletadasProtectoraId(@PathVariable("id") int idProtectora) {
+        Iterable<Adopcion> adopciones = adopdao.adopcionesCompletadasPorIdProtectora(idProtectora);
      
         if (adopciones != null){
             List <AdopcionDto> adopcionesDto = new ArrayList<>();

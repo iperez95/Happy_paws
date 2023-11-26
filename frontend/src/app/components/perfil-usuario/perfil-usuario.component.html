@@ -45,8 +45,12 @@
 
     <section class="mt-5">
         <mat-tab-group dynamicHeight color="warn" animationDuration="0ms">
-            <mat-tab label="Formulario de adopción"><app-cuestionario-adopcion></app-cuestionario-adopcion></mat-tab>
-            <mat-tab label="Estado adopciones"><app-adopciones-completadas></app-adopciones-completadas></mat-tab>
+            <mat-tab label="Formulario de adopción">
+                <app-cuestionario-adopcion></app-cuestionario-adopcion>
+            </mat-tab>
+            <mat-tab label="Estado adopciones">
+                <app-adopciones-usuario></app-adopciones-usuario>
+            </mat-tab>
         </mat-tab-group>
     </section>
 
