@@ -44,14 +44,16 @@ export class CuestionarioAdopcionComponent {
 
       this.usuario = this._usuarioService.getUserData() || {} as Usuario;
       Promise.all([
-        this.axiosService.request('GET', "cuestionario/verRespuestas/" + this.usuario.id, null),
+        this.axiosService.request('GET', "cuestionario/verRespuestas/" + this.usuario.id, null).catch(error => {
+          return { respuestas: [] };
+        }),
         this._cuestionarioService.obtenerPreguntas().toPromise()
       ]).then(([respuestas, preguntas]) => {
-        this.preguntasContestadas = respuestas.data;
+        this.preguntasContestadas = respuestas.data ?? [];
         preguntas.forEach((pregunta :PreguntasAdoptante, index:number) => {
           this.respuestasArray.push(this.fb.group({
             preguntaid: [pregunta.idpregunta],
-            respuesta: [this.preguntasContestadas[index].respuesta],
+            respuesta: [this.preguntasContestadas[index] ? this.preguntasContestadas[index].respuesta : ''],
             preguntasAdoptante: this.fb.group({
               pregunta: [pregunta.pregunta]
             })
