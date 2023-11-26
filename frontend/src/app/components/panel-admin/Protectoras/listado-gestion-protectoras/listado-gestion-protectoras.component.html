@@ -8,7 +8,8 @@
                 <th scope="col">Provincia</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Edicion</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">Cambiar Estado</th>
+                <th scope="col">Borrar</th>
             </tr>
         </thead>
         <tbody *ngFor="let protectora of listaProtectoras">
@@ -21,9 +22,12 @@
                     <button (click)="editarProtectora(protectora.idprotectora)" class="btn custom-btn-red-dark" >Editar</button>
                 </td>        
                 <td>
-                    <button class="btn custom-btn-red-dark  ms-3">Activar</button>
-                    <button class="btn custom-btn-red-dark  ms-3">Inactivar</button>
-                    <button class="btn custom-btn-red-dark  ms-3">Borrar</button>
+                    <button (click)="activarProtectora(protectora.idprotectora)" class="btn custom-btn-red-dark  ms-3">Activar</button>
+                    <button (click)="pendienteProtectora(protectora.idprotectora)"class="btn custom-btn-red-dark  ms-3">Pendiente</button>
+                    <button (click)="inactivarProtectora(protectora.idprotectora)"class="btn custom-btn-red-dark  ms-3">Inactivar</button>
+                </td>
+                <td>
+                    <button class="btn custom-btn-red-dark  ms-3">Eliminar</button>
                 </td>
             </tr>
 
