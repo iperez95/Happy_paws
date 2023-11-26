@@ -28,7 +28,7 @@ public class MultimediaDao implements IMultimediaDao {
 
     @Override
     public Multimedia modificarMultimedia(Multimedia multimedia) {
-        if(multimediaPorId(multimedia.getIdmultimedia())!=null)
+        if(buscarMultimediaId(multimedia.getIdmultimedia())!=null)
             return multirepo.save(multimedia);
         else
             return null;
@@ -56,7 +56,7 @@ public class MultimediaDao implements IMultimediaDao {
     }
 
     @Override
-    public Multimedia multimediaPorId(int idMultimedia) {
+    public Multimedia buscarMultimediaId(int idMultimedia) {
         return multirepo.findById(idMultimedia).get();
     }
 

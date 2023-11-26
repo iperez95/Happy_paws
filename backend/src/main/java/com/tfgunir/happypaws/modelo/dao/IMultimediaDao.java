@@ -12,7 +12,7 @@ public interface IMultimediaDao {
     
     List<Multimedia> multimediasAnimal(int idAnimal);
     List<Multimedia> multimediasTodos();
-    Multimedia multimediaPorId(int idMultimedia);
+    Multimedia buscarMultimediaId(int idMultimedia);
 
     
 }
