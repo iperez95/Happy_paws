@@ -8,7 +8,7 @@ public interface IMultimediaDao {
 
     int altaMultimedia(Multimedia multimedia);
     Multimedia modificarMultimedia(Multimedia multimedia);
-    int borrarMultimedia(Multimedia multimedia);
+    int borrarMultimedia(int idMultimedia);
     
     List<Multimedia> multimediasAnimal(int idAnimal);
     List<Multimedia> multimediasTodos();

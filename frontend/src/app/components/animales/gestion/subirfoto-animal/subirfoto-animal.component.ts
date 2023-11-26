@@ -52,7 +52,7 @@ export class SubirfotoAnimalComponent {
     this._animalService.fotosAnimal(idAnimal)
       .subscribe(data => {
         this.fotosMultimedia = data;
-        console.log(this.fotosMultimedia);
+        console.log("lista de fotos " + this.fotosMultimedia);
       });
   }
 
@@ -73,14 +73,56 @@ export class SubirfotoAnimalComponent {
         error: error => console.log(error),
         complete: () => {
           swal.fire('Foto subida', `La foto se ha subido con éxito`, 'success');
-          this.IrSubirFotoAnimal(); 
+          this.irSubirFotoAnimal(); 
         }
       })
   }
 
-  IrSubirFotoAnimal() {
+  borrarFoto(id: number) {
+    swal.fire({
+      title: '¿Estás seguro?',
+      text: "No podrás revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, borrarlo!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this._animalService.borrarFoto(id)
+          .subscribe({
+            next: dato => console.log(dato),
+            error: error => console.log(error),
+            complete: () => {
+              console.log('Baja realizada');
+              swal.fire('Realizado', `La protectora ha sido dada de baja correctamente`, 'success');
+              this.irSubirFotoAnimal();
+            }
+          })
+      } else if (result.isDenied) {
+        swal.fire("Los cambios no se han guardado", "", "info");
+      }
+    });
+  }
+  
+
+  // borrarFoto(id: number) {
+  //   this._animalService.borrarFoto(id).subscribe(
+  //     (response) => {
+  //       console.log(response);
+  //       swal.fire('Foto borrada', `La foto se ha borrado con éxito`, 'success');
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //       swal.fire('Error', `Hubo un error al borrar la foto`, 'error');
+  //     }
+  //   );
+  // }
+
+
+  irSubirFotoAnimal() {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['animales/gestion/subirfotoanimal/', this.id]);
+      this.router.navigate(['/animales/gestion/subirfotoanimal/', this.id]);
     }); 
   }
 
