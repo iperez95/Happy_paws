@@ -303,12 +303,8 @@ public class AnimalRestController {
         try {
             Multimedia multimedia = multiDao.buscarMultimediaId(id);
             if (multimedia != null) {
-                String enlace = multimedia.getEnlace();
-                String toRemove = "/assets/images/animales/" + id + "/";
-                String nombreArchivo = enlace.replace(toRemove, "");
-                System.out.println("Este es el nombre del archivo a borrar: "+ nombreArchivo);
+                String nombreArchivo = multimedia.getEnlace();
                 Path rutaArchivo = Paths.get("..//frontend//src//" + nombreArchivo);
-                System.out.println("Esta es la ruta del archivo a borrar: "+ rutaArchivo);
                 if (Files.exists(rutaArchivo)) {
                     Files.delete(rutaArchivo);
                 }
