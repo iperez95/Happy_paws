@@ -22,7 +22,8 @@ import { GestionAnimalComponent } from './components/animales/gestion/gestion-an
 import { AltaAnimalComponent } from './components/animales/gestion/alta-animal/alta-animal.component';
 import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
 import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
-
+import { ListadoGestionProtectorasComponent } from './components/panel-admin/Protectoras/listado-gestion-protectoras/listado-gestion-protectoras.component';
+import { EditarProtectoraGestionComponent } from './components/panel-admin/Protectoras/editar-protectora-gestion/editar-protectora-gestion.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,9 @@ const routes: Routes = [
 
   //Admin
   { path: 'admin/gestion', component: PanelAdminComponent},
+  { path: 'admin/gestion/protectoras', component: ListadoGestionProtectorasComponent},
+  { path: 'admin/gestion/protectoras/editar/:id', component: EditarProtectoraGestionComponent},
+
   //Login
   { path: 'login', component: LoginModalComponent },
   { path: 'registro', component: RegistroComponent },
