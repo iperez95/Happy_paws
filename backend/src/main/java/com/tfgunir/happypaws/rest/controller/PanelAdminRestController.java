@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
 import com.tfgunir.happypaws.modelo.dto.ProtectoraDto;
+import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
+import com.tfgunir.happypaws.modelo.repository.ProtectoraRepository;
 import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 
 @RestController
@@ -28,6 +30,9 @@ public class PanelAdminRestController {
 
     @Autowired
     ProtectoraDao protdao;
+
+    @Autowired
+    ProtectoraRepository protrepo;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -40,9 +45,9 @@ public class PanelAdminRestController {
 
     // LISTADO PROTECTORAS DTO CON MUNICIPIO Y PROVINCIA
     @GetMapping(path="/protectoras/todas", produces = "application/json")
-    public ResponseEntity<List<ProtectoraDto>> listadoProtectorasMunicProv (){
+    public ResponseEntity<List<ProtectoraDto>> listadoProtectoras (){
        
-        List<Protectora> protectoras = protdao.listadoProtectorasMunicProv();
+        List<Protectora> protectoras = protrepo.findAll();
 
         if (protectoras!=null){
             List<ProtectoraDto> protectorasDto = new ArrayList<>();
@@ -80,4 +85,77 @@ public class PanelAdminRestController {
         else
             return ResponseEntity.notFound().build();
     }
+
+    //CAMBIAR ESTADO PROTECTORA >> INACTIVO
+    @PutMapping(path="/protectora/inactivar/{id}")
+    public ResponseEntity<Protectora> inactivarProtectora (@PathVariable("id") int id){
+
+        System.out.println("Buscando protectora con id: "+id);
+
+        Protectora protectora = protdao.buscarProtectoraId(id);
+        System.out.println("Protectora encontrada: "+protectora);
+
+        if (protectora!=null) {
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(2);
+            System.out.println("Estado protectora temporal: "+estadoProtectoraTemporal);
+
+            protectora.setEstadosprotectora(estadoProtectoraTemporal);
+            System.out.println("Protectora con estado actualizado: "+protectora);
+
+            protdao.actualizarProtectora(protectora);
+            return ResponseEntity.ok(protectora);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+        //CAMBIAR ESTADO PROTECTORA >> ACTIVO
+    @PutMapping(path="/protectora/activar/{id}")
+    public ResponseEntity<Protectora> activarProtectora (@PathVariable("id") int id){
+
+        System.out.println("Buscando protectora con id: "+id);
+
+        Protectora protectora = protdao.buscarProtectoraId(id);
+        System.out.println("Protectora encontrada: "+protectora);
+
+        if (protectora!=null) {
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(1);
+            System.out.println("Estado protectora temporal: "+estadoProtectoraTemporal);
+
+            protectora.setEstadosprotectora(estadoProtectoraTemporal);
+            System.out.println("Protectora con estado actualizado: "+protectora);
+
+            protdao.actualizarProtectora(protectora);
+            return ResponseEntity.ok(protectora);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+        //CAMBIAR ESTADO PROTECTORA >> PENDIENTE
+    @PutMapping(path="/protectora/pendiente/{id}")
+    public ResponseEntity<Protectora> pendienteProtectora (@PathVariable("id") int id){
+
+        System.out.println("Buscando protectora con id: "+id);
+
+        Protectora protectora = protdao.buscarProtectoraId(id);
+        System.out.println("Protectora encontrada: "+protectora);
+
+        if (protectora!=null) {
+            Estadosprotectora estadoProtectoraTemporal = new Estadosprotectora();
+            estadoProtectoraTemporal.setIdestadoprotectora(3);
+            System.out.println("Estado protectora temporal: "+estadoProtectoraTemporal);
+
+            protectora.setEstadosprotectora(estadoProtectoraTemporal);
+            System.out.println("Protectora con estado actualizado: "+protectora);
+
+            protdao.actualizarProtectora(protectora);
+            return ResponseEntity.ok(protectora);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
 }

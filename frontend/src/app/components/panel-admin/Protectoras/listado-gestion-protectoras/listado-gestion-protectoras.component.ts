@@ -32,5 +32,23 @@ export class ListadoGestionProtectorasComponent {
     this.router.navigate(['admin/gestion/protectoras/editar/', id]);
   }
 
+  public inactivarProtectora(id:number){
+    this._protectoraAdminService.inactivarProtectora(id, this.listaProtectoras[id]).subscribe(dato => {
+      this.listar();
+    });
+  }
+
+  public activarProtectora(id:number){
+    this._protectoraAdminService.activarProtectora(id, this.listaProtectoras[id]).subscribe(dato => {
+      this.listar();
+    });
+  }
+
+  public pendienteProtectora(id:number){
+    this._protectoraAdminService.pendienteProtectora(id, this.listaProtectoras[id]).subscribe(dato => {
+      this.listar();
+    });
+  }
+
  
 }

@@ -32,6 +32,22 @@ import { Protectora } from "src/app/entidades/protectora";
           .pipe(catchError(this.manejarError));
       }
 
+      public inactivarProtectora (id:number, protectora:Protectora): Observable<Object> {
+        return this._httpClient.put(`${this.endpoint}/api/admin/protectora/inactivar/${id}`,protectora)
+          .pipe(catchError(this.manejarError));
+      }
+
+      public activarProtectora (id:number, protectora:Protectora): Observable<Object> {
+        return this._httpClient.put(`${this.endpoint}/api/admin/protectora/activar/${id}`,protectora)
+          .pipe(catchError(this.manejarError));
+      }
+
+      public pendienteProtectora (id:number, protectora:Protectora): Observable<Object> {
+        return this._httpClient.put(`${this.endpoint}/api/admin/protectora/pendiente/${id}`,protectora)
+          .pipe(catchError(this.manejarError));
+      }
+
+
   
     // public listarProvincias(): Observable<any> {
     //   return this._httpClient.get(`${this.endpoint}/provincia/todas`)
@@ -55,16 +71,9 @@ import { Protectora } from "src/app/entidades/protectora";
   
    
   
-    public inactivarProtectora (id:number, protectora:Protectora): Observable<Object> {
-      return this._httpClient.put(`${this.endpoint}/protectora/gestion/inactivar/${id}`,protectora)
-        .pipe(catchError(this.manejarError));
-    }
+    
   
-    public activarProtectora (id:number, protectora:Protectora): Observable<Object> {
-      return this._httpClient.put(`${this.endpoint}/protectora/gestion/activar/${id}`,protectora)
-        .pipe(catchError(this.manejarError));
-    }
-  
+
 
   
     public animalesProtectora(idProtectora: number): Observable<any> {
