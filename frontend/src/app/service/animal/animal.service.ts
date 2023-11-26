@@ -63,10 +63,10 @@ export class AnimalService {
 
 
   // Método para buscar animales por provincia
-  public listarAnimalPorProvincia(provincia: string): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animales/buscar/porprovincia/${provincia}`)
-      .pipe(catchError(this.manejarError));
-  }
+  // public listarAnimalPorProvincia(provincia: string): Observable<any> {
+  //   return this._httpClient.get(`${this.endpoint}/animales/buscar/porprovincia/${provincia}`)
+  //     .pipe(catchError(this.manejarError));
+  // }
 
     // Método para buscar animales por provincia
     public listarAnimalPorIdProvincia(idprovincia: number): Observable<any> {
@@ -75,10 +75,10 @@ export class AnimalService {
     }
 
   // Método que lista todos los animales de una protectora por su nombre
-  public listarAnimalPorProtectora(nombre: String): Observable<any> {
-    return this._httpClient.get(`${this.endpoint}/animales/buscar/porprotectora/${nombre}`)
-      .pipe( catchError(this.manejarError));
-  }
+  // public listarAnimalPorProtectora(nombre: String): Observable<any> {
+  //   return this._httpClient.get(`${this.endpoint}/animales/buscar/porprotectora/${nombre}`)
+  //     .pipe( catchError(this.manejarError));
+  // }
 
   //Método que lista todos los animales de una protectora por su id 
   public listarAnimalPorIdProtectora(idprotectora: number): Observable<any> {

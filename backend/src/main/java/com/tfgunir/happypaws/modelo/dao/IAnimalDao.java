@@ -13,11 +13,8 @@ public interface IAnimalDao {
     Animal buscarAnimalId (int idanimal);
     List<Animal> buscarTodos();
     
-    //List<Animal> buscarPorMunicipio (String municipio);
     List<Animal> buscarPorIdMunicipio (int idmunicipio);
-    //List<Animal> buscarPorProvincia (String provincia);
     List<Animal> buscarPorIdProvincia (int idprovincia);
-    //List<Animal> buscarPorProtectora (String nombre);
     List<Animal> buscarPorIdProtectora (int idprotectora);
 
     List<Animal> buscarPorEspecie (int idespecie);

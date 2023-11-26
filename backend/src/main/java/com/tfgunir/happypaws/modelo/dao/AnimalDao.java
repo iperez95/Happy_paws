@@ -68,30 +68,15 @@ public class AnimalDao implements IAnimalDao{
         return aniRepo.findAll();
     }
 
-    // @Override
-    // public List<Animal> buscarPorMunicipio(String municipio) {
-    //     return aniRepo.buscarPorMunicipio(municipio);
-    // }
-
     @Override
     public List<Animal> buscarPorIdMunicipio(int idmunicipio) {
         return aniRepo.buscarPorIdMunicipio(idmunicipio);
     }
 
-    // @Override
-    // public List<Animal> buscarPorProvincia(String provincia) {
-    //     return aniRepo.buscarPorMunicipio(provincia);
-    // }
-    
     @Override
     public List<Animal> buscarPorIdProvincia(int idprovincia) {
         return aniRepo.buscarPorIdProvincia(idprovincia);
     }
-    
-    // @Override
-    // public List<Animal> buscarPorProtectora(String nombre) {
-    //     return aniRepo.buscarPorProtectora(nombre);
-    // }
 
     @Override
     public List<Animal> buscarPorIdProtectora(int idprotectora) {

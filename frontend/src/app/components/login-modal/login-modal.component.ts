@@ -29,6 +29,7 @@ export class LoginModalComponent implements OnInit {
     
     this.axiosService.request("POST", '/api/login', data)
     .then(response => {
+      localStorage.setItem("id", response.data.id)
       this.authService.setLoggedIn(true); // Update the loggedIn property
       this.axiosService.setAuthToken(response.data.token); // Save the token in the local storage
       this.dialogRef.close();

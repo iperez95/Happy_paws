@@ -1,1 +1,39 @@
-<p>gestion-animal works!</p>
+
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn custom-btn-red-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
+      </div>
+    </div>
+  
+    <h1 class="mt-4">Estos son los animales que tenemos actualmente</h1>
+  
+    <section class="tarjetas m-3">  
+        <div class="container.md">
+          <div class="row row-cols-auto gy-5">
+            <div class="col-md-3" *ngFor="let animal of listaAnimales">
+              <div class="card h-100">
+                <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-1422023439-64f1eaf518ace.jpg?crop=1xw:0.84375xh;center,top&resize=1200:*"  class="card-img-top" alt="{{animal.nombre}}">
+                <div class="card-body">
+                  <div>
+                    <h5 class="card-title fw-bold d-flex justify-content-start">{{animal.nombre}}</h5>
+                  </div>
+                  <div class="row row-cols-auto ">
+                    <div class="col-md-auto d-flex justify-content-start">
+                      <h6 class="card-text mt-md-3">{{animal.raza.especie.especie}}</h6>
+                      <h6 class="card-text mt-md-3">{{animal.raza.raza}}</h6>
+                      <h6 class="card-text mt-md-3">{{animal.tamano.tamano}}</h6>
+                      <h6 class="card-text mt-md-3">{{animal.envio ? "Puede viajar" : "No puede viajar"}}</h6>
+                    </div>
+                    <div class="col">
+                      <button (click)="irModificalAnimal(animal.idanimal)" class="btn custom-btn-red-dark">Modificar Animal</button>
+                      <button (click)="borrarAnimal(animal.idanimal)" class="btn custom-btn-red-dark">Borrar Animal</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
