@@ -301,9 +301,24 @@ public class AnimalRestController {
     public ResponseEntity<?> borrarFoto(@PathVariable("id") int id) {
         Map<String, Object> response = new HashMap<>();
         try {
-            if (multiDao.borrarMultimedia(id) == 1) {
-                response.put("mensaje", "Foto eliminada correctamente");
-                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+            Multimedia multimedia = multiDao.buscarMultimediaId(id);
+            if (multimedia != null) {
+                String enlace = multimedia.getEnlace();
+                String toRemove = "/assets/images/animales/" + id + "/";
+                String nombreArchivo = enlace.replace(toRemove, "");
+                System.out.println("Este es el nombre del archivo a borrar: "+ nombreArchivo);
+                Path rutaArchivo = Paths.get("..//frontend//src//" + nombreArchivo);
+                System.out.println("Esta es la ruta del archivo a borrar: "+ rutaArchivo);
+                if (Files.exists(rutaArchivo)) {
+                    Files.delete(rutaArchivo);
+                }
+                if (multiDao.borrarMultimedia(id) == 1) {
+                    response.put("mensaje", "Foto eliminada correctamente");
+                    return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+                } else {
+                    response.put("mensaje", "No se encontró la foto");
+                    return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+                }
             } else {
                 response.put("mensaje", "No se encontró la foto");
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
@@ -315,15 +330,24 @@ public class AnimalRestController {
         }
     }
 
-    // @DeleteMapping("/gestion/borrarfoto/{id}")
-    // public ResponseEntity<?> borrarFoto(@PathVariable int id) {
+    // @DeleteMapping(path="/gestion/borrarfoto/{id}")
+    // public ResponseEntity<?> borrarFoto(@PathVariable("id") int id) {
+    //     Map<String, Object> response = new HashMap<>();
     //     try {
-    //         multiDao.borrarMultimedia(id);
-    //         return ResponseEntity.ok().body("Foto borrada con éxito");
+    //         if (multiDao.borrarMultimedia(id) == 1) {
+    //             response.put("mensaje", "Foto eliminada correctamente");
+    //             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+    //         } else {
+    //             response.put("mensaje", "No se encontró la foto");
+    //             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+    //         }
     //     } catch (Exception e) {
-    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al borrar la foto");
+    //         response.put("mensaje", "Error al eliminar la foto");
+    //         response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+    //         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     //     }
     // }
-        
+
+  
         
 }
