@@ -1,5 +1,7 @@
+import { NumberSymbol } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { Animal } from 'src/app/entidades/animal';
 import { Protectora } from 'src/app/entidades/protectora';
 import { AnimalService } from 'src/app/service/animal/animal.service';
@@ -14,20 +16,40 @@ export class GestionAnimalComponent {
 
   @Input() protectora: Protectora;
   @Input() animales: Animal[];
-  public listaAnimales : Animal[] = []
-  idprotectora : number = 1;
+  public listaAnimales : Animal[] = [];
+  public idUsuario : number;
+  public idProtectora : number;
 
   constructor(private _animalService : AnimalService, private router :Router, private _protrectoraService: ProtectoraService) { 
   }
 
   ngOnInit():void {
-    this.listar();
+    this.obtenerIdUsuario();
+    this.obtenerIdProtectora(this.idUsuario);
   }
 
-  public listar(){
-    this._animalService.listarAnimales().subscribe(dato => {
+  public obtenerIdUsuario():void{
+    let id: string;     
+    if(localStorage.getItem("id") != null){
+      id = localStorage.getItem("id") as string;
+      this.idUsuario = parseInt(id);    
+    }
+  }
+
+  public obtenerIdProtectora(idUsuario: number): void {
+    this._protrectoraService.obtenerProtectoraPorIdUsuario(idUsuario).pipe(
+      switchMap(data => {
+        this.idProtectora = data.idprotectora;
+        return this._animalService.listarAnimalPorIdProtectora(this.idProtectora);
+      })
+    ).subscribe(dato => {
       this.listaAnimales = dato;
-      console.log(this.listaAnimales);
+    });
+  }
+
+  public obtenerAnimalesIdProtectora(idProtectora:number):void{
+    this._animalService.listarAnimalPorIdProtectora(idProtectora).subscribe(dato => {
+      this.listaAnimales = dato;
     });
  }
 
