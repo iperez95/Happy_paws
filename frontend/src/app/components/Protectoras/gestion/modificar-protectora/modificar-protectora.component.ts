@@ -128,28 +128,6 @@ export class ModificarProtectoraComponent {
     }); 
   }
 
-  //TODO ESTE CÓDIGO SE HA SACADO A UN COMPONENTE SEPARADO PARA SUBIR FOTOS
-    // seleccionarFoto(event: Event) {
-    //   const target = event.target as HTMLInputElement;
-    //   const files = target.files as FileList;
-    //   this.fotoSeleccionada = files[0];
-    //   console.log(this.fotoSeleccionada);
-    // }
-  
-    // subirFoto(){
-    //   this._protectoraService.subirFoto(this.fotoSeleccionada, this.protectora.idprotectora)
-    //     .subscribe({
-    //       next: protectora => {
-    //         this.protectora = protectora;
-    //         console.log(this.protectora);
-    //       },
-    //       error: error => console.log(error),
-    //       complete: () => {
-    //         swal.fire('Foto subida', `La foto se ha subido con éxito`, 'success');
-    //         this.IrGestionProtectora(); 
-    //       }
-    //     })
-    // }
 
   IrGestionProtectora() {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {

@@ -1,0 +1,51 @@
+<div class="col-md-10 offset-md-2">
+    <h3 class="text-center mb-5">Modificar protectora</h3>
+    <form (ngSubmit)="onSubmit()">
+        <div class="container.md overflow-hidden">
+            <div class="row row-cols-auto">
+                <div class="col-md-3">
+                    <img src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}" class="img-fluid" width="300" height="300">
+                    <div class="subir-foto mt-3">
+                        <!-- <button (click)="cambiarFoto()" type="button" class="btn custom-btn-red-dark">Cambiar foto</button> -->
+                    </div>
+                </div>
+                <div class="row row-cols-auto ">
+                    <div class="col-md">
+                        <div class="">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" [(ngModel)]="protectora.nombre" name="nombre" id="nombre" required>
+                        </div>
+                        <div class="mt-4">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" class="form-control" [(ngModel)]="protectora.direccion" name="direccion" id="direccion" required>
+                        </div>
+                        <div class="mt-4">
+                            <label for="direccion">Teléfono</label>
+                            <input type="text" class="form-control" [(ngModel)]="protectora.telefono" name="telefono" id="telefono" required>
+                        </div>
+                        <div class="mt-4">
+                            <label for="direccion">Email</label>
+                            <input type="text" class="form-control" [(ngModel)]="protectora.email" name="email" id="email" required>
+                        </div>
+                        <div class="mt-4">
+                            <label for="descripcion">Descripcion de la protectora</label>
+                            <textarea rows="4" cols="50" maxlength="1000" type="text-area" class="form-control" [(ngModel)]="protectora.descripcion" name="descripcion" id="descripcion" required></textarea>
+                        </div>
+                        <div class="mt-4">
+                            <button  type="submit" class="btn custom-btn-red-dark">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>            
+    </form> 
+</div>
+
+<div class=" p-5 col-md-4 offset-md-4">
+    <div class="row row-cols-auto">
+        <div class="mt-4">
+            <!-- <button  (click)="bajaProtectora()" class="btn btn-warning">Dar de baja esta protectora</button>
+            <button  (click)="activarProtectora()" class="ms-3 btn btn-success">Activar protectora</button> -->
+        </div>
+    </div>
+</div>

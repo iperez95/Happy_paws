@@ -41,6 +41,8 @@ import { PanelAdminComponent } from './components/panel-admin/panel-admin.compon
 import { GestionAnimalComponent } from './components/animales/gestion/gestion-animal/gestion-animal.component';
 import { ModificarAnimalComponent } from './components/animales/gestion/modificar-animal/modificar-animal.component';
 import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
+import { ListadoGestionProtectorasComponent } from './components/panel-admin/Protectoras/listado-gestion-protectoras/listado-gestion-protectoras.component';
+import { EditarProtectoraGestionComponent } from './components/panel-admin/Protectoras/editar-protectora-gestion/editar-protectora-gestion.component';
 
 
 
@@ -76,6 +78,8 @@ import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfot
     GestionAnimalComponent,
     ModificarAnimalComponent,
     SubirfotoAnimalComponent,
+    ListadoGestionProtectorasComponent,
+    EditarProtectoraGestionComponent,
 
   ],
   imports: [
