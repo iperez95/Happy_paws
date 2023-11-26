@@ -1,0 +1,21 @@
+<div mat-dialog-content> 
+  <p>Cuestionario Adopción</p>
+  <div class="contendor">
+      <table class="table table-striped  table table-hover text-center" *ngIf="respuestas">
+          <thead>
+            <tr>
+              <th scope="col">Pregunta</th>
+              <th scope="col">Respuesta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let respuesta of respuestas">
+              <td scope="row">{{respuesta.pregunta}}</td>
+              <td>{{respuesta.respuesta}}</td>
+            </tr>
+          </tbody>
+        </table>
+  </div>
+  <div mat-dialog-actions> 
+  <button mat-button (click)="onClose()">Cerrar</button>
+</div>

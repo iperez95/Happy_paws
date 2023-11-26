@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Adopcion } from 'src/app/entidades/adopcion';
 import { AxiosService } from 'src/app/service/axios/axios.service';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalCuestionarioComponent } from '../modal-cuestionario/modal-cuestionario.component';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,13 +18,23 @@ export class PetecionesAdopcionComponent {
   constructor(
     private axiosService: AxiosService,
     private userService: UsuarioService,
+    public dialog: MatDialog
   ) {  }
+
+  openDialog(idUsuario: number):void {
+    const dialogRef = this.dialog.open(ModalCuestionarioComponent, {
+      data: idUsuario
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+     }
+    );
+  }
 
   ngOnInit(): void {
     const idProtectora = this.userService.getUserData()?.idProtectora;
     this.axiosService.request('GET',"adopcion/encurso/protectora/" + idProtectora, null).then((response) => {
       this.adopciones = response.data;
-      console.log(this.adopciones);
     }).catch((error: any) => {
       console.log(error);
     });

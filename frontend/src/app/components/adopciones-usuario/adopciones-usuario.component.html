@@ -7,8 +7,7 @@
           <th scope="col">Adoptante</th>
           <th scope="col">Fecha</th>
           <th scope="col">ID Animal</th>
-          <th scope="col">Formulario</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Estado</th>
         </tr>
       </thead>
       <tbody>
@@ -18,13 +17,8 @@
               <td>{{adopcion.nombreUsuario}}</td>
               <td>{{adopcion.fechaAdopcion}}</td>
               <td>{{adopcion.idAnimal}}</td>
-              <td>
-                <button type="button" class="btn btn-primary" (click)="openDialog(adopcion.idUsuario)">Ver</button></td>
-              <td>
-                  <button class="btn btn-success p-1 m-1" (click)="approveAdoption(adopcion.idAdopcion)">Aceptar</button>
-                  <button class="btn btn-danger p-1 m-1" (click)="rejectAdoption(adopcion.idAdopcion)" >Rechazar</button>
-              </td>
+              <td>{{adopcion.getEstado()}}</td>
           </tr>
       </tbody>
     </table>
-</div>
+  </div>

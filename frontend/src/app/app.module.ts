@@ -38,6 +38,8 @@ import { PerfilUsuarioComponent } from './components/perfil-usuario/perfil-usuar
 import { AnimaldetalladoComponent } from './components/animales/animaldetallado/animaldetallado.component';
 import { SubirFotoComponent } from './components/Protectoras/gestion/subir-foto/subir-foto.component';
 import { PanelAdminComponent } from './components/panel-admin/panel-admin.component';
+import { ModalCuestionarioComponent } from './components/modal-cuestionario/modal-cuestionario.component';
+import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adopciones-usuario.component';
 
 
 
@@ -70,6 +72,8 @@ import { PanelAdminComponent } from './components/panel-admin/panel-admin.compon
     AnimaldetalladoComponent,
     SubirFotoComponent,
     PanelAdminComponent,
+    ModalCuestionarioComponent,
+    AdopcionesUsuarioComponent,
 
   ],
   imports: [

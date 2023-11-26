@@ -1,10 +1,12 @@
 package com.tfgunir.happypaws.modelo.dao;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tfgunir.happypaws.modelo.dto.RespuestasAdoptanteDto;
 import com.tfgunir.happypaws.modelo.entities.PreguntasAdoptante;
 import com.tfgunir.happypaws.modelo.entities.RespuestasAdoptante;
 import com.tfgunir.happypaws.modelo.repository.PreguntasRepository;
@@ -46,6 +48,34 @@ public class CuestionarioDao implements ICuestionarioDao     {
         resprepo.save(respuesta);
     }
 
-   
-    
+    public List<RespuestasAdoptanteDto> preguntasYRespuestasPorUsuario(int idUsuario) {
+        List<RespuestasAdoptante> respuestas = resprepo.findByUserId(idUsuario);
+
+        if (respuestas.size() == 0) {
+            return null;
+        }
+
+        List<RespuestasAdoptanteDto> respuestasDTO = respuestas.stream()
+            .map(r -> {
+                RespuestasAdoptanteDto dto = new RespuestasAdoptanteDto();
+                dto.setRespuesta(r.getRespuesta());
+                dto.setPregunta(r.getPreguntasAdoptante().getPregunta());
+                return dto;
+            })
+            .collect(Collectors.toList());
+        return respuestasDTO;
+    }
+    public RespuestasAdoptante updateRespuesta(RespuestasAdoptante respuesta) {
+        return resprepo.save(respuesta);
+    }
+
+    public Boolean borrarRespuestasDeUsuario(int idusuario) {
+        try {
+            resprepo.deleteByUserId(idusuario);
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error al borrar las respuestas del usuario: " + e);
+            return false;
+        }
+    }
 }

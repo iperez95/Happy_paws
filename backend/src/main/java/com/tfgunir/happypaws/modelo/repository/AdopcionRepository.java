@@ -58,4 +58,17 @@ public interface AdopcionRepository extends JpaRepository<Adopcion, Integer>{
                 + "where adop.idestadoadopcion = 3 and adop.idprotectora = ?1",
                 nativeQuery = true)  
     List<Adopcion> adopcionesRechazadasPorProtectora(int idProtectora);
+
+    
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join PROTECTORAS prote on prote.idprotectora = adop.idprotectora \r\n"
+                + "where adop.idestadoadopcion IN(3,2) and adop.idprotectora = ?1",
+                nativeQuery = true) 
+    List<Adopcion> adopcionesCompletadasPorIdProtectora(int idProtectora);
+
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "inner join USUARIOS usu on usu.idusuario = adop.idusuario \r\n"
+                + "where adop.idusuario = ?1",
+                nativeQuery = true)
+    List<Adopcion> findByIdUsuario(int idAdoptante);
 }
