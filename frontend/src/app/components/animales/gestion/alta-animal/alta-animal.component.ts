@@ -145,7 +145,6 @@ export class AltaAnimalComponent {
 
     private listadoMunicipiosProvincia() {
       this.altaForm.get('provincia')?.valueChanges.subscribe(idProvincia => {
-        console.log(idProvincia);
         this._locationService.listarMunicipiosDeUnaProvincia(idProvincia).subscribe((municipios: any[]) => {
           this.municipios = municipios;
          
@@ -162,7 +161,6 @@ export class AltaAnimalComponent {
 
     private listadoRazasPorIdEspecie(){
       this.altaForm.get('especie')?.valueChanges.subscribe(idEspecie => {
-        console.log(idEspecie);
         this._razaService.listarRazasDeUnaEspecie(idEspecie).subscribe((razas: any[]) => {
           this.razas = razas;
         });
