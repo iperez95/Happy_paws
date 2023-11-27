@@ -23,5 +23,11 @@ public class RazaDao implements IRazaDao{
     public List<Raza> buscarTodos() {
         return razRepo.findAll();
     }
+
+    @Override
+    public List<Raza> razasPorIdEspecie(int idespecie) {
+        return razRepo.razasPorIdEspecie(idespecie);
+    
+}
     
 }

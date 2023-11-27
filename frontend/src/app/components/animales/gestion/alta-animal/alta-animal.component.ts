@@ -46,8 +46,17 @@ export class AltaAnimalComponent {
     this.altaForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
+      fechaNacimiento: ['', Validators.required],
+      fechaAlta: ['', Validators.required],
+      enabled: ['', Validators.required],
+      fechaEnabled: ['', Validators.required],
       provincia: ['', Validators.required], 
-      municipio: ['', Validators.required] 
+      municipio: ['', Validators.required],
+      raza: ['', Validators.required],
+      especie: ['', Validators.required],
+      tamano: ['', Validators.required],
+      sexo: ['', Validators.required],
+      envio: ['', Validators.required]
     });
    }
 
@@ -55,9 +64,10 @@ export class AltaAnimalComponent {
     this.listadoProvincias();
     this.listadoMunicipiosProvincia();
     this.listadoEspecies();
-    this.listadoRazas();
+    //this.listadoRazas();
     this.listadoSexos();
     this.listadoTamanos();
+    this.listadoRazasPorIdEspecie();
   }
 
   enabled: boolean = true;
@@ -71,7 +81,7 @@ export class AltaAnimalComponent {
           descripcion: this.altaForm.get('descripcion')?.value,
           fechaNacimiento: this.altaForm.get('fechaNacimiento')?.value,
           fechaAlta: new Date(),
-          enabled: this.altaForm.get('enabled')?.value,
+          enabled: this.altaForm.get('enabled')?.value,  // aqui seria true
           fechaEnabled: new Date(),
           municipio: {
             idmunicipio: this.altaForm.get('municipio')?.value,
@@ -101,7 +111,7 @@ export class AltaAnimalComponent {
             idtamano: 0,
             tamano: ''
           },
-          envio: false
+          envio: this.altaForm.get('envio')?.value,
         };
         console.log(animal);
         this.guardarAnimal(animal);
@@ -130,8 +140,6 @@ export class AltaAnimalComponent {
       this._locationService.listarProvincias()
         .subscribe((data: any[]) => {
           this.provincias = data;
-          
-          console.log(this.provincias);
         });
     }
 
@@ -149,26 +157,22 @@ export class AltaAnimalComponent {
       this._especieService.listarEspecies()
        .subscribe((data: any[]) => {
           this.especies = data;
-          
-          console.log(this.especies);
         });  
     }
 
-    private listadoRazas(){
-      this._razaService.listarRazas()
-      .subscribe((data: any[]) => {
-          this.razas = data;
-          
-          console.log(this.razas);
+    private listadoRazasPorIdEspecie(){
+      this.altaForm.get('especie')?.valueChanges.subscribe(idEspecie => {
+        console.log(idEspecie);
+        this._razaService.listarRazasDeUnaEspecie(idEspecie).subscribe((razas: any[]) => {
+          this.razas = razas;
         });
+      });
     }
 
     private listadoSexos(){
       this._sexoService.listarSexos()
       .subscribe((data: any[]) => {
           this.sexos = data;
-          
-          console.log(this.sexos);
         });
     }
 
@@ -176,8 +180,6 @@ export class AltaAnimalComponent {
       this._tamanoService.listarTamanos()
      .subscribe((data: any[]) => {
       this.tamanos = data;
-      
-      console.log(this.tamanos);
     });
   }
 
