@@ -129,7 +129,7 @@ public class AnimalRestController {
         }
     }
 
-        // Controlador para buscar animales por ID provincia
+    // Controlador para buscar animales por ID provincia
     @GetMapping(path="/buscar/poridprovincia/{idprovincia}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIDProvincia(@PathVariable("idprovincia") int idprovincia) {
 
@@ -212,6 +212,32 @@ public class AnimalRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Controlador para buscar Perros
+    @GetMapping(path="/buscar/soloperros", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarSoloPerros() {
+
+    List<Animal> listado = aniDao.buscarSoloPerros();
+    if (listado != null && !listado.isEmpty()) {
+        return ResponseEntity.ok(listado);
+    } else {
+        return ResponseEntity.notFound().build();
+        }
+    }
+
+    // Controlador para buscar Gatos
+    @GetMapping(path="/buscar/sologatos", produces = "application/json")
+    public ResponseEntity<List<Animal>> buscarSoloGatos() {
+
+    List<Animal> listado = aniDao.buscarSoloGatos();
+    if (listado != null && !listado.isEmpty()) {
+        return ResponseEntity.ok(listado);
+    } else {
+        return ResponseEntity.notFound().build();
+        }
+    }
+
+
 
     // SUBIR FOTO ANIMAL
     @GetMapping(path="/gestion/subirfoto/{id}", produces = "application/json")

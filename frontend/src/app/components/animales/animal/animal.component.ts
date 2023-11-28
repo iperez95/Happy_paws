@@ -11,13 +11,6 @@ import { AnimalService } from 'src/app/service/animal/animal.service';
 })
 export class AnimalComponent implements OnInit{
 
-  // id:number;
-  // animal : Animal;
-  // route: ActivatedRoute;
-
-  // constructor(private _animalService: AnimalService, route: ActivatedRoute) {
-  //   this.route = route;
-  // }
 
   @Input() animal: Animal; multimedia: string;
 

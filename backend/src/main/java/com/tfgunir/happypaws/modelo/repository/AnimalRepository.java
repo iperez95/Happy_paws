@@ -40,5 +40,13 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer>{
         // Query para buscar todos los animales por envio
         @Query(value = "SELECT a FROM Animal a WHERE a.envio =?1")
                 List<Animal> buscarPorEnvio(boolean envio);
+
+        // Query para buscar todos los animales que son perros
+        @Query(value = "SELECT a FROM Animal a INNER JOIN a.raza r INNER JOIN r.especie e WHERE e.especie.idespecie = 1")
+                List<Animal> buscarSoloPerros();
+        
+        // Query para buscar todos los animales que son gatos
+        @Query(value = "SELECT a FROM Animal a INNER JOIN a.raza r INNER JOIN r.especie e WHERE e.especie.idespecie = 2")
+                List<Animal> buscarSoloGatos();
 }
 

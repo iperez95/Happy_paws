@@ -1,0 +1,21 @@
+<section class="tarjetas m-3">  
+    <div class="container.md">
+        <section>
+            <div class="row row-cols-auto gy-5">
+                <div class="col-md-2">
+                </div>
+                <div class="row">
+                    <div *ngFor="let a of listaGatos" class="col-md-4">
+                      <app-animal [animal]="a"></app-animal>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>
+
+<ng-template #sinAnimales>
+    <td>
+        No se han encontrado Animales
+    </td>
+</ng-template>

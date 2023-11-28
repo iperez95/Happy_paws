@@ -22,4 +22,7 @@ public interface IAnimalDao {
     List<Animal> buscarPorRaza (int idraza);
     List<Animal> buscarPorTamaño (int idtamano);
     List<Animal> buscarPorEnvio (boolean envio);
+
+    List<Animal> buscarSoloPerros ();
+    List<Animal> buscarSoloGatos ();
 }

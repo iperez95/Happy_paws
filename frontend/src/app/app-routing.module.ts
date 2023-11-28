@@ -24,6 +24,8 @@ import { ModificarAnimalComponent } from './components/animales/gestion/modifica
 import { SubirfotoAnimalComponent } from './components/animales/gestion/subirfoto-animal/subirfoto-animal.component';
 import { ListadoGestionProtectorasComponent } from './components/panel-admin/Protectoras/listado-gestion-protectoras/listado-gestion-protectoras.component';
 import { EditarProtectoraGestionComponent } from './components/panel-admin/Protectoras/editar-protectora-gestion/editar-protectora-gestion.component';
+import { SologatosComponent } from './components/animales/sologatos/sologatos.component';
+import { SoloperrosComponent } from './components/animales/soloperros/soloperros.component';
 
 
 const routes: Routes = [
@@ -34,6 +36,9 @@ const routes: Routes = [
   { path: 'animales/gestion', component: GestionAnimalComponent},
   { path: 'animales/gestion/modificar/:id', component: ModificarAnimalComponent},
   { path: 'animales/gestion/subirfotoanimal/:id', component: SubirfotoAnimalComponent},
+  { path: 'animales/buscar/sologatos', component: SologatosComponent},
+  { path: 'animales/buscar/soloperros', component: SoloperrosComponent},
+
 
   
  
