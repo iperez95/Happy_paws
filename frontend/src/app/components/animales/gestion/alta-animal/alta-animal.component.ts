@@ -41,6 +41,8 @@ export class AltaAnimalComponent {
   sexo: Sexo = new Sexo;
 
   provinciaSeleccionadaId: number;
+  especieSeleccionadaId: number;
+
 
   constructor(private fb: FormBuilder, private _animalService : AnimalService, private router: Router, private _locationService: LocationService, private _especieService: EspecieService, private _razaService: RazaService, private _sexoService: SexoService, private _tamanoService: TamanosService) {  
     this.altaForm = this.fb.group({
@@ -50,8 +52,9 @@ export class AltaAnimalComponent {
       fechaAlta: ['', Validators.required],
       enabled: ['', Validators.required],
       fechaEnabled: ['', Validators.required],
-      provincia: ['', Validators.required], 
       municipio: ['', Validators.required],
+      provincia: ['', Validators.required], 
+      //protectora: ['', Validators.required],
       raza: ['', Validators.required],
       especie: ['', Validators.required],
       tamano: ['', Validators.required],
@@ -64,7 +67,6 @@ export class AltaAnimalComponent {
     this.listadoProvincias();
     this.listadoMunicipiosProvincia();
     this.listadoEspecies();
-    //this.listadoRazas();
     this.listadoSexos();
     this.listadoTamanos();
     this.listadoRazasPorIdEspecie();
@@ -92,37 +94,37 @@ export class AltaAnimalComponent {
             },
           },
           protectora: {
-            idprotectora: 0,
+            idprotectora: 0, // la tendra que recoger del usuario
             nombre: ''
           },
           raza: {
-            idraza: 0,
+            idraza: this.altaForm.get('raza')?.value,
             raza: '',
             especie: {
-              idespecie: 0,
+              idespecie: this.altaForm.get('especie')?.value,
               especie: ''
             }
           },
           sexo: {
-            idsexo: 0,
+            idsexo: this.altaForm.get('sexo')?.value,
             sexo: ''
           },
           tamano: {
-            idtamano: 0,
+            idtamano: this.altaForm.get('tamano')?.value,
             tamano: ''
           },
           envio: this.altaForm.get('envio')?.value,
         };
         console.log(animal);
         this.guardarAnimal(animal);
-        this.IrListadoAnimales();
+        //this.IrListadoAnimales();
       }
     }
 
 
-    IrListadoAnimales(){
-      this.router.navigate(['/animales/listado']);
-    }
+    // IrListadoAnimales(){
+    //   this.router.navigate(['/animales/listado']);
+    // }
 
     guardarAnimal(animal: Animal){
       this._animalService.altaAnimal(animal)
