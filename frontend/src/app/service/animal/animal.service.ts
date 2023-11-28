@@ -40,7 +40,7 @@ export class AnimalService {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
     return this._httpClient.post(`${this.endpoint}/animales/gestion/alta`, 
-      animal.toString(), 
+      animal,                                     //.toString(), 
       {headers: headers })
       .pipe(catchError(this.manejarError));
   }
