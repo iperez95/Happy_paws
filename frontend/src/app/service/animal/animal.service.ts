@@ -36,7 +36,6 @@ export class AnimalService {
   }
 
   // Método para dar de alta un animal
-  
   public altaAnimal(animal: Animal): Observable<object> {
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -52,33 +51,17 @@ export class AnimalService {
       .pipe(catchError(this.manejarError));
   }
 
-
   // Método para modificar un animal
   public modificarAnimal(idanimal: number, animal : Animal): Observable<any> {
     return this._httpClient.put(`${this.endpoint}/animales/gestion/modificar/${idanimal}`, animal)
       .pipe(catchError(this.manejarError));
   }
 
-
-
-
   // Método para buscar animales por provincia
-  // public listarAnimalPorProvincia(provincia: string): Observable<any> {
-  //   return this._httpClient.get(`${this.endpoint}/animales/buscar/porprovincia/${provincia}`)
-  //     .pipe(catchError(this.manejarError));
-  // }
-
-    // Método para buscar animales por provincia
-    public listarAnimalPorIdProvincia(idprovincia: number): Observable<any> {
-      return this._httpClient.get(`${this.endpoint}/animales/buscar/poridprovincia/${idprovincia}`)
-        .pipe(catchError(this.manejarError));
-    }
-
-  // Método que lista todos los animales de una protectora por su nombre
-  // public listarAnimalPorProtectora(nombre: String): Observable<any> {
-  //   return this._httpClient.get(`${this.endpoint}/animales/buscar/porprotectora/${nombre}`)
-  //     .pipe( catchError(this.manejarError));
-  // }
+  public listarAnimalPorIdProvincia(idprovincia: number): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/animales/buscar/poridprovincia/${idprovincia}`)
+      .pipe(catchError(this.manejarError));
+  }
 
   //Método que lista todos los animales de una protectora por su id 
   public listarAnimalPorIdProtectora(idprotectora: number): Observable<any> {
@@ -110,13 +93,25 @@ export class AnimalService {
   .pipe( catchError(this.manejarError));
   }
 
+  // Método que lista todos los animales que son Perros
+  public listarPerros(): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/animales/buscar/soloperros`)
+  .pipe( catchError(this.manejarError));
+  }
 
+  // Método que lista todos los animales que son Gatos
+  public listarGatos(): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/animales/buscar/sologatos`)
+ .pipe( catchError(this.manejarError));
+  }
 
+  // Método para fotos del animal
   public fotosAnimal (idAnimal:number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/multimedia/animal/${idAnimal}`)
       .pipe(catchError(this.manejarError));
   }
 
+  // Método para subir foto de animal
   public subirFoto(archivo: File, id: number): Observable <Multimedia> {
     let formData = new FormData();
     formData.append("archivo", archivo);
@@ -127,14 +122,11 @@ export class AnimalService {
     );
   }
   
+  //Método para borrar foto de animal
   public borrarFoto(id: number): Observable<any> {
     return this._httpClient.delete(`${this.endpoint}/animales/gestion/borrarfoto/${id}`)
       .pipe(catchError(this.manejarError));
   }
-
-
-
-
 
     /**
    * Método que maneja los posibles errores de las llamadas al servicio rest

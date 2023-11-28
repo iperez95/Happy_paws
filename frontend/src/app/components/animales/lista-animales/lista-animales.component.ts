@@ -27,12 +27,8 @@ export class ListaAnimalesComponent {
   public listar(){
     this._animalService.listarAnimales().subscribe(dato => {
       this.listaAnimales = dato;
-      console.log(this.listaAnimales);
     });    
   }
-   public irAltaAnimal() {
-    this.router.navigate(['/animales/gestion/alta']);
-   }
 
    private getRazas():void {
     this._razaService.listarRazas().subscribe({

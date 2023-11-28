@@ -107,4 +107,14 @@ public class AnimalDao implements IAnimalDao{
     public List<Animal> buscarPorEnvio(boolean envio) {
         return aniRepo.buscarPorEnvio(envio);
     }
+
+    @Override
+    public List<Animal> buscarSoloPerros() {
+        return aniRepo.buscarSoloPerros();
+    }
+
+    @Override
+    public List<Animal> buscarSoloGatos() {
+        return aniRepo.buscarSoloGatos();
+    }
 }
