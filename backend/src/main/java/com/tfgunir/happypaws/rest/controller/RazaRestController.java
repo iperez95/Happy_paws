@@ -48,4 +48,15 @@ public class RazaRestController {
          }
      }
 
+     //Controlador para buscar razas por Id de especie
+    @GetMapping(path="/razasDeUnaEspecie/{idespecie}", produces = "application/json")
+    public ResponseEntity<Iterable<Raza>> listadoRazasPorIdEspecie (@PathVariable("idespecie") int idespecie) {
+       
+        Iterable<Raza> listado = razDao.razasPorIdEspecie(idespecie);
+        if (listado!=null)
+            return ResponseEntity.ok(listado);
+        else
+            return ResponseEntity.notFound().build();
+    }
+
 }

@@ -25,6 +25,11 @@ public listarRazas(): Observable<any>{
      .pipe(catchError(this.manejarError));
   }
 
+  public listarRazasDeUnaEspecie(idespecie: string): Observable<any>{
+    return this._httpClient.get(`${this.endpoint}/atributos/razasDeUnaEspecie/${idespecie}`)
+    .pipe(catchError(this.manejarError));
+  }
+
 
 
     /**

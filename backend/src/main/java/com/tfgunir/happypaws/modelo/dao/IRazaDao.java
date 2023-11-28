@@ -9,5 +9,6 @@ public interface IRazaDao {
 
     Raza buscarRazaId (int idraza);
     List<Raza> buscarTodos();
+    List<Raza> razasPorIdEspecie(int idespecie);
 
 } 
