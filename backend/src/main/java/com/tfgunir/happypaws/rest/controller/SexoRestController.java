@@ -37,7 +37,7 @@ public class SexoRestController {
     }
 
     //Controlador para buscar sexo por id
-    @GetMapping(path = "/sexoa/buscar/{id}", produces ="application/json")
+    @GetMapping(path = "/sexo/buscar/{id}", produces ="application/json")
     public ResponseEntity<Sexo> buscarSexoId(@PathVariable int id){
         Sexo sexo = sexDao.buscarSexoId(id);
         if (sexo!= null) {
