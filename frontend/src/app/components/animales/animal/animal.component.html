@@ -1,4 +1,4 @@
-<!-- Componente que muestra una ficha con algunos de los datos de un animal --> 
+<!-- Componente que muestra una ficha con algunos de los datos de un animal -->
   <div class="container mt-4 style=width:500px">
     <div class="row">
         <!-- Imagen -->
@@ -20,20 +20,20 @@
     <div class="row mt-4">
         <!-- Localización -->
         <div class="col-md-12">
-         <!--   <p>{{animal.municipio.provincia.provincia}}</p>    -->
+        <p>{{animal.municipio.provincia.provincia}}</p>
         </div>
     </div>
 
     <div class="row mt-4">
         <!-- Atributos: Sexo, Raza, Tamaño, Envío -->
         <div class="col-md-3">
-            <p>{{animal.sexo.sexo}}</p>
+            <p>{{animal.sexo?.sexo}}</p>
         </div>
         <div class="col-md-3">
-            <p>{{animal.raza.raza}}</p>
+            <p>{{animal.raza?.raza}}</p>
         </div>
         <div class="col-md-3">
-            <p>{{animal.tamano.tamano}}</p>
+            <p>{{animal.tamano?.tamano}}</p>
         </div>
         <div class="col-md-3">
             <p>Envio: {{animal.envio ? "Si" : "No"}}</p>

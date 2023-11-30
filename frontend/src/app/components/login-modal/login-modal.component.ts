@@ -26,10 +26,9 @@ export class LoginModalComponent implements OnInit {
 
   onSubmitLogin(): void {
     const data = { email: this.email, password: this.password };
-    
+
     this.axiosService.request("POST", '/api/login', data)
     .then(response => {
-      localStorage.setItem("id", response.data.id)
       this.authService.setLoggedIn(true); // Update the loggedIn property
       this.axiosService.setAuthToken(response.data.token); // Save the token in the local storage
       this.dialogRef.close();
@@ -37,7 +36,7 @@ export class LoginModalComponent implements OnInit {
     })
     .catch(error => {
       console.log('Login error:', error);
-      
+
       switch (error.response.status) {
         case 404:
           this.errorMessage = "Usuario o contraseña incorrectos";

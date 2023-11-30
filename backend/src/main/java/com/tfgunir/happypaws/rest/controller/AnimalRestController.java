@@ -32,93 +32,99 @@ import com.tfgunir.happypaws.modelo.entities.Protectora;
 
 @Controller
 @RequestMapping("/animales")
-@CrossOrigin(origins ="*")
+@CrossOrigin(origins = "*")
 public class AnimalRestController {
-    
-     @Autowired
-     private AnimalDao aniDao;
 
-     @Autowired MultimediaDao multiDao;
+    @Autowired
+    private AnimalDao aniDao;
+
+    @Autowired
+    MultimediaDao multiDao;
 
     // Controlador para el listado de animales
-    @GetMapping(path="/listado", produces = "application/json")
+    @GetMapping(path = "/listado", produces = "application/json")
     public ResponseEntity<List<Animal>> listadoAnimales() {
 
-    List<Animal> listado = aniDao.buscarTodos();
-    if (listado != null && !listado.isEmpty()) {
-        return ResponseEntity.ok(listado);
-    } else {
-        return ResponseEntity.notFound().build();
+        List<Animal> listado = aniDao.buscarTodos();
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-}
 
     // Controlador para ver un animal
-    @GetMapping(path="/verUno/{id}", produces = "application/json")
+    @GetMapping(path = "/verUno/{id}", produces = "application/json")
     public ResponseEntity<Animal> verPorId(@PathVariable("id") int id) {
 
-    Animal animal = aniDao.buscarAnimalId(id);
-    if (animal != null) {
-        return ResponseEntity.ok(animal);
-    } else {
-        return ResponseEntity.notFound().build();
+        Animal animal = aniDao.buscarAnimalId(id);
+        if (animal != null) {
+            return ResponseEntity.ok(animal);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-}
 
     // Controlador para dar de alta un animal
-    @PostMapping(path="/gestion/alta", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<?> altaAnimal(@RequestBody Animal animal) {
-    if (aniDao.altaAnimal(animal)) {
-        return ResponseEntity.ok("Animal creado correctamente");
-    } else {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al crear el animal");
+    @PostMapping(path = "/gestion/alta")
+    public ResponseEntity<Map<String, String>> altaAnimal(@RequestBody Animal animal) {
+        Map<String, String> response = new HashMap<>();
+        if (aniDao.altaAnimal(animal)) {
+            response.put("message", "Animal creado correctamente");
+            return ResponseEntity.ok(response);
+        } else {
+            response.put("message", "Error al crear el animal");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
-}
 
     // Controlador para eliminar un animal
-    @DeleteMapping(path="/gestion/eliminar/{id}")
+    @DeleteMapping(path = "/gestion/eliminar/{id}")
     public ResponseEntity<?> eliminarAnimal(@PathVariable("id") int id) {
-
-    if (aniDao.borrarAnimal(id)) {
-        return ResponseEntity.ok("Animal eliminado correctamente");
-    } else {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al eliminar el animal");
+        Map<String, String> response = new HashMap<>();
+        if (aniDao.borrarAnimal(id)) {
+            return ResponseEntity.ok(response.put("message", "Animal eliminado correctamente"));
+        } else {
+            response.put("message", "Error al eliminar el animal");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
-}
+
     // Controlador para modificar un animal
-    @GetMapping(path="/gestion/modificar/{id}", produces = "application/json")
+    @GetMapping(path = "/gestion/modificar/{id}", produces = "application/json")
     public ResponseEntity<Animal> obtenerAnimal(@PathVariable("id") int id) {
-    Animal animal = aniDao.buscarAnimalId(id);
-    if (animal != null) {
-        return ResponseEntity.ok(animal);
-    } else {
-        return ResponseEntity.notFound().build();
+        Animal animal = aniDao.buscarAnimalId(id);
+        if (animal != null) {
+            return ResponseEntity.ok(animal);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
-}
 
-    @PutMapping(path="/gestion/modificar/{id}", consumes = "application/json")
+    @PutMapping(path = "/gestion/modificar/{id}", consumes = "application/json")
     public ResponseEntity<?> modificarAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {
-    animal.setIdanimal(id);
-    if (aniDao.modificarAnimal(animal)) {
-        return ResponseEntity.ok("Animal editado correctamente");
-    } else {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al editar el animal");
+        animal.setIdanimal(id);
+        if (aniDao.modificarAnimal(animal)) {
+            return ResponseEntity.ok("Animal editado correctamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al editar el animal");
+        }
     }
-}
 
     // Controlador para cambiar enabled a un animal
-    @PutMapping(path="/gestion/enabled/{id}", consumes = "application/json")    
-    public ResponseEntity<?> enabledAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {    
+    @PutMapping(path = "/gestion/enabled/{id}", consumes = "application/json")
+    public ResponseEntity<?> enabledAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {
 
-    animal.setIdanimal(id);
-    if (aniDao.enabledAnimal(animal) == true) {
-        return ResponseEntity.ok("Animal habilitado correctamente");
-    } else {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al habilitar el animal");
+        animal.setIdanimal(id);
+        if (aniDao.enabledAnimal(animal) == true) {
+            return ResponseEntity.ok("Animal habilitado correctamente");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al habilitar el animal");
+        }
     }
-}
 
     // Controlador para buscar animales por ID municipio
-    @GetMapping(path="/buscar/poridmunicipio/{idmunicipio}", produces = "application/json")
+    @GetMapping(path = "/buscar/poridmunicipio/{idmunicipio}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIdMunicipio(@PathVariable("idmunicipio") int idmunicipio) {
 
         List<Animal> listado = aniDao.buscarPorIdMunicipio(idmunicipio);
@@ -130,7 +136,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por ID provincia
-    @GetMapping(path="/buscar/poridprovincia/{idprovincia}", produces = "application/json")
+    @GetMapping(path = "/buscar/poridprovincia/{idprovincia}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIDProvincia(@PathVariable("idprovincia") int idprovincia) {
 
         List<Animal> listado = aniDao.buscarPorIdProvincia(idprovincia);
@@ -142,19 +148,19 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por id protectora
-    @GetMapping(path="/buscar/poridprotectora/{idprotectora}", produces = "application/json")
+    @GetMapping(path = "/buscar/poridprotectora/{idprotectora}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIdProtectora(@PathVariable("idprotectora") int idprotectora) {
 
-     List<Animal> listado = aniDao.buscarPorIdProtectora(idprotectora);
-     if (listado != null && !listado.isEmpty()) {
-        return ResponseEntity.ok(listado);
-    } else {
-         return ResponseEntity.notFound().build();
-     }
-  }
+        List<Animal> listado = aniDao.buscarPorIdProtectora(idprotectora);
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     // Controlador para buscar animales por especie
-    @GetMapping(path="/buscar/porespecie/{idespecie}", produces = "application/json")
+    @GetMapping(path = "/buscar/porespecie/{idespecie}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorEspecie(@PathVariable("idespecie") int idespecie) {
 
         List<Animal> listado = aniDao.buscarPorEspecie(idespecie);
@@ -166,7 +172,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por sexo
-    @GetMapping(path="/buscar/porsexo/{idsexo}", produces = "application/json")
+    @GetMapping(path = "/buscar/porsexo/{idsexo}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorSexo(@PathVariable("idsexo") int idsexo) {
 
         List<Animal> listado = aniDao.buscarPorSexo(idsexo);
@@ -178,7 +184,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por raza
-    @GetMapping(path="/buscar/porraza/{idraza}", produces = "application/json")
+    @GetMapping(path = "/buscar/porraza/{idraza}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorRaza(@PathVariable("idraza") int idraza) {
 
         List<Animal> listado = aniDao.buscarPorRaza(idraza);
@@ -190,7 +196,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por tamaño
-    @GetMapping(path="/buscar/portamano/{idtamano}", produces = "application/json")
+    @GetMapping(path = "/buscar/portamano/{idtamano}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorTamaño(@PathVariable("idtamano") int idtamano) {
 
         List<Animal> listado = aniDao.buscarPorTamaño(idtamano);
@@ -202,7 +208,7 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar animales por envío
-    @GetMapping(path="/buscar/porenvio/{idenvio}", produces = "application/json")
+    @GetMapping(path = "/buscar/porenvio/{idenvio}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorEnvío(@PathVariable("idenvio") boolean envio) {
 
         List<Animal> listado = aniDao.buscarPorEnvio(envio);
@@ -214,44 +220,43 @@ public class AnimalRestController {
     }
 
     // Controlador para buscar Perros
-    @GetMapping(path="/buscar/soloperros", produces = "application/json")
+    @GetMapping(path = "/buscar/soloperros", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarSoloPerros() {
 
-    List<Animal> listado = aniDao.buscarSoloPerros();
-    if (listado != null && !listado.isEmpty()) {
-        return ResponseEntity.ok(listado);
-    } else {
-        return ResponseEntity.notFound().build();
+        List<Animal> listado = aniDao.buscarSoloPerros();
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
     // Controlador para buscar Gatos
-    @GetMapping(path="/buscar/sologatos", produces = "application/json")
+    @GetMapping(path = "/buscar/sologatos", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarSoloGatos() {
 
-    List<Animal> listado = aniDao.buscarSoloGatos();
-    if (listado != null && !listado.isEmpty()) {
-        return ResponseEntity.ok(listado);
-    } else {
-        return ResponseEntity.notFound().build();
+        List<Animal> listado = aniDao.buscarSoloGatos();
+        if (listado != null && !listado.isEmpty()) {
+            return ResponseEntity.ok(listado);
+        } else {
+            return ResponseEntity.notFound().build();
         }
     }
 
 
-
     // SUBIR FOTO ANIMAL
-    @GetMapping(path="/gestion/subirfoto/{id}", produces = "application/json")
-    public ResponseEntity<Animal> subirFoto (@PathVariable("id")int id){
-        System.out.println("Buscando protectora con id: "+id);
+    @GetMapping(path = "/gestion/subirfoto/{id}", produces = "application/json")
+    public ResponseEntity<Animal> subirFoto(@PathVariable("id") int id) {
+        System.out.println("Buscando protectora con id: " + id);
         Animal animal = aniDao.buscarAnimalId(id);
-        if (animal!=null)
+        if (animal != null)
             return ResponseEntity.ok(animal);
         else
             return ResponseEntity.notFound().build();
     }
 
     //AÑADE EL LOGO SUBIDO A LA PROTECTRA
-    @PostMapping(path="/gestion/upload")
+    @PostMapping(path = "/gestion/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
         Map<String, Object> response = new HashMap<>();
 
@@ -260,8 +265,8 @@ public class AnimalRestController {
         Multimedia multimedia = new Multimedia();
 
         if (!archivo.isEmpty()) {
-        
-            String nombreArchivo = UUID.randomUUID().toString() +"_" + archivo.getOriginalFilename().replace(" ", "");
+
+            String nombreArchivo = UUID.randomUUID().toString() + "_" + archivo.getOriginalFilename().replace(" ", "");
             Path rutaArchivo = Paths.get("..//frontend//src//assets//images//animales//" + id).resolve(nombreArchivo).toAbsolutePath();
 
             try {
@@ -272,7 +277,7 @@ public class AnimalRestController {
                 multimedia.setEnlace("/assets/images/animales/" + id + "/" + nombreArchivo);
                 multimedia.setAnimal(animal);
                 multiDao.altaMultimedia(multimedia);
-                
+
                 response.put("multimedia", multimedia);
                 response.put("mensaje", "Has subido correctamente la imagen: " + nombreArchivo);
 
@@ -282,12 +287,12 @@ public class AnimalRestController {
                 return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
-        
+
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
     //Borrar foto animal
-    @DeleteMapping(path="/gestion/borrarfoto/{id}")
+    @DeleteMapping(path = "/gestion/borrarfoto/{id}")
     public ResponseEntity<?> borrarFoto(@PathVariable("id") int id) {
         Map<String, Object> response = new HashMap<>();
         try {
@@ -334,6 +339,5 @@ public class AnimalRestController {
     //     }
     // }
 
-  
-        
+
 }

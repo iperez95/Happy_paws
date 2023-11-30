@@ -25,7 +25,7 @@
   </div>
   <div class="row">
     <div class="col">
-    <!--  <p>Provincia: {{ animal.municipio.provincia.provincia }}</p>   -->
+    <p>Provincia: {{ animal.municipio.provincia.provincia }}</p>
       <p>Protectora: {{ animal.protectora.nombre }}</p>
       <p>Envío: {{ animal.envio ? "Puede viajar" : "No puede viajar" }}</p>
     </div>
@@ -35,10 +35,10 @@
   <div class="row">
     <div class="col">
       <h2>DETALLES</h2>
-<!--      <p>Especie: {{ animal.raza.especie.especie }}</p> -->
-      <p>Raza: {{ animal.raza.raza }}</p>
-      <p>Sexo: {{ animal.sexo.sexo }}</p>
-      <p>Tamaño: {{ animal.tamano.tamano }}</p>
+      <p>Especie: {{ animal.raza.especie.especie }}</p>
+      <p>Raza: {{ animal.raza?.raza }}</p>
+      <p>Sexo: {{ animal.sexo?.sexo }}</p>
+      <p>Tamaño: {{ animal.tamano?.tamano }}</p>
       <p>Edad: {{ getAnimalAge(animal.fechaNacimiento) }}</p>
     </div>
   </div>

@@ -20,7 +20,7 @@ export class GestionAnimalComponent {
   public idUsuario : number;
   public idProtectora : number;
 
-  constructor(private _animalService : AnimalService, private router :Router, private _protrectoraService: ProtectoraService) { 
+  constructor(private _animalService : AnimalService, private router :Router, private _protrectoraService: ProtectoraService) {
   }
 
   ngOnInit():void {
@@ -29,10 +29,10 @@ export class GestionAnimalComponent {
   }
 
   public obtenerIdUsuario():void{
-    let id: string;     
+    let id: string;
     if(localStorage.getItem("id") != null){
       id = localStorage.getItem("id") as string;
-      this.idUsuario = parseInt(id);    
+      this.idUsuario = parseInt(id);
     }
   }
 
@@ -62,12 +62,15 @@ export class GestionAnimalComponent {
    }
 
    public borrarAnimal(idanimal: number){
-    this._animalService.eliminarAnimal(idanimal).subscribe(() => {
-      this.router.navigate(['/animales/gestion']);
-    },
-    (error) => {
-      console.error("Error al eliminar el animal:", error);
+    this._animalService.eliminarAnimal(idanimal).subscribe({
+      next: (res) => {
+        location.reload();
+      },
+      error: (err) => {
+        console.error(err);
+      }
     });
-    
+
    }
+
 }

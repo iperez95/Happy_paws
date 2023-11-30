@@ -12,14 +12,14 @@ import { Multimedia } from 'src/app/entidades/multimedia';
 
 export class AnimalService {
 
-  
+
   //URL del servicio Rest
   readonly endpoint = axios.defaults.baseURL;
   //readonly endpoint = 'http://localhost:8087';
 
     /**
    * Encargado de hacer las peticiones HTTP a nuestro servicio REST
-   * @param _httpClient 
+   * @param _httpClient
    */
   //constructor(private _httpClient : HttpClient, private axiosService: AxiosService) { }
   constructor(private _httpClient : HttpClient) { }
@@ -36,12 +36,10 @@ export class AnimalService {
   }
 
   // Método para dar de alta un animal
-  public altaAnimal(animal: Animal): Observable<object> {
-    let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this._httpClient.post(`${this.endpoint}/animales/gestion/alta`, 
-      animal,                                     //.toString(), 
-      {headers: headers })
+  public altaAnimal(animal: Animal): Observable<any> {
+    return this
+      ._httpClient
+      .post<any>(`${this.endpoint}/animales/gestion/alta`, animal)
       .pipe(catchError(this.manejarError));
   }
 
@@ -63,11 +61,11 @@ export class AnimalService {
       .pipe(catchError(this.manejarError));
   }
 
-  //Método que lista todos los animales de una protectora por su id 
+  //Método que lista todos los animales de una protectora por su id
   public listarAnimalPorIdProtectora(idprotectora: number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/animales/buscar/poridprotectora/${idprotectora}`)
-      .pipe( catchError(this.manejarError));  
-  }                 
+      .pipe( catchError(this.manejarError));
+  }
 
   // Método que lista todos los animales de una raza
   public listarAnimalPorRaza(idraza: number): Observable<any> {
@@ -81,7 +79,7 @@ export class AnimalService {
     .pipe( catchError(this.manejarError));
   }
 
-  // Método que lista todos los animales de un sexo  
+  // Método que lista todos los animales de un sexo
   public listarAnimalPorSexo(idsexo: number): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/animales/buscar/porsexo/${idsexo}`)
    .pipe( catchError(this.manejarError));
@@ -121,7 +119,7 @@ export class AnimalService {
     catchError(this.manejarError)
     );
   }
-  
+
   //Método para borrar foto de animal
   public borrarFoto(id: number): Observable<any> {
     return this._httpClient.delete(`${this.endpoint}/animales/gestion/borrarfoto/${id}`)
@@ -130,7 +128,7 @@ export class AnimalService {
 
     /**
    * Método que maneja los posibles errores de las llamadas al servicio rest
-   * @param error 
+   * @param error
    * @returns un objeto de tipo Observable que contendrá el error que ha ocurrido
    */
     private manejarError(e: HttpErrorResponse){
@@ -140,11 +138,13 @@ export class AnimalService {
         mensajeError = 'Ha ocurrido un error:' + e.error
       } else {
         mensajeError = `El servicio Rest retorno: Status: ${e.status}, ` +
-              `Body: ${e.error}`
+              `Body:`
       }
       //Imprimimos el mensaje de error y lo arrojamos médiante una función lambda
       //Esta manerá tenemos que hacerla así cuando trabajamos con Observables.
-      console.error(mensajeError)
+      console.error(mensajeError);
+      console.error(e.error);
+      console.error(e.status);
       return throwError(() => new Error(mensajeError));
     }
 

@@ -1,20 +1,25 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Animal } from 'src/app/entidades/animal';
-import { AnimalService } from 'src/app/service/animal/animal.service';
-import { Municipio } from 'src/app/entidades/municipio';
-import { Provincia } from 'src/app/entidades/provincia';
-import { Router } from '@angular/router';
-import { LocationService } from 'src/app/service/localizacion/location.service';
-import { Raza } from 'src/app/entidades/raza';
-import { Tamano } from 'src/app/entidades/tamano';
-import { Especie } from 'src/app/entidades/especie';
-import { Protectora } from 'src/app/entidades/protectora';
-import { Sexo } from 'src/app/entidades/sexo';
-import { EspecieService } from 'src/app/service/especie/especie.service';
-import { RazaService } from 'src/app/service/raza/raza.service';
-import { SexoService } from 'src/app/service/sexo/sexo.service';
-import { TamanosService } from 'src/app/service/tamano/tamano.service';
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Animal} from 'src/app/entidades/animal';
+import {AnimalService} from 'src/app/service/animal/animal.service';
+import {Municipio} from 'src/app/entidades/municipio';
+import {Provincia} from 'src/app/entidades/provincia';
+import {Router} from '@angular/router';
+import {LocationService} from 'src/app/service/localizacion/location.service';
+import {Raza} from 'src/app/entidades/raza';
+import {Tamano} from 'src/app/entidades/tamano';
+import {Especie} from 'src/app/entidades/especie';
+import {Protectora} from 'src/app/entidades/protectora';
+import {Sexo} from 'src/app/entidades/sexo';
+import {EspecieService} from 'src/app/service/especie/especie.service';
+import {RazaService} from 'src/app/service/raza/raza.service';
+import {SexoService} from 'src/app/service/sexo/sexo.service';
+import {TamanosService} from 'src/app/service/tamano/tamano.service';
+import {A} from "@angular/cdk/keycodes";
+import {UsuarioService} from "../../../../service/usuario/usuario.service";
+import {ProtectoraService} from "../../../../service/protectora/protectora.service";
+import {Usuario} from "../../../../entidades/usuario";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -25,223 +30,214 @@ import { TamanosService } from 'src/app/service/tamano/tamano.service';
 export class AltaAnimalComponent {
 
   altaForm: FormGroup;
-
   provincias: Provincia [] = [];
   municipios: Municipio [] = [];
   razas: Raza [] = [];
   especies: Especie [] = [];
   tamanos: Tamano [] = [];
   sexos: Sexo [] = [];
-
-  municipio : Municipio = new Municipio();
-  provincia : Provincia =  new Provincia();
-  raza : Raza = new Raza();
-  especie : Especie = new Especie();
-  tamano : Tamano = new Tamano();
+  municipio: Municipio = new Municipio();
+  provincia: Provincia = new Provincia();
+  raza: Raza = new Raza();
+  especie: Especie = new Especie();
+  tamano: Tamano = new Tamano();
   sexo: Sexo = new Sexo;
+  enabled: boolean = true;
+  public protectora: Protectora;
 
-  provinciaSeleccionadaId: number;
-  especieSeleccionadaId: number;
+
+  constructor(
+    private fb: FormBuilder, private _animalService: AnimalService, private router: Router,
+    private _locationService: LocationService, private _especieService: EspecieService,
+    private _razaService: RazaService, private _sexoService: SexoService, private _tamanoService: TamanosService,
+    private _usuarioService: UsuarioService, private _protectoraService: ProtectoraService
+  ) {}
 
 
-  constructor(private fb: FormBuilder, private _animalService : AnimalService, private router: Router, private _locationService: LocationService, private _especieService: EspecieService, private _razaService: RazaService, private _sexoService: SexoService, private _tamanoService: TamanosService) {  
+  public ngOnInit(): void {
+
     this.altaForm = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
       fechaNacimiento: ['', Validators.required],
-      fechaAlta: ['', Validators.required],
-      enabled: ['', Validators.required],
-      fechaEnabled: ['', Validators.required],
+      fechaEnabled: [new Date, Validators.required],
       municipio: ['', Validators.required],
-      provincia: ['', Validators.required], 
-      //protectora: ['', Validators.required],
+      provincia: ['', Validators.required],
       raza: ['', Validators.required],
       especie: ['', Validators.required],
       tamano: ['', Validators.required],
       sexo: ['', Validators.required],
       envio: ['', Validators.required]
     });
-   }
 
-   ngOnInit() {
-    // this.listadoProvincias();
-    // this.listadoMunicipiosProvincia();
-    // this.listadoEspecies();
-    // this.listadoSexos();
-    // this.listadoTamanos();
-    // this.listadoRazasPorIdEspecie();
+    this.listadoProvincias();
+    this.listadoMunicipiosProvincia();
+    this.listadoEspecies();
+    this.listadoSexos();
+    this.listadoTamanos();
+    this.listadoRazasPorIdEspecie();
+    this.obtenerProtectora();
+
   }
 
-  enabled: boolean = true;
+  public onSubmit(): void {
+    this.crearAnimal();
+  }
 
-    onSubmit() {
-      if (this.altaForm.valid) {
-        // Crear instancia de Animal y asignar valores
-        //const animal: Animal = {
+  private crearAnimal(): void {
+    if (this.altaForm.valid) {
+      // Crear instancia de Animal y asignar valores
+      const animal: Animal = {
+        idanimal: 0,
+        descripcion: this.altaForm.get('descripcion')?.value,
+        enabled: true,
+        envio: this.altaForm.get('envio')?.value,
+        fechaAlta: new Date,
+        fechaNacimiento: this.altaForm.get('fechaNacimiento')?.value,
+        municipio: this.obtenerMunicipio(this.altaForm.get('municipio')?.value),
+        protectora: this.protectora,
+        nombre: this.altaForm.get('nombre')?.value,
+        raza: this.obtenerRaza(this.altaForm.get('raza')?.value),
+        sexo: this.obtenerSexo(this.altaForm.get('sexo')?.value),
+        tamano: this.obtenerTanyo(this.altaForm.get('tamano')?.value),
+        fecha_enabled: new Date,
+      };
 
-          // descripcion: "Es un lindo gatito que siempre tiene hambre igual que su amiguito Thor, su enamorado",
-          // enabled: true,
-          // envio: false,
-          // fechaAlta: new Date,
-          // fechaNacimiento: new Date,
-          // municipio: {
-          //     idmunicipio: 105,
-          //     municipio: "Adrada de Haza",
-          //     provincia: {
-          //         idprovincia: 9,
-          //         provincia: "Burgos"
-          //     }
-          // },
-          // protectora: {
-          //     idprotectora: 1,
-          //     descripcion: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-          //     direccion: "C/ de la protectora 1, 128715 Malaga",
-          //     nombre: "Protectora 1",
-          //     email: "protectora1@email.com",
-          //     telefono: 652369852,
-          //     urlLogo: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.es%2Fpin%2F562598178429991282%2F&psig=AOvVaw1Y42vo2v7EWdXB7mTk8yTs&ust=1697219555160000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOjr4deJ8YEDFQAAAAAdAAAAABAE",
-          //     estadosprotectora: {
-          //         idestadoprotectora: 1,
-          //         estado: "Activo"
-          //     },
-          //     municipio: {
-          //         idmunicipio: 5441,
-          //         municipio: "Torrejón de Ardoz",
-          //         provincia: {
-          //             idprovincia: 28,
-          //             provincia: "Madrid"
-          //         }
-          //     },
-          //     usuario: null
-          // },
-          // nombre: "Thorina",
-          // raza: {
-          //     idraza: 7,
-          //     raza: "Angora",
-          //     especie: {
-          //         idespecie: 2,
-          //         especie: "Gato"
-          //     }
-          // },
-          // sexo: {
-          //     idsexo: 1,
-          //     sexo: "Macho"
-          // },
-          // tamano: {
-          //     idtamano: 1,
-          //     tamano: "Grande"
-          // },
-          // fecha_enabled: null
-      }
+      this.guardarAnimal(animal);
+    }
+  }
 
+  private obtenerProtectora(): void {
+    const user: Usuario | null | undefined = this._usuarioService.getUserData();
+    if (user) {
+      this._protectoraService.obtenerProtectoraPorIdUsuario(user.id).subscribe({
+        next: (res) => {
+          this.protectora = res;
+        },
+        error: (err) => {
+          console.error(err)
+        }
+      });
+    }
+  }
 
-
-
-                    //     ESTO ES LO QUE HABIA ANTES
-
-        //   idanimal: 0,
-        //   nombre: this.altaForm.get('nombre')?.value,
-        //   descripcion: this.altaForm.get('descripcion')?.value,
-        //   fechaNacimiento: this.altaForm.get('fechaNacimiento')?.value,
-        //   fechaAlta: new Date(),
-        //   enabled: this.altaForm.get('enabled')?.value,  // aqui seria true
-        //   fechaEnabled: new Date(),
-        //   municipio: {
-        //     idmunicipio: this.altaForm.get('municipio')?.value,
-        //     municipio: '',
-        //     provincia: {
-        //       idprovincia: this.altaForm.get('provincia')?.value,
-        //       provincia: '', // No es necesario enviar este valor al backend
-        //     },
-        //   },
-        //   protectora: {
-        //     idprotectora: 5, // la tendra que recoger del usuario
-        //     nombre: ''
-        //   },
-        //   raza: {
-        //     idraza: this.altaForm.get('raza')?.value,
-        //     raza: '',
-        //     especie: {
-        //       idespecie: this.altaForm.get('especie')?.value,
-        //       especie: ''
-        //     }
-        //   },
-        //   sexo: {
-        //     idsexo: this.altaForm.get('sexo')?.value,
-        //     sexo: ''
-        //   },
-        //   tamano: {
-        //     idtamano: this.altaForm.get('tamano')?.value,
-        //     tamano: ''
-        //   },
-        //   envio: this.altaForm.get('envio')?.value,
-        // };
-        //console.log(animal);
-        //this.guardarAnimal(animal);
-        //this.IrListadoAnimales();
+  private obtenerSexo(id: number): Sexo | null {
+    let valor = null;
+    for (let sexo of this.sexos) {
+      if (sexo.idsexo == id) {
+        valor = sexo;
+        break;
       }
     }
+    return valor;
+  }
 
+  private obtenerTanyo(id: number): Tamano | null {
+    let valor = null;
+    for (let tamanyo of this.tamanos) {
+      if (tamanyo.idtamano == id) {
+        valor = tamanyo;
+        break;
+      }
+    }
+    return valor;
+  }
 
-    // IrListadoAnimales(){
-    //   this.router.navigate(['/animales/listado']);
-    // }
+  private obtenerRaza(id: number): Raza | null {
+    let valor = null;
+    for (let raza of this.razas) {
+      if (raza.idraza == id) {
+        valor = raza;
+        break;
+      }
+    }
+    return valor;
+  }
 
-//     guardarAnimal(animal: Animal){
-//       this._animalService.altaAnimal(animal)
-//       .subscribe({
-//         next: response => console.log(response),
-//         error: error => console.log(error),
-//         complete: () => {
-//           this.router.navigate(['/animales/listado']),
-//           console.log('Alta de Animal Realizada')
-//           }
-//         })
-//       }  
-    
-//     private listadoProvincias() {
-//       this._locationService.listarProvincias()
-//         .subscribe((data: any[]) => {
-//           this.provincias = data;
-//         });
-//     }
+  private obtenerMunicipio(id: number): Municipio | null {
+    let valor = null;
+    for (let municipio of this.municipios) {
+      if (municipio.idmunicipio == id) {
+        valor = municipio;
+        break;
+      }
+    }
+    return valor;
+  }
 
-//     private listadoMunicipiosProvincia() {
-//       this.altaForm.get('provincia')?.valueChanges.subscribe(idProvincia => {
-//         this._locationService.listarMunicipiosDeUnaProvincia(idProvincia).subscribe((municipios: any[]) => {
-//           this.municipios = municipios;
-         
-//         });
-//       });
-//     }  
-    
-//     private listadoEspecies(){
-//       this._especieService.listarEspecies()
-//        .subscribe((data: any[]) => {
-//           this.especies = data;
-//         });  
-//     }
+  private guardarAnimal(animal: Animal): void {
+    this
+      ._animalService
+      .altaAnimal(animal)
+      .subscribe({
+        complete: () => {
+          this.router.navigate(['/protectora/gestion']);
+        }
+      })
+  }
 
-//     private listadoRazasPorIdEspecie(){
-//       this.altaForm.get('especie')?.valueChanges.subscribe(idEspecie => {
-//         this._razaService.listarRazasDeUnaEspecie(idEspecie).subscribe((razas: any[]) => {
-//           this.razas = razas;
-//         });
-//       });
-//     }
+  private listadoProvincias() {
+    this
+      ._locationService
+      .listarProvincias()
+      .subscribe((data: any[]) => {
+        this.provincias = data;
+      });
+  }
 
-//     private listadoSexos(){
-//       this._sexoService.listarSexos()
-//       .subscribe((data: any[]) => {
-//           this.sexos = data;
-//         });
-//     }
+  private listadoMunicipiosProvincia() {
+    this
+      .altaForm
+      .get('provincia')
+      ?.valueChanges
+      .subscribe(idProvincia => {
+        this
+          ._locationService
+          .listarMunicipiosDeUnaProvincia(idProvincia)
+          .subscribe((municipios: any[]) => {
+            this.municipios = municipios;
+          });
+      });
+  }
 
-//     private listadoTamanos(){
-//       this._tamanoService.listarTamanos()
-//      .subscribe((data: any[]) => {
-//       this.tamanos = data;
-//     });
-//   }
+  private listadoEspecies() {
+    this
+      ._especieService
+      .listarEspecies()
+      .subscribe((data: any[]) => {
+        this.especies = data;
+      });
+  }
 
-// }
+  private listadoRazasPorIdEspecie() {
+    this
+      .altaForm
+      .get('especie')
+      ?.valueChanges
+      .subscribe(idEspecie => {
+        this
+          ._razaService
+          .listarRazasDeUnaEspecie(idEspecie)
+          .subscribe((razas: any[]) => {
+            this.razas = razas;
+          });
+      });
+  }
+
+  private listadoSexos() {
+    this
+      ._sexoService
+      .listarSexos()
+      .subscribe((data: any[]) => {
+        this.sexos = data;
+      });
+  }
+
+  private listadoTamanos() {
+    this._tamanoService.listarTamanos()
+      .subscribe((data: any[]) => {
+        this.tamanos = data;
+      });
+  }
+
+}
