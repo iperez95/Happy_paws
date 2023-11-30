@@ -1,10 +1,17 @@
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Modificar Animal en HappyPaws</h3>
+    <h3 class="text-center">Modificar Animal en HappyPaws</h3><br>
     <form (ngSubmit)="onSubmit()">
       <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-        <label class="form-check-label" for="flexSwitchCheckChecked">Checked switch checkbox input</label>
-      </div>
+        <div class="row">
+          <div class="col-9 text-left">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+            <label class="form-check-label ms-4" for="flexSwitchCheckChecked"><h3>Disponibilidad</h3></label>
+          </div>
+          <div class="col-3 text-right">
+            <button class="btn btn-light" (click)="irGestionAnimal()">Volver atras</button>
+          </div>
+        </div>
+      </div><br>
         <div class="form-group mt-3">
             <label class="col-md-3" for="nombre">Nombre:</label>
             <input type="text" class="form-control" [(ngModel)]="animal.nombre" name="nombre" id="nombre" required>
@@ -13,9 +20,9 @@
             <label class="col-md-3" for="fechaNacimiento">Fecha de Nacimiento:</label>
             <input type="date" class="form-control" [(ngModel)]="animal.fechaNacimiento" name="fechaNacimiento" id="fechaNacimiento" formControlName="fechaNacimiento" required>
           </div>
-        <!-- <div class="form-group mt-3">
-          <label for="especie">Especie:</label>
-          <select id="especie" class="form-control" [(ngModel)]="animal.fechaNacimiento" name="fechaNacimiento" formControlName="especie" required>
+        <div class="form-group mt-3">
+          <label class="col-md-3" for="especie">Especie:</label>
+          <select id="especie" class="form-control" [(ngModel)]="animal.raza.especie" name="especie" formControlName="especie" required>
             <option *ngFor="let especie of especies" [value]="especie.idespecie">{{especie.especie}}</option>
           </select>
         </div>
@@ -43,7 +50,7 @@
         </div>
         <div class="form-group mt-3">
           <label class="col-md-3" for="provincia">Provincia:</label>
-          <select id="provincia" class="form-control" [(ngModel)]="animal.provincia" name="provincia" formControlName="provincia" required>
+          <select id="provincia" class="form-control" [(ngModel)]="animal.municipio.provincia" name="provincia" formControlName="provincia" required>
             <option *ngFor="let provincia of provincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
           </select>
         </div>
@@ -54,12 +61,14 @@
           </select>
         </div>
         <div class="form-group mt-3">
-          <label class="btn-group" data-toggle="buttons" for="descripcion">Apto para envio:</label>
-            <label class="btn btn-primary" [ngClass]="{'active': envio == 'true'}">
-              <input type="radio" id="envioSi" value="true" name="envio" [ngModel]="envio">Si</label>
-            <label class="btn btn-primary" [ngClass]="{'active': envio == 'false'}">
-              <input type="radio" id="envioNo" value="false" name="envio" [ngModel]="envio">No</label>
-          </div> -->
+          <label class="col-md-3" for="descripcion">Apto para envio:</label>
+          <div>
+            <input type="radio" id="envioSi" value="true" formControlName="envio">
+            <label for="envioSi">Si</label>
+            <input type="radio" id="envioNo" value="false" formControlName="envio">
+            <label for="envioNo">No</label>
+          </div>
+        </div>
 
         <div>
           <button class="btn custom-btn-red-dark mt-3" type="submit">Enviar</button>
