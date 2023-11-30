@@ -14,17 +14,25 @@ export class ListadoGestionProtectorasComponent {
   listaProtectoras: Protectora[]=[];
 
 
-
   constructor(private _protectoraAdminService:ProtectoraAdminService, private router:Router) { }
 
   ngOnInit():void{
     this.listar();
+
   }
 
   public listar(){
     this._protectoraAdminService.listaProtectoras().subscribe(dato => { 
       this.listaProtectoras = dato;
       console.log(this.listaProtectoras);
+    });
+  }
+
+  public busquedaPorNombre(nombre:string){
+    this._protectoraAdminService.busquedaPorNombre(nombre).subscribe(dato => {
+      this.listaProtectoras = dato;
+      console.log("Este el nombre buscado: "+nombre)
+      console.log("Esta es la lista de protectoras devuelta: "+this.listaProtectoras);
     });
   }
 
