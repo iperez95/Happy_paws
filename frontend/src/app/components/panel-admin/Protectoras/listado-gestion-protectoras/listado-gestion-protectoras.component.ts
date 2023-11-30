@@ -58,5 +58,18 @@ export class ListadoGestionProtectorasComponent {
     });
   }
 
+  getColor(nombreEstadoProtectora: string): string {
+    switch (nombreEstadoProtectora) {
+      case 'Activo':
+        return '#1F9254';
+      case 'Pendiente':
+        return '#92801F';
+      case 'Inactivo':
+        return 'red';
+      default:
+        return 'white';
+    }
+  }
+
  
 }

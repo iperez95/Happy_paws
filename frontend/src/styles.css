@@ -50,6 +50,27 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #fbe7e8;
 }
 
+.custom-btn-green-light {
+  background-color: #EBF9F1;
+  color: #1F9254; 
+}
+
+.custom-btn-green-light:hover {
+  background-color: #1F9254;
+  color: #EBF9F1;
+}
+
+.custom-btn-orange-light {
+  background-color: #F9F2EB;
+  color: #92801F; 
+}
+
+.custom-btn-orange-light:hover {
+  background-color: #92801F;
+  color: #F9F2EB;
+}
+
+
 input, textarea, select, option{
   background-color: rgb(226, 226, 226);
   border: none;
