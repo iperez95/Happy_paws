@@ -13,8 +13,11 @@ public interface IProtectoraDao {
     int cambiarEstadoInactivoProtectora (Protectora protectora);
     int enabledProtectora (Protectora protectora);
     int borrarProtectora (Protectora protectora);
+
+   
     
     Protectora buscarProtectoraId (int id);
+     List<Protectora> buscarPorNombreContiene(String nombre);
     List<Protectora> listadoProtectoras();
     List<Protectora> listadoProtectorasMunicProv();
     List<Protectora> buscarPorIdProvincia(int IdProvincia);

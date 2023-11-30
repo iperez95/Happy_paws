@@ -65,6 +65,28 @@ public class PanelAdminRestController {
         }
     }
 
+    // BUSQUEDA PROTECTORAS POR NOMBRE
+    @GetMapping(path="/protectoras/busquedapornombre/{nombre}", produces = "application/json")
+    public ResponseEntity<List<ProtectoraDto>> busquedaProtectoraPorNombre (@PathVariable ("nombre") String nombre){
+       
+        List<Protectora> protectoras = protdao.buscarPorNombreContiene("%" + nombre + "%");
+
+        if (protectoras!=null){
+            List<ProtectoraDto> protectorasDto = new ArrayList<>();
+            for (Protectora protectora : protectoras) {                
+                protectorasDto.add(protdao.convertirProtectoraDto(protectora));
+            }
+
+        //Ordena las protectoras por Provincia    
+        protectorasDto.sort(Comparator.comparing(ProtectoraDto::getNombreProvincia)); 
+           
+        return new ResponseEntity<>(protectorasDto, HttpStatus.OK);     
+        } 
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+    }
+
      // MODIFICAR PROTECTORA
     @PutMapping(path="/protectora/modificar/{id}", consumes = "application/json")
     public ResponseEntity<Protectora> modificarUnaProtectora(@PathVariable("id")int id, @RequestBody Protectora detalleProtectora){ 

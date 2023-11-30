@@ -27,6 +27,11 @@ import { Protectora } from "src/app/entidades/protectora";
         .pipe(catchError(this.manejarError));
     }
 
+    public busquedaPorNombre(nombre:string): Observable<any> {
+      return this._httpClient.get(`${this.endpoint}/api/admin/protectoras/busquedapornombre/${nombre}`)
+        .pipe(catchError(this.manejarError));
+    }
+
     public actualizarProtectora (id:number, protectora : Protectora): Observable<Object> {
         return this._httpClient.put(`${this.endpoint}/api/admin/protectora/modificar/${id}`, protectora)
           .pipe(catchError(this.manejarError));

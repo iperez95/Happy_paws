@@ -30,6 +30,16 @@ public class ProtectoraDao implements IProtectoraDao {
         }
     }
 
+      @Override
+    public List<Protectora> buscarPorNombreContiene(String nombre) {
+        try{
+            return protrepo.buscarPorNombreContiene(nombre);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
      //TODO dav añadir al return mensaje protectora no encontrada
     @Override
     public Protectora actualizarProtectora(Protectora protectora) {
@@ -135,6 +145,8 @@ public class ProtectoraDao implements IProtectoraDao {
         protectoraDto.setNombreMunicipio(protectora.getMunicipio().getMunicipio());
         return protectoraDto;
     }
+
+  
  
 
 }
