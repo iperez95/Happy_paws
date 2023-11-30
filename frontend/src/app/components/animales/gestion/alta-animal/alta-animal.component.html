@@ -1,5 +1,12 @@
 <div class="col-md-6 offset-md-3">
-  <h3 class="text-center">Alta Animal en HappyPaws</h3>
+  <div class="row">
+    <div class="col-9 text-left">
+      <h3 class="text-left">Alta Animal en HappyPaws</h3>
+    </div>
+    <div class="col-3 text-right">
+      <button class="btn btn-light" (click)="irGestionAnimal()">Volver atras</button>
+    </div>
+  </div>
   <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">
     <div class="form-group mt-5">
       <label class="col-md-3" for="nombre">Nombre:</label>
@@ -58,9 +65,11 @@
         <label for="envioNo">No</label>
       </div>
     </div>
+    <!-- <div class="form-group mt-6">
+      <app-subirfoto-animal></app-subirfoto-animal>
+    </div> -->
     <div>
-      <button class="btn custom-btn-red-dark mt-3" type="submit">Enviar</button>
-      <!-- [disabled]="!altaForm.valid" -->
+      <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!altaForm.valid">Enviar</button>
     </div>
   </form>
 </div>

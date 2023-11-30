@@ -1,5 +1,5 @@
 <!-- Componente que muestra una ficha con algunos de los datos de un animal -->
-  <div class="container mt-4 style=width:500px">
+  <div class="container mt-6">
     <div class="row">
         <!-- Imagen -->
         <div class="col-md-12">
@@ -26,16 +26,18 @@
 
     <div class="row mt-4">
         <!-- Atributos: Sexo, Raza, Tamaño, Envío -->
-        <div class="col-md-3">
+        <div class="col-md-6">
             <p>{{animal.sexo?.sexo}}</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <p>{{animal.raza?.raza}}</p>
         </div>
-        <div class="col-md-3">
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
             <p>{{animal.tamano?.tamano}}</p>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-6">
             <p>Envio: {{animal.envio ? "Si" : "No"}}</p>
         </div>
     </div>

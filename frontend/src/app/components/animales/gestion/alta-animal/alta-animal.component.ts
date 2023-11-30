@@ -43,6 +43,7 @@ export class AltaAnimalComponent {
   tamano: Tamano = new Tamano();
   sexo: Sexo = new Sexo;
   enabled: boolean = true;
+  envio: boolean;
   public protectora: Protectora;
 
 
@@ -174,6 +175,12 @@ export class AltaAnimalComponent {
           this.router.navigate(['/protectora/gestion']);
         }
       })
+  }
+
+  irGestionAnimal() {
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/protectora/gestion']);
+    }); 
   }
 
   private listadoProvincias() {

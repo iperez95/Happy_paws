@@ -1,6 +1,6 @@
 <div *ngIf="listaAnimales.length > 0; else sinAnimales" class="container mt-3">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 mt-4">
       <button class="btn custom-btn-red-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
     </div>
   </div>
@@ -19,15 +19,19 @@
               </div>
               <div class="row row-cols-auto ">
                 <div class="col-md-auto d-flex justify-content-start">
-                  <h6 class="card-text mt-md-3">{{animal.raza?.raza}}</h6>
-                  <h6 class="card-text mt-md-3">{{animal.tamano?.tamano}}</h6>
-                  <h6 class="card-text mt-md-3">{{animal.municipio?.provincia.provincia}}</h6>
-                  <h6 class="card-text mt-md-3">{{animal.envio ? "Puede viajar" : "No puede viajar"}}</h6>
+                  <h6 class="card-text mt-md-3 m-4">{{animal.raza?.raza}}</h6>
+                  <h6 class="card-text mt-md-3 m-4">{{animal.tamano?.tamano}}</h6>
+                </div>
+              </div>
+                  <div class="row row-cols-auto ">
+                    <div class="col-md-auto d-flex justify-content-start">
+                  <h6 class="card-text mt-md-3 m-4">{{animal.municipio?.provincia.provincia}}</h6>
+                  <h6 class="card-text mt-md-3 m-4">{{animal.envio ? "Puede viajar" : "No puede viajar"}}</h6>
                 </div>
                 <div class="col">
-                  <button (click)="irModificalAnimal(animal.idanimal)" class="btn custom-btn-red-dark">Modificar
+                  <button (click)="irModificalAnimal(animal.idanimal)" class="btn btn-success m-4">Modificar
                   </button>
-                  <button (click)="borrarAnimal(animal.idanimal)" class="btn custom-btn-red-dark">Borrar</button>
+                  <button (click)="borrarAnimal(animal.idanimal)" class="btn btn-danger m-4">Borrar</button>
                 </div>
               </div>
             </div>

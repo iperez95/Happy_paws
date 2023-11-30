@@ -1,0 +1,11 @@
+.form-check-input {
+    width: 80px;
+    height: 15px;
+    border-radius: 25px;
+  }
+
+  .form-check-input:checked ~ .form-check-label::before {
+    transform: translateX(30px);
+    /*font-size: 30;
+    vertical-align: middle;*/
+  }
