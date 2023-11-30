@@ -26,6 +26,8 @@ import { ListadoGestionProtectorasComponent } from './components/panel-admin/Pro
 import { EditarProtectoraGestionComponent } from './components/panel-admin/Protectoras/editar-protectora-gestion/editar-protectora-gestion.component';
 import { SologatosComponent } from './components/animales/sologatos/sologatos.component';
 import { SoloperrosComponent } from './components/animales/soloperros/soloperros.component';
+import { ListadoGestionAnimalesComponent } from './components/panel-admin/Animales/listado-gestion-animales/listado-gestion-animales.component';
+import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/editar-animal-gestion/editar-animal-gestion.component';
 
 
 const routes: Routes = [
@@ -38,6 +40,7 @@ const routes: Routes = [
   { path: 'animales/gestion/subirfotoanimal/:id', component: SubirfotoAnimalComponent},
   { path: 'animales/buscar/sologatos', component: SologatosComponent},
   { path: 'animales/buscar/soloperros', component: SoloperrosComponent},
+  
 
 
   
@@ -62,6 +65,8 @@ const routes: Routes = [
   { path: 'admin/gestion', component: PanelAdminComponent},
   { path: 'admin/gestion/protectoras', component: ListadoGestionProtectorasComponent},
   { path: 'admin/gestion/protectoras/editar/:id', component: EditarProtectoraGestionComponent},
+  { path: 'admin/gestion/animales', component: ListadoGestionAnimalesComponent},
+  { path: 'admin/gestion/animales/editar/:id', component: EditarAnimalGestionComponent},
 
   //Login
   { path: 'login', component: LoginModalComponent },
