@@ -47,6 +47,8 @@ import { ModalCuestionarioComponent } from './components/modal-cuestionario/moda
 import { AdopcionesUsuarioComponent } from './components/adopciones-usuario/adopciones-usuario.component';
 import { SoloperrosComponent } from './components/animales/soloperros/soloperros.component';
 import { SologatosComponent } from './components/animales/sologatos/sologatos.component';
+import { ListadoGestionAnimalesComponent } from './components/panel-admin/Animales/listado-gestion-animales/listado-gestion-animales.component';
+import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/editar-animal-gestion/editar-animal-gestion.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import { SologatosComponent } from './components/animales/sologatos/sologatos.co
     AdopcionesUsuarioComponent,
     SoloperrosComponent,
     SologatosComponent,
+    ListadoGestionAnimalesComponent,
+    EditarAnimalGestionComponent,
   ],
   imports: [
     MatFormFieldModule,
