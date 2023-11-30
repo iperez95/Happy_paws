@@ -6,6 +6,7 @@ import { Animal } from 'src/app/entidades/animal';
 import { Protectora } from 'src/app/entidades/protectora';
 import { AnimalService } from 'src/app/service/animal/animal.service';
 import { ProtectoraService } from 'src/app/service/protectora/protectora.service';
+import { UsuarioService } from 'src/app/service/usuario/usuario.service';
 
 @Component({
   selector: 'app-gestion-animal',
@@ -20,7 +21,7 @@ export class GestionAnimalComponent {
   public idUsuario : number;
   public idProtectora : number;
 
-  constructor(private _animalService : AnimalService, private router :Router, private _protrectoraService: ProtectoraService) {
+  constructor(private _animalService : AnimalService, private router :Router, private _protrectoraService: ProtectoraService, private _usuarioService: UsuarioService) {
   }
 
   ngOnInit():void {
@@ -29,11 +30,9 @@ export class GestionAnimalComponent {
   }
 
   public obtenerIdUsuario():void{
-    let id: string;
-    if(localStorage.getItem("id") != null){
-      id = localStorage.getItem("id") as string;
-      this.idUsuario = parseInt(id);
-    }
+    const user: any = this._usuarioService.getUserData();
+    this.idUsuario = user.id;    
+    console.log(user);  
   }
 
   public obtenerIdProtectora(idUsuario: number): void {
