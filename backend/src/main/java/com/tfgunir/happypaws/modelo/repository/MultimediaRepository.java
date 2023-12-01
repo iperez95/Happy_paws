@@ -10,7 +10,7 @@ import com.tfgunir.happypaws.modelo.entities.Multimedia;
 
 public interface MultimediaRepository extends JpaRepository<Multimedia, Integer>  {
 
-    @Query(value = "select mul.idmultimedia, mul.enlace, mul.idanimal from multimedias mul\r\n"
+    @Query(value = "select mul.idmultimedia, mul.enlace, mul.idanimal from MULTIMEDIAS mul\r\n"
     + "inner join animales ani on ani.idanimal = mul.idanimal\r\n"
     + "where ani.idanimal = ?1",
 			nativeQuery = true)    

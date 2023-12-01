@@ -2,9 +2,12 @@ package com.tfgunir.happypaws.rest.controller;
 
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.AdopcionDao;
+import com.tfgunir.happypaws.modelo.dao.AnimalDao;
 import com.tfgunir.happypaws.modelo.dto.AdopcionDto;
+import com.tfgunir.happypaws.modelo.dto.AdopcionRequestDto;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.Adopcion;
+import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.entities.Estadosadopcion;
 import com.tfgunir.happypaws.modelo.entities.Usuario;
 import com.tfgunir.happypaws.modelo.repository.AdopcionRepository;
@@ -31,6 +34,9 @@ public class AdopcionRestController {
 
     @Autowired
     AdopcionRepository adoprepo;
+
+    @Autowired
+    AnimalDao animalDao;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -204,6 +210,55 @@ public class AdopcionRestController {
 
     }
 
+    @PostMapping(path = "/adoptar", consumes = "application/json")
+    public ResponseEntity<AdopcionDto> adoptar(@RequestBody AdopcionRequestDto requestDto, 
+                                    @RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            String token = authorizationHeader.substring(7);
+
+            // AÑADE EL USUARIO EN SESIÓN A LA ADOPCIÓN
+            // Valida el token y obtén el objeto Authentication
+            Authentication auth = usuarioAuthProvider.validateToken(token);
+
+            // Obtén el correo electrónico del usuario
+            UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
+            System.out.println("Usuario en token: " + usuarioDto);
+            String email = usuarioDto.getEmail();
+            System.out.println("email en token: " + email);
+
+            // Encuentra el usuario en la base de datos
+            Usuario usuario = usuarioRepository.findByEmail(email);
+            System.out.println("Usuario en BD: " + usuario);
+
+            if (usuario == null) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            }
+
+            Animal animal = animalDao.buscarAnimalId(requestDto.getIdAnimal());
+            if (animal == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+
+            if (adopdao.existeAdopcionAnimalUsuario(animal.getIdanimal(), usuario.getIdusuario())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            }
+
+            Adopcion adopcion = new Adopcion();
+            adopcion.setAnimal(animal);
+            adopcion.setUsuario(usuario);
+            adopcion.setProtectora(animal.getProtectora());
+            Estadosadopcion estadoAdopcionTemp = new Estadosadopcion();
+            estadoAdopcionTemp.setEnCurso();
+            adopcion.setEstadosadopcion(estadoAdopcionTemp);
+            adopdao.altaAdopcion(adopcion);
+
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 
     @PostMapping(path = "/alta", consumes = "application/json")
     public ResponseEntity<AdopcionDto> altaAdopcion(@RequestBody Adopcion adopcion, 
@@ -212,27 +267,27 @@ public class AdopcionRestController {
             String token = authorizationHeader.substring(7);
 
             // AÑADE EL USUARIO EN SESIÓN A LA ADOPCIÓN
-                // Valida el token y obtén el objeto Authentication
-                Authentication auth = usuarioAuthProvider.validateToken(token);
+            // Valida el token y obtén el objeto Authentication
+            Authentication auth = usuarioAuthProvider.validateToken(token);
 
-                // Obtén el correo electrónico del usuario
-                UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
-                System.out.println("Usuario en token: " + usuarioDto);
-                String email = usuarioDto.getEmail();
-                System.out.println("email en token: " + email);
+            // Obtén el correo electrónico del usuario
+            UsuarioDto usuarioDto = (UsuarioDto) auth.getPrincipal();
+            System.out.println("Usuario en token: " + usuarioDto);
+            String email = usuarioDto.getEmail();
+            System.out.println("email en token: " + email);
 
-                // Encuentra el usuario en la base de datos
-                Usuario usuario = usuarioRepository.findByEmail(email);
-                System.out.println("Usuario en BD: " + usuario);
+            // Encuentra el usuario en la base de datos
+            Usuario usuario = usuarioRepository.findByEmail(email);
+            System.out.println("Usuario en BD: " + usuario);
 
-                adopcion.setUsuario(usuario);
+            adopcion.setUsuario(usuario);
             // FIN AÑADIR USUARIO EN SESIÓN A LA ADOPCIÓN
 
             // AÑADE EL ESTADO DE ADOPCIÓN "EN CURSO" A LA ADOPCIÓN
-                // Encuentra el estado de adopción "En curso" en la base de datos
-                Estadosadopcion estadoAdopcionTemp = new Estadosadopcion();
-                estadoAdopcionTemp.setEnCurso();
-                adopcion.setEstadosadopcion(estadoAdopcionTemp);
+            // Encuentra el estado de adopción "En curso" en la base de datos
+            Estadosadopcion estadoAdopcionTemp = new Estadosadopcion();
+            estadoAdopcionTemp.setEnCurso();
+            adopcion.setEstadosadopcion(estadoAdopcionTemp);
             // FIN AÑADIR ESTADO DE ADOPCIÓN "EN CURSO" A LA ADOPCIÓN
 
             // AÑADE LA FECHA DE ADOPCIÓN A LA ADOPCIÓN
@@ -243,10 +298,9 @@ public class AdopcionRestController {
             adopdao.altaAdopcion(adopcion);
             
             return ResponseEntity.ok().build();
-            } 
-            catch (Exception e) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }  
     
     @GetMapping(path="/aprobar/{id}", produces = "application/json")
