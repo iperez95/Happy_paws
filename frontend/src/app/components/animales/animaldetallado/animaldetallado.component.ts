@@ -3,6 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
 import { AnimalService } from 'src/app/service/animal/animal.service';
 import { Multimedia } from 'src/app/entidades/multimedia';
+import axios from 'axios';
+import { Adopcion } from 'src/app/entidades/adopcion';
+import Swal from 'sweetalert2'
+import { AxiosService } from 'src/app/service/axios/axios.service';
+import { AuthService } from 'src/app/service/auth/auth.service';
+import  {UsuarioService} from 'src/app/service/usuario/usuario.service';
+import { Usuario } from 'src/app/entidades/usuario';
 
 @Component({
   selector: 'app-animaldetallado',
@@ -15,11 +22,18 @@ export class AnimaldetalladoComponent {
 animal: Animal;
 
 id: number;
+usuario: Usuario = new Usuario();
+
 
 fotosMultimedia: Multimedia[] = [];
+  adopcion: Adopcion[];
 
-
-  constructor(private router: Router, private activateRouter: ActivatedRoute, private _animalService: AnimalService) {}
+  constructor(private router: Router, 
+    private activateRouter: ActivatedRoute, 
+    private _animalService: AnimalService,   
+    private axiosService: AxiosService,
+    private usuarioService: UsuarioService,
+    ) {}
 
   ngOnInit() {
     this.activateRouter.params.subscribe((params) => {
@@ -27,6 +41,8 @@ fotosMultimedia: Multimedia[] = [];
       this.getAnimal();
       this.listaFotosAnimal(this.id);
     })
+
+    this.usuario = this.usuarioService.getUserData() || {} as Usuario;
   }
 
   private getAnimal(): void {
@@ -58,5 +74,30 @@ fotosMultimedia: Multimedia[] = [];
       });
   }
   
-  
+  //Solicitar adopcion
+  altaAdopcion(): void {
+    const requestBody = { idAnimal: this.id };
+
+    this.axiosService.request("POST", '/adopcion/adoptar', requestBody)
+      .then(response => {
+        Swal.fire({
+          title: 'Genial!',
+          text: 'La adopción se ha registrado correctamente!',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 2000
+        }).then(() => {
+          this.router.navigate(['/']);
+        })
+      }).catch(error => {
+        console.log(error);
+        Swal.fire({
+          title: 'Algo ha salido mal',
+          text: error.response.data,
+          icon: 'error',
+        })
+      });
+
+  }
+
 }
