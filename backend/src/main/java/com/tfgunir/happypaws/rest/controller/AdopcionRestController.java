@@ -211,7 +211,7 @@ public class AdopcionRestController {
     }
 
     @PostMapping(path = "/adoptar", consumes = "application/json")
-    public ResponseEntity<AdopcionDto> adoptar(@RequestBody AdopcionRequestDto requestDto, 
+    public ResponseEntity<?> adoptar(@RequestBody AdopcionRequestDto requestDto, 
                                     @RequestHeader("Authorization") String authorizationHeader) {
         try {
             String token = authorizationHeader.substring(7);
@@ -240,9 +240,9 @@ public class AdopcionRestController {
             }
 
             if (adopdao.existeAdopcionAnimalUsuario(animal.getIdanimal(), usuario.getIdusuario())) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                .body("Ya existe una solicitud para este animal");
             }
-
             Adopcion adopcion = new Adopcion();
             adopcion.setAnimal(animal);
             adopcion.setUsuario(usuario);
