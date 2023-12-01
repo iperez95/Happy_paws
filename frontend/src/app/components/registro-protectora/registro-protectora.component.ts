@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { Municipio } from 'src/app/entidades/municipio';
 import { Provincia } from 'src/app/entidades/provincia';
 import { LocationService } from 'src/app/service/localizacion/location.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registro-protectora',
@@ -23,22 +24,43 @@ export class RegistroProtectoraComponent {
     provincias: Provincia [] = [];
     municipios: Municipio [] = [];
     idMunicipio: number = 0;
+    registerForm: FormGroup;
+    submitted = false;
 
     constructor(
       private axiosService: AxiosService,
       private authService: AuthService,
       private _router: Router,
-      private _locationService: LocationService
+      private _locationService: LocationService,
+      private fb: FormBuilder
     ) {}
   
     ngOnInit(): void {
       this.listadoProvincias();
       this.listadoMunicipiosProvincia(null);
+      this.registerForm = this.fb.group({
+        nombre: ['', Validators.required],
+        apellidos: ['', Validators.required],
+        email: ['', Validators.required],
+        password: ['', Validators.required],
+        telefono: ['', Validators.required],
+        dni: ['', Validators.required],
+        direccion: ['', Validators.required],
+        nombreProtectora: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        direccionProtectora: ['', Validators.required],
+        emailProtectora: ['', Validators.required],
+        telefonoProtectora: ['', Validators.required],
+        idProvincia: ['', Validators.required],
+        municipio: ['', Validators.required],
+
+      });
     }
   
     onSubmit(values: any) {
       console.log(values);
       console.log(this.idMunicipio);
+    if (this.registerForm.valid) {
       this.axiosService.request("POST", '/api/usuarioProtectoras', {
         "usuario": this.usuario,
         "protectora": this.protectora,
@@ -63,6 +85,7 @@ export class RegistroProtectoraComponent {
           icon: 'error',
         })
       });
+    }
     }
 
     private listadoProvincias() {

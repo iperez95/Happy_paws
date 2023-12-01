@@ -1,6 +1,7 @@
 package com.tfgunir.happypaws.modelo.dao;
 
 import java.nio.CharBuffer;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,12 +48,6 @@ public class UsuarioDao implements IUsuarioDao {
     }
 
     @Override
-    public int modificarUsuario(Usuario usuario) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'modificarUsuario'");
-    }
-
-    @Override
     public int borrarUsuario(Usuario usuario) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'borrarUsuario'");
@@ -83,6 +78,43 @@ public class UsuarioDao implements IUsuarioDao {
                 .build();
         }
         return null;
+    }
+
+    public List<Usuario> buscarTodos() {
+        return usuarioRepository.findAll();
+    }
+
+    public UsuarioDto convertirADto(Usuario usuario) {
+        return UsuarioDto.builder()
+            .id(usuario.getIdusuario())
+            .nombre(usuario.getNombre())
+            .apellidos(usuario.getApellidos())
+            .email(usuario.getEmail())
+            .direccion(usuario.getDireccion())
+            .dni(usuario.getDni())
+            .rol(usuario.getRol().getNombre())
+            .enabled(usuario.getEnabled())
+            .password(usuario.getPassword())
+            .build();
+    }
+
+    public List<Usuario> buscarPorEmailContiene(String email) {
+        try{
+            return usuarioRepository.findByEmailLike(email);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }    
+    }
+
+    public int actualizar(Usuario usuario) {
+        try{
+            usuarioRepository.save(usuario);
+            return 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
     
 }

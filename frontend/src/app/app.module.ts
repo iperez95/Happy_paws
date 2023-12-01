@@ -49,6 +49,8 @@ import { SoloperrosComponent } from './components/animales/soloperros/soloperros
 import { SologatosComponent } from './components/animales/sologatos/sologatos.component';
 import { ListadoGestionAnimalesComponent } from './components/panel-admin/Animales/listado-gestion-animales/listado-gestion-animales.component';
 import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/editar-animal-gestion/editar-animal-gestion.component';
+import { ListadoGestionUsuariosComponent } from './components/panel-admin/Usuarios/listado-gestion-usuarios/listado-gestion-usuarios.component';
+import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar-usuario/editar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/
     SologatosComponent,
     ListadoGestionAnimalesComponent,
     EditarAnimalGestionComponent,
+    ListadoGestionUsuariosComponent,
+    EditarUsuarioComponent,
   ],
   imports: [
     MatFormFieldModule,

@@ -1,0 +1,59 @@
+<section class="m-5">
+    <div class="contcontainer.md overflow-hiddenainer">
+        <div class="row row-cols-auto">
+            <div class="col-md-auto d-flex align-items-center">
+                <h6 class="fw-bold">Buscar: </h6>
+            </div>
+            <div class="col-md-auto">
+                <input #busqueda type="text" class="form-control" placeholder="Email usuario">
+            </div>
+            <div class="col-md-auto">
+                <button (click)="busquedaPorEmail(busqueda.value)" class="btn custom-btn-red-dark">Buscar</button>
+            </div>
+            <div class="col-md-auto">
+                <button (click)="getUsuarios()" class="btn custom-btn-red-dark">Ver todos</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="mt-5 contendor">
+    <table class="table table-striped  table table-hover text-center" >
+        <thead >
+            <tr>
+                <th scope="col">ID Usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidpos</th>
+                <th scope="col">Email</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Edicion</th>
+                <th scope="col">Cambiar Estado</th>
+                
+                <!-- <th scope="col">Borrar</th> -->
+            </tr>
+        </thead>
+        <tbody *ngFor="let usuario of usuarios">
+            <tr>
+                <th scope="row">{{usuario.id}}</th>    
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.apellidos}}</td>
+                <td>{{usuario.email}}</td>
+                <td>{{usuario.rol}}</td>
+                <td [ngStyle]="{'color': getColor(usuario.estado())}">{{usuario.estado()}}</td>
+                <td>
+                    <button (click)="editarUsuario(usuario.id)" class="btn custom-btn-red-dark">Editar</button>
+                </td>
+                <td>
+                <button (click)="cambiarEstadoUsuario(usuario.id)"class="btn custom-btn-orange-light  ms-3">{{usuario.estado() === "Activo" ? "Desactivar" : "Activar"}}</button>
+                </td>
+                
+                
+            </tr>
+
+              
+        </tbody>
+    </table>
+</div>

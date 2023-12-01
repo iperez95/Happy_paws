@@ -1,0 +1,32 @@
+<div class="col-md-10 offset-md-2">
+    <h3 class="text-center mb-5">Modificar Usuario</h3>
+    <form (ngSubmit)="onSubmit()">
+        <div class="container.md overflow-hidden">
+            <div class="row row-cols-auto">
+                <div class="row row-cols-auto ">
+                    <div class="col-md">
+                        <div class="">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" [(ngModel)]="usuario.nombre" name="nombre" id="nombre" required>
+                        </div>
+                        <div class="mt-4">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" class="form-control" [(ngModel)]="usuario.direccion" name="direccion" id="direccion" required>
+                        </div>
+                        <div class="mt-4">
+                            <label for="direccion">Teléfono</label>
+                            <input type="text" class="form-control" [(ngModel)]="usuario.telefono" name="telefono" id="telefono" required>
+                        </div>
+                        <div class="mt-4">
+                            <label for="direccion">Email</label>
+                            <input type="text" class="form-control" [(ngModel)]="usuario.email" name="email" id="email" required>
+                        </div>
+                        <div class="mt-4">
+                            <button  type="submit" class="btn custom-btn-red-dark">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>            
+    </form> 
+</div>

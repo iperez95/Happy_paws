@@ -17,9 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
+import com.tfgunir.happypaws.modelo.dao.UsuarioDao;
 import com.tfgunir.happypaws.modelo.dto.ProtectoraDto;
+import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
+import com.tfgunir.happypaws.modelo.entities.Usuario;
 import com.tfgunir.happypaws.modelo.repository.ProtectoraRepository;
 import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 
@@ -35,7 +38,7 @@ public class PanelAdminRestController {
     ProtectoraRepository protrepo;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private UsuarioDao usuarioDao;
 
     private final UsuarioAuthProvider usuarioAuthProvider;
     
@@ -59,6 +62,43 @@ public class PanelAdminRestController {
         protectorasDto.sort(Comparator.comparing(ProtectoraDto::getNombreProvincia)); 
            
         return new ResponseEntity<>(protectorasDto, HttpStatus.OK);     
+        } 
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+    }
+
+    // LISTADO PROTECTORAS DTO CON MUNICIPIO Y PROVINCIA
+    @GetMapping(path="/usuarios/todos", produces = "application/json")
+    public ResponseEntity<List<UsuarioDto>> listadoUsuarios (){
+       
+        List<Usuario> usuarios = usuarioDao.buscarTodos();
+
+        if (usuarios!=null){
+            List<UsuarioDto> usuariosDto = new ArrayList<>();
+            for (Usuario usuario : usuarios) {                
+                usuariosDto.add(usuarioDao.convertirADto(usuario));
+            }
+
+            return new ResponseEntity<>(usuariosDto, HttpStatus.OK);     
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+    }
+
+    // BUSQUEDA PROTECTORAS POR NOMBRE
+    @GetMapping(path="/usuarios/busquedaporemail/{email}", produces = "application/json")
+    public ResponseEntity<List<UsuarioDto>> busquedaUsuarioPorEmail(@PathVariable ("email") String email){
+       
+        List<Usuario> usuarios = usuarioDao.buscarPorEmailContiene("%" + email + "%");
+
+        if (usuarios!=null){
+            List<UsuarioDto> usuariosDtos = new ArrayList<>();
+            for (Usuario usuario : usuarios) {                
+                usuariosDtos.add(usuarioDao.convertirADto(usuario));
+            }
+           
+            return new ResponseEntity<>(usuariosDtos, HttpStatus.OK);     
         } 
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
@@ -106,6 +146,50 @@ public class PanelAdminRestController {
             return ResponseEntity.ok(protectoraActualizada);
         else
             return ResponseEntity.notFound().build();
+    }
+
+    // MODIFICAR Usuarios
+    @PutMapping(path="/usuario/modificar/{id}", consumes = "application/json")
+    public ResponseEntity<?> modificarUnUsuario(@PathVariable("id")int id, @RequestBody Usuario detalleUsuario) {
+        System.out.println("Buscando usuario con id: "+id);
+        Usuario usuario = usuarioDao.buscarUnUsuario(id);
+
+        if (usuario==null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        usuario.setNombre(detalleUsuario.getNombre());
+        usuario.setDireccion(detalleUsuario.getDireccion());
+        usuario.setDni(detalleUsuario.getDni());
+        usuario.setEmail(detalleUsuario.getEmail());
+        usuario.setTelefono(detalleUsuario.getTelefono());
+
+        int usuarioActualizado = usuarioDao.actualizar(usuario);
+
+        if (usuarioActualizado == 1) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();            
+        }
+    }
+
+    @PutMapping(path="/usuario/cambiarestado/{id}")
+    public ResponseEntity<UsuarioDto> cambiarEstadoUsuario(@PathVariable("id") int idusuario){
+        Usuario usuario = usuarioDao.buscarUnUsuario(idusuario);
+        if (usuario==null) {
+            return ResponseEntity.notFound().build();
+        }
+        if (usuario.getEnabled()==1) {
+            usuario.setEnabled((byte) 0);
+        } else {
+            usuario.setEnabled((byte) 1);
+        }
+        int usuarioActualizado = usuarioDao.actualizar(usuario);
+        if (usuarioActualizado == 1) {
+            return ResponseEntity.ok(usuarioDao.convertirADto(usuario));
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();            
+        }
     }
 
     //CAMBIAR ESTADO PROTECTORA >> INACTIVO

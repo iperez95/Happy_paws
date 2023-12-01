@@ -8,7 +8,7 @@
 
     <div class="row d-flex justify-content-center">
         <div class="col-md-4">
-            <form #form="ngForm" (ngSubmit)="onSubmit(form.value)">
+            <form [formGroup]="registerForm" #form="ngForm" (ngSubmit)="onSubmit(form.value)">
                 <div class="d-flex justify-content-center">
                 <h3> Detalles de usuario</h3>
                 </div>
@@ -32,31 +32,55 @@
                   </div>              
                 <div class="form-group m-3">
                   <label for="nombre">Nombre</label>
-                  <input type="text" class="form-control custom-border-color" name="nombre" placeholder="Introduce tu nombre" [(ngModel)]="usuario.nombre">
+                  <input type="text" formControlName="nombre" class="form-control custom-border-color" name="nombre" placeholder="Introduce tu nombre">
+                  <div *ngIf="registerForm.controls['nombre'] && registerForm.controls['nombre'].invalid && (submitted || registerForm.controls['nombre'].dirty || registerForm.controls['nombre'].touched)">
+                    <div *ngIf="registerForm.controls['nombre'].errors?.['required']">Nombre es obligatorio.</div>
+                  </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="apellidos">Apellidos</label>
-                    <input type="text" class="form-control custom-border-color" name="apellidos" [(ngModel)]="usuario.apellidos" placeholder="Introduce tus Apellidos">
-                </div>
+                    <input type="text" formControlName="apellidos" class="form-control custom-border-color" name="apellidos" placeholder="Introduce tus Apellidos">
+                    <div *ngIf="registerForm.controls['apellidos'] && registerForm.controls['apellidos'].invalid && (submitted || registerForm.controls['apellidos'].dirty || registerForm.controls['apellidos'].touched)">
+                      <div *ngIf="registerForm.controls['apellidos'].errors?.['required']">Apellidos es obligatorio.</div>
+                  </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="dni">Dni</label>
-                    <input type="text" class="form-control custom-border-color" name="dni" [(ngModel)]="usuario.dni" placeholder="Introduce tu DNI">
-                </div>
+                    <input type="text" formControlName="dni" class="form-control custom-border-color" name="dni" placeholder="Introduce tu DNI">
+                    <div *ngIf="registerForm.controls['dni'] && registerForm.controls['dni'].invalid && (submitted || registerForm.controls['dni'].dirty || registerForm.controls['dni'].touched)">
+                      <div *ngIf="registerForm.controls['dni'].errors?.['required']">DNI es obligatorio.</div>
+                      <div *ngIf="registerForm.controls['dni'].errors?.['minLength'] || registerForm.controls['dni'].errors?.['maxLength']">DNI incorrecto.</div>
+                  </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="telefono">Telefono</label>
-                    <input type="tel" class="form-control custom-border-color" name="telefono" [(ngModel)]="usuario.telefono" placeholder="Introduce tu Telefono">
-                </div>
+                    <input type="tel" formControlName="telefono" class="form-control custom-border-color" name="telefono"  placeholder="Introduce tu Telefono">
+                    <div *ngIf="registerForm.controls['telefono'] && registerForm.controls['telefono'].invalid && (submitted || registerForm.controls['telefono'].dirty || registerForm.controls['telefono'].touched)">
+                      <div *ngIf="registerForm.controls['telefono'].errors?.['required']">Telefono es obligatorio.</div>
+                      <div *ngIf="registerForm.controls['telefono'].errors?.['minLength'] || registerForm.controls['telefono'].errors?.['maxLength']">Telefono incorrecto.</div>
+                  </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="direccion">Direccion</label>
-                    <input type="text" class="form-control custom-border-color" name="direccion" [(ngModel)]="usuario.direccion" placeholder="Introduce tu Telefono">
+                    <input type="text" formControlName="direccion" class="form-control custom-border-color" name="direccion" placeholder="Introduce tu Telefono">
+                    <div *ngIf="registerForm.controls['direccion'] && registerForm.controls['direccion'].invalid && (submitted || registerForm.controls['direccion'].dirty || registerForm.controls['direccion'].touched)">
+                      <div *ngIf="registerForm.controls['direccion'].errors?.['required']">Direccion es obligatorio.</div>
+                  </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="dni">Email</label>
-                    <input type="email" class="form-control custom-border-color" name="email" [(ngModel)]="usuario.email" placeholder="Introduce tu Email">
+                    <input type="email" formControlName="email" class="form-control custom-border-color" name="email" placeholder="Introduce tu Email">
+                    <div *ngIf="registerForm.controls['email'] && registerForm.controls['email'].invalid && (submitted || registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
+                      <div *ngIf="registerForm.controls['email'].errors?.['required']">Email es obligatorio.</div>
+                      <div *ngIf="registerForm.controls['email'].errors?.['email']">Formato del email incorrecto.</div>
+                  </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="password">Contraseña</label>
-                    <input type="password" class="form-control custom-border-color" name="password" [(ngModel)]="usuario.password" placeholder="Introduce tu Contraseña">
+                    <input type="password" formControlName="password" class="form-control custom-border-color" name="password" placeholder="Introduce tu Contraseña">
+                    <div *ngIf="registerForm.controls['password'] && registerForm.controls['password'].invalid && (submitted || registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
+                      <div *ngIf="registerForm.controls['password'].errors?.['required']">Contraseña es obligatorio.</div>
+                  </div>
                 </div>
                 <div class="d-flex justify-content-center">
                     <h3> Detalles de la protectora</h3>
@@ -81,24 +105,39 @@
                   </div>                   
                 <div class="form-group m-3">
                     <label for="protec_nombre">Nombre protectora</label>
-                    <input type="text" class="form-control custom-border-color" name="protec_nombre" placeholder="Nombre de la protectora" [(ngModel)]="protectora.nombre">
-                </div>
+                    <input type="text" formControlName="nombreProtectora" class="form-control custom-border-color" name="protec_nombre" placeholder="Nombre de la protectora">
+                    <div *ngIf="registerForm.controls['nombreProtectora'] && registerForm.controls['nombreProtectora'].invalid && (submitted || registerForm.controls['nombreProtectora'].dirty || registerForm.controls['nombreProtectora'].touched)">
+                      <div *ngIf="registerForm.controls['nombreProtectora'].errors?.['required']">Nombre de la protectora es obligatorio.</div>
+                    </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="protec_descripcion">Descripciónn</label>
-                    <input type="text" class="form-control custom-border-color" name="protec_descripcion" placeholder="Descripcion de la protectora" [(ngModel)]="protectora.descripcion">
-                </div>
+                    <input type="text" formControlName="descripcion" class="form-control custom-border-color" name="protec_descripcion" placeholder="Descripcion de la protectora">
+                    <div *ngIf="registerForm.controls['descripcion'] && registerForm.controls['descripcion'].invalid && (submitted || registerForm.controls['descripcion'].dirty || registerForm.controls['descripcion'].touched)">
+                      <div *ngIf="registerForm.controls['descripcion'].errors?.['required']">Descripción de la protectora es obligatorio.</div>
+                    </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="protec_direccion">Dirección</label>
-                    <input type="text" class="form-control custom-border-color" name="protec_direccion" placeholder="Direccion de la protectora" [(ngModel)]="protectora.direccion">
-                </div>
+                    <input type="text" formControlName="direccionProtectora" class="form-control custom-border-color" name="protec_direccion" placeholder="Direccion de la protectora">
+                    <div *ngIf="registerForm.controls['direccionProtectora'] && registerForm.controls['direccionProtectora'].invalid && (submitted || registerForm.controls['direccionProtectora'].dirty || registerForm.controls['direccionProtectora'].touched)">
+                      <div *ngIf="registerForm.controls['direccionProtectora'].errors?.['required']">Dirección de la protectora es obligatorio.</div>
+                    </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="protec_email">Email</label>
-                    <input type="email" class="form-control custom-border-color" name="protec_email" placeholder="Email de la protectora" [(ngModel)]="protectora.email">
-                </div>
+                    <input type="email" formControlName="emailProtectora" class="form-control custom-border-color" name="protec_email" placeholder="Email de la protectora">
+                    <div *ngIf="registerForm.controls['emailProtectora'] && registerForm.controls['emailProtectora'].invalid && (submitted || registerForm.controls['emailProtectora'].dirty || registerForm.controls['emailProtectora'].touched)">
+                      <div *ngIf="registerForm.controls['emailProtectora'].errors?.['required']">Email de la protectora es obligatorio.</div>
+                    </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="nombre">Teléfono</label>
-                    <input type="protec_tel" class="form-control custom-border-color" name="protec_tel" placeholder="Telefono de la protectora" [(ngModel)]="protectora.telefono">
-                </div>
+                    <input type="protec_tel" formControlName="telefonoProtectora" class="form-control custom-border-color" name="protec_tel" placeholder="Telefono de la protectora" [(ngModel)]="protectora.telefono">
+                    <div *ngIf="registerForm.controls['telefonoProtectora'] && registerForm.controls['telefonoProtectora'].invalid && (submitted || registerForm.controls['telefonoProtectora'].dirty || registerForm.controls['telefonoProtectora'].touched)">
+                      <div *ngIf="registerForm.controls['telefonoProtectora'].errors?.['required']">Teléfono de la protectora es obligatorio.</div>
+                    </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="protec_logo">Logo</label>
                     <input type="url" class="form-control custom-border-color" name="protec_logo" placeholder="URL del logo" [(ngModel)]="protectora.urlLogo">

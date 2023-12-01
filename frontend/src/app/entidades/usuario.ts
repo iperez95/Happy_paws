@@ -9,6 +9,7 @@ export class Usuario {
     direccion: string;
     rol: string;
     idProtectora: number;
+    enabled: number;
 
     isProtectora(): boolean {
         return this.rol == 'Protectora';
@@ -25,4 +26,13 @@ export class Usuario {
     public toString() : string {
         return JSON.stringify(this)
     }
+
+    estado(): string {
+        if (this.enabled == 1) {
+            return "Activo"
+        } else {
+            return "Inactivo"
+        }
+    }
+
 }

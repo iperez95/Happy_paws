@@ -28,6 +28,7 @@ import { SologatosComponent } from './components/animales/sologatos/sologatos.co
 import { SoloperrosComponent } from './components/animales/soloperros/soloperros.component';
 import { ListadoGestionAnimalesComponent } from './components/panel-admin/Animales/listado-gestion-animales/listado-gestion-animales.component';
 import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/editar-animal-gestion/editar-animal-gestion.component';
+import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar-usuario/editar-usuario.component';
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'admin/gestion/protectoras/editar/:id', component: EditarProtectoraGestionComponent},
   { path: 'admin/gestion/animales', component: ListadoGestionAnimalesComponent},
   { path: 'admin/gestion/animales/editar/:id', component: EditarAnimalGestionComponent},
+  { path: 'admin/gestion/usuario/editar/:id', component: EditarUsuarioComponent},
 
   //Login
   { path: 'login', component: LoginModalComponent },
