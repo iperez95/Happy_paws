@@ -26,5 +26,5 @@ public interface IAdopcionDao {
     
     AdopcionDto convertirAdopcionDto(Adopcion adopcion);
     List<Adopcion> adopcionesPorIDAdoptante(int idAdoptante);
-    
+    Boolean existeAdopcionAnimalUsuario(int idanimal, int idusuario);   
 }

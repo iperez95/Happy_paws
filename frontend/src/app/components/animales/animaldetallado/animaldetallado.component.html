@@ -63,7 +63,6 @@
 </div>
 
 <!-- Botón de Solicitar Adopción -->
-<div class="text-center">
-  <a href="cuestionario/adopcion" class="btn btn-success">Solicitar Adopción</a>
-
+<div class="text-center" *ngIf="usuario.isAdoptante()">
+  <button type="submit" class="btn btn-success" (click)="altaAdopcion()">Solicitar Adopción</button>
 </div>
