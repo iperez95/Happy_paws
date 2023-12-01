@@ -12,11 +12,11 @@
 </div> -->
 
 <section class="tarjetas m-3">  
-    <div class="container.md">
-        <section>
-            <div class="row row-cols-auto gy-5">
+    <div class="container-fluid">
+
+            <div class="row">
                 <div class="col-md-2">
-                    //aqui iria el filtro
+                        aqui iria el filtro
                     <select (change)="buscar($event)"> 
                         
                         <option *ngFor = " let r of listaRazas" value="{{r.idraza}}">{{r.raza}}</option>
@@ -24,13 +24,17 @@
                     </select>
 
                 </div>
-                <div class="row">
-                    <div *ngFor="let a of listaAnimales" class="col-md-4">
-                      <app-animal [animal]="a"></app-animal>
+                <div class="col-md-9">
+                    <div class="row">
+                        <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
+                            <div *ngFor="let a of listaAnimales" class="col-md-4 justify-content-center mb-4">
+                                <app-animal *ngIf = "a.enabled" [animal]="a"></app-animal>
+                            </div>
+                        </ng-container>
                     </div>
-                  </div>
+                </div>  
             </div>
-        </section>
+
     </div>
 </section>
 
