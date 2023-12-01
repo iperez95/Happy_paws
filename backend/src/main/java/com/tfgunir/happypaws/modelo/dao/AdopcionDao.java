@@ -176,6 +176,16 @@ public class AdopcionDao implements IAdopcionDao {
         return 0;        
     }
 
+    public Boolean existeAdopcionAnimalUsuario(int idanimal, int idusuario) {
+        try {
+            List<Adopcion> adopciones = adopRepo.findByIdAnimalAndIdUsuario(idanimal, idusuario);
+            return adopciones.size() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     /**
      * Convierte una instancia de Adopcion a AdopcionDto.
      * 

@@ -71,4 +71,9 @@ public interface AdopcionRepository extends JpaRepository<Adopcion, Integer>{
                 + "where adop.idusuario = ?1",
                 nativeQuery = true)
     List<Adopcion> findByIdUsuario(int idAdoptante);
+
+    @Query(value = "SELECT adop.* FROM ADOPCIONES adop \r\n"
+                + "where adop.idanimal = ?1 and adop.idusuario = ?2",
+                nativeQuery = true)
+    List<Adopcion> findByIdAnimalAndIdUsuario(int idanimal, int idusuario);
 }
