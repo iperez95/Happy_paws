@@ -31,7 +31,7 @@ public interface ProtectoraRepository extends JpaRepository<Protectora, Integer>
                 nativeQuery = true)    
     List<Protectora> protetorasPorIdProvincia(int idprovincia);
 
-    @Query(value = "SELECT * from protectoras where nombre like ?1 ",
+    @Query(value = "SELECT * from PROTECTORAS where nombre like ?1 ",
                 nativeQuery = true)
     List<Protectora> buscarPorNombreContiene(String nombre);
     

@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.IUsuarioDao;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
-import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.entities.Rol;
 import com.tfgunir.happypaws.modelo.entities.Usuario;
 

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import { Municipio } from 'src/app/entidades/municipio';
 import { Provincia } from 'src/app/entidades/provincia';
 import { LocationService } from 'src/app/service/localizacion/location.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registro-protectora',
@@ -23,46 +24,87 @@ export class RegistroProtectoraComponent {
     provincias: Provincia [] = [];
     municipios: Municipio [] = [];
     idMunicipio: number = 0;
+    registerForm: FormGroup;
+    submitted = false;
 
     constructor(
       private axiosService: AxiosService,
       private authService: AuthService,
       private _router: Router,
-      private _locationService: LocationService
+      private _locationService: LocationService,
+      private fb: FormBuilder
     ) {}
   
     ngOnInit(): void {
       this.listadoProvincias();
       this.listadoMunicipiosProvincia(null);
+      this.registerForm = this.fb.group({
+        nombre: ['', Validators.required],
+        apellidos: ['', Validators.required],
+        email: ['', Validators.required],
+        password: ['', Validators.required],
+        telefono: ['', Validators.required],
+        dni: ['', Validators.required],
+        direccion: ['', Validators.required],
+        nombreProtectora: ['', Validators.required],
+        descripcion: ['', Validators.required],
+        direccionProtectora: ['', Validators.required],
+        emailProtectora: ['', Validators.required],
+        telefonoProtectora: ['', Validators.required],
+        urlLogo: ['', Validators.required],
+        municipio: ['', Validators.required],
+        provincia: ['', Validators.required],
+      });
     }
   
+    convertirUsuario(values: any) {
+      this.usuario.nombre = values.nombre;
+      this.usuario.apellidos = values.apellidos;
+      this.usuario.email = values.email;
+      this.usuario.password = values.password;
+      this.usuario.telefono = values.telefono;
+      this.usuario.dni = values.dni;
+      this.usuario.direccion = values.direccion;
+    }
+    convertirProtectora(values: any) {
+      this.protectora.nombre = values.nombreProtectora;
+      this.protectora.descripcion = values.descripcion;
+      this.protectora.direccion = values.direccionProtectora;
+      this.protectora.email = values.emailProtectora;
+      this.protectora.telefono = values.telefonoProtectora;
+      this.protectora.urlLogo = values.urlLogo;
+      this.idMunicipio = values.municipio;
+    }
+
     onSubmit(values: any) {
-      console.log(values);
-      console.log(this.idMunicipio);
-      this.axiosService.request("POST", '/api/usuarioProtectoras', {
-        "usuario": this.usuario,
-        "protectora": this.protectora,
-        "idMunicipio": this.idMunicipio,
-      }).then(response => {
-        this.authService.setLoggedIn(true); // Update the loggedIn property
-        this.axiosService.setAuthToken(response.data.token); // Save the token in the local storage
-        this.isSubmitted = true;
-        Swal.fire({
-          title: 'Genial!',
-          text: 'Te has registrado correctamente, bienvenido a Happy Paws!',
-          icon: 'success',
-          showConfirmButton: false,
-          timer: 2000
-        }).then(() => {
-          this._router.navigate(['/']);
-        })
-      }).catch(error => {
-        Swal.fire({
-          title: 'Algo ha salido mal',
-          text: error.response.data,
-          icon: 'error',
-        })
-      });
+      this.convertirUsuario(values);
+      this.convertirProtectora(values);
+      if (this.registerForm.valid) {
+        this.axiosService.request("POST", '/api/usuarioProtectoras', {
+          "usuario": this.usuario,
+          "protectora": this.protectora,
+          "idMunicipio": values.municipio,
+        }).then(response => {
+          this.authService.setLoggedIn(true); // Update the loggedIn property
+          this.axiosService.setAuthToken(response.data.token); // Save the token in the local storage
+          this.isSubmitted = true;
+          Swal.fire({
+            title: 'Genial!',
+            text: 'Te has registrado correctamente, bienvenido a Happy Paws!',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2000
+          }).then(() => {
+            this._router.navigate(['/']);
+          })
+        }).catch(error => {
+          Swal.fire({
+            title: 'Algo ha salido mal',
+            text: error.response.data,
+            icon: 'error',
+          })
+        });
+      }
     }
 
     private listadoProvincias() {
