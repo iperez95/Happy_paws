@@ -22,3 +22,6 @@ hr{
     border-color:#8E0B0B;
 }
 
+.invalid-field {
+    color: #8E0B0B;
+}
