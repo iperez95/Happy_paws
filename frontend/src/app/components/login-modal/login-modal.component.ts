@@ -41,6 +41,9 @@ export class LoginModalComponent implements OnInit {
         case 404:
           this.errorMessage = "Usuario o contraseña incorrectos";
           break;
+        case 401:
+          this.errorMessage = error.response.data.message;
+          break;
         default:
           console.log(error);
           this.errorMessage = "Error desconocido";

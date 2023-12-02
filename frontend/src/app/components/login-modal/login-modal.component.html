@@ -15,7 +15,9 @@
           </div>
           <div class="col-md-8 ms-auto me-auto text-center m-3">
             <button type="submit" class="btn custom-btn">Iniciar sesion</button>
-            <div *ngIf="errorMessage" class="error-message"><p>{{ errorMessage }}</p></div>
+            <div *ngIf="errorMessage" class="alert alert-danger mt-4 col-md-8 ms-auto me-auto" role="alert">
+              <p class="login-error">{{ errorMessage }}</p>
+            </div>
           </div>
         </form>
       </div>

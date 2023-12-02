@@ -64,6 +64,11 @@ public class UsuarioDao implements IUsuarioDao {
         if (usuario == null) {
             throw new AppException("Usuario no encontrado", HttpStatus.NOT_FOUND);
         }
+
+        if (usuario.getEnabled() == (byte)0) {
+            throw new AppException("El usuario esta inactivo", HttpStatus.UNAUTHORIZED);
+        }
+
         if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.password()), usuario.getPassword())) {
             return UsuarioDto.builder()
                 .id(usuario.getIdusuario())
