@@ -12,12 +12,24 @@ public class AdopcionDto {
 
     private String nombreProtectora;
     private String nombreUsuario;
+    private String emailUsuario;
     private String nombreAnimal;
 
     public AdopcionDto() {
     }
 
-    public AdopcionDto(int idAdopcion, int idProtectora, int idUsuario, int idAnimal, int idEstadoAdopcion, Date fechaAdopcion, String nombreProtectora, String nombreUsuario, String nombreAnimal ) {
+    public AdopcionDto(
+        int idAdopcion,
+        int idProtectora,
+        int idUsuario,
+        int idAnimal,
+        int idEstadoAdopcion,
+        Date fechaAdopcion,
+        String nombreProtectora,
+        String nombreUsuario,
+        String nombreAnimal,
+        String emailUsuario
+    ) {
         this.idAdopcion = idAdopcion;
         this.idProtectora = idProtectora;
         this.idUsuario = idUsuario;
@@ -27,8 +39,7 @@ public class AdopcionDto {
         this.nombreProtectora = nombreProtectora;
         this.nombreUsuario = nombreUsuario;
         this.nombreAnimal = nombreAnimal;
-
-    
+        this.emailUsuario = emailUsuario;
     }
 
     public int getIdAdopcion() {
@@ -103,6 +114,14 @@ public class AdopcionDto {
         this.nombreAnimal = nombreAnimal;
     }
 
+    public void setEmailUsuario(String emailUsuario) {
+        this.emailUsuario = emailUsuario;
+    }
+
+    public String getEmailUsuario() {
+        return emailUsuario;
+    }
+    
     @Override
     public int hashCode() {
         final int prime = 31;

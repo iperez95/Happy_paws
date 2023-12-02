@@ -29,6 +29,7 @@ import { SoloperrosComponent } from './components/animales/soloperros/soloperros
 import { ListadoGestionAnimalesComponent } from './components/panel-admin/Animales/listado-gestion-animales/listado-gestion-animales.component';
 import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/editar-animal-gestion/editar-animal-gestion.component';
 import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar-usuario/editar-usuario.component';
+import { FaqComponent } from './components/faq/faq.component';
 
 
 const routes: Routes = [
@@ -76,6 +77,7 @@ const routes: Routes = [
   {path: 'registro-protectora', component: RegistroProtectoraComponent},
   //Home - Inicio
   { path: 'contacto', component: ContactoComponent},
+  { path: 'faq', component: FaqComponent},
   { path: '', component: HomeComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: HomeComponent }

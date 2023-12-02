@@ -152,6 +152,13 @@
 {
   background-color:#ea4c89
 }
+.texto-sobreHP > p  {
+
+  color: #0A142F;
+  font-weight: 200;
+  max-width: 60%;
+}
+  
 @media (max-width:767px)
 {
   .social-icons li.title
