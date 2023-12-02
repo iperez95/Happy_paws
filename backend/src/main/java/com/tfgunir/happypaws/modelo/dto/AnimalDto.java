@@ -2,8 +2,6 @@ package com.tfgunir.happypaws.modelo.dto;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-
 public class AnimalDto {
 
     private int idanimal;
@@ -20,23 +18,24 @@ public class AnimalDto {
     private int idProtectora;
     private String nombreProtectora;
     private int idEspecie;
-    private String especie;
+    private String nombreEspecie;
     private int idRaza;
-    private String raza;
+    private String nombreRaza;
     private int idSexo;
-    private String sexo;
+    private String nombreSexo;
     private int idTamano;
-    private String tamano;
-
-
+    private String nombreTamano;
+    private int idEstado;
+    private String nombreEstado;
 
     public AnimalDto() {
     }
 
     public AnimalDto(int idanimal, String nombre, String descripcion, boolean enabled, boolean envio, Date fechaAlta,
             Date fechaNacimiento, int idMunicipio, String nombreMunicipio, int idProvincia, String nombreProvincia,
-            int idProtectora, String nombreProtectora, int idEspecie, String especie, int idRaza, String raza,
-            int idSexo, String sexo, int idTamano, String tamano) {
+            int idProtectora, String nombreProtectora, int idEspecie, String nombreEspecie, int idRaza,
+            String nombreRaza, int idSexo, String nombreSexo, int idTamano, String nombreTamano, int idEstado,
+            String nombreEstado) {
         this.idanimal = idanimal;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -51,13 +50,15 @@ public class AnimalDto {
         this.idProtectora = idProtectora;
         this.nombreProtectora = nombreProtectora;
         this.idEspecie = idEspecie;
-        this.especie = especie;
+        this.nombreEspecie = nombreEspecie;
         this.idRaza = idRaza;
-        this.raza = raza;
+        this.nombreRaza = nombreRaza;
         this.idSexo = idSexo;
-        this.sexo = sexo;
+        this.nombreSexo = nombreSexo;
         this.idTamano = idTamano;
-        this.tamano = tamano;
+        this.nombreTamano = nombreTamano;
+        this.idEstado = idEstado;
+        this.nombreEstado = nombreEstado;
     }
 
     public int getIdanimal() {
@@ -172,12 +173,12 @@ public class AnimalDto {
         this.idEspecie = idEspecie;
     }
 
-    public String getEspecie() {
-        return especie;
+    public String getNombreEspecie() {
+        return nombreEspecie;
     }
 
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public void setNombreEspecie(String nombreEspecie) {
+        this.nombreEspecie = nombreEspecie;
     }
 
     public int getIdRaza() {
@@ -188,12 +189,12 @@ public class AnimalDto {
         this.idRaza = idRaza;
     }
 
-    public String getRaza() {
-        return raza;
+    public String getNombreRaza() {
+        return nombreRaza;
     }
 
-    public void setRaza(String raza) {
-        this.raza = raza;
+    public void setNombreRaza(String nombreRaza) {
+        this.nombreRaza = nombreRaza;
     }
 
     public int getIdSexo() {
@@ -204,12 +205,12 @@ public class AnimalDto {
         this.idSexo = idSexo;
     }
 
-    public String getSexo() {
-        return sexo;
+    public String getNombreSexo() {
+        return nombreSexo;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setNombreSexo(String nombreSexo) {
+        this.nombreSexo = nombreSexo;
     }
 
     public int getIdTamano() {
@@ -220,12 +221,28 @@ public class AnimalDto {
         this.idTamano = idTamano;
     }
 
-    public String getTamano() {
-        return tamano;
+    public String getNombreTamano() {
+        return nombreTamano;
     }
 
-    public void setTamano(String tamano) {
-        this.tamano = tamano;
+    public void setNombreTamano(String nombreTamano) {
+        this.nombreTamano = nombreTamano;
+    }
+
+    public int getIdEstado() {
+        return idEstado;
+    }
+
+    public void setIdEstado(int idEstado) {
+        this.idEstado = idEstado;
+    }
+
+    public String getNombreEstado() {
+        return nombreEstado;
+    }
+
+    public void setNombreEstado(String nombreEstado) {
+        this.nombreEstado = nombreEstado;
     }
 
     @Override
@@ -256,11 +273,11 @@ public class AnimalDto {
                 + enabled + ", envio=" + envio + ", fechaAlta=" + fechaAlta + ", fechaNacimiento=" + fechaNacimiento
                 + ", idMunicipio=" + idMunicipio + ", nombreMunicipio=" + nombreMunicipio + ", idProvincia="
                 + idProvincia + ", nombreProvincia=" + nombreProvincia + ", idProtectora=" + idProtectora
-                + ", nombreProtectora=" + nombreProtectora + ", idEspecie=" + idEspecie + ", especie=" + especie
-                + ", idRaza=" + idRaza + ", raza=" + raza + ", idSexo=" + idSexo + ", sexo=" + sexo + ", idTamano="
-                + idTamano + ", tamano=" + tamano + "]";
+                + ", nombreProtectora=" + nombreProtectora + ", idEspecie=" + idEspecie + ", nombreEspecie="
+                + nombreEspecie + ", idRaza=" + idRaza + ", nombreRaza=" + nombreRaza + ", idSexo=" + idSexo
+                + ", nombreSexo=" + nombreSexo + ", idTamano=" + idTamano + ", nombreTamano=" + nombreTamano
+                + ", idEstado=" + idEstado + ", nombreEstado=" + nombreEstado + "]";
     }
 
     
-
 }

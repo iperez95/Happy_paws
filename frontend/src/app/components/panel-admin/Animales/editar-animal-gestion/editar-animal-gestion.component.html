@@ -1,1 +1,95 @@
-<p>editar-animal-gestion works!</p>
+<div class="col-md-10 offset-md-2">
+    <h3 class="text-center mb-5">Modificar protectora</h3>
+    <form (ngSubmit)="onSubmit()">
+        <div class="container.md overflow-hidden">
+            <div class="row row-cols-auto">
+                    <div class="col-md">
+                        <div class="">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" [(ngModel)]="animal.nombre" name="nombre" id="nombre" required>
+                        </div>
+                        <div class="mt-3">
+                            <label class="col-md-3" for="especie">Especie:</label>
+                            <select id="especie" (change)="actualizarRazas($event)">
+                                <option *ngFor="let especie of especies" [value]="especie.idespecie">{{especie.especie}}</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <label class="col-md-3" for="raza">Raza:</label>
+                            <select id="raza" >
+                              <option *ngFor="let raza of razas" [value]="raza.idraza">{{raza.raza}}</option>
+                            </select>
+                        </div>
+                        <div class=" mt-3">
+                            <label class="col-md-3" for="sexo">Sexo:</label>
+                            <select id="sexo" >
+                              <option *ngFor="let sexo of sexos" [value]="sexo.idsexo">{{sexo.sexo}}</option>
+                            </select>
+                        </div>
+                        <div class=" mt-3">
+                            <label class="col-md-3" for="tamano">Tamaño:</label>
+                            <select id="tamano" >
+                              <option *ngFor="let tamano of tamanos" [value]="tamano.idtamano">{{tamano.tamano}}</option>
+                            </select>
+                        </div>                 
+                        <div class="mt-4">
+                            <label for="descripcion">Descripcion de la protectora</label>
+                            <textarea rows="4" cols="50" maxlength="1000" type="text-area" class="form-control" [(ngModel)]="animal.descripcion" name="descripcion" id="descripcion" required></textarea>
+                        </div>
+                        <div class="mt-4">
+                            <button  type="submit" class="btn custom-btn-red-dark">Guardar cambios</button>
+                        </div>
+                    </div>
+            </div>
+        </div>            
+    </form> 
+</div>
+
+<div class=" p-5 col-md-4 offset-md-4">
+    <div class="row row-cols-auto">
+        
+    </div>
+</div>
+
+
+<!-- <div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Modificar Animal {{animal.nombre}}</h3>
+    <form [formGroup]="modificarForm" (ngSubmit)="onSubmit()">
+        <div  class="form-group mt-5">
+            <label class="col-md-3" for="nombre">Nombre:</label>
+            <input type="text" id="nombre" formControlName="nombre" />
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="especie">Especie:</label>
+            <select id="especie" formControlName="especie">
+                <option *ngFor="let especie of especies" [value]="especie.idespecie">{{especie.especie}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="raza">Raza:</label>
+            <select id="raza" formControlName="raza">
+              <option *ngFor="let raza of razas" [value]="raza.idraza">{{raza.raza}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="sexo">Sexo:</label>
+            <select id="sexo" formControlName="sexo">
+              <option *ngFor="let sexo of sexos" [value]="sexo.idsexo">{{sexo.sexo}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="tamano">Tamaño:</label>
+            <select id="tamano" formControlName="tamano">
+              <option *ngFor="let tamano of tamanos" [value]="tamano.idtamano">{{tamano.tamano}}</option>
+            </select>
+        </div>
+        <div class="form-group mt-3">
+            <label class="col-md-3" for="descripcion">Descripcion:</label>
+            <textarea rows="4" id="descripcion" formControlName="descripcion"></textarea>
+        </div>
+        <div>
+            <button class="btn custom-btn-red-dark mt-3" type="submit">Enviar</button>
+        </div>        
+    </form>
+</div>  -->
