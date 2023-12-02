@@ -1,3 +1,9 @@
+.footer-positioning {
+  position: relative;
+  width: 100%;
+  bottom: 0;
+}
+
 .site-footer
 {
   background-color:#F5F2F2;

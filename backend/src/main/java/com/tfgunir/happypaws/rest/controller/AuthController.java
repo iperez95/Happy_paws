@@ -5,10 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
+import com.tfgunir.happypaws.exceptions.AppException;
 import com.tfgunir.happypaws.modelo.dao.IProtectoraDao;
 import com.tfgunir.happypaws.modelo.dao.IUsuarioDao;
 import com.tfgunir.happypaws.modelo.dto.CredentialsDto;
@@ -38,8 +38,17 @@ public class AuthController {
         Protectora protectora = protectoraDao.buscarProtectoraPorUsuario(user.getId());
         Integer idProtectora = null;
         if (protectora != null) {
+            if (protectora.getEstadosprotectora().getIdestadoprotectora() == 2) {
+                throw new AppException("La protectora está desactivada.", HttpStatus.UNAUTHORIZED);
+            }
+
+            if (protectora.getEstadosprotectora().getIdestadoprotectora() == 3) {
+                throw new AppException("La protectora está pendiente de activacion.", HttpStatus.UNAUTHORIZED);
+            }
+
             idProtectora = protectora.getIdprotectora();
         }
+
         user.setToken(usuarioAuthProvider.createToken(user, idProtectora));
         return ResponseEntity.ok(user);
     }
