@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.tfgunir.happypaws.modelo.dao.AnimalDao;
 import com.tfgunir.happypaws.modelo.dao.MultimediaDao;
+import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
@@ -52,6 +54,25 @@ public class AnimalRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // Listado de animales DTO
+    @GetMapping(path = "/listadodto", produces = "application/json")
+    public ResponseEntity<List<AnimalDto>> listadoAnimalesDto() {
+
+        List<Animal> animales = aniDao.buscarTodos();
+
+        if (animales != null && !animales.isEmpty()) {
+            List<AnimalDto> animalesDto = new ArrayList<>();
+            for (Animal animal : animales) {
+                animalesDto.add(aniDao.convertirAnimalDto(animal));
+            }
+            return new ResponseEntity<>(animalesDto, HttpStatus.OK);     
+        } 
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+    }
+
 
     // Controlador para ver un animal
     @GetMapping(path = "/verUno/{id}", produces = "application/json")

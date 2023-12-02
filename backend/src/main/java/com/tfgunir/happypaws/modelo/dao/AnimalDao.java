@@ -1,9 +1,12 @@
 package com.tfgunir.happypaws.modelo.dao;
 
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.repository.AnimalRepository;
 
@@ -117,4 +120,31 @@ public class AnimalDao implements IAnimalDao{
     public List<Animal> buscarSoloGatos() {
         return aniRepo.buscarSoloGatos();
     }
+
+    public AnimalDto convertirAnimalDto(Animal animal){
+        AnimalDto animalDto = new AnimalDto();
+        animalDto.setIdanimal(animal.getIdanimal());
+        animalDto.setNombre(animal.getNombre());
+        animalDto.setDescripcion(animal.getDescripcion());
+        animalDto.setEnabled(animal.getEnabled());
+        animalDto.setEnvio(animal.getEnvio());
+        animalDto.setFechaAlta(animal.getFechaAlta());
+        animalDto.setFechaNacimiento(animal.getFechaNacimiento());
+        animalDto.setIdMunicipio(animal.getMunicipio().getIdmunicipio());
+        animalDto.setNombreMunicipio(animal.getMunicipio().getMunicipio());
+        animalDto.setIdProvincia(animal.getMunicipio().getProvincia().getIdprovincia());
+        animalDto.setNombreProvincia(animal.getMunicipio().getProvincia().getProvincia());
+        animalDto.setIdProtectora(animal.getProtectora().getIdprotectora());
+        animalDto.setNombreProtectora(animal.getProtectora().getNombre());
+        animalDto.setIdEspecie(animal.getRaza().getEspecie().getIdespecie());
+        animalDto.setEspecie(animal.getRaza().getEspecie().getEspecie());
+        animalDto.setIdRaza(animal.getRaza().getIdraza());
+        animalDto.setRaza(animal.getRaza().getRaza());
+        animalDto.setIdSexo(animal.getSexo().getIdsexo());
+        animalDto.setSexo(animal.getSexo().getSexo());
+        animalDto.setIdTamano(animal.getTamano().getIdtamano());
+        animalDto.setTamano(animal.getTamano().getTamano());
+        return animalDto;
+    }
+
 }
