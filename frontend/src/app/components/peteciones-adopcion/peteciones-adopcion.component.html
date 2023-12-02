@@ -5,7 +5,7 @@
           <th scope="col">ID Adopción</th>
           <th scope="col">Animal</th>
           <th scope="col">Adoptante</th>
-          <th scope="col">Fecha</th>
+          <th scope="col">Email Adoptante</th>
           <th scope="col">ID Animal</th>
           <th scope="col">Formulario</th>
           <th scope="col">Acciones</th>
@@ -16,7 +16,7 @@
               <td scope="row">{{adopcion.idAdopcion}}</td>
               <td>{{adopcion.nombreAnimal}}</td>
               <td>{{adopcion.nombreUsuario}}</td>
-              <td>{{adopcion.fechaAdopcion}}</td>
+              <td>{{adopcion.emailUsuario}}</td>
               <td>{{adopcion.idAnimal}}</td>
               <td>
                 <button type="button" class="btn btn-primary" (click)="openDialog(adopcion.idUsuario)">Ver</button></td>

@@ -1,0 +1,10 @@
+
+.usuario-faq{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color:rgba(166, 37, 44, 0.77); 
+    color:black
+  }

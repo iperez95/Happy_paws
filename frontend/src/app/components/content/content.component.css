@@ -94,7 +94,7 @@
     line-height: normal;
     max-height: 27px;
     margin:auto;
-    max-width: 600px; /* Adjust this value as needed */
+    max-width: 600px; 
 }
 
 .info-button {
@@ -129,8 +129,50 @@
   }
   .modal-backdrop.in {
     opacity: 0.5;
-    /* opacity: $modal-backdrop-opacity; (SCSS) */
   }
 
+  .custom-height-container2 {
+    height: 450px;
+}
 
+.texto-colabora{
+    color: #000;
+    text-align: center;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-height: 27px;
+    margin:auto;
+    max-width: 600px;
+
+}
+
+  .image-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .image-home1 > a > img, .image-home2 > a > img {
+    margin-top: 50px;
+  }
+  
+  .image-home1 > a > img {
+    margin-left: 110px;
+    width: 400px;
+  }
+  
+  .image-home2 > a > img {
+    margin-right: 150px;
+    width: 360px;
+  }
+
+  .boton-registro > a{
+
+    margin-top: 100px;
+    justify-content: flex-start;
+    align-items: center;
+
+
+  }
 

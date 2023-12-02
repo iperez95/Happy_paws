@@ -3,6 +3,7 @@ export class Adopcion {
     idUsuario: number;
     nombreAnimal: string;
     nombreUsuario: string;
+    emailUsuario: string;
     fechaAdopcion: string;
     idAnimal: number;
     idEstadoAdopcion: number;
