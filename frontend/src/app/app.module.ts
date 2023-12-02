@@ -51,6 +51,7 @@ import { ListadoGestionAnimalesComponent } from './components/panel-admin/Animal
 import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/editar-animal-gestion/editar-animal-gestion.component';
 import { ListadoGestionUsuariosComponent } from './components/panel-admin/Usuarios/listado-gestion-usuarios/listado-gestion-usuarios.component';
 import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar-usuario/editar-usuario.component';
+import { ListadoAdopcionesComponent } from './components/panel-admin/Adopciones/listado-adopciones/listado-adopciones.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar
     EditarAnimalGestionComponent,
     ListadoGestionUsuariosComponent,
     EditarUsuarioComponent,
+    ListadoAdopcionesComponent,
   ],
   imports: [
     MatFormFieldModule,

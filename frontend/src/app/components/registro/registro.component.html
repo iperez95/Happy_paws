@@ -15,44 +15,44 @@
                   <label for="nombre">Nombre</label>
                   <input type="text" formControlName="nombre" class="form-control custom-border-color" name="nombre" placeholder="Introduce tu nombre">
                   <div *ngIf="registerForm.controls['nombre'] && registerForm.controls['nombre'].invalid && (submitted || registerForm.controls['nombre'].dirty || registerForm.controls['nombre'].touched)">
-                    <div *ngIf="registerForm.controls['nombre'].errors?.['required']">Name es obligatorio.</div>
+                    <div class="invalid-field" *ngIf="registerForm.controls['nombre'].errors?.['required']">Name es obligatorio.</div>
                   </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="apellidos">Apellidos</label>
                     <input type="text" formControlName="apellidos" class="form-control custom-border-color" name="apellidos" placeholder="Introduce tus Apellidos">
                     <div *ngIf="registerForm.controls['apellidos'] && registerForm.controls['apellidos'].invalid && (submitted || registerForm.controls['apellidos'].dirty || registerForm.controls['apellidos'].touched)">
-                        <div *ngIf="registerForm.controls['apellidos'].errors?.['required']">Apellidos es obligatorio.</div>
+                        <div class="invalid-field" *ngIf="registerForm.controls['apellidos'].errors?.['required']">Apellidos es obligatorio.</div>
                     </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="dni">Dni</label>
                     <input type="text" formControlName="dni" class="form-control custom-border-color" name="dni" placeholder="Introduce tu DNI">
                     <div *ngIf="registerForm.controls['dni'] && registerForm.controls['dni'].invalid && (submitted || registerForm.controls['dni'].dirty || registerForm.controls['dni'].touched)">
-                        <div *ngIf="registerForm.controls['dni'].errors?.['required']">DNI es obligatorio.</div>
-                        <div *ngIf="registerForm.controls['dni'].errors?.['minLength'] || registerForm.controls['dni'].errors?.['maxLength']">DNI incorrecto.</div>
+                        <div  class="invalid-field" *ngIf="registerForm.controls['dni'].errors?.['required']">DNI es obligatorio.</div>
+                        <div  class="invalid-field" *ngIf="registerForm.controls['dni'].errors?.['minLength'] || registerForm.controls['dni'].errors?.['maxLength']">DNI incorrecto.</div>
                     </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="telefono">Telefono</label>
                     <input type="tel" formControlName="telefono" class="form-control custom-border-color" name="telefono" placeholder="Introduce tu Telefono">
                     <div *ngIf="registerForm.controls['telefono'] && registerForm.controls['telefono'].invalid && (submitted || registerForm.controls['telefono'].dirty || registerForm.controls['telefono'].touched)">
-                        <div *ngIf="registerForm.controls['telefono'].errors?.['required']">Telefono es obligatorio.</div>
-                        <div *ngIf="registerForm.controls['telefono'].errors?.['minLength'] || registerForm.controls['telefono'].errors?.['maxLength']">Telefono incorrecto.</div>
+                        <div class="invalid-field" *ngIf="registerForm.controls['telefono'].errors?.['required']">Telefono es obligatorio.</div>
+                        <div class="invalid-field" *ngIf="registerForm.controls['telefono'].errors?.['minLength'] || registerForm.controls['telefono'].errors?.['maxLength']">Telefono incorrecto.</div>
                     </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="direccion">Direccion</label>
                     <input type="text" formControlName="direccion" class="form-control custom-border-color" name="direccion" placeholder="Introduce tu Direccion">
                     <div *ngIf="registerForm.controls['direccion'] && registerForm.controls['direccion'].invalid && (submitted || registerForm.controls['direccion'].dirty || registerForm.controls['direccion'].touched)">
-                        <div *ngIf="registerForm.controls['direccion'].errors?.['required']">Direccion es obligatorio.</div>
+                        <div class="invalid-field" *ngIf="registerForm.controls['direccion'].errors?.['required']">Direccion es obligatorio.</div>
                     </div>
                 </div>
                 <div class="form-group m-3">
                     <label for="email">Email</label>
                     <input type="email" formControlName="email" class="form-control custom-border-color" name="email" placeholder="Introduce tu Email">
                     <div *ngIf="registerForm.controls['email'] && registerForm.controls['email'].invalid && (submitted || registerForm.controls['email'].dirty || registerForm.controls['email'].touched)">
-                        <div *ngIf="registerForm.controls['email'].errors?.['required']">Email es obligatorio.</div>
+                        <div class="invalid-field" *ngIf="registerForm.controls['email'].errors?.['required']">Email es obligatorio.</div>
                         <div *ngIf="registerForm.controls['email'].errors?.['email']">Formato del email incorrecto.</div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <label for="password">Contraseña</label>
                     <input type="password" formControlName="password" class="form-control custom-border-color" name="password" placeholder="Introduce tu Contraseña">
                     <div *ngIf="registerForm.controls['password'] && registerForm.controls['password'].invalid && (submitted || registerForm.controls['password'].dirty || registerForm.controls['password'].touched)">
-                        <div *ngIf="registerForm.controls['password'].errors?.['required']">Contraseña es obligatorio.</div>
+                        <div class="invalid-field" *ngIf="registerForm.controls['password'].errors?.['required']">Contraseña es obligatorio.</div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center">
