@@ -27,6 +27,7 @@ public class AnimalDto {
     private String nombreTamano;
     private int idEstado;
     private String nombreEstado;
+    private String enlacePrimeraFoto;
 
     public AnimalDto() {
     }
@@ -35,7 +36,7 @@ public class AnimalDto {
             Date fechaNacimiento, int idMunicipio, String nombreMunicipio, int idProvincia, String nombreProvincia,
             int idProtectora, String nombreProtectora, int idEspecie, String nombreEspecie, int idRaza,
             String nombreRaza, int idSexo, String nombreSexo, int idTamano, String nombreTamano, int idEstado,
-            String nombreEstado) {
+            String nombreEstado, String enlacePrimeraFoto) {
         this.idanimal = idanimal;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -59,8 +60,11 @@ public class AnimalDto {
         this.nombreTamano = nombreTamano;
         this.idEstado = idEstado;
         this.nombreEstado = nombreEstado;
+        this.enlacePrimeraFoto = enlacePrimeraFoto;
     }
 
+
+    
     public int getIdanimal() {
         return idanimal;
     }
@@ -245,6 +249,14 @@ public class AnimalDto {
         this.nombreEstado = nombreEstado;
     }
 
+    public String getEnlacePrimeraFoto() {
+        return enlacePrimeraFoto;
+    }
+
+    public void setEnlacePrimeraFoto(String enlacePrimeraFoto) {
+        this.enlacePrimeraFoto = enlacePrimeraFoto;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -276,8 +288,11 @@ public class AnimalDto {
                 + ", nombreProtectora=" + nombreProtectora + ", idEspecie=" + idEspecie + ", nombreEspecie="
                 + nombreEspecie + ", idRaza=" + idRaza + ", nombreRaza=" + nombreRaza + ", idSexo=" + idSexo
                 + ", nombreSexo=" + nombreSexo + ", idTamano=" + idTamano + ", nombreTamano=" + nombreTamano
-                + ", idEstado=" + idEstado + ", nombreEstado=" + nombreEstado + "]";
+                + ", idEstado=" + idEstado + ", nombreEstado=" + nombreEstado + ", enlacePrimeraFoto="
+                + enlacePrimeraFoto + "]";
     }
+
+    
 
     
 }

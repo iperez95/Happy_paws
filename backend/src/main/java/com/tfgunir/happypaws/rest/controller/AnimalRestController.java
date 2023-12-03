@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.tfgunir.happypaws.modelo.dao.AnimalDao;
 import com.tfgunir.happypaws.modelo.dao.MultimediaDao;
 import com.tfgunir.happypaws.modelo.dto.AnimalDto;
+import com.tfgunir.happypaws.modelo.dto.MultimediaDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
@@ -60,17 +61,30 @@ public class AnimalRestController {
     public ResponseEntity<List<AnimalDto>> listadoAnimalesDto() {
 
         List<Animal> animales = aniDao.buscarTodos();
-
+        List<AnimalDto> animalesDto = new ArrayList<>();
+        
         if (animales != null && !animales.isEmpty()) {
-            List<AnimalDto> animalesDto = new ArrayList<>();
+           
             for (Animal animal : animales) {
                 animalesDto.add(aniDao.convertirAnimalDto(animal));
             }
+            List<Multimedia> multimedias = multiDao.multimediasTodos();
+
+        if (multimedias != null && !multimedias.isEmpty()) {
+            for(AnimalDto animalDto : animalesDto){
+                for (Multimedia multimedia : multimedias) {
+                    if (multimedia.getAnimal().getIdanimal() == animalDto.getIdanimal() && animalDto.getEnlacePrimeraFoto() == null) {
+                            animalDto.setEnlacePrimeraFoto(multimedia.getEnlace());
+                    }
+                }
+            }
+        }
             return new ResponseEntity<>(animalesDto, HttpStatus.OK);     
         } 
         else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
-        }
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }      
+
     }
 
 

@@ -23,4 +23,5 @@ export class AnimalDto {
   nombreTamano: string;
   idEstado: number;
   nombreEstado: string;
+  enlacePrimeraFoto: string;
 }
