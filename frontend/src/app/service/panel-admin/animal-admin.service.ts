@@ -50,6 +50,10 @@ import { Animal } from "src/app/entidades/animal";
         .pipe(catchError(this.manejarError));
     }
   
+    public busquedaPorNombre(nombre:string): Observable<any> {
+      return this._httpClient.get(`${this.endpoint}/api/admin/animales/busquedapornombre/${nombre}`)
+        .pipe(catchError(this.manejarError));
+    }
     // public busquedaPorNombre(nombre:string): Observable<any> {
     //   return this._httpClient.get(`${this.endpoint}/api/admin/protectoras/busquedapornombre/${nombre}`)
     //     .pipe(catchError(this.manejarError));

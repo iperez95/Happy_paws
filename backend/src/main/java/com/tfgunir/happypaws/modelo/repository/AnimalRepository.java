@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.tfgunir.happypaws.modelo.entities.Animal;
+import com.tfgunir.happypaws.modelo.entities.Protectora;
 
 public interface AnimalRepository extends JpaRepository<Animal, Integer>{
 
@@ -48,5 +49,9 @@ public interface AnimalRepository extends JpaRepository<Animal, Integer>{
         // Query para buscar todos los animales que son gatos
         @Query(value = "SELECT a FROM Animal a INNER JOIN a.raza r INNER JOIN r.especie e WHERE e.especie.idespecie = 2")
                 List<Animal> buscarSoloGatos();
+
+         @Query(value = "SELECT * from ANIMALES where nombre like ?1 ",
+                nativeQuery = true)
+        List<Animal> buscarPorNombreContiene(String nombre);
 }
 
