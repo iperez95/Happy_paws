@@ -164,5 +164,8 @@ ngOnInit(): void {
       });
   }
 
+  public irFotosAnimal(id: number) {
+    this.router.navigate(['/animales/gestion/subirfotoanimal/' + id]);
+   }
 
 }
