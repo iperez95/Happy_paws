@@ -353,7 +353,29 @@ public class PanelAdminRestController {
         else
             return ResponseEntity.notFound().build();
 
-    }       
+    }      
+    
+    // BUSQUEDA ANIMALES POR NOMBRE
+    @GetMapping(path="/animales/busquedapornombre/{nombre}", produces = "application/json")
+    public ResponseEntity<List<AnimalDto>> busquedaAnimalPorNombre (@PathVariable ("nombre") String nombre){
+        
+        List<Animal> animales = anidao.buscarPorNombreContiene("%" + nombre + "%");
+
+        if (animales!=null){
+            List<AnimalDto> animalesDto = new ArrayList<>();
+            for (Animal animal : animales) {                
+                animalesDto.add(anidao.convertirAnimalDto(animal));
+            }
+
+        // //Ordena l por Provincia    
+        // protectorasDto.sort(Comparator.comparing(ProtectoraDto::getNombreProvincia)); 
+           
+        return new ResponseEntity<>(animalesDto, HttpStatus.OK);     
+        } 
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND); 
+        }
+    }
     
 
 

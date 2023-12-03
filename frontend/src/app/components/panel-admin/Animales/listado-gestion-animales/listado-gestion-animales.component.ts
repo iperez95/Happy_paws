@@ -56,6 +56,14 @@ export class ListadoGestionAnimalesComponent {
   }
  
 
+  public busquedaPorNombre(nombre:string){
+    this._animalAdminService.busquedaPorNombre(nombre).subscribe(dato => {
+      this.listaAnimalesDto = dato;
+      console.log("Este el nombre buscado: "+nombre)
+      console.log("Esta es la lista de animales devuelta: "+this.listaAnimalesDto);
+    });
+  }
+
 
 
   getColor(enabled: boolean){

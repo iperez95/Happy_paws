@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
+import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.repository.AnimalRepository;
 
 @Service
@@ -122,6 +123,16 @@ public class AnimalDao implements IAnimalDao{
     @Override
     public List<Animal> buscarSoloGatos() {
         return aniRepo.buscarSoloGatos();
+    }
+
+      @Override
+    public List<Animal> buscarPorNombreContiene(String nombre) {
+        try{
+            return aniRepo.buscarPorNombreContiene(nombre);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public AnimalDto convertirAnimalDto(Animal animal){

@@ -3,6 +3,7 @@ package com.tfgunir.happypaws.modelo.dao;
 import java.util.List;
 
 import com.tfgunir.happypaws.modelo.entities.Animal;
+import com.tfgunir.happypaws.modelo.entities.Protectora;
 
 public interface IAnimalDao {
     
@@ -13,6 +14,7 @@ public interface IAnimalDao {
 
     Animal buscarAnimalId (int idanimal);
     List<Animal> buscarTodos();
+    List<Animal> buscarPorNombreContiene(String nombre);
     
     List<Animal> buscarPorIdMunicipio (int idmunicipio);
     List<Animal> buscarPorIdProvincia (int idprovincia);
