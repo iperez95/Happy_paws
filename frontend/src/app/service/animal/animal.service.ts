@@ -37,9 +37,7 @@ export class AnimalService {
 
   // Método para dar de alta un animal
   public altaAnimal(animal: Animal): Observable<any> {
-    return this
-      ._httpClient
-      .post<any>(`${this.endpoint}/animales/gestion/alta`, animal)
+    return this._httpClient.post<any>(`${this.endpoint}/animales/gestion/alta`, animal)
       .pipe(catchError(this.manejarError));
   }
 

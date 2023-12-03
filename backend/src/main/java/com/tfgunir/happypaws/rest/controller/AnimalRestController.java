@@ -71,6 +71,7 @@ public class AnimalRestController {
         Map<String, String> response = new HashMap<>();
         if (aniDao.altaAnimal(animal)) {
             response.put("message", "Animal creado correctamente");
+            response.put("idAnimal", String.valueOf(animal.getIdanimal()));
             return ResponseEntity.ok(response);
         } else {
             response.put("message", "Error al crear el animal");
@@ -222,7 +223,6 @@ public class AnimalRestController {
     // Controlador para buscar Perros
     @GetMapping(path = "/buscar/soloperros", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarSoloPerros() {
-
         List<Animal> listado = aniDao.buscarSoloPerros();
         if (listado != null && !listado.isEmpty()) {
             return ResponseEntity.ok(listado);

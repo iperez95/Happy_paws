@@ -12,7 +12,10 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +37,7 @@ import com.tfgunir.happypaws.modelo.entities.Multimedia;
 @CrossOrigin(origins = "*")
 @RequestMapping("/multimedia")
 public class MultimediaRestController {
+
     @Autowired
     MultimediaDao multdao;
 
@@ -52,69 +56,83 @@ public class MultimediaRestController {
     //     }
     // }
 
+    /**
+     * Método que devuelve la lista de URls que pertenecen a un animal.
+     */
     @GetMapping(path = "/animal/{id}", produces = "application/json")
-    public ResponseEntity<List<MultimediaDto>> listMultimediasAnimal(Model model,
-            @PathVariable(name = "id") int id) {
-        
+    public ResponseEntity<List<MultimediaDto>> listMultimediasAnimal(Model model, @PathVariable(name = "id") int id) {
+
         List<Multimedia> multimedias = multdao.multimediasAnimal(id);
-        if (multimedias !=null){
+
+        if (multimedias != null) {
             List<MultimediaDto> multimediaDto = new ArrayList<>();
             for (Multimedia multimedia : multimedias) {
                 multimediaDto.add(multdao.convertirMultimediaDto(multimedia));
             }
             return new ResponseEntity<>(multimediaDto, HttpStatus.OK);
-        }
-        else {
+        } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
-       
     }
 
-    // SUBIR FOTO ANIMAL
     @GetMapping(path = "/gestion/subirfoto/{id}", produces = "application/json")
     public ResponseEntity<List<Multimedia>> subirFoto(@PathVariable("id") int id) {
-        System.out.println("Buscando protectora con id: " + id);
         List<Multimedia> multimedias = multdao.multimediasAnimal(id);
-        if (multimedias != null)
-            return new ResponseEntity<>(multimedias, HttpStatus.OK);
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        if (multimedias != null) return new ResponseEntity<>(multimedias, HttpStatus.OK);
+        else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    // AÑADE FOTO AL ANIMAL
+    /**
+     * Método que guarda las fotos físicamente en el servidor y guarda la ruta de las mismas en la bbdd.
+     */
     @PostMapping(path = "/gestion/upload")
-    public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
+    public ResponseEntity<?> upload(@RequestParam("files") MultipartFile[] files, @RequestParam("id") int id) {
         Map<String, Object> response = new HashMap<>();
-
         Animal animal = anidao.buscarAnimalId(id);
-
-        Multimedia multimedia = new Multimedia();
-
-        if (!archivo.isEmpty()) {
-
-            String nombreArchivo = UUID.randomUUID().toString() + "_" + archivo.getOriginalFilename().replace(" ", "");
-            Path rutaArchivo = Paths.get("..//frontend//src//assets//images//animal//" + id + "//")
-                    .resolve(nombreArchivo).toAbsolutePath();
-
-            try {
-                Files.createDirectories(rutaArchivo.getParent());
-                Files.copy(archivo.getInputStream(), rutaArchivo);
-                multimedia.setEnlace("/assets/images/animal/" + id + "/" + nombreArchivo);
-                multimedia.setAnimal(animal);
-                multdao.altaMultimedia(multimedia);
-
-                response.put("multimedia", multimedia);
-                response.put("mensaje", "Has subido correctamente la foto: " + nombreArchivo);
-
-            } catch (IOException e) {
-                response.put("mensaje", "Error al subir la foto: " + nombreArchivo);
-                response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
-                return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        String path = "../frontend/src/assets/images/animales/" + id + "/";
+        if (files != null && files.length > 0) {
+            for (MultipartFile file: files) {
+                Multimedia multimedia = new Multimedia();
+                String nombreFoto = UUID.randomUUID().toString() + "_" + file.getOriginalFilename().replace(" ", "");
+                Path rutaArchivo = Paths.get(path).resolve(nombreFoto).toAbsolutePath();
+                try {
+                    Files.createDirectories(rutaArchivo.getParent());
+                    Files.copy(file.getInputStream(), rutaArchivo);
+                    multimedia.setEnlace(nombreFoto);
+                    multimedia.setAnimal(animal);
+                    multdao.altaMultimedia(multimedia);
+                } catch(IOException e) {
+                    response.put("mensaje", "Error al subir una foto");
+                    response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
+                    return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+                response.put("mensaje", "Has subido correctamente las fotos.");
             }
+        } else { response.put("mensaje", "No se proporcionaron archivos para subir."); }
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    /**
+     * Método que devuelve una lista con listas de todas las fotos de los animales indicados por su id.
+     */
+    @GetMapping("/fotos")
+    public ResponseEntity<Map<String, Object>> recuperarFotosAnimal(
+            @RequestParam("idsAnimales") List<Integer> idsAnimales
+    ) {
+        System.out.println(idsAnimales);
+        Map<Integer, List<Multimedia>> fotosAnimales = new HashMap<>();
+
+        for (int idAnimal: idsAnimales) {
+            List<Multimedia> fotos = multdao.multimediasAnimal(idAnimal);
+            fotosAnimales.put(idAnimal, fotos);
         }
 
-        return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+        Map<String, Object> response = new HashMap<>();
+        response.put("mensaje", "Fotos devueltas correctamente");
+        response.put("fotosAnimales", fotosAnimales);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 }

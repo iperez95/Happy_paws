@@ -1,63 +1,69 @@
-<!--<div *ngIf="animal"> -->
-
 <!-- Botón para volver al listado de animales -->
 <a href="animales/listado" class="btn btn-primary">Volver al listado de animales</a>
 
 <div class="row justify-content-center">
   <div class="col-lg-10">
 
-  <!-- Carrusel de imágenes -->
-<div class="fotoprincipal">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <img [src]="'/assets/images/animales/' + animal.idanimal" class="img-fluid" alt="{{animal.nombre}}">
+    <!-- Carrusel de imágenes -->
+    <div class="fotoprincipal">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <img
+            *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
+            [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + listaFotos[0].enlace"
+            class="img-fluid"
+            alt="{{animal.nombre}}">
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 
-<!-- Detalles del animal -->
-<div class="detalles">
-  <div class="row">
-    <div class="col">
-      <p>Conoce a {{animal.nombre}}</p>
-      <p>Nacido el; {{ animal.fechaNacimiento | date }}</p>
+    <!-- Detalles del animal -->
+    <div class="detalles">
+      <div class="row">
+        <div class="col">
+          <p>Conoce a {{animal.nombre}}</p>
+          <p>Nacido el; {{ animal.fechaNacimiento | date }}</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <p>Provincia: {{ animal.municipio.provincia.provincia }}</p>
+          <p>Protectora: {{ animal.protectora.nombre }}</p>
+          <p>Envío: {{ animal.envio ? "Puede viajar" : "No puede viajar" }}</p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <h2>DETALLES</h2>
+          <p>Especie: {{ animal.raza.especie.especie }}</p>
+          <p>Raza: {{ animal.raza.raza }}</p>
+          <p>Sexo: {{ animal.sexo.sexo }}</p>
+          <p>Tamaño: {{ animal.tamano.tamano }}</p>
+          <p>Edad: {{ getAnimalAge(animal.fechaNacimiento) }}</p>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <h2>DESCRIPCIÓN</h2>
+          <p>{{ animal.descripcion }}</p>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col">
-    <p>Provincia: {{ animal.municipio.provincia.provincia }}</p>
-      <p>Protectora: {{ animal.protectora.nombre }}</p>
-      <p>Envío: {{ animal.envio ? "Puede viajar" : "No puede viajar" }}</p>
+
+    <!-- FOTOS DEL ANIMAL -->
+    <div class="row">
+      <div class="col-md-2 m-4" *ngFor="let foto of listaFotos; let i = index">
+        <img class="img-fluid img-thumbnail "
+             *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
+             [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + foto.enlace"
+             alt="Foto {{i + 1}}"
+             style="height: 200px; width: 200px; object-fit: cover;">
+      </div>
     </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col">
-      <h2>DETALLES</h2>
-      <p>Especie: {{ animal.raza.especie.especie }}</p>
-      <p>Raza: {{ animal.raza?.raza }}</p>
-      <p>Sexo: {{ animal.sexo?.sexo }}</p>
-      <p>Tamaño: {{ animal.tamano?.tamano }}</p>
-      <p>Edad: {{ getAnimalAge(animal.fechaNacimiento) }}</p>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col">
-      <h2>DESCRIPCIÓN</h2>
-      <p>{{ animal.descripcion }}</p>
-    </div>
-  </div>
-</div>
-
-<!-- FOTOS DEL ANIMAL -->
-<div class="row">
-  <div class="col-md-2 m-4" *ngFor="let foto of fotosMultimedia; let i = index">
-      <img class="img-fluid img-thumbnail " [src]="foto.enlace" alt="Foto {{i + 1}}" style="height: 200px; width: 200px; object-fit: cover;">
-  </div>
-</div>
 
   </div>
 </div>

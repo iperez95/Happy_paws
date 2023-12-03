@@ -15,11 +15,11 @@ import {EspecieService} from 'src/app/service/especie/especie.service';
 import {RazaService} from 'src/app/service/raza/raza.service';
 import {SexoService} from 'src/app/service/sexo/sexo.service';
 import {TamanosService} from 'src/app/service/tamano/tamano.service';
-import {A} from "@angular/cdk/keycodes";
 import {UsuarioService} from "../../../../service/usuario/usuario.service";
 import {ProtectoraService} from "../../../../service/protectora/protectora.service";
 import {Usuario} from "../../../../entidades/usuario";
-import {Observable} from "rxjs";
+import {formatDate} from "@angular/common";
+import {MultimediaService} from "../../../../service/multimedia/multimedia.service";
 
 
 @Component({
@@ -43,14 +43,17 @@ export class AltaAnimalComponent {
   tamano: Tamano = new Tamano();
   sexo: Sexo = new Sexo;
   enabled: boolean = true;
+  envio: boolean;
   public protectora: Protectora;
+  public fotos: FileList;
 
 
   constructor(
     private fb: FormBuilder, private _animalService: AnimalService, private router: Router,
     private _locationService: LocationService, private _especieService: EspecieService,
     private _razaService: RazaService, private _sexoService: SexoService, private _tamanoService: TamanosService,
-    private _usuarioService: UsuarioService, private _protectoraService: ProtectoraService
+    private _usuarioService: UsuarioService, private _protectoraService: ProtectoraService,
+    private _multimediaService: MultimediaService
   ) {}
 
 
@@ -67,7 +70,8 @@ export class AltaAnimalComponent {
       especie: ['', Validators.required],
       tamano: ['', Validators.required],
       sexo: ['', Validators.required],
-      envio: ['', Validators.required]
+      envio: ['', Validators.required],
+      fotos: ['', Validators.required]
     });
 
     this.listadoProvincias();
@@ -99,7 +103,7 @@ export class AltaAnimalComponent {
         nombre: this.altaForm.get('nombre')?.value,
         raza: this.obtenerRaza(this.altaForm.get('raza')?.value),
         sexo: this.obtenerSexo(this.altaForm.get('sexo')?.value),
-        tamano: this.obtenerTanyo(this.altaForm.get('tamano')?.value),
+        tamano: this.obtenerTamanyo(this.altaForm.get('tamano')?.value),
         fecha_enabled: new Date,
       };
 
@@ -132,7 +136,7 @@ export class AltaAnimalComponent {
     return valor;
   }
 
-  private obtenerTanyo(id: number): Tamano | null {
+  private obtenerTamanyo(id: number): Tamano | null {
     let valor = null;
     for (let tamanyo of this.tamanos) {
       if (tamanyo.idtamano == id) {
@@ -166,20 +170,21 @@ export class AltaAnimalComponent {
   }
 
   private guardarAnimal(animal: Animal): void {
-    this
-      ._animalService
-      .altaAnimal(animal)
-      .subscribe({
-        complete: () => {
-          this.router.navigate(['/protectora/gestion']);
-        }
-      })
+    this._animalService.altaAnimal(animal).subscribe({
+      next: (res) => {
+        const idAnimal: string = res.idAnimal;
+        this.guardarFotos(idAnimal);
+      },
+      error: (err) => {
+        console.error(err);
+      }
+    })
   }
 
   irGestionAnimal() {
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
       this.router.navigate(['/protectora/gestion']);
-    }); 
+    });
   }
 
   private listadoProvincias() {
@@ -244,6 +249,27 @@ export class AltaAnimalComponent {
       .subscribe((data: any[]) => {
         this.tamanos = data;
       });
+  }
+
+  public seleccionarFotos(event: any): void {
+    this.fotos = event.target.files;
+  }
+
+  private guardarFotos(idAnimal: string): void {
+    if (this.fotos) {
+      const formData = new FormData();
+      // añado las fotos.
+      for (let i = 0; i < this.fotos.length; i++) { formData.append('files', this.fotos[i]); }
+      // Añado el ID del animal.
+      formData.append("id", idAnimal);
+      // Guardo las fotos en la bbdd.
+      this._multimediaService.subirFotosAnimal(formData).subscribe({
+        error: (err) => { console.error('error:'+err); },
+        complete: () => {
+            this.router.navigate(['/protectora/gestion']);
+        }
+      });
+    }
   }
 
 }

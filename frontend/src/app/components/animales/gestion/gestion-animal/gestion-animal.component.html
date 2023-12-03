@@ -10,9 +10,9 @@
       <div class="row row-cols-auto gy-5">
         <div class="col-md-3" *ngFor="let animal of listaAnimales">
           <div class="card h-100">
-            <img
-              src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-1422023439-64f1eaf518ace.jpg?crop=1xw:0.84375xh;center,top&resize=1200:*"
-              class="card-img-top" alt="{{animal.nombre}}">
+            <img [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + listaFotos[animal.idanimal][0].enlace"
+              *ngIf="listaFotos && animal && animal.idanimal && listaFotos[animal.idanimal] && listaFotos[animal.idanimal][0]"
+              alt="{{animal.nombre}}" class="card-img-top" alt="{{animal.nombre}}">
             <div class="card-body">
               <div>
                 <h5 class="card-title fw-bold d-flex justify-content-start">{{animal.nombre}}</h5>
@@ -23,8 +23,8 @@
                   <h6 class="card-text mt-md-3 m-4">{{animal.tamano?.tamano}}</h6>
                 </div>
               </div>
-                  <div class="row row-cols-auto ">
-                    <div class="col-md-auto d-flex justify-content-start">
+              <div class="row row-cols-auto">
+                <div class="col-md-auto d-flex justify-content-start">
                   <h6 class="card-text mt-md-3 m-4">{{animal.municipio?.provincia.provincia}}</h6>
                   <h6 class="card-text mt-md-3 m-4">{{animal.envio ? "Puede viajar" : "No puede viajar"}}</h6>
                 </div>
