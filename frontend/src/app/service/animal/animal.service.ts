@@ -29,6 +29,11 @@ export class AnimalService {
       .pipe(catchError(this.manejarError));
   }
 
+  public listarAnimalesDto(): Observable<any> {
+    return this._httpClient.get(`${this.endpoint}/animales/listadodto`)
+      .pipe(catchError(this.manejarError));
+  }
+
   // Método para ver un animal por su id
   public verAnimal(idanimal: number): Observable<Animal> {
     return this._httpClient.get<Animal>(`${this.endpoint}/animales/verUno/${idanimal}`)
@@ -147,6 +152,10 @@ export class AnimalService {
       return throwError(() => new Error(mensajeError));
     }
 
+    public listarProvincias(): Observable<any> {
+      return this._httpClient.get(`${this.endpoint}/provincia/todas`)
+        .pipe(catchError(this.manejarError));
+    }
   ngOnInit() {
   }
 }
