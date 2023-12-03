@@ -38,6 +38,8 @@ public class AnimalDao implements IAnimalDao{
         }
     }
 
+   
+
 
     @Override
     public boolean enabledAnimal(Animal animal) {
@@ -148,5 +150,5 @@ public class AnimalDao implements IAnimalDao{
         return animalDto;
     }
 
-
+ 
 }

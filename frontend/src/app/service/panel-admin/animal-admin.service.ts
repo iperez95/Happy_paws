@@ -43,6 +43,12 @@ import { Animal } from "src/app/entidades/animal";
       return this._httpClient.put<Animal>(`${this.endpoint}/api/admin/animal/modificar/${idanimal}`, animal)
         .pipe(catchError(this.manejarError));
     }
+
+    public actualizarAnimalDto(idanimal : number, animalDto : any): Observable<Object> {
+      console.log("Esto es lo que manda el front"+animalDto);
+      return this._httpClient.put<Animal>(`${this.endpoint}/api/admin/animaldto/modificar/${idanimal}`, animalDto)
+        .pipe(catchError(this.manejarError));
+    }
   
     // public busquedaPorNombre(nombre:string): Observable<any> {
     //   return this._httpClient.get(`${this.endpoint}/api/admin/protectoras/busquedapornombre/${nombre}`)

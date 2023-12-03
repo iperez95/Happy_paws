@@ -26,5 +26,5 @@ public interface IAnimalDao {
 
     List<Animal> buscarSoloPerros ();
     List<Animal> buscarSoloGatos ();
-
+    
 }

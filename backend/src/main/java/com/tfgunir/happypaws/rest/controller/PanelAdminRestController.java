@@ -327,98 +327,35 @@ public class PanelAdminRestController {
             return ResponseEntity.notFound().build();        
     }
 
-      // MODIFICAR ANIMAL
-    // @PutMapping(path="/animal/modificar/{id}", consumes = "application/json")
-    // public ResponseEntity<Animal> modificarAnimal(@PathVariable("id")int id, @RequestBody AnimalDto animalRecibido){ 
-    //     System.out.println("*****Animal recibido: "+animalRecibido);
-        
-    //     System.out.println("******Buscando protectora con id: "+id);
-    //     Animal animal = aniDao.buscarAnimalId(id);
-    //     System.out.println("******Animal encontrado: "+animal);
-
-    //     Especie especie = new Especie();
-    //     especie.setIdespecie(animalRecibido.getIdEspecie());
-
-    //     Raza raza = new Raza();
-    //     raza.setIdraza(animalRecibido.getIdRaza());
-
-    //     Sexo sexo = new Sexo();
-    //     sexo.setIdsexo(animalRecibido.getIdSexo());
-
-    //     Tamano tamano = new Tamano();
-    //     tamano.setIdtamano(animalRecibido.getIdTamano());
-     
-     
-    //     if (animal!=null) {
-    //         animal.setNombre(animalRecibido.getNombre());
-    //         System.out.println("******Nombre: "+animalRecibido.getNombre());
-    //         animal.setDescripcion(animalRecibido.getDescripcion());
-    //         System.out.println("******Descripcion: "+animalRecibido.getDescripcion());
-    //         animal.setFechaNacimiento(animalRecibido.getFechaNacimiento());
-    //         System.out.println("******Fecha nacimiento: "+animalRecibido.getFechaNacimiento());
-    //         animal.setFechaAlta(animalRecibido.getFechaAlta());
-    //         System.out.println("******Fecha alta: "+animalRecibido.getFechaAlta());
-    //         animal.setEnvio(animalRecibido.isEnvio());
-    //         System.out.println("******Envio: "+animalRecibido.isEnvio());
-    //         // animal.setRaza(raza);
-    //         // System.out.println("******Raza: "+raza);
-    //         animal.setSexo(sexo);
-    //         System.out.println("******Sexo: "+sexo);
-    //         animal.setTamano(tamano);   
-    //         System.out.println("******Tamano: "+tamano);
-                            
-    //     }
-        
-    //     if (aniDao.modificarAnimal(animal)){
-    //         return ResponseEntity.ok(animal);
-    //     }
-    //     else{
-    //         return ResponseEntity.notFound().build();
-    //     }
-        
-    // }
 
     //MODIFICAR ANIMAL
-    @PutMapping(path="/animal/modificar/{id}", consumes = "application/json")
-    public ResponseEntity<Animal> modificarAnimal(@PathVariable("id")int id, @RequestBody Animal detalleAnimal){
-        System.out.println("************* Animal recibido: "+detalleAnimal);
+    @PutMapping(path="/animal/modificar/{id}")
+    public ResponseEntity<Animal> modificarAnimal(@PathVariable("id")int id, @RequestBody Animal animalRecibido){
+           System.out.println("************* AnimalRecibido: "+animalRecibido);
 
         Animal animal = anidao.buscarAnimalId(id);
         System.out.println("************* Animal encontrado: "+animal);
 
         if (animal!=null){
-        Especie especie = espedao.buscarEspecieId(detalleAnimal.getRaza().getEspecie().getIdespecie());
-        System.out.println("************* Especie encontrada: "+especie);
-
-        Raza raza = razadao.buscarRazaId(detalleAnimal.getRaza().getIdraza());
-        System.out.println("************* Raza encontrada: "+raza);
-
-        Sexo sexo = sexodao.buscarSexoId(detalleAnimal.getSexo().getIdsexo());
-        System.out.println("************* Sexo encontrado: "+sexo);
-
-        Tamano tamano = tamaDao.buscarTamanoId(detalleAnimal.getTamano().getIdtamano());
-        System.out.println("************* Tamano encontrado: "+tamano);
-
-        animal.setNombre(detalleAnimal.getNombre());
-        animal.setRaza(raza);
-        animal.setSexo(sexo);
-        animal.setTamano(tamano);
-        animal.setDescripcion(detalleAnimal.getDescripcion());
-        System.out.println("********* Descripcion que llega: "+detalleAnimal.getDescripcion());
-        System.out.println("************ Animal modificado: "+animal);
+            animal.setNombre(animalRecibido.getNombre());
+            animal.setDescripcion(animalRecibido.getDescripcion());
+            // animal.setFechaNacimiento(animalDtoRecibido.getFechaNacimiento());
+            // animal.setFechaAlta(animalDtoRecibido.getFechaAlta());
+            // animal.setEnvio(animalDtoRecibido.isEnvio());
+            animal.setRaza(razadao.buscarRazaId(animalRecibido.getRaza().getIdraza()));
+            animal.setSexo(sexodao.buscarSexoId(animalRecibido.getSexo().getIdsexo()));
+            animal.setTamano(tamaDao.buscarTamanoId(animalRecibido.getTamano().getIdtamano()));
+            System.out.println("************ Animal modificado: "+animal);       
 
         }        
-
-
-
         if (anidao.modificarAnimal(animal))
             return ResponseEntity.ok(animal);
         else
             return ResponseEntity.notFound().build();
 
+    }       
+    
 
 
 
-     
-    }
 }
