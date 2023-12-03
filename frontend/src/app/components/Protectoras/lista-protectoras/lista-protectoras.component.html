@@ -14,12 +14,11 @@
           <option ng-init="provinciaSeleccionadaId = option[0]" *ngFor="let provincia of listaProvincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
         </select>
       </div>
-      <div class="col-sm-auto">
-        <button class="btn custom-btn-red-dark p-2 " (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
+      <div class="d-grid gap-2 d-md-block">
+        <button class="btn custom-btn-red-dark ms-2" (click)="listarProtectorasPorIdProvincia(provinciaSeleccionadaId)">Buscar</button>
+        <button class="btn custom-btn-red-dark ms-2 " (click)="listar()">Ver todas</button>
       </div>
-      <div class="col-sm-auto">
-        <button class="btn custom-btn-red-dark p-2 " (click)="listar()">Ver todas</button>
-      </div>
+   
       <!-- <div class="col-sm-auto">
         <button class="btn custom-btn-red-light p-2 " (click)="irAltaProtectora()">Dar de alta una protectora</button>
       </div> -->
@@ -28,37 +27,7 @@
 </section>
 
 
-
-<!-- Listado de protectoras -->
-<!-- <section class="tarjetas m-3">  
-  <div class="container.md">
-    <div class="row row-cols-auto gy-5">
-      <div class="col-md-3" *ngFor="let protectora of listaProtectoras">
-        <div class="card h-100"  >
-          <a href="/protectora/detalle/{{protectora.idprotectora}}"><img src="{{protectora.urlLogo}}"  class="card-img-top" alt="{{protectora.nombre}}"></a>
-          <div class="card-body">
-            <div>
-              <h5 class="card-title fw-bold d-flex justify-content-start">{{protectora.nombre}}</h5>
-            </div>
-            <div class="row row-cols-auto ">
-              <div class="col-md-auto d-flex justify-content-start">
-                <h6 class="card-text mt-md-3">{{protectora.municipio.provincia.provincia}}</h6>
-              </div>
-              <div class="col">
-                <img class ="icono" src="assets/images/protectora/find.png" alt="icono find protectora">
-              </div>
-              <div class="col">
-                <button (click)="verDetallesProtectora(protectora.idprotectora)" class="btn custom-btn-red-dark">Ver detalles</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-<section class="tarjetas m-3">  
+<section class="tarjetas p-3">  
   <div class="container.md">
     <div class="row row-cols-auto gy-5">
       <div class="col-md-3" *ngFor="let protectora of listaProtectoras">
