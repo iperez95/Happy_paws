@@ -1,1 +1,65 @@
-<p>listado-gestion-animales works!</p>
+<section class="m-5">
+    <div class="contcontainer.md overflow-hiddenainer">
+        <div class="row row-cols-auto">
+            <div class="col-md-auto d-flex align-items-center">
+                <h6 class="fw-bold">Buscar: </h6>
+            </div>
+            <div class="col-md-auto">
+                <input #busqueda type="text" class="form-control" placeholder="nombre protectora">
+            </div>
+            <div class="col-md-auto">
+                <!-- <button (click)="busquedaPorNombre(busqueda.value)" class="btn custom-btn-red-dark">Buscar</button> -->
+            </div>
+            <div class="col-md-auto">
+                <button (click)="listar()" class="btn custom-btn-red-dark">Ver todas</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<div class="mt-5 contendor">
+    <table class="table table-striped  table table-hover text-center" >
+        <thead >
+            <tr>
+                <th scope="col">ID Animal</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Protectora</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Cambiar Estado</th>
+                <th scope="col">Editar</th>
+                
+                <!-- <th scope="col">Borrar</th> -->
+            </tr>
+        </thead>
+        <tbody *ngFor="let animal of listaAnimalesDto">
+            <tr>
+                <th scope="row">{{animal.idanimal}}</th>    
+                <td>{{animal.nombre}}</td>
+                <td>{{animal.nombreProvincia}}</td>
+                <td>{{animal.enabled}}</td>
+                <td>{{animal.nombreProtectora}}</td>
+                <td [ngStyle]="{'color': getColor(animal.enabled)}">{{getStatus(animal.enabled)}}</td>
+                       
+                <td>
+                    <button 
+                    (click)="cambiarEstadoAnimal(animal.idanimal)" 
+                    class="btn ms-3" 
+                    [ngClass]="{'custom-btn-red-light': getStatus(animal.enabled) === 'Activo', 'custom-btn-green-light': getStatus(animal.enabled) !== 'Activo'}">
+                    {{getStatus(animal.enabled) === "Activo" ? "Desactivar" : "Activar"}}
+                  </button>                </td> 
+                <!-- <td>
+                    <button class="btn custom-btn-red-dark  ms-3">Eliminar</button>
+                </td> -->
+                <td>
+                    <button (click)="editarAnimal(animal.idanimal)" class="btn custom-btn-red-dark" >Editar</button>
+                </td> 
+            </tr>
+
+              
+        </tbody>
+    </table>
+</div>

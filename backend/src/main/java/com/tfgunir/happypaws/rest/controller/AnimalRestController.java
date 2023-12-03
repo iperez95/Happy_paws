@@ -276,7 +276,7 @@ public class AnimalRestController {
             return ResponseEntity.notFound().build();
     }
 
-    //AÑADE EL LOGO SUBIDO A LA PROTECTRA
+    //AÑADE FOTOS AL ANIMAL
     @PostMapping(path = "/gestion/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
         Map<String, Object> response = new HashMap<>();

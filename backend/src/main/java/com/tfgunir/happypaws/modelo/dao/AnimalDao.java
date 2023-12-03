@@ -38,6 +38,9 @@ public class AnimalDao implements IAnimalDao{
         }
     }
 
+   
+
+
     @Override
     public boolean enabledAnimal(Animal animal) {
         try {
@@ -137,14 +140,15 @@ public class AnimalDao implements IAnimalDao{
         animalDto.setIdProtectora(animal.getProtectora().getIdprotectora());
         animalDto.setNombreProtectora(animal.getProtectora().getNombre());
         animalDto.setIdEspecie(animal.getRaza().getEspecie().getIdespecie());
-        animalDto.setEspecie(animal.getRaza().getEspecie().getEspecie());
+        animalDto.setNombreEspecie(animal.getRaza().getEspecie().getEspecie());
         animalDto.setIdRaza(animal.getRaza().getIdraza());
-        animalDto.setRaza(animal.getRaza().getRaza());
+        animalDto.setNombreRaza(animal.getRaza().getRaza());
         animalDto.setIdSexo(animal.getSexo().getIdsexo());
-        animalDto.setSexo(animal.getSexo().getSexo());
+        animalDto.setNombreSexo(animal.getSexo().getSexo());
         animalDto.setIdTamano(animal.getTamano().getIdtamano());
-        animalDto.setTamano(animal.getTamano().getTamano());
+        animalDto.setNombreTamano(animal.getTamano().getTamano());
         return animalDto;
     }
 
+ 
 }

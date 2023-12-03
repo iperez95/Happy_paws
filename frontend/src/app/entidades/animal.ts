@@ -38,4 +38,6 @@ export class Animal {
   } | any;
   fecha_enabled: Date | any;
 
+
+
 }

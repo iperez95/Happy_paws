@@ -13,7 +13,7 @@ import { Provincia } from 'src/app/entidades/provincia';
     templateUrl: './alta-protectora.component.html',
     styleUrls: ['./alta-protectora.component.css']
   })
-  export class AltaProtectoraComponent {
+  export class AltaProtectoraComponent {ra
 
     altaForm: FormGroup;
    

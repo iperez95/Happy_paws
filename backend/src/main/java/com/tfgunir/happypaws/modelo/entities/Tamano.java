@@ -38,7 +38,7 @@ public class Tamano implements Serializable {
 		return this.tamano;
 	}
 
-	public void setTamaño(String tamano) {
+	public void setTamano(String tamano) {
 		this.tamano = tamano;
 	}
 

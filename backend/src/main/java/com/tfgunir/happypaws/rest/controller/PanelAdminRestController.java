@@ -16,19 +16,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
+import com.tfgunir.happypaws.modelo.dao.AnimalDao;
+import com.tfgunir.happypaws.modelo.dao.EspecieDao;
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
+import com.tfgunir.happypaws.modelo.dao.RazaDao;
+import com.tfgunir.happypaws.modelo.dao.SexoDao;
+import com.tfgunir.happypaws.modelo.dao.TamanoDao;
 import com.tfgunir.happypaws.modelo.dao.UsuarioDao;
+import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.dto.ProtectoraDto;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
+import com.tfgunir.happypaws.modelo.entities.Animal;
+import com.tfgunir.happypaws.modelo.entities.Especie;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
+import com.tfgunir.happypaws.modelo.entities.Municipio;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
+import com.tfgunir.happypaws.modelo.entities.Provincia;
+import com.tfgunir.happypaws.modelo.entities.Raza;
+import com.tfgunir.happypaws.modelo.entities.Sexo;
+import com.tfgunir.happypaws.modelo.entities.Tamano;
 import com.tfgunir.happypaws.modelo.entities.Usuario;
 import com.tfgunir.happypaws.modelo.repository.ProtectoraRepository;
 import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("/api/admin/")
+@RequestMapping("/api/admin")
 public class PanelAdminRestController {
 
     @Autowired
@@ -38,6 +51,21 @@ public class PanelAdminRestController {
     ProtectoraRepository protrepo;
 
     @Autowired
+    AnimalDao anidao;
+
+    @Autowired
+    RazaDao razadao;
+
+    @Autowired
+    EspecieDao espedao;
+
+    @Autowired
+    SexoDao sexodao;
+
+    @Autowired
+    TamanoDao tamaDao;
+
+    @Autowired
     private UsuarioDao usuarioDao;
 
     private final UsuarioAuthProvider usuarioAuthProvider;
@@ -45,6 +73,8 @@ public class PanelAdminRestController {
     public PanelAdminRestController(UsuarioAuthProvider usuarioAuthProvider) {
         this.usuarioAuthProvider = usuarioAuthProvider;
     }
+
+// ****************************** PROTECTORAS ************************************
 
     // LISTADO PROTECTORAS DTO CON MUNICIPIO Y PROVINCIA
     @GetMapping(path="/protectoras/todas", produces = "application/json")
@@ -263,5 +293,69 @@ public class PanelAdminRestController {
         else
             return ResponseEntity.notFound().build();        
     }
+
+// ****************************** ANIMALES ************************************
+ @PutMapping(path="/animal/activar/{id}")
+    public ResponseEntity<Animal> activarAnimal (@PathVariable("id") int id){
+
+        Animal animal = anidao.buscarAnimalId(id);
+
+        if (animal!=null) {
+            animal.setEnabled(true);
+            anidao.modificarAnimal(animal);
+
+
+            return ResponseEntity.ok(animal);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+
+ @PutMapping(path="/animal/inactivar/{id}")
+    public ResponseEntity<Animal> inactivarAnimal (@PathVariable("id") int id){
+
+        Animal animal = anidao.buscarAnimalId(id);
+
+        if (animal!=null) {
+            animal.setEnabled(false);
+            anidao.modificarAnimal(animal);
+
+            return ResponseEntity.ok(animal);    
+        }
+        else
+            return ResponseEntity.notFound().build();        
+    }
+
+
+    //MODIFICAR ANIMAL
+    @PutMapping(path="/animal/modificar/{id}")
+    public ResponseEntity<Animal> modificarAnimal(@PathVariable("id")int id, @RequestBody Animal animalRecibido){
+           System.out.println("************* AnimalRecibido: "+animalRecibido);
+
+        Animal animal = anidao.buscarAnimalId(id);
+        System.out.println("************* Animal encontrado: "+animal);
+
+        if (animal!=null){
+            animal.setNombre(animalRecibido.getNombre());
+            animal.setDescripcion(animalRecibido.getDescripcion());
+            // animal.setFechaNacimiento(animalDtoRecibido.getFechaNacimiento());
+            // animal.setFechaAlta(animalDtoRecibido.getFechaAlta());
+            // animal.setEnvio(animalDtoRecibido.isEnvio());
+            animal.setRaza(razadao.buscarRazaId(animalRecibido.getRaza().getIdraza()));
+            animal.setSexo(sexodao.buscarSexoId(animalRecibido.getSexo().getIdsexo()));
+            animal.setTamano(tamaDao.buscarTamanoId(animalRecibido.getTamano().getIdtamano()));
+            System.out.println("************ Animal modificado: "+animal);       
+
+        }        
+        if (anidao.modificarAnimal(animal))
+            return ResponseEntity.ok(animal);
+        else
+            return ResponseEntity.notFound().build();
+
+    }       
+    
+
+
 
 }
