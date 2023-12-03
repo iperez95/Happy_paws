@@ -20,6 +20,7 @@ import {ProtectoraService} from "../../../../service/protectora/protectora.servi
 import {Usuario} from "../../../../entidades/usuario";
 import {formatDate} from "@angular/common";
 import {MultimediaService} from "../../../../service/multimedia/multimedia.service";
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -27,6 +28,7 @@ import {MultimediaService} from "../../../../service/multimedia/multimedia.servi
   templateUrl: './alta-animal.component.html',
   styleUrls: ['./alta-animal.component.css']
 })
+
 export class AltaAnimalComponent {
 
   altaForm: FormGroup;
@@ -86,6 +88,7 @@ export class AltaAnimalComponent {
 
   public onSubmit(): void {
     this.crearAnimal();
+    
   }
 
   private crearAnimal(): void {
@@ -108,6 +111,7 @@ export class AltaAnimalComponent {
       };
 
       this.guardarAnimal(animal);
+      
     }
   }
 
@@ -266,10 +270,33 @@ export class AltaAnimalComponent {
       this._multimediaService.subirFotosAnimal(formData).subscribe({
         error: (err) => { console.error('error:'+err); },
         complete: () => {
-            this.router.navigate(['/protectora/gestion']);
-        }
+          Swal.fire({
+            icon: 'success',
+            title: '¡¡ Perfecto !!',
+            text: 'La mascota ha sido creada satisfactoriamente',
+            showConfirmButton: false,
+            timer:2000
+          })
+          .then(()=> {
+            this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this.router.navigate(['/protectora/gestion']);
+          })
+        }).catch(error =>
+          Swal.fire({
+            icon: 'error',
+            title: 'Algo ha salido mal',
+            text: error.response.data.message,            
+          })
+        )}
       });
+      } else {            
+        Swal.fire({
+          icon: 'error',
+          title: 'Algo ha salido mal',
+          text: 'Comprueba que has rellanado todos los datos por favor',            
+        })
+        
+    
     }
   }
-
 }
