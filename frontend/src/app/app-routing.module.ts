@@ -31,11 +31,13 @@ import { EditarAnimalGestionComponent } from './components/panel-admin/Animales/
 import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar-usuario/editar-usuario.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotros.component';
+import { ListadoAnimalesComponent } from './components/animales/listado-animales/listado-animales.component';
 
 
 const routes: Routes = [
   //animales
   { path: 'animales/listado', component:ListaAnimalesComponent},
+  { path: 'animales/listado2', component:ListadoAnimalesComponent},
   { path: 'animales/verUno/:id', component: AnimaldetalladoComponent},
   { path: 'animales/gestion/alta', component: AltaAnimalComponent},
   { path: 'animales/gestion', component: GestionAnimalComponent},

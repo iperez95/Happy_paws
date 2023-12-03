@@ -54,6 +54,7 @@ import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar
 import { ListadoAdopcionesComponent } from './components/panel-admin/Adopciones/listado-adopciones/listado-adopciones.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotros.component';
+import { ListadoAnimalesComponent } from './components/animales/listado-animales/listado-animales.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotr
     ListadoAdopcionesComponent,
     FaqComponent,
     SobreNosotrosComponent,
+    ListadoAnimalesComponent,
   ],
   imports: [
     MatFormFieldModule,
