@@ -107,6 +107,7 @@ export class AnimalService {
       .pipe(catchError(this.manejarError));
   }
 
+
   // Método para subir foto de animal
   public subirFoto(archivo: File, id: number): Observable <Multimedia> {
     let formData = new FormData();
