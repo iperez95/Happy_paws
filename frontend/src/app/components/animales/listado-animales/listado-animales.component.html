@@ -33,7 +33,7 @@
         <div class="row row-cols-auto gy-5">
           <div class="col-md-3" *ngFor="let animal of listaAnimales">
             <div class="card h-100"  >
-              <!-- <a href="/protectora/detalle/{{animal.idanimal}}"><img src="{{protectora.urlLogo}}"  class="card-img-top" alt="{{protectora.nombre}}"></a> -->
+              <a href="/protectora/detalle/{{animal.idanimal}}"><img src="{{animal.enlacePrimeraFoto}}"  class="card-img-top" alt="{{animal.nombre}}"></a>
               <div class="card-body">
                 <div>
                   <h5 class="card-title fw-bold d-flex justify-content-start">{{animal.nombre}}</h5>
@@ -43,7 +43,7 @@
                     <h6 class="card-text mt-md-3">{{animal.nombreProvincia}}</h6>
                   </div>
                   <div class="col">
-                    <img class ="icono" src="assets/images/protectora/find.png" alt="icono find protectora">
+                    <img class ="icono" src="assets/images/protectora/find.png" width="50" height="50" alt="icono find protectora">
                   </div>
                   <div class="col">
                     <button (click)="verDetallesAnimal(animal.idanimal)" class="btn custom-btn-red-dark">Ver detalles</button>
