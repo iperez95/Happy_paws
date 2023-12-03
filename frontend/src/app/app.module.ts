@@ -53,6 +53,7 @@ import { ListadoGestionUsuariosComponent } from './components/panel-admin/Usuari
 import { EditarUsuarioComponent } from './components/panel-admin/Usuarios/editar-usuario/editar-usuario.component';
 import { ListadoAdopcionesComponent } from './components/panel-admin/Adopciones/listado-adopciones/listado-adopciones.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { SobreNosotrosComponent } from './components/sobre-nosotros/sobre-nosotros.component';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import { FaqComponent } from './components/faq/faq.component';
     EditarUsuarioComponent,
     ListadoAdopcionesComponent,
     FaqComponent,
+    SobreNosotrosComponent,
   ],
   imports: [
     MatFormFieldModule,
