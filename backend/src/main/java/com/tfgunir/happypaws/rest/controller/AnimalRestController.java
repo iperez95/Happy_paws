@@ -125,9 +125,10 @@ public class AnimalRestController {
 
     @PutMapping(path = "/gestion/modificar/{id}", consumes = "application/json")
     public ResponseEntity<?> modificarAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {
+        Map<String, String> response = new HashMap<>();
         animal.setIdanimal(id);
         if (aniDao.modificarAnimal(animal)) {
-            return ResponseEntity.ok("Animal editado correctamente");
+            return ResponseEntity.ok(response.put("message", "Animal editado correctamente"));
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al editar el animal");
         }
