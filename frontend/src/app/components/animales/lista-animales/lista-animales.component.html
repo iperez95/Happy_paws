@@ -1,45 +1,42 @@
-<!-- Componente que muestra la lista de animales --> 
+<!-- Componente que muestra la lista de animales -->
 
 <!-- <div *ngFor=" let animal of listaAnimales" class="card" style="width: 18rem;">
     <img src="..." class="card-img-top" alt="{{animal.nombre}}">
     <div class="card-body">
         <h3 class="card-title">{{animal.nombre}}</h3>
-        <h5 class="card-text">{{animal.municipio.provincia}}</h5>   
+        <h5 class="card-text">{{animal.municipio.provincia}}</h5>
         <h5 class="card-text">{{animal.fechaNacimiento}}</h5>
         <p class="card-text">{{animal.descripcion}}</p>
       <a href="/cuestionario/cuestionario-adopcion/cuestionario-adopcion.component.html" class="btn btn-primary">Adóptame</a>
     </div>
 </div> -->
 
-<section class="tarjetas m-3">  
-    <div class="container-fluid">
-
-            <div class="row">
-                <div class="col-md-2">
-                        aqui iria el filtro
-                    <select (change)="buscar($event)"> 
-                        
-                        <option *ngFor = " let r of listaRazas" value="{{r.idraza}}">{{r.raza}}</option>
-
-                    </select>
-
-                </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
-                            <div *ngFor="let a of listaAnimales" class="col-md-4 justify-content-center mb-4">
-                                <app-animal *ngIf = "a.enabled" [animal]="a"></app-animal>
-                            </div>
-                        </ng-container>
-                    </div>
-                </div>  
-            </div>
-
-    </div>
+<section class="tarjetas m-3">
+  <div class="container-fluid">
+    <section>
+      <div class="row">
+        <div class="col-md-2">
+                aqui iria el filtro
+          <select (change)="buscar($event)">
+            <option *ngFor=" let r of listaRazas" value="{{r.idraza}}">{{r.raza}}</option>
+          </select>
+        </div>
+        <div class="col-md-9">
+              <div class="row">
+                <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
+                  <div *ngFor="let animal of listaAnimales" class="col-md-4 justify-content-center mb-4">
+                    <app-animal *ngIf = "animal.enabled" [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
+                  </div>
+                </ng-container>
+              </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </section>
 
 <ng-template #sinAnimales>
-    <td>
-        No se han encontrado Animales
-    </td>
+  <td>
+    No se han encontrado Animales
+  </td>
 </ng-template>

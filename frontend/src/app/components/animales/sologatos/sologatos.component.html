@@ -1,12 +1,12 @@
-<section class="tarjetas m-3">  
+<section class="tarjetas m-3">
     <div class="container.md">
         <section>
             <div class="row row-cols-auto gy-5">
                 <div class="col-md-2">
                 </div>
                 <div class="row">
-                    <div *ngFor="let a of listaGatos" class="col-md-4">
-                      <app-animal [animal]="a"></app-animal>
+                    <div *ngFor="let gato of listaGatos" class="col-md-4">
+                      <app-animal *ngIf = "gato.enabled" [animal]="gato" [fotos]="listaFotos[gato.idanimal]"></app-animal>
                     </div>
                 </div>
             </div>

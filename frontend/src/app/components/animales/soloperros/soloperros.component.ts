@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Animal } from 'src/app/entidades/animal';
-import { AnimalService } from 'src/app/service/animal/animal.service';
+import {Component} from '@angular/core';
+import {Router} from '@angular/router';
+import {Animal} from 'src/app/entidades/animal';
+import {AnimalService} from 'src/app/service/animal/animal.service';
+import {Multimedia} from "../../../entidades/multimedia";
+import {MultimediaService} from "../../../service/multimedia/multimedia.service";
 
 @Component({
   selector: 'app-soloperros',
@@ -9,22 +11,42 @@ import { AnimalService } from 'src/app/service/animal/animal.service';
   styleUrls: ['./soloperros.component.css']
 })
 export class SoloperrosComponent {
-    
-  public listaPerros : Animal[] = []
 
+  // Atributos
 
-  constructor(private _animalService : AnimalService, private router :Router, ) { 
+  public listaPerros: Animal[];
+  public listaFotos: Multimedia [];
+
+  // Constructor
+
+  constructor(
+    private _animalService: AnimalService,
+    private _multimediaSerive: MultimediaService) {
   }
 
-  ngOnInit():void {
+  // Init
+
+  ngOnInit(): void {
     this.listar();
+  }
 
-   }
+  // Métodos
 
-  public listar(){
-    this._animalService.listarPerros().subscribe(dato => {
-      this.listaPerros = dato;
-    });    
+  private listar(): void {
+    this._animalService.listarPerros().subscribe({
+      next: (res) => { this.listaPerros = res; },
+      error: (err) => { console.error(err); },
+      complete: () => { this.obtenerFotosAnimales(); }
+    });
+  }
+
+  public obtenerFotosAnimales(): void {
+    let idsAnimales: number[] = [];
+    for (let perro of this.listaPerros) { idsAnimales.push(perro.idanimal); }
+    this._multimediaSerive.recuperarFotosAnimales(idsAnimales).subscribe({
+      next: (res) => { this.listaFotos = res.fotosAnimales; },
+      error: (err) => { console.log(err); }
+    });
   }
 
 }
