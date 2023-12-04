@@ -4,6 +4,7 @@ import { Animal } from 'src/app/entidades/animal';
 import { Multimedia } from 'src/app/entidades/multimedia';
 import { AnimalService } from 'src/app/service/animal/animal.service';
 import swal from 'sweetalert2';
+import {MultimediaService} from "src/app/service/multimedia/multimedia.service";
 
 @Component({
   selector: 'app-subirfoto-animal',
@@ -13,22 +14,17 @@ import swal from 'sweetalert2';
 export class SubirfotoAnimalComponent {
 
   multimedia: Multimedia = new Multimedia();
-  
   id: number;
   animal: Animal = new Animal();
-
   fotosMultimedia: Multimedia[] = [];
-
-  private fotoSeleccionada:File;
-
-  
+  public fotos: FileList;
 
   constructor  (
     private _animalService: AnimalService,
     private router: Router,
     private activateRouter: ActivatedRoute,
-    
-  ) { }
+    private _multimediaService: MultimediaService    
+  ) {}
 
   ngOnInit() {
     this.activateRouter.params.subscribe((params) => {
@@ -38,6 +34,7 @@ export class SubirfotoAnimalComponent {
     })
   }
 
+  //Métodos
   private getAnimal(): void {
     this._animalService.verAnimal(this.id).subscribe({
       next: animal => {
@@ -47,38 +44,40 @@ export class SubirfotoAnimalComponent {
     });
   }
 
-  public listaFotosAnimal(idAnimal: number) {
-    console.log("Id Animal:" + idAnimal);
+  public listaFotosAnimal(idAnimal: number): void {
     this._animalService.fotosAnimal(idAnimal)
       .subscribe(data => {
         this.fotosMultimedia = data;
-        console.log("lista de fotos " + this.fotosMultimedia);
       });
   }
 
-  seleccionarFoto(event: Event) {
-    const target = event.target as HTMLInputElement;
-    const files = target.files as FileList;
-    this.fotoSeleccionada = files[0];
-    console.log(this.fotoSeleccionada);
+  seleccionarFotos(event: any): void {
+    this.fotos = event.target.files;
   }
 
-  subirFoto(){
-    this._animalService.subirFoto(this.fotoSeleccionada, this.id)
-      .subscribe({
-        next: multimedia => {
-          this.multimedia = multimedia;
-          console.log(this.multimedia);
+  public guardarFotos(): void {
+    if (this.fotos) {
+      const formData = new FormData();
+      // añado las fotos.
+      for (let i = 0; i < this.fotos.length; i++) {
+        formData.append('files', this.fotos[i]);
+      }
+      // Añado el ID del animal.
+      formData.append("id", this.id.toString());
+      // Guardo las fotos en la bbdd.
+      this._multimediaService.subirFotosAnimal(formData).subscribe({
+        error: (err) => {
+          console.error('error:' + err);
         },
-        error: error => console.log(error),
         complete: () => {
           swal.fire('Foto subida', `La foto se ha subido con éxito`, 'success');
-          this.irSubirFotoAnimal(); 
+          window.location.reload();
         }
-      })
+      });
+    }
   }
 
-  borrarFoto(id: number) {
+  public borrarFoto(id: number): void {
     swal.fire({
       title: '¿Estás seguro?',
       text: "No podrás revertir esto!",
@@ -89,16 +88,13 @@ export class SubirfotoAnimalComponent {
       confirmButtonText: 'Sí, borrarlo!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this._animalService.borrarFoto(id)
-          .subscribe({
-            next: dato => console.log(dato),
-            error: error => console.log(error),
-            complete: () => {
-              console.log('Baja realizada');
-              swal.fire('Realizado', `La protectora ha sido dada de baja correctamente`, 'success');
-              this.irSubirFotoAnimal();
-            }
-          })
+        this._animalService.borrarFoto(id).subscribe({
+          error: error => console.log(error),
+          complete: () => {
+            swal.fire('Realizado', `La protectora ha sido dada de baja correctamente`, 'success');
+            window.location.reload();
+          }
+        })
       } else if (result.isDenied) {
         swal.fire("Los cambios no se han guardado", "", "info");
       }
@@ -118,12 +114,4 @@ export class SubirfotoAnimalComponent {
   //     }
   //   );
   // }
-
-
-  irSubirFotoAnimal() {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/animales/gestion/subirfotoanimal/', this.id]);
-    }); 
-  }
-
 }

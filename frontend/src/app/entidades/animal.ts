@@ -1,6 +1,10 @@
 // Clase Animal
 
+import { Municipio } from "./municipio";
 import {Protectora} from "./protectora";
+import { Raza } from "./raza";
+import { Sexo } from "./sexo";
+import { Tamano } from "./tamano";
 
 export class Animal {
 
@@ -10,34 +14,11 @@ export class Animal {
   envio: boolean;
   fechaAlta: Date;
   fechaNacimiento: Date;
-  municipio: {
-    idmunicipio: number;
-    municipio: string;
-    provincia: {
-      idprovincia: number;
-      provincia: string;
-    }
-  } | any;
+  municipio: Municipio | any;
   protectora: Protectora;
   nombre: string;
-  raza: {
-    idraza: number;
-    raza: string;
-    especie: {
-      idespecie: number;
-      especie: string;
-    }
-  } | any;
-  sexo: {
-    idsexo: number;
-    sexo: string;
-  } | any;
-  tamano: {
-    idtamano: number;
-    tamano: string;
-  } | any;
+  raza: Raza | any;
+  sexo: Sexo | any;
+  tamano: Tamano | any;
   fecha_enabled: Date | any;
-
-
-
 }

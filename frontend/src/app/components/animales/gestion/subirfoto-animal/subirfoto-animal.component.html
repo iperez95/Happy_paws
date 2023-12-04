@@ -1,14 +1,13 @@
 <!-- FOTOS DEL ANIMAL -->
 <section class="row d-flex justify-content-center">
     <h3 class="text-center mb-5">Mantenimiento de fotos de {{animal.nombre}}</h3>
-    <div class="col-md-6">
-        
+    <div class="col-md-9">
         <div class="row">
             <div class="col-md-3 col-10 m-4" *ngFor="let foto of fotosMultimedia; let i = index">
-                <img class="img-fluid img-thumbnail " [src]="foto.enlace" alt="Foto {{i + 1}}"
+                <img [src]="'http://localhost:4200/assets/images/animales/' + id + '/' + foto.enlace"
+                    class="img-fluid img-thumbnail " alt="Foto {{i + 1}}"
                     style="height: 200px; width: 200px; object-fit: cover;">
-                <button (click)="borrarFoto(foto.idMultimedia)" type="button" class="btn custom-btn-red-dark">Borrar
-                    foto</button>
+                <button (click)="borrarFoto(foto.idMultimedia)" type="button" class="btn custom-btn-red-dark">Borrar foto</button>
             </div>
         </div>
     </div>   
@@ -16,12 +15,12 @@
 
 <!-- SUBIR FOTOS -->
 <section class="row d-flex justify-content-center">
-    <h3 class="text-center mb-5">Subir una nueva foto de {{animal.nombre}}</h3>
+    <h3 class="text-center mb-5 mb-3">Añadir una nueva foto a {{animal.nombre}}</h3>
     <div class="col-md-6">
-        <div class="m-4 input-group">
-            <input (change)="seleccionarFoto($event)" class="form-control form-control" id="foto" type="file"
-                accept="image/*">
-            <button (click)="subirFoto()" type="button" class="btn custom-btn-red-dark">Subir foto</button>
+        <div class="mb-5 input-group">
+            <input (change)="seleccionarFotos($event)" class="form-control form-control" 
+            id="foto" type="file" accept="image/*" multiple>
+            <button (click)="guardarFotos()" type="button" class="btn custom-btn-red-dark">Subir foto</button>
         </div>
     </div>
 </section>

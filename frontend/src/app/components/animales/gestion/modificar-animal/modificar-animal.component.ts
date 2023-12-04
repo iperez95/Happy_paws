@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
 import { Especie } from 'src/app/entidades/especie';
@@ -23,11 +23,11 @@ import { UsuarioService } from 'src/app/service/usuario/usuario.service';
   templateUrl: './modificar-animal.component.html',
   styleUrls: ['./modificar-animal.component.css']
 })
+
 export class ModificarAnimalComponent {
 
+  // Atributos
 animal: Animal = new Animal();
-
-
 altaForm: FormGroup;
 provincias: Provincia [] = [];
 municipios: Municipio [] = [];
@@ -45,60 +45,124 @@ enabled: boolean = true;
 envio: boolean;
 public protectora: Protectora;
 
+  // Constructor
 constructor(private _animalService: AnimalService, private router: Router,
   private _locationService: LocationService, private _especieService: EspecieService,
   private _razaService: RazaService, private _sexoService: SexoService, 
-  private _tamanoService: TamanosService, private _usuarioService: UsuarioService,
+  private _tamanoService: TamanosService, private fb: FormBuilder,
   private _protectoraService: ProtectoraService,private route:ActivatedRoute){}
 
-onSubmit(){
-  this.actualizarAnimal();
-  this.irGestionAnimal();
-}
+
 
 ngOnInit(): void {
-  const id = Number(this.route.snapshot.paramMap.get('id'));
-  this.obtenerAnimal(id);
 
-  
-
-  
-
+  const idAnimal: number = Number(this.route.snapshot.paramMap.get('id'));
+  this.obtenerAnimal(idAnimal);
+  this.altaForm = this.fb.group({
+    nombre: [''],
+    especie: [''],
+    raza: [''],
+    sexo: [''],
+    tamano: [''],
+    descripcion: [''],
+    provincia: [''],
+    municipio: [''],
+    enabled: [''],
+    envio: ['']
+  });
   this.listadoProvincias();
   this.listadoMunicipiosProvincia();
   this.listadoEspecies();
   this.listadoSexos();
   this.listadoTamanos();
-  this.listadoRazasPorIdEspecie();
+  this.listadoRazasPorIdEspecie();  
 }
 
- private obtenerAnimal(id: number) {
-  this._animalService.verAnimal(id)
-    .subscribe({
-      next: animal => this.animal = animal,
-      error: error => console.log(error),
-      complete: () => console.log('Obtención de animal realizada')
-    })
-    console.log("Animal almacenado :" + this.animal)
+  // Métodos
+
+  onSubmit() {
+    this.actualizarAnimal();
+  }
+
+private actualizarAnimal(): void {
+  if (this.altaForm.valid) {
+    // Crear instancia de Animal y asignar valores
+    const animal: Animal = {
+      idanimal: this.animal.idanimal,
+      descripcion: this.altaForm.get('descripcion')?.value,
+      enabled: this.altaForm.get('enabled')?.value,
+      envio: this.altaForm.get('envio')?.value,
+      fechaAlta: new Date,
+      fechaNacimiento: this.animal.fechaNacimiento,
+      municipio: this.obtenerMunicipio(this.altaForm.get('municipio')?.value),
+      protectora: this.animal.protectora,
+      nombre: this.altaForm.get('nombre')?.value,
+      raza: this.obtenerRaza(this.altaForm.get('raza')?.value),
+      sexo: this.obtenerSexo(this.altaForm.get('sexo')?.value),
+      tamano: this.obtenerTanyo(this.altaForm.get('tamano')?.value),
+      fecha_enabled: new Date,
+    };
+    this.guardarAnimal(animal);
+  }
 }
 
-  actualizarAnimal( ) {
-    this._animalService.modificarAnimal(this.animal.idanimal, this.animal)
-      .subscribe({
-        next: dato => console.log(dato),
-        error: error => console.log(error),
-        complete: () => {
-          console.log('Animal modificado correctamente');
-          
-        }
-      })
-  }
+private guardarAnimal(animal: Animal): void {
+  this._animalService.modificarAnimal(animal.idanimal, animal).subscribe({
+    error: error => console.log(error),
+    complete: () => this.irGestionAnimal()
+  });
+}
 
-  irGestionAnimal() {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/protectora/gestion']);
-    }); 
+private obtenerAnimal(id: number) {
+  this._animalService.verAnimal(id).subscribe({
+    next: animal => this.animal = animal,
+    error: error => console.log(error)
+  });
+}
+
+private obtenerSexo(id: number): Sexo | null {
+  let valor = null;
+  for (let sexo of this.sexos) {
+    if (sexo.idsexo == id) {
+      valor = sexo;
+      break;
+    }
   }
+  return valor;
+}
+
+private obtenerTanyo(id: number): Tamano | null {
+  let valor = null;
+  for (let tamanyo of this.tamanos) {
+    if (tamanyo.idtamano == id) {
+      valor = tamanyo;
+      break;
+    }
+  }
+  return valor;
+}
+
+private obtenerRaza(id: number): Raza | null {
+  let valor = null;
+  for (let raza of this.razas) {
+    if (raza.idraza == id) {
+      valor = raza;
+      break;
+    }
+  }
+  return valor;
+}
+
+private obtenerMunicipio(id: number): Municipio | null {
+  let valor = null;
+  for (let municipio of this.municipios) {
+    if (municipio.idmunicipio == id) {
+      valor = municipio;
+      break;
+    }
+  }
+  return valor;
+}
 
   private listadoProvincias() {
     this
@@ -163,7 +227,10 @@ ngOnInit(): void {
         this.tamanos = data;
       });
   }
-
+  
+  public irGestionAnimal(): void {
+    this.router.navigate(['/protectora/gestion']);
+  }
   public irFotosAnimal(id: number) {
     this.router.navigate(['/animales/gestion/subirfotoanimal/' + id]);
    }
