@@ -1,81 +1,80 @@
 <div class="col-md-6 offset-md-3">
-    <h3 class="text-center">Modificar Animal en HappyPaws</h3><br>
-    <form (ngSubmit)="onSubmit()">
-      <div class="form-check form-switch">
-        <div class="row">
-          <div class="col-9 text-left">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
-            <label class="form-check-label ms-4" for="flexSwitchCheckChecked"><h3>Disponibilidad</h3></label>
-          </div>
-          <div class="col-3 text-right">
-            <button class="btn btn-light" (click)="irGestionAnimal()">Volver atras</button>
-          </div>
-        </div>
-      </div><br>
-        <div class="form-group mt-3">
-            <label class="col-md-3" for="nombre">Nombre:</label>
-            <input type="text" class="form-control" [(ngModel)]="animal.nombre" name="nombre" id="nombre" required>
-          </div>
-          <div class="form-group mt-3">
-            <label class="col-md-3" for="fechaNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" class="form-control" [(ngModel)]="animal.fechaNacimiento" name="fechaNacimiento" id="fechaNacimiento" formControlName="fechaNacimiento" required>
-          </div>
-        <div class="form-group mt-3">
-          <label class="col-md-3" for="especie">Especie:</label>
-          <select id="especie" class="form-control" [(ngModel)]="animal.raza.especie" name="especie" formControlName="especie" required>
-            <option *ngFor="let especie of especies" [value]="especie.idespecie">{{especie.especie}}</option>
-          </select>
-        </div>
-        <div class="form-group mt-3">
-          <label class="col-md-3" for="raza">Raza:</label>
-          <select id="raza" class="form-control" [(ngModel)]="animal.raza" name="raza" formControlName="raza" required>
-            <option *ngFor="let raza of razas" [value]="raza.idraza">{{raza.raza}}</option>
-          </select>
-        </div>
-        <div class="form-group mt-3">
-          <label class="col-md-3" for="sexo">Sexo:</label>
-          <select id="sexo" class="form-control" [(ngModel)]="animal.sexo" name="sexo" formControlName="sexo" required>
-            <option *ngFor="let sexo of sexos" [value]="sexo.idsexo">{{sexo.sexo}}</option>
-          </select>
-        </div>
-        <div class="form-group mt-3">
-          <label class="col-md-3" for="tamano">Tamaño:</label>
-          <select id="tamano" class="form-control" [(ngModel)]="animal.tamano" name="tamano" formControlName="tamano" required>
-            <option *ngFor="let tamano of tamanos" [value]="tamano.idtamano">{{tamano.tamano}}</option>
-          </select>
-        </div>
-        <div class="form-group mt-3">
-          <label class="col-md-3" for="descripcion">Descripcion:</label>
-          <textarea rows="4" cols="50" maxlength="1000" type="text-area" class="form-control" [(ngModel)]="animal.descripcion" name="descripcion" id="descripcion" required></textarea>
-        </div>
-        <div class="form-group mt-3">
-          <label class="col-md-3" for="provincia">Provincia:</label>
-          <select id="provincia" class="form-control" [(ngModel)]="animal.municipio.provincia" name="provincia" formControlName="provincia" required>
-            <option *ngFor="let provincia of provincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
-          </select>
-        </div>
-        <div class="form-group mt-3">
-          <label class="col-md-2" for="municipio">Municipio:</label>
-          <select id="municipio" class="form-control" [(ngModel)]="animal.municipio" name="municipio" formControlName="municipio" required>
-            <option *ngFor="let municipio of municipios" [value]="municipio.idmunicipio">{{municipio.municipio}}</option>
-          </select>
-        </div>
-        <div class="form-group mt-3">
-          <label class="col-md-3" for="descripcion">Apto para envio:</label>
-          <div>
-            <input type="radio" id="envioSi" value="true" formControlName="envio">
-            <label for="envioSi">Si</label>
-            <input type="radio" id="envioNo" value="false" formControlName="envio">
-            <label for="envioNo">No</label>
-          </div>
-        </div>
 
-        <div>
-          <button class="btn custom-btn-red-dark mt-3" type="submit">Enviar</button>
-          <!-- [disabled]="!altaForm.valid" -->
-        </div>
-    </form>
-    <div class="col-sm-auto">
-      <button class="btn custom-btn-red-dark p-2 " (click)="irFotosAnimal(this.animal.idanimal)">Modificar Fotos </button>
-    </div>
+  <!-- Título -->
+  <h3 class="text-center">Modificar Animal en HappyPaws</h3><br>
+  
+  <button type="button" class="btn btn-light" (click)="irGestionAnimal()">Volver a Gestión</button>
+  
+  <div class="d-flex justify-content-center mt-3">
+    <button class="btn btn-success" (click)="irFotosAnimal(animal.idanimal)">Modificar Fotos</button>
   </div>
+  <!-- Form -->
+  <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group mt-5">
+      <label class="form-label col-md-3" for="nombre">Nombre:</label>
+      <input class="form-control" type="text" [(ngModel)]="animal.nombre" id="nombre" formControlName="nombre"/>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-3" for="especie">Especie:</label>
+      <select class="form-select" id="especie" formControlName="especie" [(ngModel)]="animal.raza.especie.idespecie">
+        <option *ngFor="let especie of especies" [value]="especie.idespecie">{{especie.especie}}</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-3" for="raza">Raza:</label>
+      <select class="form-select" id="raza" formControlName="raza" [(ngModel)]="animal.raza.idraza">
+        <option *ngFor="let raza of razas" [value]="raza.idraza">{{raza.raza}}</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-3" for="sexo">Sexo:</label>
+      <select class="form-select" id="sexo" formControlName="sexo" [(ngModel)]="animal.sexo.idsexo">
+        <option *ngFor="let sexo of sexos" [value]="sexo.idsexo">{{sexo.sexo}}</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-3" for="tamano">Tamaño:</label>
+      <select class="form-select" id="tamano" formControlName="tamano" [(ngModel)]="animal.tamano.idtamano">
+        <option *ngFor="let tamano of tamanos" [value]="tamano.idtamano">{{tamano.tamano}}</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-3" for="descripcion">Descripcion:</label>
+      <textarea class="form-control" rows="4" [(ngModel)]="animal.descripcion" id="descripcion" formControlName="descripcion"></textarea>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-3" for="provincia">Provincia:</label>
+      <select class="form-select" id="provincia" formControlName="provincia" [(ngModel)]="animal.municipio.provincia.idprovincia">
+        <option *ngFor="let provincia of provincias" [value]="provincia.idprovincia">{{provincia.provincia}}</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-2" for="municipio">Municipio:</label>
+      <select class="form-select" id="municipio" formControlName="municipio" [(ngModel)]="animal.municipio.idmunicipio">
+        <option *ngFor="let municipio of municipios" [value]="municipio.idmunicipio">{{municipio.municipio}}</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-2" for="municipio">Habilitado:</label>
+      <select class="form-select" id="enabled" formControlName="enabled" [(ngModel)]="animal.enabled">
+        <option [value]=true>Habilitado</option>
+        <option [value]=false>Deshabilitado</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label class="form-label col-md-2" for="municipio">Envío:</label>
+      <select class="form-select" id="envio" formControlName="envio" [(ngModel)]="animal.envio">
+        <option [value]=true>Si</option>
+        <option [value]=false>No</option>
+      </select>
+    </div>
+
+    <!-- Boton editar -->
+    <div>
+      <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!altaForm.valid">Editar</button>
+    </div>
+
+  </form>
+
+</div>

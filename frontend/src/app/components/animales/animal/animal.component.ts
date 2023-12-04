@@ -17,7 +17,7 @@ export class AnimalComponent {
 
   @Input() public animal: Animal;
   @Input() public fotos: any;
-
+  
   // Constructor
 
   constructor() {}

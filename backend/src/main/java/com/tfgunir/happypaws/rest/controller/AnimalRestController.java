@@ -31,7 +31,6 @@ import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.dto.MultimediaDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
-import com.tfgunir.happypaws.modelo.entities.Protectora;
 
 @Controller
 @RequestMapping("/animales")
@@ -139,9 +138,10 @@ public class AnimalRestController {
 
     @PutMapping(path = "/gestion/modificar/{id}", consumes = "application/json")
     public ResponseEntity<?> modificarAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {
+        Map<String, String> response = new HashMap<>();
         animal.setIdanimal(id);
         if (aniDao.modificarAnimal(animal)) {
-            return ResponseEntity.ok("Animal editado correctamente");
+            return ResponseEntity.ok(response.put("message", "Animal editado correctamente"));
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al editar el animal");
         }
@@ -282,7 +282,7 @@ public class AnimalRestController {
     // SUBIR FOTO ANIMAL
     @GetMapping(path = "/gestion/subirfoto/{id}", produces = "application/json")
     public ResponseEntity<Animal> subirFoto(@PathVariable("id") int id) {
-        System.out.println("Buscando protectora con id: " + id);
+        System.out.println("Buscando animal con id: " + id);
         Animal animal = aniDao.buscarAnimalId(id);
         if (animal != null)
             return ResponseEntity.ok(animal);

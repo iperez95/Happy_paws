@@ -8,4 +8,8 @@
     transform: translateX(30px);
     /*font-size: 30;
     vertical-align: middle;*/
-  }
+}
+
+button {
+  margin-bottom: 20px; 
+}

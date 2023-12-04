@@ -1,10 +1,10 @@
-.container {
-    border: white 8px inset;
-}
 
 .imagen {
-    margin-top: 10px;
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
+
+button {
+    margin-bottom: 20px; 
+  }

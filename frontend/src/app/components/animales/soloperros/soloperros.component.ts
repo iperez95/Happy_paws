@@ -21,7 +21,8 @@ export class SoloperrosComponent {
 
   constructor(
     private _animalService: AnimalService,
-    private _multimediaSerive: MultimediaService) {
+    private _multimediaSerive: MultimediaService,
+    private _router: Router) {
   }
 
   // Init
@@ -39,6 +40,10 @@ export class SoloperrosComponent {
       complete: () => { this.obtenerFotosAnimales(); }
     });
   }
+
+  irPrincipal() {
+    this._router.navigate(['/']);
+}
 
   public obtenerFotosAnimales(): void {
     let idsAnimales: number[] = [];

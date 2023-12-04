@@ -56,6 +56,11 @@ export class ListaAnimalesComponent {
     });
   }
 
+ 
+    public irPrincipal() {
+      this._router.navigate(['/']);
+  }
+
   // Métodos de Filtro
 
   private getRazas(): void {
