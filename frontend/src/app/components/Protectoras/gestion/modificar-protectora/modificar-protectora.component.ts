@@ -19,7 +19,7 @@ export class ModificarProtectoraComponent {
 
   constructor(
     private _protectoraService: ProtectoraService,
-    private router: Router,
+    private _router: Router,
     private route: ActivatedRoute,
     private usuarioService: UsuarioService
   ) { }
@@ -29,7 +29,7 @@ export class ModificarProtectoraComponent {
     if (user) {
       this.obtenerProtectora(user.id);
     } else {
-      this.router.navigate(['/']);
+      this._router.navigate(['/']);
     }
   }
 
@@ -48,6 +48,10 @@ export class ModificarProtectoraComponent {
       })
       console.log("Protectora Almacenada :" + this.protectora)
   }
+
+  irPrincipal() {
+    this._router.navigate(['protectora/gestion']);
+}
 
   actualizarProtectora( ) {
     this._protectoraService.actualizarProtectora(this.protectora.idprotectora, this.protectora)
@@ -117,21 +121,21 @@ export class ModificarProtectoraComponent {
   }
 
   IrDetalleProtectora() {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/protectora/gestion']);
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this._router.navigate(['/protectora/gestion']);
     }); 
   }
 
   cambiarFoto() {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/protectora/gestion/subirfoto/']);
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this._router.navigate(['/protectora/gestion/subirfoto/']);
     }); 
   }
 
 
   IrGestionProtectora() {
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/protectora/gestion/modificar']);
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this._router.navigate(['/protectora/gestion/modificar']);
     }); 
   }
  

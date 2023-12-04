@@ -21,7 +21,7 @@ export class SubirfotoAnimalComponent {
 
   constructor  (
     private _animalService: AnimalService,
-    private router: Router,
+    private _router: Router,
     private activateRouter: ActivatedRoute,
     private _multimediaService: MultimediaService    
   ) {}
@@ -100,6 +100,10 @@ export class SubirfotoAnimalComponent {
       }
     });
   }
+
+  irAtras(idanimal: number) {
+    this._router.navigate(['/animales/gestion/modificar/', idanimal]);
+}
   
 
   // borrarFoto(id: number) {

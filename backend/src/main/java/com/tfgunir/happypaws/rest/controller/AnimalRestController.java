@@ -30,7 +30,6 @@ import com.tfgunir.happypaws.modelo.dao.MultimediaDao;
 import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
-import com.tfgunir.happypaws.modelo.entities.Protectora;
 
 @Controller
 @RequestMapping("/animales")
@@ -269,7 +268,7 @@ public class AnimalRestController {
     // SUBIR FOTO ANIMAL
     @GetMapping(path = "/gestion/subirfoto/{id}", produces = "application/json")
     public ResponseEntity<Animal> subirFoto(@PathVariable("id") int id) {
-        System.out.println("Buscando protectora con id: " + id);
+        System.out.println("Buscando animal con id: " + id);
         Animal animal = aniDao.buscarAnimalId(id);
         if (animal != null)
             return ResponseEntity.ok(animal);

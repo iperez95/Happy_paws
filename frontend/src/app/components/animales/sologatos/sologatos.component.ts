@@ -21,7 +21,8 @@ export class SologatosComponent {
 
   constructor(
     private _animalService : AnimalService,
-    private _multimediaSerive: MultimediaService
+    private _multimediaSerive: MultimediaService,
+    private _router: Router
   ) {}
 
   // Init
@@ -37,6 +38,10 @@ export class SologatosComponent {
       error: (err) => { console.error(err); },
       complete: () => { this.obtenerFotosAnimales(); }
     });
+  }
+
+  irPrincipal() {
+      this._router.navigate(['/']);
   }
 
   public obtenerFotosAnimales(): void {

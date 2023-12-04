@@ -1,56 +1,47 @@
-<!-- Componente que muestra una ficha con algunos de los datos de un animal -->
-<div class="container mt-6">
 
-  <!-- Imagen -->
-  <div class="row">
-    <div class="col-md-12">
-      <img
-        [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + fotos[0].enlace"
-        alt="{{animal.nombre}}"
-        class="imagen img-fluid">
+
+  <div class="card" style="width: 18rem;">    <!-- Imagen -->
+    <img                      
+    [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + fotos[0].enlace"
+    alt="{{animal.nombre}}"
+    class="imagen img-fluid">
+    <div class="card-body">       <!-- Nombre del animal y protectora -->
+      <div class="card-title row mt-4">
+        <div class="col-md-6">
+          <h4>{{animal.nombre}}</h4>
+        </div>
+        <div class="col-md-6">
+          <h4>{{animal.protectora.nombre}}</h4>
+        </div>
+      </div>
+          <!-- Localización -->
+          <div class="card-text row mt-4">
+            <div class="col-md-12">
+              <p>{{animal.municipio.provincia.provincia}}</p>
+            </div>
+          </div>    
+              <!-- Atributos: Sexo, Raza, Tamaño, Envío -->
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <p>{{animal.sexo?.sexo}}</p>
+        </div>
+        <div class="col-md-6">
+          <p>{{animal.raza?.raza}}</p>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <p>{{animal.tamano?.tamano}}</p>
+        </div>
+        <div class="col-md-6">
+          <p>Envio: {{animal.envio ? "Si" : "No"}}</p>
+        </div>
+      </div>
+        <!-- Botón para ver el componente completo del animal -->
+        <div class="row mt-4">
+          <div class="col-md-12">
+            <a [routerLink]="['/animales/verUno', animal.idanimal]" class="btn btn-primary">Ver más información</a>
+          </div>
+        </div>
     </div>
   </div>
-
-  <!-- Nombre del animal y protectora -->
-  <div class="row mt-4">
-    <div class="col-md-6">
-      <h4>{{animal.nombre}}</h4>
-    </div>
-    <div class="col-md-6">
-      <h4>{{animal.protectora.nombre}}</h4>
-    </div>
-  </div>
-
-  <!-- Localización -->
-  <div class="row mt-4">
-    <div class="col-md-12">
-      <p>{{animal.municipio.provincia.provincia}}</p>
-    </div>
-  </div>
-
-  <!-- Atributos: Sexo, Raza, Tamaño, Envío -->
-  <div class="row mt-4">
-    <div class="col-md-6">
-      <p>{{animal.sexo?.sexo}}</p>
-    </div>
-    <div class="col-md-6">
-      <p>{{animal.raza?.raza}}</p>
-    </div>
-  </div>
-  <div class="row mt-4">
-    <div class="col-md-6">
-      <p>{{animal.tamano?.tamano}}</p>
-    </div>
-    <div class="col-md-6">
-      <p>Envio: {{animal.envio ? "Si" : "No"}}</p>
-    </div>
-  </div>
-
-  <!-- Botón para ver el componente completo del animal -->
-  <div class="row mt-4">
-    <div class="col-md-12">
-      <a [routerLink]="['/animales/verUno', animal.idanimal]" class="btn btn-primary">Ver más información</a>
-    </div>
-  </div>
-
-</div>

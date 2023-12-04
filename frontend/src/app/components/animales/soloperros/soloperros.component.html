@@ -5,6 +5,9 @@
                 <div class="col-md-2">
                 </div>
                 <div class="row">
+                    <div class="col-3 text-right">
+                        <button class="btn btn-light" (click)="irPrincipal()">Volver atras</button>
+                    </div>
                     <div *ngFor="let perro of listaPerros" class="col-md-4">
                       <app-animal *ngIf = "perro.enabled" [animal]="perro" [fotos]="listaFotos[perro.idanimal]"></app-animal>
                     </div>
