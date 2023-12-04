@@ -52,4 +52,10 @@
     color: #fff;
 }
 
+@media (min-width: 400px) {
+    .nav-logo {
+        height: 100px !important;
+    }
+}
+
 
