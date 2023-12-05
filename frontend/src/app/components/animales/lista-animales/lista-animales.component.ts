@@ -156,7 +156,7 @@ export class ListaAnimalesComponent {
   }
 
   public actualizarEnvio(event: any) {
-    this.envio = event.target.value;
+    this.envio = Boolean(event.target.value);
   }
 
   // Métodos de navegación
