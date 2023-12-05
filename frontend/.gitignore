@@ -42,4 +42,4 @@ testem.log
 Thumbs.db
 
 # Fotos
-frontend/src/assets/images/animales
+src/assets/images/animales
