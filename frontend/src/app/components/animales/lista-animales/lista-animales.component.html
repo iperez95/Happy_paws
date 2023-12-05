@@ -60,9 +60,9 @@
       <main class="col-9">
         <div class="row">
           <!-- Tarjetas -->
-          <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
-            <div *ngFor="let animal of listaAnimales" class="col-4 mb-4">
-              <app-animal *ngIf="animal.enabled" [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
+          <ng-container *ngIf="listaAnimalesHabilitados.length > 0; else sinAnimales">
+            <div *ngFor="let animal of listaAnimalesHabilitados" class="col-4 mb-4">
+                <app-animal [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
             </div>
           </ng-container>
           <!-- Sin Resultados -->

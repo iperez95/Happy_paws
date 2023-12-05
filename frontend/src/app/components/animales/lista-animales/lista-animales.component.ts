@@ -32,6 +32,7 @@ export class ListaAnimalesComponent {
   public listaSexos: Sexo[] = [];
   public listaTamanyos: Tamano[] = [];
   public listaProvincias: Provincia[] = [];
+  public listaAnimalesHabilitados = this.listaAnimales.filter(animal => animal.enabled);
 
     // Atributos para filtro.
 
@@ -67,13 +68,18 @@ export class ListaAnimalesComponent {
 
   // Métodos
 
+
+
   public listar() {
     this._animalService.listarAnimales().subscribe({
-      next: (res) => { this.listaAnimales = res; },
+      next: (animales) => { 
+        this.listaAnimales = animales; 
+        this.actualizarListaAnimales();
+      },
       error: (err) => { console.log(err); },
       complete: () => { this.obtenerFotosAnimales(); }
     });
-  }
+}
 
   public obtenerFotosAnimales(): void {
     let idsAnimales: number[] = [];
@@ -121,7 +127,6 @@ export class ListaAnimalesComponent {
     });
   }
 
-
   // Método del filtro
 
   public buscar(): void {
@@ -157,6 +162,10 @@ export class ListaAnimalesComponent {
 
   public actualizarEnvio(event: any) {
     this.envio = Boolean(event.target.value);
+  }
+
+  public actualizarListaAnimales(){
+    this.listaAnimalesHabilitados = this.listaAnimales.filter(animal => animal.enabled);
   }
 
   // Métodos de navegación
