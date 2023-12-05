@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,11 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.tfgunir.happypaws.modelo.dao.AnimalDao;
 import com.tfgunir.happypaws.modelo.dao.MultimediaDao;
 import com.tfgunir.happypaws.modelo.dto.AnimalDto;
-import com.tfgunir.happypaws.modelo.dto.MultimediaDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
 import com.tfgunir.happypaws.modelo.entities.Multimedia;
 
@@ -183,7 +180,7 @@ public class AnimalRestController {
         }
     }
 
-    // Controlador para buscar animales por id protectora
+    // Controlador para buscar animales por ID protectora
     @GetMapping(path = "/buscar/poridprotectora/{idprotectora}", produces = "application/json")
     public ResponseEntity<List<Animal>> buscarPorIdProtectora(@PathVariable("idprotectora") int idprotectora) {
 
@@ -279,7 +276,7 @@ public class AnimalRestController {
     }
 
 
-    // SUBIR FOTO ANIMAL
+    // Controlador para subir foto
     @GetMapping(path = "/gestion/subirfoto/{id}", produces = "application/json")
     public ResponseEntity<Animal> subirFoto(@PathVariable("id") int id) {
         System.out.println("Buscando animal con id: " + id);
@@ -290,7 +287,7 @@ public class AnimalRestController {
             return ResponseEntity.notFound().build();
     }
 
-    //AÑADE FOTOS AL ANIMAL
+    // Controlador que añade las fotos al objeto animal
     @PostMapping(path = "/gestion/upload")
     public ResponseEntity<?> upload(@RequestParam("archivo") MultipartFile archivo, @RequestParam("id") int id) {
         Map<String, Object> response = new HashMap<>();
@@ -326,7 +323,7 @@ public class AnimalRestController {
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
 
-    //Borrar foto animal
+    // Controlador para borrar foto animal
     @DeleteMapping(path = "/gestion/borrarfoto/{id}")
     public ResponseEntity<?> borrarFoto(@PathVariable("id") int id) {
         Map<String, Object> response = new HashMap<>();
@@ -354,25 +351,24 @@ public class AnimalRestController {
             response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }   
+
+    // Controlador para el filtro
+    @GetMapping("/filtrar")
+    public ResponseEntity<List<Animal>> filtrarAnimales(
+            @RequestParam(name = "especie", required = false) String especie,
+            @RequestParam(name = "raza", required = false) String raza,
+            @RequestParam(name = "sexo", required = false) String sexo,
+            @RequestParam(name = "tamano", required = false) String tamano,
+            @RequestParam(name = "provincia", required = false) String provincia,
+            @RequestParam(name = "envio", required = false) Boolean envio
+    ) {
+        System.out.println(envio);
+        List<Animal> animalesFiltrados = aniDao.filtrarAnimales(especie, raza, sexo, tamano, provincia, envio);
+        System.out.println(animalesFiltrados);
+        return new ResponseEntity<>(animalesFiltrados, HttpStatus.OK);
     }
 
-    // @DeleteMapping(path="/gestion/borrarfoto/{id}")
-    // public ResponseEntity<?> borrarFoto(@PathVariable("id") int id) {
-    //     Map<String, Object> response = new HashMap<>();
-    //     try {
-    //         if (multiDao.borrarMultimedia(id) == 1) {
-    //             response.put("mensaje", "Foto eliminada correctamente");
-    //             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
-    //         } else {
-    //             response.put("mensaje", "No se encontró la foto");
-    //             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
-    //         }
-    //     } catch (Exception e) {
-    //         response.put("mensaje", "Error al eliminar la foto");
-    //         response.put("error", e.getMessage().concat(": ").concat(e.getCause().getMessage()));
-    //         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-    //     }
-    // }
 
 
 }

@@ -1,47 +1,30 @@
-
-
-  <div class="card" style="width: 18rem;">    <!-- Imagen -->
-    <img                      
-    [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + fotos[0].enlace"
-    alt="{{animal.nombre}}"
-    class="imagen img-fluid">
-    <div class="card-body">       <!-- Nombre del animal y protectora -->
-      <div class="card-title row mt-4">
-        <div class="col-md-6">
-          <h4>{{animal.nombre}}</h4>
-        </div>
-        <div class="col-md-6">
-          <h4>{{animal.protectora.nombre}}</h4>
-        </div>
-      </div>
-          <!-- Localización -->
-          <div class="card-text row mt-4">
-            <div class="col-md-12">
-              <p>{{animal.municipio.provincia.provincia}}</p>
-            </div>
-          </div>    
-              <!-- Atributos: Sexo, Raza, Tamaño, Envío -->
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <p>{{animal.sexo?.sexo}}</p>
-        </div>
-        <div class="col-md-6">
-          <p>{{animal.raza?.raza}}</p>
-        </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-md-6">
-          <p>{{animal.tamano?.tamano}}</p>
-        </div>
-        <div class="col-md-6">
-          <p>Envio: {{animal.envio ? "Si" : "No"}}</p>
-        </div>
-      </div>
-        <!-- Botón para ver el componente completo del animal -->
-        <div class="row mt-4">
-          <div class="col-md-12">
-            <a [routerLink]="['/animales/verUno', animal.idanimal]" class="btn btn-primary">Ver más información</a>
-          </div>
-        </div>
-    </div>
-  </div>
+<article class="card">
+  <img [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + fotos[0].enlace"
+       alt="{{animal.nombre}}" class="card-img-top imagen">
+  <header class="card-body">
+    <h5 class="card-title">{{animal.nombre}}</h5>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Protectora: {{animal.protectora.nombre}}</h6>
+  </header>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <b>Provincia:</b> {{animal.municipio.provincia.provincia}}
+    </li>
+    <li class="list-group-item">
+      <b>Sexo:</b> {{animal.sexo?.sexo}}
+    </li>
+    <li class="list-group-item">
+      <b>Raza:</b> {{animal.raza?.raza}}
+    </li>
+    <li class="list-group-item">
+      <b>Tamaño:</b> {{animal.tamano?.tamano}}
+    </li>
+    <li class="list-group-item">
+      <b>Envío:</b> {{animal.envio ? "Si" : "No"}}
+    </li>
+  </ul>
+  <footer class="card-footer">
+    <a [routerLink]="['/animales/verUno', animal.idanimal]" class="btn btn-primary">
+      Ver Info <i class="fa-solid fa-circle-plus"></i>
+    </a>
+  </footer>
+</article>
