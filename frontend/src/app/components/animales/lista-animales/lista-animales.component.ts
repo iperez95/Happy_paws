@@ -168,6 +168,4 @@ export class ListaAnimalesComponent {
   public reload(): void {
     window.location.reload();
   }
-
-
 }
