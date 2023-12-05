@@ -133,7 +133,10 @@ export class ListaAnimalesComponent {
     this._animalService
       .filtrarAnimales(this.especie, this.raza, this.sexo, this.tamanyo, this.provincia, this.envio)
       .subscribe({
-        next: (animales) => this.listaAnimales = animales,
+        next: (animales) => {
+          this.listaAnimales = animales,
+          this.actualizarListaAnimales();
+        },
         error: (err) => console.error(err)
       });
   }
@@ -161,7 +164,7 @@ export class ListaAnimalesComponent {
   }
 
   public actualizarEnvio(event: any) {
-    this.envio = Boolean(event.target.value);
+    this.envio = event.target.value === 'true';
   }
 
   public actualizarListaAnimales(){

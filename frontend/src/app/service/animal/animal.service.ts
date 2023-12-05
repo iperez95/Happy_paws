@@ -173,7 +173,7 @@ export class AnimalService {
       if (sexo) params = params.set('sexo', sexo);
       if (tamano) params = params.set('tamano', tamano);
       if (provincia) params = params.set('provincia', provincia);
-      params.set('envio', envio ? 'true' : 'false');
+      if (envio !== null && envio !== undefined) params = params.set('envio', envio ? 'true' : 'false');
       return this._httpClient.get<any>(`${this.endpoint}/animales/filtrar`, { params });
     }
   
