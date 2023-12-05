@@ -23,6 +23,7 @@ export class AnimalService {
    */
   //constructor(private _httpClient : HttpClient, private axiosService: AxiosService) { }
   constructor(private _httpClient : HttpClient) { }
+  
   // Método que lista todos los animales del servicio Rest
   public listarAnimales(): Observable<any> {
     return this._httpClient.get(`${this.endpoint}/animales/listado`)

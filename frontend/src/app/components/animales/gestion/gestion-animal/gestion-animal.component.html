@@ -1,51 +1,32 @@
 <div *ngIf="listaAnimales.length > 0; else sinAnimales" class="container-fluid mt-3">
-  <div class="row">
-    <div class="col-md-6 mt-4">
-      <button class="btn custom-btn-red-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
+  <div class="d-flex justify-content-between align-items-center">    
+    <div class="col d-flex align-items-center">
+      <h3 class="filtro-titulo">Filtrar por nombre del animal:</h3><input [(ngModel)]="nombreBuscado" placeholder="  Nombre del animal" class="filtro-input">
+      <div class="botones-filtro col d-flex">
+        <button class="btn btn-outline-primary" (click)="buscarAnimal()">Buscar</button>
+        <button class="btn btn-outline-primary" (click)="listar()">Ver todos los animales</button>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <button class="btn custom-btn-red-light p-2" (click)="irAltaAnimal()"><i class="fa-solid fa-feather"></i> Dar de alta un animal</button>
     </div>
   </div>
-  <h1 class="mt-4">Estos son los animales que tenemos actualmente</h1>
+  <h1 class="mt-4">Nuestros amiguitos los podemos gestionar aquí</h1>
   <section class="tarjetas m-3">
-    <div class="container-fluid">
-      <div class="row row-cols-auto gy-5">
-        <div class="col-md-3" *ngFor="let animal of listaAnimales">
-          <div class="card h-100">
-            <img [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + listaFotos[animal.idanimal][0].enlace"
-              *ngIf="listaFotos && animal && animal.idanimal && listaFotos[animal.idanimal] && listaFotos[animal.idanimal][0]"
-              alt="{{animal.nombre}}" class="card-img-top" alt="{{animal.nombre}}">
-            <div class="card-body">
-              <div>
-                <h5 class="card-title fw-bold d-flex justify-content-start">{{animal.nombre}}</h5>
-              </div>
-              <div class="row row-cols-auto ">
-                <div class="col-md-auto d-flex justify-content-start">
-                  <h6 class="card-text mt-md-3 m-4">{{animal.raza?.raza}}</h6>
-                  <h6 class="card-text mt-md-3 m-4">{{animal.tamano?.tamano}}</h6>
-                </div>
-              </div>
-              <div class="row row-cols-auto">
-                <div class="col-md-auto d-flex justify-content-start">
-                  <h6 class="card-text mt-md-3 m-4">{{animal.municipio?.provincia.provincia}}</h6>
-                  <h6 class="card-text mt-md-3 m-4">{{animal.envio ? "Puede viajar" : "No puede viajar"}}</h6>
-                </div>
-                <div class="col">
-                  <button (click)="irModificalAnimal(animal.idanimal)" class="btn btn-success m-4">Modificar
-                  </button>
-                  <button (click)="borrarAnimal(animal.idanimal)" class="btn btn-danger m-4">
-                    Borrar  <i class="fa-solid fa-trash"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="row">
+      <!-- Tarjetas -->
+      <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
+        <div *ngFor="let animal of listaAnimales" class="col-3 mb-4">
+            <app-animalgestion [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animalgestion>
         </div>
-      </div>
+      </ng-container>
     </div>
   </section>
 </div>
+        <!-- Sin Resultados -->
 <ng-template #sinAnimales>
   <div class="col-md-6">
-    <button class="btn custom-btn-red-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
+    <button class="btn custom-btn-green-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
   </div>
-  <p>No tienes animales.</p>
+  <p>Aun no hay animales!! Da de alta el primero</p>
 </ng-template>
