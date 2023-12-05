@@ -26,6 +26,7 @@ export class GestionAnimalComponent {
   public idUsuario : number;
   public idProtectora : number;
   public listaFotos: { [idAnimal: number]: Array<{ enlace: string }> } = {};
+  public nombreBuscado: string = '';
 
   // Constructor
 
@@ -78,6 +79,21 @@ export class GestionAnimalComponent {
       error: (err) => { console.log(err); }
     });
   }
+
+  // Método de filtro
+
+  buscarAnimal() {
+    if (this.nombreBuscado) {
+      this.listaAnimales = this.listaAnimales.filter(animal => animal.nombre.includes(this.nombreBuscado));
+    }
+  }
+
+  public listar(){
+    this._animalService.listarAnimalPorIdProtectora(this.idProtectora).subscribe(dato => {
+      this.listaAnimales = dato;
+      console.log(this.listaAnimales);
+    });
+ }
 
  // Métodos de Acciones
 

@@ -8,8 +8,8 @@
 
                             <div class="row">
 
-                                <ng-container *ngIf="listaPerros.length > 0; else sinAnimales">
-                                    <div *ngFor="let perro of listaPerros" class="col-md-4 justify-content-center mb-4">
+                                <ng-container *ngIf="listaPerrosHabilitados.length > 0; else sinAnimales">
+                                    <div *ngFor="let perro of listaPerrosHabilitados" class="col-md-4 justify-content-center mb-4">
                                         <app-animal *ngIf = "perro.enabled" [animal]="perro" [fotos]="listaFotos[perro.idanimal]"></app-animal>
                                     </div>
                                 </ng-container>

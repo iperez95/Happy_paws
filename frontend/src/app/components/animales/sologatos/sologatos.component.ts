@@ -15,6 +15,7 @@ export class SologatosComponent {
   // Atributos
 
   public listaGatos : Animal[];
+  public listaGatosHabilitados : Animal[];
   public listaFotos: Multimedia [];
 
   // Constructor
@@ -34,7 +35,10 @@ export class SologatosComponent {
 
   private listar(): void {
     this._animalService.listarGatos().subscribe({
-      next: (res) => { this.listaGatos = res; },
+      next: (res) => { 
+        this.listaGatos = res; 
+        this.listaGatosHabilitados = this.listaGatos.filter(gato => gato.enabled);
+      },
       error: (err) => { console.error(err); },
       complete: () => { this.obtenerFotosAnimales(); }
     });
@@ -46,7 +50,7 @@ export class SologatosComponent {
 
   public obtenerFotosAnimales(): void {
     let idsAnimales: number[] = [];
-    for (let gato of this.listaGatos) { idsAnimales.push(gato.idanimal); }
+    for (let gato of this.listaGatosHabilitados) { idsAnimales.push(gato.idanimal); }
     this._multimediaSerive.recuperarFotosAnimales(idsAnimales).subscribe({
       next: (res) => { this.listaFotos = res.fotosAnimales; },
       error: (err) => { console.log(err); }

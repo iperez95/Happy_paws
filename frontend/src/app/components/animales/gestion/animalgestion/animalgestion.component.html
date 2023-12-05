@@ -1,0 +1,33 @@
+<article class="card">
+    <img [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + fotos[0].enlace"
+         alt="{{animal.nombre}}" class="card-img-top imagen">
+    <header class="card-body">
+      <h1 class="card-title">{{animal.nombre}}</h1>
+    </header>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <b>Disponibilidad:</b> 
+            <span [ngStyle]="{'color': animal.enabled ? 'green' : 'red'}">
+              <h3>{{animal.enabled ? 'Animal disponible.' : 'Adoptado'}}</h3>
+            </span>
+          </li>
+      <li class="list-group-item">
+        <b>Sexo:</b> {{animal.sexo?.sexo}}
+      </li>
+      <li class="list-group-item">
+        <b>Raza:</b> {{animal.raza?.raza}}
+      </li>
+      <li class="list-group-item">
+        <b>Tamaño:</b> {{animal.tamano?.tamano}}
+      </li>
+      <li class="list-group-item">
+        <b>Envío:</b> {{animal.envio ? "Se puede enviar" : "NO se puede enviar"}}
+      </li>
+    </ul>
+    <footer class="card-footer d-flex justify-content-between">
+        <button (click)="irModificalAnimal(animal.idanimal)" class="btn btn-warning flex-grow-1 m-4">Modificar 
+            <i class="fa-regular fa-pen-to-square"></i></button>
+        <button (click)="borrarAnimal(animal.idanimal)" class="btn btn-outline-danger flex-grow-1 m-4">Borrar 
+            <i class="fa-solid fa-trash"></i></button>
+    </footer>
+  </article>

@@ -15,6 +15,7 @@ export class SoloperrosComponent {
   // Atributos
 
   public listaPerros: Animal[];
+  public listaPerrosHabilitados : Animal[];
   public listaFotos: Multimedia [];
 
   // Constructor
@@ -35,7 +36,10 @@ export class SoloperrosComponent {
 
   private listar(): void {
     this._animalService.listarPerros().subscribe({
-      next: (res) => { this.listaPerros = res; },
+      next: (res) => {  
+        this.listaPerros = res; 
+        this.listaPerrosHabilitados = this.listaPerros.filter(perro => perro.enabled);
+      },
       error: (err) => { console.error(err); },
       complete: () => { this.obtenerFotosAnimales(); }
     });
@@ -47,7 +51,7 @@ export class SoloperrosComponent {
 
   public obtenerFotosAnimales(): void {
     let idsAnimales: number[] = [];
-    for (let perro of this.listaPerros) { idsAnimales.push(perro.idanimal); }
+    for (let perro of this.listaPerrosHabilitados) { idsAnimales.push(perro.idanimal); }
     this._multimediaSerive.recuperarFotosAnimales(idsAnimales).subscribe({
       next: (res) => { this.listaFotos = res.fotosAnimales; },
       error: (err) => { console.log(err); }
