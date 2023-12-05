@@ -43,15 +43,12 @@
                       <a class="nav-link" href="/aboutus">Acerca</a>
                   </li>
                   <li class="nav-item m-5">
-                    <a class="nav-link" href="/faq">Ayuda</a>
-                  </li>
-                  <li class="nav-item m-5">
                     <a class="nav-link" href="/contacto">Contacto</a>
                   </li>
               </ul>
           </div>
 
-          <div class="d-flex align-items-center m-5">
+          <div class="d-flex align-items-center m-5 flex-dir-col">
             <div *ngIf="(loggedIn)">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
@@ -76,7 +73,7 @@
                 </li>
               </ul>
             </div>
-            <button *ngIf="!loggedIn" mat-stroked-button class="btn btn-alternative" (click)="openDialog()">Iniciar sesion</button>
+            <button *ngIf="!loggedIn" class="btn btn-alternative loggin-btn" (click)="openDialog()">Iniciar sesion</button>
           </div>
         </div>
       </div>

@@ -52,6 +52,14 @@
     color: #fff;
 }
 
+.flex-dir-col {
+    flex-direction: column;
+}
+
+.loggin-btn {
+    min-width: 121px;
+}
+
 @media (min-width: 400px) {
     .nav-logo {
         height: 100px !important;
