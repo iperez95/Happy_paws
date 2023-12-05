@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { Animal } from 'src/app/entidades/animal';
 import axios from 'axios';
@@ -156,6 +156,27 @@ export class AnimalService {
       return this._httpClient.get(`${this.endpoint}/provincia/todas`)
         .pipe(catchError(this.manejarError));
     }
+
+    // Mñétodo para filtrar animales segun sus atributos
+    public filtrarAnimales(
+      especie: string,
+      raza: string,
+      sexo: string,
+      tamano: string,
+      provincia: string,
+      envio: boolean
+    ): Observable<any> {
+      let params = new HttpParams()
+      if (especie) params = params.set('especie', especie);
+      if (raza) params = params.set('raza', raza);
+      if (sexo) params = params.set('sexo', sexo);
+      if (tamano) params = params.set('tamano', tamano);
+      if (provincia) params = params.set('provincia', provincia);
+      params.set('envio', envio ? 'true' : 'false');
+      return this._httpClient.get<any>(`${this.endpoint}/animales/filtrar`, { params });
+    }
+  
+
   ngOnInit() {
   }
 }

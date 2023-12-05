@@ -1,14 +1,10 @@
 package com.tfgunir.happypaws.modelo.dao;
 
 import java.util.List;
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
-import com.tfgunir.happypaws.modelo.entities.Protectora;
 import com.tfgunir.happypaws.modelo.repository.AnimalRepository;
 
 @Service
@@ -38,9 +34,6 @@ public class AnimalDao implements IAnimalDao{
             return false;
         }
     }
-
-   
-
 
     @Override
     public boolean enabledAnimal(Animal animal) {
@@ -161,5 +154,9 @@ public class AnimalDao implements IAnimalDao{
         return animalDto;
     }
 
- 
+    @Override
+    public List<Animal> filtrarAnimales(String especie, String raza, String sexo, String tamano, String provincia, Boolean envio) {
+        return aniRepo.filtrarAnimales(especie, raza, sexo, tamano, provincia, envio);
+    }
+
 }

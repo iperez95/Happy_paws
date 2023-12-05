@@ -1,4 +1,4 @@
-<div *ngIf="listaAnimales.length > 0; else sinAnimales" class="container mt-3">
+<div *ngIf="listaAnimales.length > 0; else sinAnimales" class="container-fluid mt-3">
   <div class="row">
     <div class="col-md-6 mt-4">
       <button class="btn custom-btn-red-light p-2 " (click)="irAltaAnimal()">Dar de alta un animal</button>
@@ -6,7 +6,7 @@
   </div>
   <h1 class="mt-4">Estos son los animales que tenemos actualmente</h1>
   <section class="tarjetas m-3">
-    <div class="container.md">
+    <div class="container-fluid">
       <div class="row row-cols-auto gy-5">
         <div class="col-md-3" *ngFor="let animal of listaAnimales">
           <div class="card h-100">
@@ -31,7 +31,9 @@
                 <div class="col">
                   <button (click)="irModificalAnimal(animal.idanimal)" class="btn btn-success m-4">Modificar
                   </button>
-                  <button (click)="borrarAnimal(animal.idanimal)" class="btn btn-danger m-4">Borrar</button>
+                  <button (click)="borrarAnimal(animal.idanimal)" class="btn btn-danger m-4">
+                    Borrar  <i class="fa-solid fa-trash"></i>
+                  </button>
                 </div>
               </div>
             </div>

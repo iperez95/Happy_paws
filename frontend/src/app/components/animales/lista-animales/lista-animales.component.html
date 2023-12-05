@@ -1,40 +1,78 @@
 <!-- Componente que muestra la lista de animales -->
-
-<!-- Botón para volver atrás -->
-<div class="row">
-  <div class="col-3 text-right">
-    <button class="btn btn-light" (click)="irPrincipal()">Volver atras</button>
-  </div>
-</div>
-
-<!-- Tarjetas de los animales -->
-
-<section class="tarjetas m-3">
-  <div class="container-fluid">
-    <section>
-      <div class="row">
-        <div class="col-md-2">
-                aqui iria el filtro
-          <select (change)="buscar($event)">
-            <option *ngFor=" let r of listaRazas" value="{{r.idraza}}">{{r.raza}}</option>
+<section class="container">
+  <!-- Botón para volver atrás -->
+  <header class="container mb-5">
+    <div class="row">
+      <button type="button" class="btn btn btn-light col-1" (click)="irPrincipal()">
+        <i class="fa-solid fa-arrow-left"></i> Volver
+      </button>
+    </div>
+  </header>
+  <!-- Filtro & Tarjetas-->
+  <section class="container">
+    <div class="row">
+      <!-- Filtro -->
+      <aside class="col-3">
+        <h3>Filtrar:</h3>
+        <form>
+          <label for="especie" class="form-label">Especie:</label>
+          <select id="especie" class="form-select" (change)="actualizarEspecie($event)">
+            <option value="">Selecciona una Especie</option>
+            <option *ngFor=" let e of listEspecies" value="{{e.especie}}">{{e.especie}}</option>
           </select>
+          <label for="raza" class="form-label mt-3">Raza:</label>
+          <select id="raza" class="form-select" (change)="actualizarRaza($event)">
+            <option value="">Selecciona una Raza</option>
+            <option *ngFor=" let r of listaRazas" value="{{r.raza}}">{{r.raza}}</option>
+          </select>
+          <label for="sexo" class="form-label mt-3">Sexo:</label>
+          <select id="sexo" class="form-select" (change)="actualizarSexo($event)">
+            <option value="">Selecciona un Sexo</option>
+            <option *ngFor=" let s of listaSexos" value="{{s.sexo}}">{{s.sexo}}</option>
+          </select>
+          <label for="tamanyo" class="form-label mt-3">Tamaño:</label>
+          <select id="tamanyo" class="form-select" (change)="actualizarTamanyo($event)">
+            <option value="">Selecciona un Tamaño</option>
+            <option *ngFor=" let t of listaTamanyos" value="{{t.tamano}}">{{t.tamano}}</option>
+          </select>
+          <label for="provincia" class="form-label mt-3">Provincia:</label>
+          <select id="provincia" class="form-select" (change)="actualizarProvincia($event)">
+            <option value="">Selecciona una Provincia</option>
+            <option *ngFor=" let p of listaProvincias" value="{{p.provincia}}">{{p.provincia}}</option>
+          </select>
+          <label for="envio" class="form-label mt-3">Envío:</label>
+          <select id="envio" class="form-select" (change)="actualizarEnvio($event)">
+            <option value="">Selecciona un Envío</option>
+            <option value=0>Si</option>
+            <option value=1>No</option>
+          </select>
+          <footer class="d-flex gap-3">
+            <button class="btn btn-primary mt-3" (click)="buscar()">
+              <i class="fa-solid fa-magnifying-glass"></i> Aplicar Filtros
+            </button>
+            <button class="btn btn-warning mt-3" (click)="reload()">
+              <i class="fa-solid fa-rotate-right"></i> Reiniciar
+            </button>
+          </footer>
+        </form>
+      </aside>
+      <!-- Tarjetas -->
+      <main class="col-9">
+        <div class="row">
+          <!-- Tarjetas -->
+          <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
+            <div *ngFor="let animal of listaAnimales" class="col-4 mb-4">
+              <app-animal *ngIf="animal.enabled" [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
+            </div>
+          </ng-container>
+          <!-- Sin Resultados -->
+          <ng-template #sinAnimales>
+            <p class="alert alert-danger" role="alert">
+              No hay animales para ese filtro, prueba a introducir otra combinación.
+            </p>
+          </ng-template>
         </div>
-        <div class="col-md-9">
-              <div class="row">
-                <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
-                  <div *ngFor="let animal of listaAnimales" class="col-md-4 justify-content-center mb-4">
-                    <app-animal *ngIf = "animal.enabled" [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
-                  </div>
-                </ng-container>
-              </div>
-        </div>
-      </div>
-    </section>
-  </div>
+      </main>
+    </div>
+  </section>
 </section>
-
-<ng-template #sinAnimales>
-  <td>
-    No se han encontrado Animales
-  </td>
-</ng-template>
