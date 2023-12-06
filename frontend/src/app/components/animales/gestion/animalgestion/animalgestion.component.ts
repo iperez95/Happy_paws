@@ -44,7 +44,10 @@ export class AnimalgestionComponent {
                 'El animal ha sido eliminado.',
                 'success'
               );
-              location.reload();
+              setTimeout(() => {
+                Swal.close();
+                location.reload();
+              }, 2000);
             },
             error: (err) => {
               console.error(err);
