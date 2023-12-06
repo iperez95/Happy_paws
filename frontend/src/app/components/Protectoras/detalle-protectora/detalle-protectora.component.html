@@ -1,7 +1,7 @@
 <section class="ms-3 me-5 mb-4">
   <!-- Logo de la protectora -->
   <div class="logo">
-    <img class="img-thumbnail rounded mx-auto d-block" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
+    <img class="img-thumbnail rounded mx-auto d-block "style="object-fit: fill; max-height: 300px;" src="{{protectora.urlLogo}}" alt="{{protectora.nombre}}">
   </div>
   <div class="nombre p-3">
     <h3 class="text-center p-3">{{protectora.nombre}}</h3>
@@ -39,22 +39,22 @@
   </div>
 </section>
 
-<!-- FOTOS DEL ANIMAL -->
 <div *ngIf="listaAnimales.length > 0; else sinAnimales" class="container-fluid mt-3">
-  <h1 class="mt-4">Nuestros animales: </h1>
+  <h1 class="mt-4">Animales en adopción en {{protectora.nombreProvincia}}</h1>
   <section class="tarjetas m-3">
     <div class="row">
       <!-- Tarjetas -->
       <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
         <div *ngFor="let animal of listaAnimales" class="col-3 mb-4">
-          <app-animal [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
+            <app-animal [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
         </div>
       </ng-container>
     </div>
   </section>
 </div>
-
-<!-- Sin Resultados -->
+        <!-- Sin Resultados -->
 <ng-template #sinAnimales>
-  <p>Esta protectora no ha dado de alta ningún animal. Contacta con ella para más información.</p>
+  <p>Aun no hay animales!! Da de alta el primero</p>
 </ng-template>
+
+
