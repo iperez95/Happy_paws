@@ -1,17 +1,23 @@
 package com.tfgunir.happypaws.modelo.dao;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
+import com.tfgunir.happypaws.modelo.entities.Multimedia;
 import com.tfgunir.happypaws.modelo.repository.AnimalRepository;
+import com.tfgunir.happypaws.modelo.repository.MultimediaRepository;
 
 @Service
 public class AnimalDao implements IAnimalDao{
 
     @Autowired
     AnimalRepository aniRepo;
+    @Autowired
+    MultimediaRepository multiRepo;
 
     @Override
     public boolean altaAnimal(Animal animal) {
@@ -50,13 +56,36 @@ public class AnimalDao implements IAnimalDao{
     @Override
     public boolean borrarAnimal(int id) {
         try {
-            aniRepo.deleteById(id);
-            return true;
+            Optional<Animal> optionalAnimal = aniRepo.findById(id);
+
+            if (optionalAnimal.isPresent()) {
+                Animal animal = optionalAnimal.get();
+
+                // Eliminar fotos asociadas antes de eliminar el animal
+                eliminarFotosAsociadas(animal);
+
+                // Ahora puedes eliminar el animal
+                aniRepo.deleteById(id);
+                return true;
+            }
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
+
+    private void eliminarFotosAsociadas(Animal animal) {
+                    // Recupera y eliminar fotos asociadas en multimedia
+        List<Multimedia> fotos = multiRepo.todosMultimediasAnimal(animal.getIdanimal());
+
+        for (Multimedia foto : fotos) {
+            // Elimina las fotos del sistema
+            // Eliminar la entrada de multimedia
+            multiRepo.delete(foto);
+        }
+    }
+
 
     @Override
     public Animal buscarAnimalId(int id) {
@@ -158,5 +187,4 @@ public class AnimalDao implements IAnimalDao{
     public List<Animal> filtrarAnimales(String especie, String raza, String sexo, String tamano, String provincia, Boolean envio) {
         return aniRepo.filtrarAnimales(especie, raza, sexo, tamano, provincia, envio);
     }
-
 }
