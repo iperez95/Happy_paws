@@ -44,6 +44,10 @@ export class ListaProtectorasComponent {
     this.router.navigate(['/protectora/detalle/' + id]);
    }
 
+   public contactarProtectora(id: number) {
+    this.router.navigate(['/protectora/contacto/' + id]);
+   }
+
    public irAltaProtectora() {
     this.router.navigate(['/protectora/alta']);
    }
