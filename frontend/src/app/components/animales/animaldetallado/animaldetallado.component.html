@@ -1,74 +1,64 @@
 <!-- Botón para volver al listado de animales -->
 <a href="animales/listado" class="btn btn-light">Volver al listado de animales</a>
+<br>
+<br>
 
 <div class="row justify-content-center">
   <div class="col-lg-10">
 
-    <!-- Carrusel de imágenes -->
-    <div class="fotoprincipal">
+
       <div class="row justify-content-center">
-        <div class="col-md-8">
-          <img
-            *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
-            [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + listaFotos[0].enlace"
-            class="img-fluid"
-            alt="{{animal.nombre}}">
+      <!-- Foto principal del animal -->
+      <div class="col-md-6 text-center fotoprin">
+        <div class="fotoprincipale">
+            <img
+              *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
+              [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + listaFotos[0].enlace"
+              class="fotoprincipal" alt="{{animal.nombre}}">
+          </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Detalles del animal -->
-    <div class="detalles">
-      <div class="row">
-        <div class="col">
-          <p>Conoce a {{animal.nombre}}</p>
-          <p>Nacido el; {{ animal.fechaNacimiento | date }}</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <p>Provincia: {{ animal.municipio.provincia.provincia }}</p>
-          <p>Protectora: {{ animal.protectora.nombre }}</p>
-          <p>Envío: {{ animal.envio ? "Puede viajar" : "No puede viajar" }}</p>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col">
-          <h2>DETALLES</h2>
-          <p>Especie: {{ animal.raza.especie.especie }}</p>
-          <p>Raza: {{ animal.raza.raza }}</p>
-          <p>Sexo: {{ animal.sexo.sexo }}</p>
-          <p>Tamaño: {{ animal.tamano.tamano }}</p>
-          <p>Edad: {{ getAnimalAge(animal.fechaNacimiento) }}</p>
+    
+    
+      <!-- Detalles del animal -->
+      <div class="col-md-6">
+        <div class="datos">
+            <p>Conoce a .. <b>{{animal.nombre}}</b></p>
+            <p>Fecha nacimiento;  <b>{{ animal.fechaNacimiento | date }}</b></p>
+            <p>Provincia:  <b>{{ animal.municipio.provincia.provincia }}</b></p>
+            <p>Protectora:  <b>{{ animal.protectora.nombre }}</b></p>
+            <p>Envío:  <b>{{ animal.envio ? "Puede viajar" : "No puede viajar" }}</b></p><br>
+            <h2><em>DETALLES</em></h2>
+            <p>Especie:  <b>{{ animal.raza.especie.especie }}</b></p>
+            <p>Raza:  <b>{{ animal.raza.raza }}</b></p>
+            <p>Sexo:  <b>{{ animal.sexo.sexo }}</b></p>
+            <p>Tamaño:  <b>{{ animal.tamano.tamano }}</b></p>
+            <p>Edad:  <b>{{ getAnimalAge(animal.fechaNacimiento) }}</b></p>
+          </div>
         </div>
       </div>
 
+        <div class="row justify-content-center">
+          <div class="col text-center">
+            <br>
+            <h2>DESCRIPCIÓN</h2>
+            <p>{{ animal.descripcion }}</p>
+          </div>
+        </div>
 
-      <div class="row">
-        <div class="col">
-          <h2>DESCRIPCIÓN</h2>
-          <p>{{ animal.descripcion }}</p>
+        <!-- FOTOS DEL ANIMAL -->
+        <div class="row justify-content-center">
+          <div class="col-md-2 m-4" *ngFor="let foto of listaFotos; let i = index">
+            <img class="img-fluid img-thumbnail masfotos"
+                *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
+                [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + foto.enlace"
+                alt="Foto {{i + 1}}">
+          </div>
+        </div>
+
+      <!-- Botón de Solicitar Adopción -->
+      <div class="row justify-content-center">
+        <div class="text-center" *ngIf="usuario.isAdoptante()">
+          <button type="submit" class="btn btn-success" (click)="altaAdopcion()">Solicitar Adopción</button>
         </div>
       </div>
-    </div>
 
-    <!-- FOTOS DEL ANIMAL -->
-    <div class="row">
-      <div class="col-md-2 m-4" *ngFor="let foto of listaFotos; let i = index">
-        <img class="img-fluid img-thumbnail "
-             *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
-             [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + foto.enlace"
-             alt="Foto {{i + 1}}"
-             style="height: 200px; width: 200px; object-fit: cover;">
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<!-- Botón de Solicitar Adopción -->
-<div class="text-center" *ngIf="usuario.isAdoptante()">
-  <button type="submit" class="btn btn-success" (click)="altaAdopcion()">Solicitar Adopción</button>
-</div>
