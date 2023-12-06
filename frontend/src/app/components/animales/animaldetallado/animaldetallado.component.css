@@ -1,21 +1,19 @@
   .masfotos {
-
     height: 200px; 
     width: 200px; 
     object-fit: cover;
-
   }
 
 .datos {
-
     margin-left: 5%;
-
 }
 
 .fotoprincipal {
-
     max-height: 460px;
     width: 100%;
     object-fit: cover;
+}
 
+.btn {
+  margin-bottom: 15px;
 }
