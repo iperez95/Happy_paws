@@ -38,3 +38,23 @@
     <button class="btn custom-btn-red-dark p-2" (click)="enviarMensaje()">Contactar</button>
   </div>
 </section>
+
+<!-- FOTOS DEL ANIMAL -->
+<div *ngIf="listaAnimales.length > 0; else sinAnimales" class="container-fluid mt-3">
+  <h1 class="mt-4">Nuestros animales: </h1>
+  <section class="tarjetas m-3">
+    <div class="row">
+      <!-- Tarjetas -->
+      <ng-container *ngIf="listaAnimales.length > 0; else sinAnimales">
+        <div *ngFor="let animal of listaAnimales" class="col-3 mb-4">
+          <app-animal [animal]="animal" [fotos]="listaFotos[animal.idanimal]"></app-animal>
+        </div>
+      </ng-container>
+    </div>
+  </section>
+</div>
+
+<!-- Sin Resultados -->
+<ng-template #sinAnimales>
+  <p>Esta protectora no ha dado de alta ningún animal. Contacta con ella para más información.</p>
+</ng-template>
