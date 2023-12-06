@@ -55,6 +55,16 @@ body { font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: #1F9254; 
 }
 
+.custom-btn-green-dark:hover {
+  background-color: #EBF9F1;
+  color: #1F9254;
+}
+
+.custom-btn-green-dark {
+  background-color: #1F9254;
+  color: #EBF9F1; 
+}
+
 .custom-btn-green-light:hover {
   background-color: #1F9254;
   color: #EBF9F1;
