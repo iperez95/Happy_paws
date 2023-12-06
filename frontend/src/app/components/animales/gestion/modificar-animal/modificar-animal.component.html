@@ -3,10 +3,10 @@
   <!-- Título -->
   <h3 class="text-center">Modificar Animal en HappyPaws</h3><br>
   
-  <button type="button" class="btn btn-light" (click)="irGestionAnimal()">Volver a Gestión</button>
+  <button type="button" class="btn custom-btn-orange-light" (click)="irGestionAnimal()"><i class="fa-solid fa-arrow-left"></i> Volver a Gestión</button>
   
   <div class="d-flex justify-content-center mt-3">
-    <button class="btn btn-success" (click)="irFotosAnimal(animal.idanimal)">Modificar Fotos</button>
+    <button class="btn custom-btn-green-light" (click)="irFotosAnimal(animal.idanimal)"><i class="fa-solid fa-pen-to-square"></i> Modificar Fotos</button>
   </div>
   <!-- Form -->
   <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">
@@ -72,7 +72,7 @@
 
     <!-- Boton editar -->
     <div>
-      <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!altaForm.valid">Guardar cambios</button>
+      <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!altaForm.valid">Guardar cambios <i class="fa-solid fa-floppy-disk"></i></button>
     </div>
 
   </form>

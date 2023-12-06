@@ -1,20 +1,19 @@
+<div class="col-text-right">
+    <button class="btn custom-btn-orange-light" (click)="irPrincipal()"><i class="fa-solid fa-arrow-left"></i> Volver atras</button>
+</div>
+
 <section class="tarjetas m-3">
     <div class="container-fluid">
         <section>
-                <div class="col-md-10 mx-auto">
-                    <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="row">
+                    <ng-container *ngIf="listaGatosHabilitados.length > 0; else sinAnimales">
+                        <div *ngFor="let gato of listaGatosHabilitados" class="col-md-4 justify-content-center mb-4">
+                            <app-animal [animal]="gato" [fotos]="listaFotos[gato.idanimal]"></app-animal>
                         </div>
-                            <div class="row">
-                                <div class="col-3 text-right">
-                                <button class="btn btn-light" (click)="irPrincipal()">Volver atras</button>
-                                </div>
-                                <ng-container *ngIf="listaGatosHabilitados.length > 0; else sinAnimales">
-                                    <div *ngFor="let gato of listaGatosHabilitados" class="col-md-4 justify-content-center mb-4">
-                                        <app-animal [animal]="gato" [fotos]="listaFotos[gato.idanimal]"></app-animal>
-                                    </div>
-                                </ng-container>
-                            </div>
+                    </ng-container>
                 </div>
+            </div>
         </section>
     </div>
 </section>

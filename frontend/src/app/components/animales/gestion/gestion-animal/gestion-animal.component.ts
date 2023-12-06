@@ -84,7 +84,8 @@ export class GestionAnimalComponent {
 
   buscarAnimal() {
     if (this.nombreBuscado) {
-      this.listaAnimales = this.listaAnimales.filter(animal => animal.nombre.includes(this.nombreBuscado));
+      let nombreBuscadoLower = this.nombreBuscado.toLowerCase();
+      this.listaAnimales = this.listaAnimales.filter(animal => animal.nombre.toLowerCase().includes(nombreBuscadoLower));
     }
   }
 

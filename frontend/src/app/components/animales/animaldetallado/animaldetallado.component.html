@@ -1,5 +1,5 @@
 <!-- Botón para volver al listado de animales -->
-<a href="animales/listado" class="btn btn-light">Volver al listado de animales</a>
+<a href="animales/listado" class="btn custom-btn-orange-light"><i class="fa-solid fa-arrow-left"></i> Volver al listado de animales</a>
 <br>
 <br>
 
@@ -38,7 +38,7 @@
       </div>
 
         <div class="row justify-content-center">
-          <div class="col text-center">
+          <div class="col">
             <br>
             <h2>DESCRIPCIÓN</h2>
             <p>{{ animal.descripcion }}</p>
@@ -46,7 +46,7 @@
         </div>
 
         <!-- FOTOS DEL ANIMAL -->
-        <div class="row justify-content-center">
+        <div class="row">
           <div class="col-md-2 m-4" *ngFor="let foto of listaFotos; let i = index">
             <img class="img-fluid img-thumbnail masfotos"
                 *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
