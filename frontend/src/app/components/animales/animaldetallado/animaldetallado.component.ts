@@ -46,7 +46,10 @@ export class AnimaldetalladoComponent {
       this.obtenerFotosAnimales();
     })
 
-    this.usuario = this._usuarioService.getUserData() || {} as Usuario;
+    const userData = this._usuarioService.getUserData();
+      if (userData) {
+    this.usuario = userData;
+}
   }
 
   // Métodos

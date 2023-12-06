@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Animal } from 'src/app/entidades/animal';
 import { AnimalService } from 'src/app/service/animal/animal.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-animalgestion',
@@ -23,17 +24,33 @@ export class AnimalgestionComponent {
 
     public irModificalAnimal(idanimal: number) {
       this.router.navigate(['/animales/gestion/modificar', idanimal]);
-     }
+    }
   
      public borrarAnimal(idanimal: number){
-      this._animalService.eliminarAnimal(idanimal).subscribe({
-        next: (res) => {
-          location.reload();
-        },
-        error: (err) => {
-          console.error(err);
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: '¡Sí, bórralo!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this._animalService.eliminarAnimal(idanimal).subscribe({
+            next: (res) => {
+              Swal.fire(
+                '¡Eliminado!',
+                'El animal ha sido eliminado.',
+                'success'
+              );
+              location.reload();
+            },
+            error: (err) => {
+              console.error(err);
+            }
+          });
         }
-      });
-  
-     }
+      })
+    }
 }
