@@ -20,6 +20,7 @@ import { RazaService } from 'src/app/service/raza/raza.service';
 import { SexoService } from 'src/app/service/sexo/sexo.service';
 import { TamanosService } from 'src/app/service/tamano/tamano.service';
 import { UsuarioService } from 'src/app/service/usuario/usuario.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-animal-gestion',
@@ -78,25 +79,14 @@ export class EditarAnimalGestionComponent {
     this.listadoSexos();
     this.listadoTamanos();
     this.listadoRazasPorIdEspecie();
-    
-  
-    // this.obtenerProtectora();
 
   }
-  // ngOnInit(){
-  //   const id = Number(this.route.snapshot.paramMap.get('id'));
-  //   this.obtenerAnimal(id);
-  //   this.listadoEspecies();
-   
-  //   // this.listadoRazasDeUnaEspecie();
-  //   this.listadoSexos();
-  //   console.log("Listado Sexos: "+this.sexos);
-  //   this.listadoTamanos();  
-  // }
+  
   
   onSubmit() {
-  this.actualizarAnimal();
-  this.irGestion();    
+    this.actualizarAnimal();
+    this.irGestion();
+    this.altaForm.get('especie')?.disable();    
   }
 
   private actualizarAnimal(): void {
@@ -133,9 +123,7 @@ export class EditarAnimalGestionComponent {
         }
       })
   }
-
-
-  
+ 
 
 
   private obtenerAnimal(id: number) {
@@ -148,30 +136,7 @@ export class EditarAnimalGestionComponent {
       console.log("Animal Almacenado :" + this.animal)
   }
 
-  // actualizarAnimal() {
-  //   this._animalAdminService.actualizarAnimal(this.animal.idanimal, this.animal)
-  //     .subscribe({
-  //       next: dato => console.log(dato),
-  //       error: error => console.log(error),
-  //       complete: () => {
-  //         console.log(this.animal);
-  //         console.log('Modificación realizada');
-  //       }
-  //     })
-  // }
-
-  // actualizarAnimalDto() {
-  //   this._animalAdminService.actualizarAnimalDto(this.animal.idanimal, this.animalDto)
-  //     .subscribe({
-  //       next: dato => console.log(dato),
-  //       error: error => console.log(error),
-  //       complete: () => {
-  //         console.log(this.animalDto);
-  //         console.log('Modificación realizada');
-  //       }
-  //     })
-  // }
-
+ 
   actualizarRazas(event: Event) {
     const idEspecieSeleccionada = (event.target as HTMLSelectElement).value;
     // Puedes convertir el idEspecieSeleccionada a un número si es necesario
@@ -189,19 +154,7 @@ export class EditarAnimalGestionComponent {
     }); 
   }
 
-  // private obtenerProtectora(): void {
-  //   const user: Usuario | null | undefined = this._usuarioService.getUserData();
-  //   if (user) {
-  //     this._protectoraService.obtenerProtectoraPorIdUsuario(user.id).subscribe({
-  //       next: (res) => {
-  //         this.protectora = res;
-  //       },
-  //       error: (err) => {
-  //         console.error(err)
-  //       }
-  //     });
-  //   }
-  // }
+
 
   private obtenerSexo(id: number): Sexo | null {
     let valor = null;
@@ -311,7 +264,10 @@ export class EditarAnimalGestionComponent {
       });
   }
   
-
+  onEspecieChange() {
+    swal.fire('Error', `Si se quiere modificar la especie, se debe eliminar el animal y crear uno nuevo`, 'error');
+    
+  }
  
       
 
