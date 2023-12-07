@@ -22,7 +22,7 @@ export class AdopcionesCompletadasComponent {
     const idProtectora = this.userService.getUserData()?.idProtectora;
     this.axiosService.request('GET',"adopcion/completadas/protectora/" + idProtectora, null).then((response) => {
       this.adopciones = [];
-      response.data.forEach((element: { idAdopcion: number; idUsuario: number; nombreAnimal: string; nombreUsuario: string; fechaAdopcion: string; idAnimal: number; idEstadoAdopcion: number; }) => {
+      response.data.forEach((element: { idAdopcion: number; idUsuario: number; nombreAnimal: string; nombreUsuario: string; fechaAdopcion: string; idAnimal: number; idEstadoAdopcion: number;  emailUsuario: string}) => {
         const adopcion = new Adopcion();
         adopcion.idAdopcion = element.idAdopcion;
         adopcion.idUsuario = element.idUsuario;
@@ -30,6 +30,7 @@ export class AdopcionesCompletadasComponent {
         adopcion.nombreUsuario = element.nombreUsuario;
         adopcion.fechaAdopcion = element.fechaAdopcion;
         adopcion.idAnimal = element.idAnimal;
+        adopcion.emailUsuario=element.emailUsuario;
         adopcion.idEstadoAdopcion = element.idEstadoAdopcion;
         this.adopciones.push(adopcion);
       });

@@ -27,9 +27,7 @@ public class AuthController {
     private UsuarioAuthProvider usuarioAuthProvider;
 
     /**
-     * This method receives a CredentialsDto object and returns a UsuarioDto object with the token.
-     * @param credentialsDto
-     * @return
+     * Este método recibe un objeto CredentialsDto y devuelve un objeto UsuarioDto con el token.
      */
     @PostMapping("/api/login")
     public ResponseEntity<UsuarioDto> login(@RequestBody CredentialsDto credentialsDto) {

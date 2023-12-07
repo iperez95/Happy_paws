@@ -51,7 +51,7 @@ export class RegistroProtectoraComponent {
         direccionProtectora: ['', Validators.required],
         emailProtectora: ['', Validators.required],
         telefonoProtectora: ['', Validators.required],
-        urlLogo: ['', Validators.required],
+        urlLogo: [''],
         municipio: ['', Validators.required],
         provincia: ['', Validators.required],
       });
@@ -85,8 +85,8 @@ export class RegistroProtectoraComponent {
           "protectora": this.protectora,
           "idMunicipio": values.municipio,
         }).then(response => {
-          this.authService.setLoggedIn(true); // Update the loggedIn property
-          this.axiosService.setAuthToken(response.data.token); // Save the token in the local storage
+          this.authService.setLoggedIn(true); 
+          this.axiosService.setAuthToken(response.data.token);
           this.isSubmitted = true;
           Swal.fire({
             title: 'Genial!',

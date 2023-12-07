@@ -33,8 +33,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
     private UsuarioAuthProvider usuarioAuthProvider;
 
     /**
-     * This method registers the authentication provider that will be used to validate users.
-     * Possible @DELETE because we are using JWT.
+     * Este método registra el proveedor de autenticación que se utilizará para validar a los usuarios.
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -47,10 +46,7 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * This method registers a filter that intercepts incoming requests and validates the JWT token in the Authorization header.
-     * @param http
-     * @return
-     * @throws Exception
+     * Este método registra un filtro que intercepta las solicitudes entrantes y valida el token JWT en el encabezado de Autorización.
      */
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
@@ -80,10 +76,9 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
     /**
-     * This method registers a CORS filter that allows all requests from localhost:4200.
+     * Este método registra un filtro CORS que permite todas las solicitudes desde localhost:4200.
      * 
-     * Check if this method is necessary or the one below.
-     * @return
+     * Verifique si este método es necesario o el de abajo.
      */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
@@ -98,11 +93,9 @@ public class WebSecurityUserConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * This method registers a CORS filter that allows all requests from localhost:4200.
-     * So in the browser we can access the API from Angular.
+     * Este método registra un filtro CORS que permite todas las solicitudes desde localhost:4200.
      * 
-     * Check if this method is necessary or the one above.
-     * @return
+     * Verifique si este método es necesario o el de abajo.
      */
     @Bean
     public CorsFilter corsFilter() {
