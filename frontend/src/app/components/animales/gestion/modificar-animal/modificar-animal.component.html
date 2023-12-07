@@ -1,10 +1,11 @@
 <div class="col-md-6 offset-md-3">
 
+    <!-- Botón volver atras -->
+  <button type="button" class="btn custom-btn-orange-light" (click)="irGestionAnimal()"><i class="fa-solid fa-arrow-left"></i> Volver a Gestión</button>
+    
   <!-- Título -->
   <h3 class="text-center">Modificar Animal en HappyPaws</h3><br>
-  
-  <button type="button" class="btn custom-btn-orange-light" (click)="irGestionAnimal()"><i class="fa-solid fa-arrow-left"></i> Volver a Gestión</button>
-  
+   
   <div class="d-flex justify-content-center mt-3">
     <button class="btn custom-btn-green-light" (click)="irFotosAnimal(animal.idanimal)"><i class="fa-solid fa-pen-to-square"></i> Modificar Fotos</button>
   </div>
@@ -70,8 +71,8 @@
       </select>
     </div>
 
-    <!-- Boton editar -->
-    <div>
+    <!-- Boton guardar cambios -->
+    <div class="d-flex justify-content-center">
       <button class="btn custom-btn-red-dark mt-3" type="submit" [disabled]="!altaForm.valid">Guardar cambios <i class="fa-solid fa-floppy-disk"></i></button>
     </div>
 
