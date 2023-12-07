@@ -60,11 +60,9 @@ public class AnimalDao implements IAnimalDao{
 
             if (optionalAnimal.isPresent()) {
                 Animal animal = optionalAnimal.get();
-
-                // Eliminar fotos asociadas antes de eliminar el animal
+                // Elimina las fotos asociadas antes de eliminar el animal
                 eliminarFotosAsociadas(animal);
-
-                // Ahora puedes eliminar el animal
+                // Ahora puede eliminar el animal
                 aniRepo.deleteById(id);
                 return true;
             }
@@ -75,17 +73,13 @@ public class AnimalDao implements IAnimalDao{
         }
     }
 
+    // Método para eliminar las fotos asociadas de cada animal
     private void eliminarFotosAsociadas(Animal animal) {
-                    // Recupera y eliminar fotos asociadas en multimedia
         List<Multimedia> fotos = multiRepo.todosMultimediasAnimal(animal.getIdanimal());
-
         for (Multimedia foto : fotos) {
-            // Elimina las fotos del sistema
-            // Eliminar la entrada de multimedia
             multiRepo.delete(foto);
         }
     }
-
 
     @Override
     public Animal buscarAnimalId(int id) {
@@ -147,7 +141,7 @@ public class AnimalDao implements IAnimalDao{
         return aniRepo.buscarSoloGatos();
     }
 
-      @Override
+    @Override
     public List<Animal> buscarPorNombreContiene(String nombre) {
         try{
             return aniRepo.buscarPorNombreContiene(nombre);
