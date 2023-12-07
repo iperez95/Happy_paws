@@ -1,19 +1,20 @@
 <!-- Componente que muestra la lista de animales -->
 <section class="container-fluid">
   <!-- Botón para volver atrás -->
-  <header class="container mb-5">
+
     <div class="row">
       <button type="button" class="btn custom-btn-orange-light col-1" (click)="irPrincipal()">
-        <i class="fa-solid fa-arrow-left"></i> Volver
-      </button>
+        <i class="fa-solid fa-arrow-left"></i> Volver </button>
     </div>
-  </header>
+    <br>
+    <br>
+
   <!-- Filtro & Tarjetas-->
   <section class="container-fluid mx-auto">
     <div class="row">
       <!-- Filtro -->
-      <aside class="col-3">
-        <h3>Filtrar:</h3>
+      <aside class="col-md-3">
+        <h3>Filtrar por:</h3>
         <form>
           <label for="especie" class="form-label">Especie:</label>
           <select id="especie" class="form-select" (change)="actualizarEspecie($event)">

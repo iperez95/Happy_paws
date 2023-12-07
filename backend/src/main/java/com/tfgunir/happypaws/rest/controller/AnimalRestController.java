@@ -123,6 +123,7 @@ public class AnimalRestController {
     }
 
     // Controlador para modificar un animal
+            // Recupera el id del animal
     @GetMapping(path = "/gestion/modificar/{id}", produces = "application/json")
     public ResponseEntity<Animal> obtenerAnimal(@PathVariable("id") int id) {
         Animal animal = aniDao.buscarAnimalId(id);
@@ -132,7 +133,7 @@ public class AnimalRestController {
             return ResponseEntity.notFound().build();
         }
     }
-
+            // Cambia el animal
     @PutMapping(path = "/gestion/modificar/{id}", consumes = "application/json")
     public ResponseEntity<?> modificarAnimal(@PathVariable("id") int id, @RequestBody Animal animal) {
         Map<String, String> response = new HashMap<>();

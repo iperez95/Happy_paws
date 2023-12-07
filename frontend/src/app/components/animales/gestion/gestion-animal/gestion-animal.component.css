@@ -1,10 +1,7 @@
-.filtro-titulo {
-    margin-right: 10px;
-  }
   
   .filtro-input {
     width: 30%;
-    margin-right: 10px;
+    margin-left: 5px;
   }
   
   .botones-filtro {
@@ -14,3 +11,4 @@
   .btn-margin {
     margin-right: 10px;
   }
+
