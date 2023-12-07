@@ -74,7 +74,7 @@ export class ListadoGestionProtectorasComponent {
   }
 
   getStatus(nombreEstadoProtectora: String) {
-    return nombreEstadoProtectora ? 'Activo' : 'Inactivo';
+    return nombreEstadoProtectora ? 'Activo' : 'Inactivo' 
   }
 
   cambiarEstadoProtectora(id: number) {
