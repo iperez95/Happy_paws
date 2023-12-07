@@ -42,7 +42,6 @@ export class ContactoProtectoraComponent {
         error: error => console.log(error),
         complete: () => console.log('Obtenida Protectora + ' + this.protectora.nombre )
       })
-
   }
 
   onSubmit() {

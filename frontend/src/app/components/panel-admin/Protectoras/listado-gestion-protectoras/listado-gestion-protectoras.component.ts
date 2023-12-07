@@ -46,6 +46,8 @@ export class ListadoGestionProtectorasComponent {
     });
   }
 
+ 
+
   public activarProtectora(id:number){
     this._protectoraAdminService.activarProtectora(id, this.listaProtectoras[id]).subscribe(dato => {
       this.listar();
@@ -70,6 +72,24 @@ export class ListadoGestionProtectorasComponent {
         return 'white';
     }
   }
+
+  getStatus(nombreEstadoProtectora: String) {
+    return nombreEstadoProtectora ? 'Activo' : 'Inactivo' 
+  }
+
+  cambiarEstadoProtectora(id: number) {
+    let protectora = this.listaProtectoras.find(p => p.idprotectora === id);
+    if (protectora) {
+      if (protectora.idEstadoProtectora == 1) {
+        this.inactivarProtectora(id);
+      }
+      if (protectora.idEstadoProtectora == 2){
+        this.activarProtectora(id);
+      }
+    }
+  }
+
+
 
  
 }
