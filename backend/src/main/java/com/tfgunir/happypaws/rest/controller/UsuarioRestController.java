@@ -41,9 +41,9 @@ public class UsuarioRestController {
     }
 
 
-    /**
-     * This method receives a Usuario object and returns a ResponseEntity with the created Usuario object.
-     * This endpoint is used for user registration.
+   /**
+     * Este método recibe un objeto Usuario y devuelve un ResponseEntity con el objeto Usuario creado.
+     * Este endpoint se utiliza para el registro de usuarios.
      * @param usuario
      * @return
      */

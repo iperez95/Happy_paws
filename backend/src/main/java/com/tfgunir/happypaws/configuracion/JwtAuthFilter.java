@@ -14,8 +14,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * This class represents a filter that intercepts incoming requests and validates the JWT token in the Authorization header.
- * If the token is valid, it sets the authentication in the SecurityContextHolder.
+ * Esta clase representa un filtro que intercepta las solicitudes entrantes y valida el token JWT en el encabezado de Autorización.
+ * Si el token es válido, establece la autenticación en el SecurityContextHolder.
  */
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {

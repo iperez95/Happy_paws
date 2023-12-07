@@ -138,13 +138,10 @@
                       <div class="invalid-field" *ngIf="registerForm.controls['telefonoProtectora'].errors?.['required']">Teléfono de la protectora es obligatorio.</div>
                     </div>
                   </div>
-                <div class="form-group m-3">
+                  <div class="form-group m-3">
                     <label for="protec_logo">Logo</label>
                     <input formControlName="urlLogo" type="url" class="form-control custom-border-color" name="protec_logo" placeholder="URL del logo">
-                    <div *ngIf="registerForm.controls['urlLogo'] && registerForm.controls['urlLogo'].invalid && (submitted || registerForm.controls['urlLogo'].dirty || registerForm.controls['urlLogo'].touched)">
-                      <div class="invalid-field" *ngIf="registerForm.controls['urlLogo'].errors?.['required']">La URL del logo es obligatorio.</div>
-                    </div>
-                </div>
+                  </div>
                 <div class="form-group m-3">
                     <label for="protec_provincia">Provincia</label>
                     <select class="form-select custom-border-color" formControlName="provincia" id="provincia" (change)="listadoMunicipiosProvincia($event)">
