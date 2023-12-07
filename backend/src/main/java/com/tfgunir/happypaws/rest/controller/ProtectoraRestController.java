@@ -259,7 +259,9 @@ public class ProtectoraRestController {
             return ResponseEntity.notFound().build();
     }
 
-    //BORRAR UNA PROTECTORA
+   /*BORRAR UNA PROTECTORA
+    Este método no esta implementado porque se ha decidido que no se pueda borrar una protectora para 
+    poder mantener los históricos de las adopciones o animales.*/
     @DeleteMapping(path="/gestion/borrar/{id}")
     public ResponseEntity<Protectora> borrarProtectora (@PathVariable("id") int id){
         Protectora p = protdao.buscarProtectoraId(id);
