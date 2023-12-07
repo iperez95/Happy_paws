@@ -1,10 +1,10 @@
 <div class="col-md-6 offset-md-3">
   <div class="row">
-    <div class="col-9 text-left">
-      <h3 class="text-left">Alta Animal en HappyPaws</h3>
-    </div>
     <div class="col-3 text-right">
       <button class="btn custom-btn-orange-light" (click)="irGestionAnimal()">Volver atras</button>
+    </div>
+    <div class="col-9 text-left">
+      <h3 class="text-left">Alta Animal en HappyPaws</h3>
     </div>
   </div>
   <form [formGroup]="altaForm" (ngSubmit)="onSubmit()">
@@ -74,7 +74,7 @@
         formControlName="fotos"
       >
     </div>
-    <div>
+    <div class="d-flex justify-content-center">
       <button class="btn custom-btn-red-dark mt-3 enviar" type="submit" [disabled]="!altaForm.valid">Guardar <i class="fa-regular fa-floppy-disk"></i></button>
     </div>
   </form>
