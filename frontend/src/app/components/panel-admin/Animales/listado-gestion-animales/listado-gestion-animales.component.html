@@ -26,7 +26,6 @@
                 <th scope="col">ID Animal</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Provincia</th>
-                <th scope="col">Estado</th>
                 <th scope="col">Protectora</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Cambiar Estado</th>
@@ -40,7 +39,6 @@
                 <th scope="row">{{animal.idanimal}}</th>    
                 <td>{{animal.nombre}}</td>
                 <td>{{animal.nombreProvincia}}</td>
-                <td>{{animal.enabled}}</td>
                 <td>{{animal.nombreProtectora}}</td>
                 <td [ngStyle]="{'color': getColor(animal.enabled)}">{{getStatus(animal.enabled)}}</td>
                        
