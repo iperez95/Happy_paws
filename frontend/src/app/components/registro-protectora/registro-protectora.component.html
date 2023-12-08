@@ -111,12 +111,19 @@
                     </div>
                   </div>
                 <div class="form-group m-3">
-                    <label for="protec_descripcion">Descripciónn</label>
-                    <input type="text" formControlName="descripcion" class="form-control custom-border-color" name="protec_descripcion" placeholder="Descripcion de la protectora">
+                    <label for="protec_descripcion">Descripción</label>
+                    <textarea rows="4" cols="50" maxlength="1000" type="text-area" formControlName="descripcion" class="form-control custom-border-color" name="protec_descripcion" placeholder="Descripcion de la protectora"></textarea>
                     <div *ngIf="registerForm.controls['descripcion'] && registerForm.controls['descripcion'].invalid && (submitted || registerForm.controls['descripcion'].dirty || registerForm.controls['descripcion'].touched)">
                       <div class="invalid-field" *ngIf="registerForm.controls['descripcion'].errors?.['required']">Descripción de la protectora es obligatorio.</div>
                     </div>
                   </div>
+                <!-- <div class="form-group m-3">
+                  <label for="protec_descripcion">Descripciónn</label>
+                  <input type="text" formControlName="descripcion" class="form-control custom-border-color" name="protec_descripcion" placeholder="Descripcion de la protectora">
+                  <div *ngIf="registerForm.controls['descripcion'] && registerForm.controls['descripcion'].invalid && (submitted || registerForm.controls['descripcion'].dirty || registerForm.controls['descripcion'].touched)">
+                    <div class="invalid-field" *ngIf="registerForm.controls['descripcion'].errors?.['required']">Descripción de la protectora es obligatorio.</div>
+                  </div>
+                </div>   -->
                 <div class="form-group m-3">
                     <label for="protec_direccion">Dirección</label>
                     <input type="text" formControlName="direccionProtectora" class="form-control custom-border-color" name="protec_direccion" placeholder="Direccion de la protectora">
