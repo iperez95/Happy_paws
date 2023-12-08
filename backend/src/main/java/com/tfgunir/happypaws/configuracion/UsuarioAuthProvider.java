@@ -45,9 +45,13 @@ public class UsuarioAuthProvider {
      */
     public String createToken(UsuarioDto dto, Integer idProtectora) {
         Date now = new Date();
-        Date validity = new Date(now.getTime() + 3600000);
+        Date validity = new Date(now.getTime() + 3600000); // 1 hour
         Builder jwt = JWT.create();
 
+        /**
+         * Claims: propiedades del token que se pueden usar para identificar al usuario.
+         * Son las propiedades del json que se envía en el token.
+         */
         jwt.withIssuer(dto.getEmail())
             .withIssuedAt(now)
             .withExpiresAt(validity)
@@ -61,6 +65,9 @@ public class UsuarioAuthProvider {
             jwt.withClaim("idProtectora", idProtectora.toString());
         }
 
+        /**
+         * Devolvemos el token firmado con el algoritmo HMAC256.
+         */
         return jwt.sign(Algorithm.HMAC256(secretKey));
     }
 

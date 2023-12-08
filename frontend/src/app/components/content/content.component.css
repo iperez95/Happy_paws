@@ -37,7 +37,7 @@
 }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 300px) {
     .container-homepage {
         background-image: url(/assets/images/home/perros-transformed.png);
         background-repeat: no-repeat;
@@ -65,7 +65,7 @@
 }
 
 
-@media (min-width: 400px) {
+@media (min-width: 300px) {
   .cats {
     margin-top: 2em;
     background-image: url("/assets/images/home/gato-card.jpg");
