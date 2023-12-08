@@ -1068,11 +1068,11 @@ VALUES
 -- -----------------------------------------------------
 -- INSERT de PROTECTORAS
 -- -----------------------------------------------------
-INSERT INTO PROTECTORAS (IDESTADOPROTECTORA,NOMBRE,EMAIL,TELEFONO, DIRECCION,IDMUNICIPIO,URL_LOGO,DESCRIPCION)
+/*INSERT INTO PROTECTORAS (IDESTADOPROTECTORA,NOMBRE,EMAIL,TELEFONO, DIRECCION,IDMUNICIPIO,URL_LOGO,DESCRIPCION)
 VALUES
 		(1,"Protectora 1","protectora1@email.com",652369852, "C/ de la protectora 1, 128715 Malaga","5441","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.es%2Fpin%2F562598178429991282%2F&psig=AOvVaw1Y42vo2v7EWdXB7mTk8yTs&ust=1697219555160000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOjr4deJ8YEDFQAAAAAdAAAAABAE","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."), 
 		(1,"Protectora 2","protectora2@email.com",632145698, "C/ de la protectora 2, 78954 Valencia","6937","https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.es%2Fpin%2F523895369132376648%2F&psig=AOvVaw1Y42vo2v7EWdXB7mTk8yTs&ust=1697219555160000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOjr4deJ8YEDFQAAAAAdAAAAABAI","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."); 
-
+*/
 -- -----------------------------------------------------
 -- INSERT de ESPECIE
 -- -----------------------------------------------------
@@ -1115,7 +1115,7 @@ VALUES
 -- -----------------------------------------------------
 -- INSERT de ANIMALES
 -- -----------------------------------------------------
-INSERT INTO ANIMALES (IDPROTECTORA,IDMUNICIPIO,IDRAZA,IDSEXO,IDTAMANO,ENVIO,ENABLED,NOMBRE,DESCRIPCION,FECHA_NACIMIENTO,FECHA_ALTA)
+/*INSERT INTO ANIMALES (IDPROTECTORA,IDMUNICIPIO,IDRAZA,IDSEXO,IDTAMANO,ENVIO,ENABLED,NOMBRE,DESCRIPCION,FECHA_NACIMIENTO,FECHA_ALTA)
 VALUES
 		(1,105,3,1,1,false,true,"Norbert",
         "Buenas tardes amigos, Os presento a NORBERT observar que bellezón, esta preciosidad es un jovenzuelo, cruce de Pastor & Border Collie medianito de un año y medio de edad, que dio con sus huesos en la perrera hace unas semanas, a últimos de Septiembre. NORBERT es el típico buenazo, super cariñoso y obediente y podría vivir con otros perros/as sin problemas. El pobre peludo ya ha tenido bastante perrera y necesitamos que salga de ahí rápido. Norbert busca un Hogar: está sano, bien físicamente y se entrega debidamente vacunado y desparasitado. Actualmente está en la protectora de Barcelona, pero puede viajar a cualquier punto de España. Podéis contactar conmigo aquí para cualquier duda:",
@@ -1126,7 +1126,7 @@ VALUES
         (1,425,1,2,2,true,true,"Estrella",
         "Esta preciosa perrita no ha tenido suerte en su corta vida. Abandonada de carrocho fueadoptada de la perrera provincial por alguien quizás demasiado joven paraentender la responsabilidad que significa tener un animal a tu cuidado. Escariñosa , alegre, activa . Ajena a su nuevo abandono busca el juego con todoslos perros y las personas. Unos 10 meses de edad y unos 20 kg. Tiene un tamaño medianito ideal. Se encuentra en la provincia de Huelva pero puede viajar.Buscamos a una familia activa que le guste pasear por la playa o la montaña y le de mucha actividad a esta maravillosa perrita. Si quieres saber más de Estrella estaremos encantadas de contarte y mandarte videos y fotos de esta hermosa perrita.",
 		"2020-02-14","2023-10-13");
-        
+*/        
 -- -----------------------------------------------------
 -- INSERT de ATRIBUTOS ANIMALES
 -- -----------------------------------------------------
