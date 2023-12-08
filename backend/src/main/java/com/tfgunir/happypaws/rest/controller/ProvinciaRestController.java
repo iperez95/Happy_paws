@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tfgunir.happypaws.modelo.dao.IProvinciaDao;
-import com.tfgunir.happypaws.modelo.dao.ProvinciaDao;
 import com.tfgunir.happypaws.modelo.entities.Provincia;
 
 @RestController

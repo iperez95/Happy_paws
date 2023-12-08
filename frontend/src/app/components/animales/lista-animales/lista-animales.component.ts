@@ -32,6 +32,7 @@ export class ListaAnimalesComponent {
   public listaSexos: Sexo[] = [];
   public listaTamanyos: Tamano[] = [];
   public listaProvincias: Provincia[] = [];
+  
   public listaAnimalesHabilitados = this.listaAnimales.filter(animal => animal.enabled);
 
     // Atributos para filtro.
