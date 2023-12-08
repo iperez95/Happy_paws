@@ -11,10 +11,17 @@ export class AxiosService {
     axios.defaults.headers.post['Content-Type'] = 'application/json';
   }
 
+  /**
+   * 
+   * @returns El token guardado en el localStorage
+   */
   getAuthToken(): string|null {
     return window.localStorage.getItem('auth_token');
   }
 
+  /**
+   * Método para guardar el token en el localStorage
+   */
   setAuthToken(token: string | null): void {
     if (token !== null) {
       window.localStorage.setItem('auth_token', token);
@@ -23,6 +30,9 @@ export class AxiosService {
     }
   }
 
+  /**
+   * Método para decodear el token y obtener los datos del usuario
+   */
   readToken(): any {
     const token = this.getAuthToken();
 
@@ -34,6 +44,9 @@ export class AxiosService {
     return null;
   }
 
+  /**
+   * Método para realizar peticiones a una URL
+   */
   request(method: string, url: string, data: any): Promise<any> {
     let headers = {};
 

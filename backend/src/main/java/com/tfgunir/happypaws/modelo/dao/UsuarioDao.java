@@ -68,7 +68,13 @@ public class UsuarioDao implements IUsuarioDao {
         if (usuario.getEnabled() == (byte)0) {
             throw new AppException("El usuario esta inactivo", HttpStatus.UNAUTHORIZED);
         }
-
+        
+        /**
+         * Compara la contraseña introducida con la contraseña encriptada en la base de datos.
+         * CharBuffer.wrap() es necesario para que el método matches() funcione correctamente, 
+         * porque el método matches() de PasswordEncoder espera un CharSequence y no un String,
+         * ya que el dto almacena la contraseña como un char[] y el usuario como un String.
+         */
         if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.password()), usuario.getPassword())) {
             return UsuarioDto.builder()
                 .id(usuario.getIdusuario())
