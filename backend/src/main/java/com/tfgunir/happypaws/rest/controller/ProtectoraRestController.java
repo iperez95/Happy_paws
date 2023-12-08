@@ -31,12 +31,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
-
-
 import com.tfgunir.happypaws.modelo.dao.ProtectoraDao;
-import com.tfgunir.happypaws.modelo.dto.AdopcionDto;
 import com.tfgunir.happypaws.modelo.dto.ProtectoraDto;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.ContactForm;
@@ -46,7 +42,6 @@ import com.tfgunir.happypaws.modelo.entities.Usuario;
 import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
 
 @RestController
-// TODO DAV comprobar si realmente es necesario el CrossOrigin
 @CrossOrigin(origins ="*")
 @RequestMapping("/protectora")
 public class ProtectoraRestController {

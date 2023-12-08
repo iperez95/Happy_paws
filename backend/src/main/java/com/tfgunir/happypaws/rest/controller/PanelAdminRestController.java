@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tfgunir.happypaws.configuracion.UsuarioAuthProvider;
 import com.tfgunir.happypaws.modelo.dao.AnimalDao;
 import com.tfgunir.happypaws.modelo.dao.EspecieDao;
@@ -27,17 +26,11 @@ import com.tfgunir.happypaws.modelo.dto.AnimalDto;
 import com.tfgunir.happypaws.modelo.dto.ProtectoraDto;
 import com.tfgunir.happypaws.modelo.dto.UsuarioDto;
 import com.tfgunir.happypaws.modelo.entities.Animal;
-import com.tfgunir.happypaws.modelo.entities.Especie;
 import com.tfgunir.happypaws.modelo.entities.Estadosprotectora;
-import com.tfgunir.happypaws.modelo.entities.Municipio;
 import com.tfgunir.happypaws.modelo.entities.Protectora;
-import com.tfgunir.happypaws.modelo.entities.Provincia;
-import com.tfgunir.happypaws.modelo.entities.Raza;
-import com.tfgunir.happypaws.modelo.entities.Sexo;
-import com.tfgunir.happypaws.modelo.entities.Tamano;
 import com.tfgunir.happypaws.modelo.entities.Usuario;
 import com.tfgunir.happypaws.modelo.repository.ProtectoraRepository;
-import com.tfgunir.happypaws.modelo.repository.UsuarioRepository;
+
 
 @RestController
 @CrossOrigin("*")

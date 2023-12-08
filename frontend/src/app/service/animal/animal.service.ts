@@ -158,7 +158,7 @@ export class AnimalService {
         .pipe(catchError(this.manejarError));
     }
 
-    // Mñétodo para filtrar animales segun sus atributos
+    // Método para filtrar animales segun sus atributos
     public filtrarAnimales(
       especie: string,
       raza: string,
