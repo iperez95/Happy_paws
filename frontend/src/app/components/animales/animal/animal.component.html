@@ -1,6 +1,6 @@
 <article class="card">
   <img [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + fotos[0].enlace"
-       alt="{{animal.nombre}}" class="card-img-top imagen">
+       alt="{{animal.nombre}}" class="card-img-top imagen" style="object-fit:cover; object-position: top;">
   <header class="card-body">
     <h5 class="card-title">{{animal.nombre}}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">Protectora: {{animal.protectora.nombre}}</h6>

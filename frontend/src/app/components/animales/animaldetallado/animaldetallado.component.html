@@ -14,7 +14,7 @@
             <img
               *ngIf="animal && listaFotos && listaFotos.length > 0 && listaFotos[0]"
               [src]="'http://localhost:4200/assets/images/animales/' + animal.idanimal + '/' + listaFotos[0].enlace"
-              class="fotoprincipal" alt="{{animal.nombre}}">
+              class="fotoprincipal" style="object-fit: cover; object-position: top; max-height: 450px;" alt="{{animal.nombre}}">
           </div>
         </div>
     
